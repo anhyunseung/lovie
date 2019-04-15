@@ -23,7 +23,7 @@ import poly.util.MovieUtil;
 @Controller
 public class CommonController {
    private Logger log = Logger.getLogger(this.getClass());
-   
+    
    @Resource(name="CommonService")
    private ICommonService commonService;
    
