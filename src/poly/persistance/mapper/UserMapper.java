@@ -2,11 +2,9 @@ package poly.persistance.mapper;
 
 import java.util.List;
 
-import com.sun.istack.internal.NotNull;
-
 import config.Mapper;
 import poly.dto.UserDTO;
-
+ 
 @Mapper("UserMapper")
 public interface UserMapper {
    public void userJoin(UserDTO uDto) throws Exception;
