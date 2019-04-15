@@ -190,7 +190,7 @@ input {
 </td>
    </tr>
       <tr>
-      <td align="center"><br><img src="../img/top/id.png"/></td>
+      <td align="center"><br><img src="../img/top/Id.png"/></td>
          <td><br><input type="text" name="user_id" maxlength="20"  style="width:200px;" value="<%=id_over%>"  disabled="disabled"/>
          </td>
       </tr>

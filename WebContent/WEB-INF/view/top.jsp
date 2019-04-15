@@ -126,7 +126,7 @@ input {
 			</td>
 			<td align="right" valign="top" width="180">
 				<%if (SESSION_USER_ID.equals("")) {%>		
-			<img src="../img/top/id.png"/> &nbsp;
+			<img src="../img/top/Id.png"/> &nbsp;
 			
 			 <input type="text" name="user_id" maxlength="20"
 				style="width: 110px;" onkeydown="return doKeyIdPw(event)"/>

@@ -97,7 +97,7 @@ input {
 			<tr>
 			</tr>
 			<tr>
-				<td align="center"><br> <img src="../img/top/id.png"/> &nbsp;</td>
+				<td align="center"><br> <img src="../img/top/Id.png"/> &nbsp;</td>
 				<td><br> <input type="text" name="user_id" maxlength="10"
 					style="width: 190px" /></td>
 			</tr>

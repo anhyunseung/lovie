@@ -90,7 +90,7 @@ input {
 </td>
    </tr>
       <tr>
-      <td align="center"><br><img src="../img/top/id.png"/></td>
+      <td align="center"><br><img src="../img/top/Id.png"/></td>
          <td><br><%=CmmUtil.nvl(rDTO.getUser_id())%>
          </td>
       </tr>
