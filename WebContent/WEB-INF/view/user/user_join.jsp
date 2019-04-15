@@ -148,7 +148,7 @@ input {
         vertical-align: middle;
       }
       input.img-button {
-        background: url( "../img/sign.png" ) no-repeat;
+        background: url( "../img/button/sign.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -171,7 +171,7 @@ input {
 <tr>
 <td align="center">
 <br>
-<img src="../img/joint.png" />
+<img src="../img/user/userjoin/joint.png" />
 <br><br><br>
 </td>
 </tr>
@@ -181,7 +181,7 @@ input {
    <col width="100px"/>
    <col width="200px"/>
       <tr>
-         <td align="center"><br><img src="../img/name.png"/></td>
+         <td align="center"><br><img src="../img/user/userjoin/name.png"/></td>
          <td><br><input type="text" name="user_name" maxlength="10" style="width:200px;" onkeydown="return doKeyOnlyWord(event)"/></td>
       </tr>
          <tr>
@@ -190,7 +190,7 @@ input {
 </td>
    </tr>
       <tr>
-      <td align="center"><br><img src="../img/Id.png"/></td>
+      <td align="center"><br><img src="../img/top/id.png"/></td>
          <td><br><input type="text" name="user_id" maxlength="20"  style="width:200px;" value="<%=id_over%>"  disabled="disabled"/>
          </td>
       </tr>
@@ -198,28 +198,28 @@ input {
       <td>
       </td>
       <td colspan="2" align="left">
-      <img src="../img/idd.png"/>
+      <img src="../img/user/userjoin/idd.png"/>
       <br>
       </td>
       </tr>
       <tr>
-         <td align="center"><br><img src="../img/pw.png"/></td>
+         <td align="center"><br><img src="../img/top/pw.png"/></td>
          <td><br><input type="password" name="pwd1" maxlength="20" style="width:200px;" onkeydown="return doKeyIdPw(event)"/></td>
       </tr>
       <tr>
       <td>
       </td>
       <td colspan="2" align="left">
-      <img src="../img/pwd.png"/>
+      <img src="../img/user/userjoin/pwd.png"/>
       <br>
       </td>
       </tr>
       <tr>
-      <td align="center"><br><img src="../img/pwc.png"/></td>
+      <td align="center"><br><img src="../img/user/userjoin/pwc.png"/></td>
          <td><br><input type="password" name="pwd2" maxlength="20" style="width:200px;"  onkeydown="return doKeyIdPw(event)"/></td>
       </tr>      
       <tr>
-         <td align="center"><br><br><img src="../img/email.png"/></td>
+         <td align="center"><br><br><img src="../img/user/userjoin/email.png"/></td>
          <td colspan="2">
          <br><br>
             <input type="text" name="email1" maxlength="16" style="width:100px;" onkeydown="return doKeyIdPw(event)"/>&nbsp;<b>@</b>
@@ -233,7 +233,7 @@ input {
          </td>
       </tr>
       <tr>
-      <td align="center"><br><br><img src="../img/phone.png"/></td>
+      <td align="center"><br><br><img src="../img/user/userjoin/phone.png"/></td>
       <td><br><br>
          <select name="tel_1" style="width:50px;">
          <option value=""></option>
@@ -246,7 +246,7 @@ input {
       </td>
    </tr>   
    <tr>
-         <td align="center"><br><br><img src="../img/birth.png"/></td>
+         <td align="center"><br><br><img src="../img/user/userjoin/birth.png"/></td>
          <td><br><br>
          <input type="text" name="birthday" maxlength="6" style="width:200px;" onkeydown="return doKeyOnlyNumber(event)"/>
          </td>

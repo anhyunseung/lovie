@@ -84,7 +84,7 @@ input {
         vertical-align: middle;
       }
       input.img-button {
-        background: url( "../img/rewri.png" ) no-repeat;
+        background: url( "../img/button/rewri.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -94,7 +94,7 @@ input {
         vertical-align: middle;
       }
       input.img-button2 {
-        background: url( "../img/del.png" ) no-repeat;
+        background: url( "../img/button/del.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -104,7 +104,7 @@ input {
         vertical-align: middle;
       }
       input.img-button3 {
-        background: url( "../img/list.png" ) no-repeat;
+        background: url( "../img/button/list.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -114,14 +114,14 @@ input {
         vertical-align: middle;
       }
       input.img-button4 {
-        background: url( "../img/comup.png" ) no-repeat;
+        background: url( "../img/button/comup.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
         cursor: pointer;
       }
                   div.infot{
-      background-image: url('../img/infot.png');
+      background-image: url('../img/bg/infot.png');
       }
 </style>
 </head>
@@ -157,7 +157,7 @@ input {
 			<tr>
 				<td align="center"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
 				<td align="right">|</td>
-				<td align="left"><img src="../img/read.png"/></td>
+				<td align="left"><img src="../img/total/read.png"/></td>
 
 			</tr>
 			<tr>
@@ -174,7 +174,7 @@ input {
 				<%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>")%></td>
 			</tr>
 			<tr>
-				<td colspan="3" ><img src="../img/com.png"/></td>
+				<td colspan="3" ><img src="../img/common/com.png"/></td>
 			</tr>
 			<tr>
 				<td colspan="3">

@@ -39,7 +39,7 @@ System.out.println("ss_user_id : "+SESSION_USER_ID);
             <a href="/user/user_logout.do">·Î±×¾Æ¿ô</a>
          <%} %>
             <br>
-         <img src="../img/topbg.png" /></td>
+         <img src="../img/bg/topbg.png" /></td>
       </tr>
       <tr>
          <td>
@@ -56,12 +56,12 @@ System.out.println("ss_user_id : "+SESSION_USER_ID);
          <br> <br>
          <br> <br>
          <br> <a href="/notice/NoticeList.do" target="ifrMain"> 
-         <img src="../img/Notice.png"/>
+         <img src="../img/top/notice.png"/>
          </a> <br>
          <br> <br>
          <br> <br>
          <br> <a href="/bbm/bbmList.do" target="ifrMain">
-         <img src="../img/BBM.png"/>
+         <img src="../img/top/bbm.png"/>
          </a> <br>
          <br> <br>
          <br> <br>
@@ -71,7 +71,7 @@ System.out.println("ss_user_id : "+SESSION_USER_ID);
          <% } else { %>
          <td align="center">
          <a href="/notice/NoticeList.do" target="ifrMain"> 
-         <img src="../img/Notice.png"/>
+         <img src="../img/top/notice.png"/>
          </a> <br>
          <br> <br>
          <br> <br>

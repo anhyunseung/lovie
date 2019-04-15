@@ -46,7 +46,7 @@ input {
         vertical-align: middle;
       }
       input.img-button {
-        background: url( "../img/sign.png" ) no-repeat;
+        background: url( "../img/button/sign.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -55,7 +55,7 @@ input {
 </style>
 
 </head>
-<body background="../img/idfbg.png">
+<body background="../img/user/userid/idfbg.png">
 <div>
 <form name="f" method="post" action="/user/user_id_search_proc.do" onsubmit="return doSubmit(this);">
 
@@ -64,7 +64,7 @@ input {
    <col width="350" />
    
    <tr>
-      <td align="center"><br><img src="../img/name.png"/></td>
+      <td align="center"><br><img src="../img/user/userjoin/name.png"/></td>
       <td><br><input type="text" name="user_name" maxlength="10" /></td>
    </tr>
    <tr>
@@ -83,7 +83,7 @@ input {
    <tr>
    </tr>
    <tr>
-      <td align="center"><br><img src="../img/email.png"/></td>
+      <td align="center"><br><img src="../img/user/userjoin/email.png"/></td>
       <td><br><input type="text" name="email1" maxlength="16" style="width:100px;" />@
          <select name="email2">
          <option value="bd">선택하세요</option>

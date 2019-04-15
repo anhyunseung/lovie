@@ -22,7 +22,7 @@ input {
         vertical-align: middle;
       }
       input.img-button {
-        background: url( "../img/sign.png" ) no-repeat;
+        background: url( "../img/button/sign.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -30,7 +30,7 @@ input {
       }
 </style>
 </head>
-<body background="../img/idfbg.png">
+<body background="../img/user/userid/idfbg.png">
 <table width="460">
    <col width="150" />
    <col width="350" />
@@ -43,12 +43,12 @@ input {
 <table width="100%">
 <tr>
 <td align="center">
-<b><%=SS_USER_NAME %></b><img src="../img/idfs.png"/> 
+<b><%=SS_USER_NAME %></b><img src="../img/user/userjoin/idfs.png"/> 
 </td>
 </tr>
 <tr>
 <td align="center">
-<b><%=SS_USER_ID %></b> <img src="../img/idfss.png"/>
+<b><%=SS_USER_ID %></b> <img src="../img/user/userjoin/idfss.png"/>
 </td>
 </tr>
 <tr>
@@ -60,9 +60,9 @@ input {
       </td>
 </tr>
 <tr>
-<td align="right"><br><br> <img src="../img/pwfl.png"/><font color="black"><b>&nbsp;-></b></font>
+<td align="right"><br><br> <img src="../img/user/userpw/pwfl.png"/><font color="black"><b>&nbsp;-></b></font>
       <a href="user_pw_search.do" onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" >
-      <img src="../img/pwf.png"/>
+      <img src="../img/top/pwf.png"/>
       </a>
       </td>
 </tr>

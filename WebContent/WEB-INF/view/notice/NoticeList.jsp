@@ -32,23 +32,23 @@ function doDetail(seq){
 <style>
 div.framebgt
 {
-background-image:url('../img/framebgt.png');
+background-image:url('../img/bg/framebgt.png');
 }
 div.framebgm
 {
-background-image:url('../img/framebgm.png');
+background-image:url('../img/bg/framebgm.png');
 }
 div.framebgm1
 {
-background-image:url('../img/framebgm1.png');
+background-image:url('../img/bg/framebgm1.png');
 }
 div.framebgm2
 {
-background-image:url('../img/framebgm2.png');
+background-image:url('../img/bg/framebgm2.png');
 }
 div.framebgd
 {
-background-image:url('../img/framebgd.png');
+background-image:url('../img/bg/framebgd.png');
 }
 </style>
 </head>
@@ -58,7 +58,7 @@ background-image:url('../img/framebgd.png');
 <tr>
 <td align="center"><br>
 <a href="/notice/NoticeList.do">
-<img src="../img/nott.png" />
+<img src="../img/notice/nott.png" />
 </a>
 </td>
 </tr>
@@ -68,11 +68,11 @@ background-image:url('../img/framebgd.png');
 <table border="0" width="100%">
 <tr>
   <td width="60" align="center">
-  <img src="../img/wrin.png"/>
+  <img src="../img/total/wrin.png"/>
   </td>
-  <td width="250" align="center"><img src="../img/tit.png"/></td>
-  <td width="60" align="center"><img src="../img/wriu.png"/></td>
-  <td width="90" align="center"><img src="../img/wrid.png"/></td>
+  <td width="250" align="center"><img src="../img/total/tit.png"/></td>
+  <td width="60" align="center"><img src="../img/total/wriu.png"/></td>
+  <td width="90" align="center"><img src="../img/total/wrid.png"/></td>
 </tr>
    <tr>
    <td colspan="4">
@@ -137,7 +137,7 @@ for (int i=0;i<a;i++){
 <tr>
 <td align="right">
 <a href="NoticeReg.do">
-<img src="../img/write.png"/>
+<img src="../img/button/write.png"/>
 </a>&nbsp;
 </td>
 </tr>

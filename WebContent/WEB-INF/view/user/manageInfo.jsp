@@ -40,7 +40,7 @@ input {
         vertical-align: middle;
       }
       input.img-button {
-        background: url( "../img/del.png" ) no-repeat;
+        background: url( "../img/button/del.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -50,7 +50,7 @@ input {
         vertical-align: middle;
       }
       input.img-button2 {
-        background: url( "../img/rewri.png" ) no-repeat;
+        background: url( "../img/button/rewri.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -60,7 +60,7 @@ input {
         vertical-align: middle;
       }
       input.img-button3 {
-        background: url( "../img/sign.png" ) no-repeat;
+        background: url( "../img/button/sign.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -73,7 +73,7 @@ input {
 <tr>
 <td align="center">
 <br>
-<h2><img src="../img/usert.png" /></h2>
+<h2><img src="../img/user/usert.png" /></h2>
 </td>
 </tr>
 </table><br><br><br>
@@ -81,7 +81,7 @@ input {
    <col width="100px"/>
    <col width="200px"/>
       <tr>
-         <td align="center"><br><img src="../img/name.png"/></td>
+         <td align="center"><br><img src="../img/user/userjoin/name.png"/></td>
          <td><br><%=CmmUtil.nvl(rDTO.getUser_name())%></td>
       </tr>
          <tr>
@@ -90,7 +90,7 @@ input {
 </td>
    </tr>
       <tr>
-      <td align="center"><br><img src="../img/Id.png"/></td>
+      <td align="center"><br><img src="../img/top/id.png"/></td>
          <td><br><%=CmmUtil.nvl(rDTO.getUser_id())%>
          </td>
       </tr>
@@ -99,7 +99,7 @@ input {
       </td>
       </tr>
       <tr>
-         <td align="center"><br><img src="../img/pw.png"/></td>
+         <td align="center"><br><img src="../img/top/pw.png"/></td>
          <td><br><%=CmmUtil.nvl(rDTO.getPassword())%></td>
       </tr>
       <tr>
@@ -107,7 +107,7 @@ input {
       </td>
       </tr>    
       <tr>
-         <td align="center"><br><img src="../img/email.png"/></td>
+         <td align="center"><br><img src="../img/user/userjoin/email.png"/></td>
          <td colspan="2">
          <br>
             <%=CmmUtil.nvl(rDTO.getEmail1())%>&nbsp;<b>@</b>
@@ -115,7 +115,7 @@ input {
          </td>
       </tr>
       <tr>
-      <td align="center"><br><br><img src="../img/phone.png"/></td>
+      <td align="center"><br><br><img src="../img/user/userjoin/phone.png"/></td>
       <td><br><br>
          <%=CmmUtil.nvl(rDTO.getTel_1())%>&nbsp;<b>-</b>
          <%=CmmUtil.nvl(rDTO.getTel_2())%>&nbsp;<b>-</b>
@@ -123,7 +123,7 @@ input {
       </td>
    </tr>   
    <tr>
-         <td align="center"><br><br><img src="../img/birth.png"/></td>
+         <td align="center"><br><br><img src="../img/user/userjoin/birth.png"/></td>
          <td><br><br>
          <%=CmmUtil.nvl(rDTO.getBirthday())%>
          </td>

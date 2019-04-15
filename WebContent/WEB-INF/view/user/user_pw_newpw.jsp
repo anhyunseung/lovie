@@ -57,7 +57,7 @@ input {
         vertical-align: middle;
       }
       input.img-button {
-        background: url( "../img/sign.png" ) no-repeat;
+        background: url( "../img/button/sign.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -82,21 +82,21 @@ input {
       <table border="0" width="100%">
          <tr>
             <td align="center"><br>
-            <img src="../img/newpw.png"/></td>
+            <img src="../img/user/userpw/newpw.png"/></td>
             <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
                type="password" name="pwd1" maxlength="20" style="width: 180px;" /></td>
          </tr>
          <tr>
             <td align="center"><br>
             <br>
-            <img src="../img/newpwc.png"/></td>
+            <img src="../img/user/userpw/newpwc.png"/></td>
             <td><br>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
                type="password" name="pwd2" maxlength="20" style="width: 180px;" /></td>
          </tr>
          <tr>
             <td colspan="2" align="center"><br>
-            <img src="../img/pwd.png"/>
+            <img src="../img/user/userjoin/pwd.png"/>
             </td>
          </tr>
          <tr>

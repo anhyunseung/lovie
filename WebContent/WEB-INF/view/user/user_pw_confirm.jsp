@@ -17,7 +17,7 @@ input {
         vertical-align: middle;
       }
       input.img-button {
-        background: url( "../img/sign.png" ) no-repeat;
+        background: url( "../img/button/sign.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -35,7 +35,7 @@ input {
 <table width="100%">
 <tr>
 <td align="center">
-<img src="../img/pwch.png"/>
+<img src="../img/user/userpw/pwch.png"/>
 </td>
 </tr>
 <tr>

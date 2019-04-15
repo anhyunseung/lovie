@@ -31,16 +31,16 @@ function doDetail(no){
       <tr>
          <td align="center"><br>
          <a href="/user/manageList.do">
-               <img src="../img/userlit.png" />
+               <img src="../img/user/userlit.png" />
                </a>
             </td>
       </tr>
    </table>
    <table border="0" width="100%">
       <tr>
-         <td width="100" align="center"><img src="../img/names.png"/></td>
-         <td width="150" align="center"><img src="../img/ids.png"/></td>
-         <td width="200" align="center"><img src="../img/phs.png"/></td>
+         <td width="100" align="center"><img src="../img/user/userpw/names.png"/></td>
+         <td width="150" align="center"><img src="../img/user/userjoin/ids.png"/></td>
+         <td width="200" align="center"><img src="../img/user/userpw/phs.png"/></td>
       </tr>
          <tr>
    <td colspan="4">

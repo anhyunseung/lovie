@@ -77,7 +77,7 @@ input {
         vertical-align: middle;
       }
       input.img-button {
-        background: url( "../img/sign.png" ) no-repeat;
+        background: url( "../img/button/sign.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -97,7 +97,7 @@ input {
         vertical-align: middle;
       }
       input.img-button3 {
-        background: url( "../img/list.png" ) no-repeat;
+        background: url( "../img/button/list.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -110,7 +110,7 @@ input {
       <br>
       <table border="0" width="100%">
          <tr>
-            <td align="center" width="120px"><img src="../img/tit.png"/></td>
+            <td align="center" width="120px"><img src="../img/total/tit.png"/></td>
             <td><input type="text" name="title" maxlength="35"
                style="width: 425px" /></td>
          </tr>
@@ -122,7 +122,7 @@ input {
                <tr>
                <td>
                <br>
-               <img src="../img/write.png"/>
+               <img src="../img/button/write.png"/>
                </td>
                </tr>
                <tr>
