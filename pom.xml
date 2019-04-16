@@ -251,13 +251,24 @@
         <artifactId>quartz</artifactId>
         <version>1.8.6</version>
     </dependency>
-    
+    <dependency>
+    	<groupId>movie-api</groupId>
+    	<artifactId>movie-api</artifactId>
+    	<version>1.0</version>
+    	<scope>system</scope>
+    	<systemPath>${project.basedir}/WebContent/WEB-INF/lib/kobis-opcl-rest-v1.0.jar</systemPath>
+    </dependency>
    </dependencies>
 	<repositories>
 		<repository>
 			<id>oracle</id>
 			<name>ORACLE JDBC Repository</name>
 			<url>http://maven.jahia.org/maven2</url>
+		</repository>
+		<repository>
+			<id>movie-api</id>
+			<name>movie api kobis</name>
+			<url>file://${project.basedir}/WEB-INF/lib/kobis-opcl-rest-v1.0.jar</url>		
 		</repository>
 	</repositories>
 	<build>
