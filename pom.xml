@@ -12,6 +12,7 @@
 		<org.springframework-version>4.3.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.apache.tiles-version>3.0.5</org.apache.tiles-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -244,6 +245,33 @@
     	<scope>system</scope>
     	<systemPath>${project.basedir}/WebContent/WEB-INF/lib/kobis-opcl-rest-v1.0.jar</systemPath>
     </dependency>
+    
+    <!-- Tiles -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency>
+         <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-api</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency> 
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-template</artifactId>
+            <version>${org.apache.tiles-version}</version>
+        </dependency>
    </dependencies>
 	<repositories>
 		<repository>

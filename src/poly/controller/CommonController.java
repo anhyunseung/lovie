@@ -8,16 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import poly.dto.UserDTO;
 import poly.service.ICommonService;
-import poly.util.CmmUtil;
 import poly.util.MovieUtil;
 
 @Controller
@@ -68,5 +64,13 @@ public class CommonController {
 	   log.info("빼애액");
 
       return "top2";
+   }
+   @RequestMapping(value="test", method=RequestMethod.GET)
+   public String test(HttpServletRequest request, HttpServletResponse response, 
+		   ModelMap model) throws Exception {
+	   
+	   log.info("빼애액");
+	   
+	   return "test.page";
    }
 }

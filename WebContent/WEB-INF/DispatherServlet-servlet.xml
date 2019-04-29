@@ -27,7 +27,7 @@
  	
 	<!-- ViewResolver : 뷰 선택자 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="1"/>
+		<property name="order" value="2"/>
 		<property name="viewClass">
 			<value>org.springframework.web.servlet.view.JstlView</value>
 		</property>
@@ -45,9 +45,21 @@
 			<value>text/html; charset=UTF-8</value>
 		</property>
 	</bean>
-		
+	
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+        <property name="order" value="1" />
+    </bean>
+     
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/tiles-def.xml</value>
+            </list>
+        </property>
+    </bean>
+ 
 	<!-- 파일업로드 기능 -->		
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
 		p:maxUploadSize="104857600" p:maxInMemorySize="104857600" />
-
 </beans>
