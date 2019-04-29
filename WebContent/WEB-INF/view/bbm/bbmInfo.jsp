@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="poly.util.CmmUtil"%>
 <%@ page import="poly.dto.BBMDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -14,17 +14,17 @@
 
 		clist = new ArrayList<Comment_bbmDTO>();
 	}
-	//°øÁö±Û Á¤º¸¸¦ ¸øºÒ·¯¿Ô´Ù¸é, °´Ã¼ »ı¼º
+	//ê³µì§€ê¸€ ì •ë³´ë¥¼ ëª»ë¶ˆëŸ¬ì™”ë‹¤ë©´, ê°ì²´ ìƒì„±
 	String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 
-	//º»ÀÎÀÌ ÀÛ¼ºÇÑ ±Û¸¸ ¼öÁ¤ °¡´ÉÇÏµµ·Ï ÇÏ±â(1:ÀÛ¼ºÀÚ ¾Æ´Ô / 2: º»ÀÎÀÌ ÀÛ¼ºÇÑ ±Û / 3: ·Î±×ÀÎ¾ÈÇÔ)
+	//ë³¸ì¸ì´ ì‘ì„±í•œ ê¸€ë§Œ ìˆ˜ì • ê°€ëŠ¥í•˜ë„ë¡ í•˜ê¸°(1:ì‘ì„±ì ì•„ë‹˜ / 2: ë³¸ì¸ì´ ì‘ì„±í•œ ê¸€ / 3: ë¡œê·¸ì¸ì•ˆí•¨)
 	int edit = 1;
 
-	//·Î±×ÀÎ ¾ÈÇß´Ù¸é....
+	//ë¡œê·¸ì¸ ì•ˆí–ˆë‹¤ë©´....
 	if (ss_user_id.equals("")) {
 		edit = 3;
 
-		//º»ÀÎÀÌ ÀÛ¼ºÇÑ ±ÛÀÌ¸é 2°¡ µÇµµ·Ï º¯°æ
+		//ë³¸ì¸ì´ ì‘ì„±í•œ ê¸€ì´ë©´ 2ê°€ ë˜ë„ë¡ ë³€ê²½
 	} else if (ss_user_id.equals(CmmUtil.nvl(rDTO.getUser_id()))) {
 		edit = 2;
 
@@ -36,8 +36,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°Ô½ÃÆÇ ±Ûº¸±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê²Œì‹œíŒ ê¸€ë³´ê¸°</title>
 <script type="text/javascript">
 
 function doEdit(){
@@ -46,25 +46,25 @@ function doEdit(){
       location.href="/bbm/bbmEditInfo.do?bbm_seq=<%=CmmUtil.nvl(rDTO.getbbm_seq())%>";
    
    }else if ("<%=edit%>"==3){
-      alert("·Î±×ÀÎ ÇÏ½Ã±æ ¹Ù¶ø´Ï´Ù.");
+      alert("ë¡œê·¸ì¸ í•˜ì‹œê¸¸ ë°”ëë‹ˆë‹¤.");
       top.location.href="/top.do";
       
        
    }else{
-      alert("º»ÀÎÀÌ ÀÛ¼ºÇÑ ±Û¸¸ ¼öÁ¤ °¡´ÉÇÕ´Ï´Ù.")
+      alert("ë³¸ì¸ì´ ì‘ì„±í•œ ê¸€ë§Œ ìˆ˜ì • ê°€ëŠ¥í•©ë‹ˆë‹¤.")
    }
 }
 
 function doDelete(){
    if ("<%=edit%>"==2 || "<%=ss_user_id%>"=="Admin"){
-      if(confirm("Á¤¸»·Î »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+      if(confirm("ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
          location.href="/bbm/bbmDelete.do?bbm_seq=<%=CmmUtil.nvl(rDTO.getbbm_seq())%>";
    }else if ("<%=edit%>" == 3) {
-				alert("·Î±×ÀÎ ÇÏ½Ã±æ ¹Ù¶ø´Ï´Ù.");
+				alert("ë¡œê·¸ì¸ í•˜ì‹œê¸¸ ë°”ëë‹ˆë‹¤.");
 				location.href = "/user/user_login.do";
 			}
 		} else {
-			alert("º»ÀÎÀÌ ÀÛ¼ºÇÑ ±Û¸¸ »èÁ¦ °¡´ÉÇÕ´Ï´Ù.")
+			alert("ë³¸ì¸ì´ ì‘ì„±í•œ ê¸€ë§Œ ì‚­ì œ ê°€ëŠ¥í•©ë‹ˆë‹¤.")
 		}
 	}
 	

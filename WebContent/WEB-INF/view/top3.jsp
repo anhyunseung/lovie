@@ -1,31 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	request.setCharacterEncoding("euc-kr");
+	request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Let's see the movie! : Lovie</title>
 </head>
 <div>
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
 	<table border="1" >
 		<tr>
-			<td>¼øÀ§</td>
-			<td>¿µÈ­¸í</td>
-			<td>°³ºÀÀÏ</td>
-			<td>¸ÅÃâ¾×</td>
-			<td>¸ÅÃâ¾×Á¡À¯À²</td>
-			<td>¸ÅÃâ¾×Áõ°¨(ÀüÀÏ´ëºñ)</td>
-			<td>´©Àû¸ÅÃâ¾×</td>
-			<td>°ü°´¼ö</td>
-			<td>°ü°´¼öÁõ°¨(ÀüÀÏ´ëºñ)</td>
-			<td>´©Àû°ü°´¼ö</td>
-			<td>½ºÅ©¸°¼ö</td>
-			<td>»ó¿µÈ½¼ö</td>
+			<td>ìˆœìœ„</td>
+			<td>ì˜í™”ëª…</td>
+			<td>ê°œë´‰ì¼</td>
+			<td>ë§¤ì¶œì•¡</td>
+			<td>ë§¤ì¶œì•¡ì ìœ ìœ¨</td>
+			<td>ë§¤ì¶œì•¡ì¦ê°(ì „ì¼ëŒ€ë¹„)</td>
+			<td>ëˆ„ì ë§¤ì¶œì•¡</td>
+			<td>ê´€ê°ìˆ˜</td>
+			<td>ê´€ê°ìˆ˜ì¦ê°(ì „ì¼ëŒ€ë¹„)</td>
+			<td>ëˆ„ì ê´€ê°ìˆ˜</td>
+			<td>ìŠ¤í¬ë¦°ìˆ˜</td>
+			<td>ìƒì˜íšŸìˆ˜</td>
 		</tr>
 		<c:if test="${not empty map.boxOfficeResult.dailyBoxOfficeList}">
 			<c:forEach items="${map.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">

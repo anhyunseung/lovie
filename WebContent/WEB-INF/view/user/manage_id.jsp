@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ page import="poly.util.CmmUtil"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 function doTop(){
@@ -13,12 +13,12 @@ function doTop(){
 
 function doSubmit(f) {
    if(f.user_id.value.length >= 20){
-      alert("¾ÆÀÌµğ°¡ 20ÀÚ¸¦ ÃÊ°úÇß½À´Ï´Ù.");
+      alert("ì•„ì´ë””ê°€ 20ìë¥¼ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤.");
       f.user_id.focus();
       return false;
    }
    if(f.user_id.value == ""){
-      alert("¾ÆÀÌµğ¸¦ ÀÔ·Â ÇØÁÖ¼¼¿ä.");
+      alert("ì•„ì´ë””ë¥¼ ì…ë ¥ í•´ì£¼ì„¸ìš”.");
       f.user_id.focus();
       return false;
    }
@@ -74,7 +74,7 @@ function doTop(){
    <col width="100px"/>
    <col width="200px"/>
       <tr>
-         <td align="center"><br><b>¼º¸í</b></td>
+         <td align="center"><br><b>ì„±ëª…</b></td>
          <td><br><input type="text" disabled="disabled" name="user_name" value="" maxlength="10" style="width:200px;" onkeydown="return doKeyOnlyWord(event)"/></td>
       </tr>
          <tr>
@@ -85,34 +85,34 @@ function doTop(){
       <tr>
       <td align="center"><br><b>ID</b></td>
          <td><br><input type="text" name="user_id" maxlength="20" style="width:200px;" onkeydown="return doKeyIdPw(event)"/>
-         <input type="submit" value="Áßº¹È®ÀÎ" />
+         <input type="submit" value="ì¤‘ë³µí™•ì¸" />
          </td>
       </tr>
       <tr>
       <td colspan="2">
-      <font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¾ÆÀÌµğ´Â ¿µ¹®/¼ıÀÚ·Î 20ÀÚ ÀÌÇÏ</font> 
+      <font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ì•„ì´ë””ëŠ” ì˜ë¬¸/ìˆ«ìë¡œ 20ì ì´í•˜</font> 
       </td>
       </tr>
       <tr>
-         <td align="center"><br><b>ºñ¹Ğ¹øÈ£</b></td>
+         <td align="center"><br><b>ë¹„ë°€ë²ˆí˜¸</b></td>
          <td><br><input type="password" disabled="disabled" name="pwd1" maxlength="20" style="width:200px;" onkeydown="return doKeyIdPw(event)"/></td>
       </tr>
       <tr>
       <td colspan="2">
-      <font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ºñ¹Ğ¹øÈ£´Â ¿µ¹®/¼ıÀÚ·Î 20ÀÚ ÀÌÇÏ</font> 
+      <font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ë¹„ë°€ë²ˆí˜¸ëŠ” ì˜ë¬¸/ìˆ«ìë¡œ 20ì ì´í•˜</font> 
       </td>
       </tr>
       <tr>
-      <td align="center"><br><b>ºñ¹Ğ¹øÈ£ È®ÀÎ</b></td>
+      <td align="center"><br><b>ë¹„ë°€ë²ˆí˜¸ í™•ì¸</b></td>
          <td><br><input type="password" disabled="disabled" name="pwd2" maxlength="20" style="width:200px;"  onkeydown="return doKeyIdPw(event)"/></td>
       </tr>      
       <tr>
-         <td align="center"><br><br><b>ÀÌ¸ŞÀÏ</b></td>
+         <td align="center"><br><br><b>ì´ë©”ì¼</b></td>
          <td colspan="2">
          <br><br>
             <input type="text" disabled="disabled" name="email1" maxlength="16" style="width:100px;" onkeydown="return doKeyIdPw(event)" />&nbsp;<b>@</b>
             <select name="email2" disabled="disabled">
-               <option value="bd">¼±ÅÃÇÏ¼¼¿ä</option>
+               <option value="bd">ì„ íƒí•˜ì„¸ìš”</option>
                <option value="naver.com">naver.com</option>
                <option value="nate.com">nate.com</option>
                <option value="hanmail.com">hanmail.com</option>
@@ -122,7 +122,7 @@ function doTop(){
       </tr>
 
       <tr>
-      <td align="center"><br><br><b>ÀüÈ­¹øÈ£</b></td>
+      <td align="center"><br><br><b>ì „í™”ë²ˆí˜¸</b></td>
       <td><br><br>
          <select name="tel_1" style="width:50px;" disabled="disabled">
          <option value=""></option>
@@ -135,7 +135,7 @@ function doTop(){
       </td>
    </tr>   
    <tr>
-         <td align="center"><br><br><b>»ı³â¿ùÀÏ</b></td>
+         <td align="center"><br><br><b>ìƒë…„ì›”ì¼</b></td>
          <td><br><br>
          <input type="text" disabled="disabled" name="birthday" maxlength="6" style="width:200px;" onkeydown="return doKeyOnlyNumber(event)"/>
          </td>
@@ -143,7 +143,7 @@ function doTop(){
       <tr>
          <td colspan="5" align="center"><br><br>
          <br>
-            <input type="button" onclick="javascript:doTop();" value="Ãë¼Ò"/>
+            <input type="button" onclick="javascript:doTop();" value="ì·¨ì†Œ"/>
          </td>
       </tr>
    </table>

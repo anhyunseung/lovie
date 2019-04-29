@@ -1,7 +1,7 @@
 <%@page import="poly.util.CmmUtil"%>
 <%@page import="java.util.HashMap"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
    @SuppressWarnings("unchecked")
    HashMap<String,String> rMap = (HashMap<String,String>)request.getAttribute("rMap");
@@ -15,48 +15,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 function doSubmit(f) {
    if(f.user_id.value == ""){
-      alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+      alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
       f.user_id.focus();
       return false;
    }
    
    if(f.user_name.value == ""){
-      alert("ÀÌ¸§¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+      alert("ì´ë¦„ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
       f.user_name.focus();
       return false;
    }
    
    if(f.pwd1.value == ""){
-      alert("ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+      alert("íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
       f.user_id.focus();
       return false;
    }
    
    if(f.pwd2.value == ""){
-      alert("ÆĞ½º¿öµå È®ÀÎÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+      alert("íŒ¨ìŠ¤ì›Œë“œ í™•ì¸ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
       f.pwd2.focus();
       return false;
    }
    
    if(f.pwd1.value != f.pwd2.value){
-      alert("ÆĞ½º¿öµå¿Í ÆĞ½º¿öµå È®ÀÎÀÇ ÀÔ·ÂµÈ °ªÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+      alert("íŒ¨ìŠ¤ì›Œë“œì™€ íŒ¨ìŠ¤ì›Œë“œ í™•ì¸ì˜ ì…ë ¥ëœ ê°’ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
       f.pwd1.focus();
       return false;
    }
    
    if(f.age.value == ""){
-      alert("³ªÀÌ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+      alert("ë‚˜ì´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
       f.age.focus();
       return false;
    }
    
    if(f.age.value > 120){
-      alert("120º¸´Ù ÀÛ°Ô ³ªÀÌ¸¦ ÀÔ·ÂÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+      alert("120ë³´ë‹¤ ì‘ê²Œ ë‚˜ì´ë¥¼ ì…ë ¥í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
       f.age.focus();
       return false;
    }
@@ -69,13 +69,13 @@ function doSubmit(f) {
    }
    
    if(genderCheck == false){
-      alert("¼ºº°À» ¼±ÅÃÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+      alert("ì„±ë³„ì„ ì„ íƒí•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
       f.gender[0].focus();
       return false;
    }
    
    if(f.email1.value == ""){
-      alert("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+      alert("ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
       f.email1.focus();
       return false;
    }
@@ -114,7 +114,7 @@ input {
 </style>
 </head>
 <body>
-<h2>È¸¿øÁ¤º¸ ¼öÁ¤</h2>
+<h2>íšŒì›ì •ë³´ ìˆ˜ì •</h2>
 <hr>
 <form action="user_change_info_proc.jsp" method="post" name="f" onsubmit="return doSubmit(this);">
    <table border="1" width="600px">
@@ -123,33 +123,33 @@ input {
    <col width="150"/>
    <col width="150"/>
       <tr>
-         <td align="center"><b>* ¾ÆÀÌµğ</b></td>
+         <td align="center"><b>* ì•„ì´ë””</b></td>
          <td align="center"><input type="text" name="user_id" maxlength="8" value="<%=CmmUtil.nvl(rMap.get("USER_ID"))%>" readonly disabled /></td>
-         <td align="center"><b>* ÀÌ¸§</b></td>
+         <td align="center"><b>* ì´ë¦„</b></td>
          <td align="center"><input type="text" name="user_name" maxlength="10" value="<%=CmmUtil.nvl(rMap.get("USER_NAME"))%>" readonly disabled/></td>
       </tr>
       
       <tr>
-         <td align="center"><b>* ÆĞ½º¿öµå</b></td>
+         <td align="center"><b>* íŒ¨ìŠ¤ì›Œë“œ</b></td>
          <td align="center"><input type="password" name="pwd1" maxlength="16"/></td>
-         <td align="center"><b>* ÆĞ½º¿öµåÈ®ÀÎ</b></td>
+         <td align="center"><b>* íŒ¨ìŠ¤ì›Œë“œí™•ì¸</b></td>
          <td align="center"><input type="password" name="pwd2" maxlength="16"/></td>
       </tr>
       
       <tr>
-         <td align="center"><b>* ³ªÀÌ</b></td>
+         <td align="center"><b>* ë‚˜ì´</b></td>
          <td align="center"><input type="text" name="age" maxlength="3" onkeydown="return doKeyOnlyNumber(event);" value="<%=CmmUtil.nvl(rMap.get("AGE")) %>"></td>
-         <td align="center"><b>* ¼ºº°</b></td>
+         <td align="center"><b>* ì„±ë³„</b></td>
          <td align="center">
-            ³²<input type="radio" name="gender" value="1"
+            ë‚¨<input type="radio" name="gender" value="1"
                <%=CmmUtil.checked(CmmUtil.nvl(rMap.get("GENDER")),"1") %>/>&nbsp;
-            ¿©<input type="radio" name="gender" value="2"
+            ì—¬<input type="radio" name="gender" value="2"
                <%=CmmUtil.checked(CmmUtil.nvl(rMap.get("GENDER")),"2") %>/>
          </td>
       </tr>
       
       <tr>
-         <td align="center"><b>* ÀÌ¸ŞÀÏ</b></td>
+         <td align="center"><b>* ì´ë©”ì¼</b></td>
          <td colspan="3">
             <input type="text" name="email1" maxlength="16" value="<%=CmmUtil.nvl(rMap.get("EMAIL1")) %>"/>@
             <select name="email2">
@@ -166,7 +166,7 @@ input {
       </tr>
       
       <tr>
-         <td align="center"><b>ÁÖ¼Ò</b></td>
+         <td align="center"><b>ì£¼ì†Œ</b></td>
          <td colspan="3">
             <input type="text" name="addr" maxlength="100" style="width:400px" value="<%=CmmUtil.nvl(rMap.get("ADDR")) %>"/>
          </td>
@@ -178,7 +178,7 @@ input {
       </tr>
    </table>
 </form>
-<b><font color="red">* Àº ÇÊ.¼ö. ÀÔ·ÂÀÔ´Ï´Ù.</font></b><br>
-<b><font color="red">¾ÆÀÌµğ¿Í ÀÌ¸§Àº ¼öÁ¤ ºÒ°¡´ÉÇÕ´Ï´Ù.</font></b><br>
+<b><font color="red">* ì€ í•„.ìˆ˜. ì…ë ¥ì…ë‹ˆë‹¤.</font></b><br>
+<b><font color="red">ì•„ì´ë””ì™€ ì´ë¦„ì€ ìˆ˜ì • ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.</font></b><br>
 </body>
 </html>

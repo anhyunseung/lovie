@@ -1,9 +1,9 @@
 <%@ page import="poly.util.CmmUtil"%>
 <%@ page import="poly.dto.UserDTO" %>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <%
-   request.setCharacterEncoding("euc-kr");
+   request.setCharacterEncoding("UTF-8");
 
 String SESSION_USER_ID = CmmUtil.nvl((String)session.getAttribute("USER_ID"));
 String SESSION_USER_NO = CmmUtil.nvl((String)session.getAttribute("USER_NO"));
@@ -13,8 +13,8 @@ System.out.println("ss_user_id : "+SESSION_USER_ID);
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>�丮 ������</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>요리 레시피</title>
 
 </head>
 <body background="../img/book.jpg">
@@ -24,19 +24,19 @@ System.out.println("ss_user_id : "+SESSION_USER_ID);
          <td colspan="2" align="right" width="575px">
          <%if(SESSION_USER_ID.equals("")){%>
             <a href="top.do">HOME</a>| 
-            <a href="/user/user_login.do" target="ifrMain">�α���</a> | 
-            <a href="/user/user_join.do" target="ifrMain">ȸ������</a> | 
-            <a href="/user/user_id_search.do" target="ifrMain">���̵� ã��</a> | 
-            <a href="/user/user_pw_search.do" target="ifrMain">��й�ȣ ã��</a>
+            <a href="/user/user_login.do" target="ifrMain">로그인</a> | 
+            <a href="/user/user_join.do" target="ifrMain">회원가입</a> | 
+            <a href="/user/user_id_search.do" target="ifrMain">아이디 찾기</a> | 
+            <a href="/user/user_pw_search.do" target="ifrMain">비밀번호 찾기</a>
          <%}else{ %>
             <a href="/user/userInfo.do" target="ifrMain">
          <% out.print(SESSION_USER_ID);%>
                <input type="hidden" name="user_no"
          value="<%= 1002%>"/>
             </a>
-            �� ������� &nbsp;
+            님 어서오세요 &nbsp;
             <a href="top.do">HOME</a> |
-            <a href="/user/user_logout.do">�α׾ƿ�</a>
+            <a href="/user/user_logout.do">로그아웃</a>
          <%} %>
             <br>
          <img src="../img/bg/topbg.png" /></td>

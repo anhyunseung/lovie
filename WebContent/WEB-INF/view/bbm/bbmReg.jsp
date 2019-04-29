@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <%@ page import="poly.util.CmmUtil"%>
 <%
-   request.setCharacterEncoding("euc-kr");
+   request.setCharacterEncoding("UTF-8");
 
-   String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID")); //¾ÆÀÌµğ
+   String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID")); //ì•„ì´ë””
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°Ô½ÃÆÇ ±Û¾²±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê²Œì‹œíŒ ê¸€ì“°ê¸°</title>
 <script type="text/javascript" src="js/jquery-1.11.1.js">
 
-var limitByte = 100; //¹ÙÀÌÆ®ÀÇ ÃÖ´ëÅ©±â, limitByte ¸¦ ÃÊ°úÇÒ ¼ö ¾ø½¿
+var limitByte = 100; //ë°”ì´íŠ¸ì˜ ìµœëŒ€í¬ê¸°, limitByte ë¥¼ ì´ˆê³¼í•  ìˆ˜ ì—†ìŠ´
 
 
-//textarea¿¡ ÀÔ·ÂµÈ ¹®ÀÚÀÇ ¹ÙÀÌÆ® ¼ö¸¦ Ã¼Å©
+//textareaì— ì…ë ¥ëœ ë¬¸ìì˜ ë°”ì´íŠ¸ ìˆ˜ë¥¼ ì²´í¬
 function checkByte(frm) {
      var totalByte = 0;
      var message = frm.contents.value;
@@ -29,14 +29,14 @@ else totalByte++;
 
 
 
-     // ÇöÀç ÀÔ·ÂÇÑ ¹®ÀÚÀÇ ¹ÙÀÌÆ® ¼ö¸¦ Ã¼Å©ÇÏ¿© Ç¥½Ã
+     // í˜„ì¬ ì…ë ¥í•œ ë¬¸ìì˜ ë°”ì´íŠ¸ ìˆ˜ë¥¼ ì²´í¬í•˜ì—¬ í‘œì‹œ
      $('#messagebyte').text(totalByte);
 
 
 
-     // ÀÔ·ÂµÈ ¹ÙÀÌÆ® ¼ö°¡ limitByet¸¦ ÃÊ°ú ÇÒ °æ¿ì °æ°íÃ¢ 
+     // ì…ë ¥ëœ ë°”ì´íŠ¸ ìˆ˜ê°€ limitByetë¥¼ ì´ˆê³¼ í•  ê²½ìš° ê²½ê³ ì°½ 
      if(totalByte > limitByte) {
-             alert( limitByte+"¹ÙÀÌÆ®±îÁö Àü¼Û°¡´ÉÇÕ´Ï´Ù.");
+             alert( limitByte+"ë°”ì´íŠ¸ê¹Œì§€ ì „ì†¡ê°€ëŠ¥í•©ë‹ˆë‹¤.");
       frm.contents.value = message.substring(0,limitByte);
      }
 }
@@ -46,40 +46,40 @@ function doOnload(){
    var user_id = "<%=SESSION_USER_ID%>";
    
    if (user_id==""){
-      alert("·Î±×ÀÎµÈ »ç¿ëÀÚ¸¸ ±ÛÀ» ¾µ ¼ö ÀÖ½À´Ï´Ù.");
+      alert("ë¡œê·¸ì¸ëœ ì‚¬ìš©ìë§Œ ê¸€ì„ ì“¸ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
       location.href="/bbm/bbmList.do";
       
    }
    
 }
 
-//·Î±×ÀÎ ¿©ºÎ Ã¼Å©
+//ë¡œê·¸ì¸ ì—¬ë¶€ ì²´í¬
 
-   //Àü¼Û½Ã À¯È£¼º Ã¼Å©
+   //ì „ì†¡ì‹œ ìœ í˜¸ì„± ì²´í¬
    function doSubmit(f) {
       if (f.title.value == "") {
-         alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+         alert("ì œëª©ì„ ì…ë ¥í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
          f.title.focus();
          return false;
       }
       if (calBytes(f.title.value) > 50) {
-         alert("ÃÖ´ë 50ÀÚ±îÁö ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.");
+         alert("ìµœëŒ€ 50ìê¹Œì§€ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
          f.title.focus();
          return false;
       }
       if (f.contents.value == "") {
-         alert("³»¿ëÀ» ÀÔ·ÂÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+         alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
          f.contents.focus();
          return false;
       }
       if (calBytes(f.contents.value).length > 100) {
-         alert("ÃÖ´ë 3000ÀÚ±îÁö ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.");
+         alert("ìµœëŒ€ 3000ìê¹Œì§€ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
          f.contents.focus();
          return false;
       }
 
    }
-   //±ÛÀÚ ±æÀÌ ¹ÙÀÌÆ® ´ÜÀ§·Î Ã¼Å©ÇÏ±â(¹ÙÀÌÆ®°ª Àü´Ş)
+   //ê¸€ì ê¸¸ì´ ë°”ì´íŠ¸ ë‹¨ìœ„ë¡œ ì²´í¬í•˜ê¸°(ë°”ì´íŠ¸ê°’ ì „ë‹¬)
    function calBytes(str) {
 
       var tcount = 0;

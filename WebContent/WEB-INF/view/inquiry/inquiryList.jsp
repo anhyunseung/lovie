@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="poly.util.CmmUtil"%>
 <%@ page import="poly.dto.InquiryDTO"%>
 <%@page import="java.util.List"%>
@@ -18,8 +18,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>¹®ÀÇ ¸®½ºÆ®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ë¬¸ì˜ ë¦¬ìŠ¤íŠ¸</title>
 <script type="text/javascript">
 	function doDetail(seq) {
 		location.href = "/inquiry/inquiryInfo.do?inq_seq=" + seq;
@@ -245,7 +245,7 @@ background-image:url('../img/bg/framebgd.png');
  	}
  	} else {
 
- 		//»ç¿ëÀÚ ½ÃÁ¡
+ 		//ì‚¬ìš©ì ì‹œì 
 
  		a = listcount;
  		b = 9;

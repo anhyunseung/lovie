@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="poly.util.CmmUtil"%>
 <%@ page import="poly.dto.InquiryDTO"%>
 <%
 	InquiryDTO rDTO = (InquiryDTO) request.getAttribute("rDTO");
 
-	//°øÁö±Û Á¤º¸¸¦ ¸øºÒ·¯¿Ô´Ù¸é, °´Ã¼ »ı¼º
+	//ê³µì§€ê¸€ ì •ë³´ë¥¼ ëª»ë¶ˆëŸ¬ì™”ë‹¤ë©´, ê°ì²´ ìƒì„±
 	if (rDTO == null) {
 		rDTO = new InquiryDTO();
 
 	}
 
-	int access = 1; //(ÀÛ¼ºÀÚ : 2 / ´Ù¸¥ »ç¿ëÀÚ: 1) 
+	int access = 1; //(ì‘ì„±ì : 2 / ë‹¤ë¥¸ ì‚¬ìš©ì: 1) 
 
 	if (CmmUtil.nvl((String) session.getAttribute("USER_ID")).equals(CmmUtil.nvl(rDTO.getUser_id()))) {
 		access = 2;
@@ -22,28 +22,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°Ô½ÃÆÇ ±Û¾²±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê²Œì‹œíŒ ê¸€ì“°ê¸°</title>
 <script type="text/javascript">
 
 
 function doOnload(){
    
    if ("<%=access%>" == "1") {
-			alert("ÀÛ¼ºÀÚ¸¸ ¼öÁ¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+			alert("ì‘ì„±ìë§Œ ìˆ˜ì •í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 			location.href = "/inquiry/inquiryInfo.do?notice_seq=<%=CmmUtil.nvl(request.getParameter("inq_seq"))%>";
 		}
 	}
 
 	function doSubmit(f) {
 		if (f.title.value == "") {
-			alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+			alert("ì œëª©ì„ ì…ë ¥í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 			f.title.focus();
 			return false;
 		}
 
 		if (calBytes(f.title.value) > 35) {
-			alert("ÃÖ´ë 35ÀÚ±îÁö ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.");
+			alert("ìµœëŒ€ 35ìê¹Œì§€ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 			f.title.focus();
 			return false;
 		}
@@ -55,23 +55,23 @@ function doOnload(){
 			}
 		}
 		if (f.contents.value == "") {
-			alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+			alert("ì œëª©ì„ ì…ë ¥í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 			f.title.focus();
 			return false;
 		}
 		if (f.calBytes(f.contents.value) > 4000) {
-			alert("ÃÖ´ë 4000Bytes±îÁö ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.");
+			alert("ìµœëŒ€ 4000Bytesê¹Œì§€ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 			f.contents.focus();
 			return false;
 		}
 	if (f.email1.value == "") {
-		alert("ÀÌ¸ŞÀÏ ÀÔ·ÂÀ» ÇØÁÖ¼¼¿ä.");
+		alert("ì´ë©”ì¼ ì…ë ¥ì„ í•´ì£¼ì„¸ìš”.");
 		f.email1.focus();
 		return false;
 	}
 
 	if (f.email2.value == "bd") {
-		alert("ÀÌ¸ŞÀÏ ¼±ÅÃÀ» ÇØÁÖ¼¼¿ä.");
+		alert("ì´ë©”ì¼ ì„ íƒì„ í•´ì£¼ì„¸ìš”.");
 		f.email2.focus();
 		return false;
 	}
@@ -165,12 +165,12 @@ input {
 				</td>
 			</tr>
 			<tr>
-				<td align="center"><b>ÀÌ¸ŞÀÏ</b></td>
+				<td align="center"><b>ì´ë©”ì¼</b></td>
 				<td><input type="text" name="email1" maxlength="16"
 					value="<%=CmmUtil.nvl(rDTO.getEmail1())%>" width="100%"
 					onkeydown="return doKeyIdPw(event)" />&nbsp;<b>@</b> <select
 					name="email2">
-						<option value="bd">¼±ÅÃÇÏ¼¼¿ä</option>
+						<option value="bd">ì„ íƒí•˜ì„¸ìš”</option>
 						<option value="naver.com">naver.com</option>
 						<option value="nate.com">nate.com</option>
 						<option value="hanmail.com">hanmail.com</option>

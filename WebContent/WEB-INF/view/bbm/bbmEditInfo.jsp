@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <%@ page import="poly.util.CmmUtil"%>
 <%@ page import="poly.dto.BBMDTO" %>
 <%
 BBMDTO rDTO = (BBMDTO)request.getAttribute("rDTO");
 
-//°øÁö±Û Á¤º¸¸¦ ¸øºÒ·¯¿Ô´Ù¸é, °´Ã¼ »ı¼º
+//ê³µì§€ê¸€ ì •ë³´ë¥¼ ëª»ë¶ˆëŸ¬ì™”ë‹¤ë©´, ê°ì²´ ìƒì„±
 if (rDTO==null){
    rDTO = new BBMDTO();
 
 }
 
-int access = 1; //(ÀÛ¼ºÀÚ : 2 / ´Ù¸¥ »ç¿ëÀÚ: 1) 
+int access = 1; //(ì‘ì„±ì : 2 / ë‹¤ë¥¸ ì‚¬ìš©ì: 1) 
 
 if (CmmUtil.nvl((String)session.getAttribute("USER_ID")).equals(
       CmmUtil.nvl(rDTO.getUser_id()))){
@@ -23,28 +23,28 @@ System.out.println("ss_user_id : "+CmmUtil.nvl((String)session.getAttribute("USE
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°Ô½ÃÆÇ ±Û¾²±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê²Œì‹œíŒ ê¸€ì“°ê¸°</title>
 <script type="text/javascript">
 
 
 function doOnload(){
    
    if ("<%=access%>" == "1") {
-         alert("ÀÛ¼ºÀÚ¸¸ ¼öÁ¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+         alert("ì‘ì„±ìë§Œ ìˆ˜ì •í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
          location.href="/bbm/bbmInfo.do?bbm_seq=<%=CmmUtil.nvl(request.getParameter("bbm_seq"))%>";
       }
    }
 
    function doSubmit(f) {
       if (f.title.value == "") {
-         alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+         alert("ì œëª©ì„ ì…ë ¥í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
          f.title.focus();
          return false;
       }
 
       if (calBytes(f.title.value) > 35) {
-         alert("ÃÖ´ë 35ÀÚ±îÁö ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.");
+         alert("ìµœëŒ€ 35ìê¹Œì§€ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
          f.title.focus();
          return false;
       }
@@ -56,12 +56,12 @@ function doOnload(){
          }
       }
       if (f.contents.value == "") {
-         alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.");
+         alert("ì œëª©ì„ ì…ë ¥í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.");
          f.title.focus();
          return false;
       }
       if (f.calBytes(f.contents.value) > 4000) {
-         alert("ÃÖ´ë 4000Bytes±îÁö ÀÔ·Â °¡´ÉÇÕ´Ï´Ù.");
+         alert("ìµœëŒ€ 4000Bytesê¹Œì§€ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
          f.contents.focus();
          return false;
       }

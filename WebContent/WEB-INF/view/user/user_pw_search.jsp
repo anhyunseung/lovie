@@ -1,48 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Let's see the movie! : Lovie - ºñ¹Ğ¹øÈ£ Ã£±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Let's see the movie! : Lovie - ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</title>
 <script type="text/javascript">
 	function doSubmit(f) {
 		if (f.user_name.value == "") {
-			alert("¼º¸í, ÀÌ¸ŞÀÏ ¶Ç´Â ID¸¦ Àû¾ú´ÂÁö \n            È®ÀÎÇØÁÖ¼¼¿ä.");
+			alert("ì„±ëª…, ì´ë©”ì¼ ë˜ëŠ” IDë¥¼ ì ì—ˆëŠ”ì§€ \n            í™•ì¸í•´ì£¼ì„¸ìš”.");
 			f.user_name.focus();
 			return false;
 		}
 
 		if (f.user_id.value == "") {
-			alert("¼º¸í, ÀÌ¸ŞÀÏ ¶Ç´Â ID¸¦ Àû¾ú´ÂÁö \n            È®ÀÎÇØÁÖ¼¼¿ä.");
+			alert("ì„±ëª…, ì´ë©”ì¼ ë˜ëŠ” IDë¥¼ ì ì—ˆëŠ”ì§€ \n            í™•ì¸í•´ì£¼ì„¸ìš”.");
 			f.user_id.focus();
 			return false;
 		}
 
 		if (f.email1.value == "") {
-			alert("¼º¸í, ÀÌ¸ŞÀÏ ¶Ç´Â ID¸¦ Àû¾ú´ÂÁö \n            È®ÀÎÇØÁÖ¼¼¿ä.");
+			alert("ì„±ëª…, ì´ë©”ì¼ ë˜ëŠ” IDë¥¼ ì ì—ˆëŠ”ì§€ \n            í™•ì¸í•´ì£¼ì„¸ìš”.");
 			f.email1.focus();
 			return false;
 		}
 
 		if (f.email2.value == "bd") {
-			alert("¼º¸í, ÀÌ¸ŞÀÏ ¶Ç´Â ID¸¦ Àû¾ú´ÂÁö \n            È®ÀÎÇØÁÖ¼¼¿ä.");
+			alert("ì„±ëª…, ì´ë©”ì¼ ë˜ëŠ” IDë¥¼ ì ì—ˆëŠ”ì§€ \n            í™•ì¸í•´ì£¼ì„¸ìš”.");
 			f.email2.focus();
 			return false;
 		}
 
 		if (f.tel_1.value == "") {
-			alert("¼º¸í, ÀÌ¸ŞÀÏ ¶Ç´Â ID¸¦ Àû¾ú´ÂÁö \n            È®ÀÎÇØÁÖ¼¼¿ä.");
+			alert("ì„±ëª…, ì´ë©”ì¼ ë˜ëŠ” IDë¥¼ ì ì—ˆëŠ”ì§€ \n            í™•ì¸í•´ì£¼ì„¸ìš”.");
 			f.tel_1.focus();
 			return false;
 		}
 		if (f.tel_2.value == "") {
-			alert("¼º¸í, ÀÌ¸ŞÀÏ ¶Ç´Â ID¸¦ Àû¾ú´ÂÁö \n            È®ÀÎÇØÁÖ¼¼¿ä.");
+			alert("ì„±ëª…, ì´ë©”ì¼ ë˜ëŠ” IDë¥¼ ì ì—ˆëŠ”ì§€ \n            í™•ì¸í•´ì£¼ì„¸ìš”.");
 			f.tel_2.focus();
 			return false;
 		}
 		if (f.tel_3.value == "") {
-			alert("¼º¸í, ÀÌ¸ŞÀÏ ¶Ç´Â ID¸¦ Àû¾ú´ÂÁö \n            È®ÀÎÇØÁÖ¼¼¿ä.");
+			alert("ì„±ëª…, ì´ë©”ì¼ ë˜ëŠ” IDë¥¼ ì ì—ˆëŠ”ì§€ \n            í™•ì¸í•´ì£¼ì„¸ìš”.");
 			f.tel_3.focus();
 			return false;
 		}
@@ -116,7 +116,7 @@ input {
 				<td align="center"><br><img src="../img/user/userjoin/email.png"/></td>
 				<td><br> <input type="text" name="email1" maxlength="16"
 					style="width: 100px" />&nbsp;@ <select name="email2">
-						<option value="bd">¼±ÅÃÇÏ¼¼¿ä</option>
+						<option value="bd">ì„ íƒí•˜ì„¸ìš”</option>
 						<option value="naver.com">naver.com</option>
 						<option value="nate.com">nate.com</option>
 						<option value="hanmail.com">hanmail.com</option>

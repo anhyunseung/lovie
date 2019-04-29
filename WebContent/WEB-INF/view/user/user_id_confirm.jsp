@@ -1,6 +1,6 @@
 <%@page import="poly.util.CmmUtil"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 String SS_USER_NAME = CmmUtil.nvl((String)session.getAttribute("USER_NAME"));
 session.setAttribute("USER_NAME", "");
@@ -10,8 +10,8 @@ session.setAttribute("USER_ID", "");
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Let's see the movie! : Lovie - ¾ÆÀÌµğ Ã£±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Let's see the movie! : Lovie - ì•„ì´ë”” ì°¾ê¸°</title>
 <script type="text/javascript">
 function Close_Event(){
     window.close();
@@ -61,7 +61,7 @@ input {
 </tr>
 <tr>
 <td align="right"><br><br> <img src="../img/user/userpw/pwfl.png"/><font color="black"><b>&nbsp;-></b></font>
-      <a href="user_pw_search.do" onClick="window.open('/user/user_pw_search.do','ºñ¹Ğ¹øÈ£ Ã£±â','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" >
+      <a href="user_pw_search.do" onClick="window.open('/user/user_pw_search.do','ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" >
       <img src="../img/top/pwf.png"/>
       </a>
       </td>

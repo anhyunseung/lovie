@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ page import="poly.util.CmmUtil"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 function doTop(){
@@ -13,12 +13,12 @@ function doTop(){
 
 function doSubmit(f) {
    if(f.user_id.value.length >= 20){
-      alert("¾ÆÀÌµğ°¡ 20ÀÚ¸¦ ÃÊ°úÇß½À´Ï´Ù.");
+      alert("ì•„ì´ë””ê°€ 20ìë¥¼ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤.");
       f.user_id.focus();
       return false;
    }
    if(f.user_id.value == ""){
-      alert("¾ÆÀÌµğ¸¦ ÀÔ·Â ÇØÁÖ¼¼¿ä.");
+      alert("ì•„ì´ë””ë¥¼ ì…ë ¥ í•´ì£¼ì„¸ìš”.");
       f.user_id.focus();
       return false;
    }
@@ -139,7 +139,7 @@ input {
          <td colspan="2">
          <br><br>
             <input type="text" name="email1" maxlength="16" style="width:100px;" disabled="disabled"/>&nbsp;<b>@</b>
-             <input type="text" name="email2" maxlength="16" style="width:100px;" value="¼±ÅÃÇÏ¼¼¿ä" disabled="disabled"/>
+             <input type="text" name="email2" maxlength="16" style="width:100px;" value="ì„ íƒí•˜ì„¸ìš”" disabled="disabled"/>
          </td>
       </tr>
       <tr>
