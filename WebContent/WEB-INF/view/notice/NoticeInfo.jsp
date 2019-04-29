@@ -130,6 +130,12 @@ input {
             div.infot{
       background-image: url('../img/bg/infot.png');
       }
+      		div.framebgm{
+		background-image:url('../img/bg/framebgm.png');
+		}
+      		div.framebgd{
+		background-image:url('../img/bg/framebgd.png');
+		}
 </style>
 </head>
 <body>
@@ -167,7 +173,7 @@ input {
 			</tr>
 			<tr>
 				<td colspan="3">
-					---------------------------------------------------------------</td>
+					&nbsp;---------------------------------------------------------------</td>
 			</tr>
 			<tr>
 				<td colspan="3">&nbsp;&nbsp;<b><%=CmmUtil.nvl(rDTO.getUser_id())%><br />
@@ -183,17 +189,18 @@ input {
 			</tr>
 			<tr>
 				<td colspan="3">
-					---------------------------------------------------------------</td>
+					&nbsp;---------------------------------------------------------------</td>
 			</tr>
 			</table>
 			</div>
-			<table>
 			<%
 				for (int i=clist.size()-1;i>-1;i--){
 					  Comment_noticeDTO a = clist.get(i);
 			%>
+			<div class="framebgm">
+			<table>
 			<tr>
-				<td colspan="2"><b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b><%=CmmUtil.nvl(a.getReg_dt())%></td>
+				<td colspan="2">&nbsp;<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b><%=CmmUtil.nvl(a.getReg_dt())%></td>
 				
 				<td align="left">
 				<%
@@ -210,27 +217,33 @@ input {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3"><%=CmmUtil.nvl(a.getContents())%></td>
+				<td colspan="3">&nbsp;<%=CmmUtil.nvl(a.getContents())%></td>
 			</tr>
 			<tr>
 				<td colspan="3">
-					---------------------------------------------------------------</td>
+					&nbsp;---------------------------------------------------------------</td>
 			</tr>
+			</table>
+			</div>
 						<%
 				}
 			%>
-			</table>
+			<div class="framebgm">
 			<table>
 			<tr>
-				<td colspan="3" valign="middle"><textarea name="comment"
+				<td colspan="3" valign="middle">&nbsp;<textarea name="comment"
 						style="width: 440px"></textarea> <input type="submit" class="img-button4" value=" " />
 				</td>
 			</tr>
+			</table>
+			</div>
+			<div class="framebgd">
+			<table>
 						<tr>
-				<td colspan="3">
-					---------------------------------------------------------------</td>
+				<td colspan="3"></br></td>
 			</tr>
 		</table>
+		</div>
 		<input type="hidden" name="notice_seq" value="<%=notice_seq%>">
 	</form>
 </body>
