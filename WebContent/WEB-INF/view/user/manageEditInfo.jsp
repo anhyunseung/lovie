@@ -17,6 +17,10 @@ if (rDTO==null){
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+<%if(CmmUtil.nvl(rDTO.getUser_id())==null){%>
+alert("잘못된 접근입니다.");
+top.location.href="/top.do";
+<%}%>
 function doSubmit(f) {
    if(f.user_id.value.length >= 20){
       alert("아이디 및 비밀번호가 20자를 초과했습니다.");
@@ -45,12 +49,6 @@ function doSubmit(f) {
    if(f.pwd1.value == ""){
       alert("모두 입력을 해주세요.");
       f.pwd1.focus();
-      return false;
-   }
-   
-   if(f.pwd2.value == ""){
-      alert("모두 입력을 해주세요.");
-      f.pwd2.focus();
       return false;
    }
 
@@ -131,11 +129,9 @@ function doKeyIdPw(event) {
    }
 }
 
-function doManage(no){
+function doInfo(no){
     location.href="/user/manageInfo.do?user_no="+ no;
 }
-
-
 </script>
 <style>
 input {
@@ -173,7 +169,7 @@ input {
 	div.framebgd
 	{
 	background-image:url('../img/bg/framebgd.png');
-	}
+}
 </style>
 </head>
 <body>
@@ -199,13 +195,15 @@ input {
 <form action="/user/manageUpdate.do" method="post" name="f" onsubmit="return doSubmit(this);">
       <input type="hidden" name="user_no"
          value="<%=CmmUtil.nvl(request.getParameter("user_no"))%>" />
-<div class=framebgm>
+   <div class=framebgm>
    <table width="500px">
    <col width="100px"/>
    <col width="200px"/>
       <tr>
          <td align="center"><br><img src="../img/user/userjoin/name.png"/></td>
-         <td><br><input type="text" name="user_name" maxlength="10" style="width:200px;"  value="<%=CmmUtil.nvl(rDTO.getUser_name()) %>" onkeydown="return doKeyOnlyWord(event)"/></td>
+         <td><br>
+          <input type="text" name="user_name" maxlength="20" style="width:200px;"
+         value="<%=CmmUtil.nvl(rDTO.getUser_name())%>" /></td>
       </tr>
          <tr>
 <td>
@@ -214,29 +212,21 @@ input {
    </tr>
       <tr>
       <td align="center"><br><img src="../img/top/Id.png"/></td>
-         <td><br><input type="text" name="user_id" maxlength="20" style="width:200px;" value="<%=CmmUtil.nvl(rDTO.getUser_id()) %>" onkeydown="return doKeyIdPw(event)"/>
+         <td><br>
+         <input type="text" name="user_id" maxlength="20" style="width:200px;"
+         value="<%=CmmUtil.nvl(rDTO.getUser_id()) %>" onkeydown="return doKeyIdPw(event)"/>
          </td>
       </tr>
       <tr>
-      <td>
-      </td>
-      <td colspan="2" align="left">
-      <img src="../img/user/userjoin/idd.png"/>
-      <br>
+      <td colspan="2">
+      <font color="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font> 
       </td>
       </tr>
       <tr>
          <td align="center"><br><img src="../img/top/pw.png"/></td>
-         <td><br><input type="text" name="pwd1" maxlength="20" style="width:200px;" value="<%=CmmUtil.nvl(rDTO.getPassword()) %>" onkeydown="return doKeyIdPw(event)"/></td>
-      </tr>
-      <tr>
-      <td>
-      </td>
-      <td colspan="2" align="left">
-      <img src="../img/user/userjoin/pwd.png"/>
-      <br>
-      </td>
-      </tr>
+         <td><br><input type="text" name="pwd1" maxlength="20" style="width:200px;" 
+         value="<%=CmmUtil.nvl(rDTO.getPassword()) %>"onkeydown="return doKeyIdPw(event)"/></td>
+</tr>    
       <tr>
          <td align="center"><br><br><img src="../img/user/userjoin/email.png"/></td>
          <td colspan="2">
@@ -264,26 +254,27 @@ input {
          <input type="text" name="tel_3" maxlength="4" style="width:80px" value="<%=CmmUtil.nvl(rDTO.getTel_3()) %>" onkeydown="return doKeyOnlyNumber(event)"/>
       </td>
    </tr>   
+   
    <tr>
          <td align="center"><br><br><img src="../img/user/userjoin/birth.png"/></td>
          <td><br><br>
          <input type="text" name="birthday" maxlength="6" value="<%=CmmUtil.nvl(rDTO.getBirthday()) %>" style="width:200px;" onkeydown="return doKeyOnlyNumber(event)"/>
          </td>
-      </tr>
+      </tr>         
       </table>
       </div>
       <div class="framebgm">
-      <table width=100%>         
+      <table width=100%>
       <tr>
          <td colspan="5" align="center"><br><br>
          <br>
-            <input type="submit"  class="img-button" value=" " />&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="button"  class="img-button2" onclick="javascript:doManage('<%=CmmUtil.nvl(rDTO.getUser_no())%>');" value=" "/>
+            <input type="submit" class="img-button" value=" " />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="img-button2" onclick="javascript:doInfo('<%=CmmUtil.nvl(rDTO.getUser_no())%>');" value=" "/>
          </td>
       </tr>
-   </table>
+  </table>
    </div>
-   <div class="framebgd">
+      <div class="framebgd">
    <table>
    <tr>
    <td>
