@@ -113,7 +113,11 @@ for (int i=0;i<a;i++){
                </span></a>
    </td>
    <td width="60" align="center"><%=CmmUtil.nvl(rDTO.getUser_id())%></td>
-   <td width="90" align="center"><%=CmmUtil.nvl(rDTO.getReg_dt())%></td>
+   <td width="90" align="center">
+<%String date=CmmUtil.nvl(rDTO.getReg_dt());%>
+   <%=date.substring(0,4)%>.<%=date.substring(5,7)%>.<%=date.substring(8,10)%>.
+   <%=date.substring(11,16)%>
+</td>
    </tr>
    <tr>
    <td colspan="4">
