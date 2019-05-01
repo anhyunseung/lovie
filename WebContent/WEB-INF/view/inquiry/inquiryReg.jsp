@@ -26,54 +26,40 @@ function doOnload(){
 //로그인 여부 체크
 
    //전송시 유호성 체크
-   function doSubmit(f) {
-	
-      if (f.title.value == "") {
-         alert("제목을 입력하시기 바랍니다.");
-         f.title.focus();
-         return false;
-      }
-      if(f.email1.value == ""){
-          alert("이메일 입력을 해주세요.");
-          f.email1.focus();
-          return false;
-       }
-       
-       if(f.email2.value == "bd"){
-          alert("이메일 선택을 해주세요.");
-          f.email2.focus();
-          return false;
-       }
-      if (f.contents.value == "") {
-         alert("내용을 입력하시기 바랍니다.");
-         f.contents.focus();
-         return false;
-      }
-      if (calBytes(f.contents.value) > 4000) {
-         alert("최대 4000Bytes까지 입력 가능합니다.");
-         f.contents.focus();
-         return false;
-      }
-   }
-   //글자 길이 바이트 단위로 체크하기(바이트값 전달)
-   function calBytes(str) {
+function doSubmit(f) {
+    if (f.title.value == "") {
+       alert("제목을 입력하시기 바랍니다.");
+       f.title.focus();
+       return false;
+    }
+    if(f.title.value.length > 50){
+       alert("최대 50자까지 입력 가능합니다.");
+       f.title.focus();
+       return false;
+    }
+    if (f.contents.value == "") {
+       alert("내용을 입력하시기 바랍니다.");
+       f.contents.focus();
+       return false;
+    }
+    if (f.contents.value.length > 2000) {
+       alert("최대 2000자까지 입력 가능합니다.");
+       f.contents.focus();
+       return false;
+    }
+    if (f.email1.value == "") {
+		alert("이메일 입력을 해주세요.");
+		f.email1.focus();
+		return false;
+	}
 
-      var tcount = 0;
-      var tmpStr = new String(str);
-      var strCnt = tmpStr.length;
+	if (f.email2.value == "bd") {
+		alert("이메일 선택을 해주세요.");
+		f.email2.focus();
+		return false;
+	}
 
-      var onechar;
-      for (i = 0; i < srtCnt; i++) {
-         onechar = tmpStr.charAt(i);
-
-         if (escape(onechar).length > 4) {
-            tcount += 2;
-         } else {
-            tcount += 1;
-         }
-      }
-      return tcount;
-   }
+ }
    function doKeyIdPw(event) {
 	   event = event || window.event;
 	   var keyID = (event.which) ? event.which : event.KeyCode;

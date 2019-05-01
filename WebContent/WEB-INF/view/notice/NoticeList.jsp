@@ -81,7 +81,6 @@ background-image:url('../img/bg/framebgd.png');
    </tr>
    </table>
    </div>
-   <div class="framebgm2">
 <%
 int a=rList.size();
 int b=9;
@@ -103,15 +102,16 @@ for (int i=0;i<a;i++){
    }
    
 %>
+<div class="framebgm2">
    <table border="0" width="100%">
 <tr>
-   <td width="60" align="center">
+   <td width="13%" align="center">
    <%
       out.print(CmmUtil.nvl(rDTO.getnotice_seq()));
    %>
    <input type="hidden" name="seq" value="<%=CmmUtil.nvl(rDTO.getnotice_seq())%>">
    </td>
-   <td width="250">
+   <td width="54%">
    <a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getnotice_seq())%>');">
                <span style=" color: black;font-weight:bold">
                <%=CmmUtil.nvl(rDTO.getTitle())%>

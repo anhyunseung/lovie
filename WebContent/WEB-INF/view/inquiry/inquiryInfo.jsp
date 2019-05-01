@@ -114,6 +114,10 @@ input {
      div.infot{
       background-image: url('../img/bg/infot.png');
       }
+       div.framebgm
+	{
+	background-image:url('../img/bg/framebgm.png');
+	}
       div.framebgd
 	{
 	background-image:url('../img/bg/framebgd.png');
@@ -121,7 +125,16 @@ input {
 </style>
 </head>
 <body>
-<div class="infot">
+				<div class="infot">
+   <table>
+   <tr>
+   <td>
+   <br>
+   </td>
+   </tr>
+   </table>
+   </div>
+	<div class="framebgm">
       <table border="0" width="100%">
       <tr></tr>
 		<tr></tr>
@@ -148,9 +161,9 @@ input {
             </td>
          </tr>
          <tr>
-            <td align="center"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
-            <td align="right">|</td>
-            <td align="left"><img src="../img/inquiry/inqs.png"/></td>
+            <td align="center"width="85%"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
+            <td align="right"width="5%">|</td>
+            <td align="left"width="10%"><img src="../img/inquiry/inqs.png"/></td>
             
          </tr>
          <tr>
@@ -165,7 +178,22 @@ input {
             <td colspan="3"><img src="../img/total/emails.png"/>&nbsp; <%=CmmUtil.nvl(rDTO.getEmail1()) %>@<%=CmmUtil.nvl(rDTO.getEmail2()) %><br/><br/></td>
          </tr>
          <tr>
-          <td colspan="3" height="600px" valign="top">&nbsp;<%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>") %></td>
+          				<td colspan="3" valign="top">
+				<%String content=(CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>"));
+				for(int i=0;i<=(content.length()-1)/70;i++){
+					String content2="";
+					if(i==(content.length()-1)/70){
+						content2=content.substring(70*i,content.length());
+					}else{
+						content2=content.substring(70*i,70*(i+1));
+					}
+					%>
+					&nbsp;<%=content2%><br>
+					<%
+				}
+				%>
+				<br>
+				</td>
        </tr>
        </table>
 			</div>

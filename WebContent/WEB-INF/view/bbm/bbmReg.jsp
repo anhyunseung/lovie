@@ -11,36 +11,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판 글쓰기</title>
-<script type="text/javascript" src="js/jquery-1.11.1.js">
-
-var limitByte = 100; //바이트의 최대크기, limitByte 를 초과할 수 없슴
-
-
-//textarea에 입력된 문자의 바이트 수를 체크
-function checkByte(frm) {
-     var totalByte = 0;
-     var message = frm.contents.value;
-
-     for(var i =0; i < message.length; i++) {
-             var currentByte = message.charCodeAt(i);
-             if(currentByte > 128) totalByte += 2;
-else totalByte++;
-     }
-
-
-
-     // 현재 입력한 문자의 바이트 수를 체크하여 표시
-     $('#messagebyte').text(totalByte);
-
-
-
-     // 입력된 바이트 수가 limitByet를 초과 할 경우 경고창 
-     if(totalByte > limitByte) {
-             alert( limitByte+"바이트까지 전송가능합니다.");
-      frm.contents.value = message.substring(0,limitByte);
-     }
-}
-</script>
 <script type="text/javascript">
 function doOnload(){
    var user_id = "<%=SESSION_USER_ID%>";
@@ -62,7 +32,7 @@ function doOnload(){
          f.title.focus();
          return false;
       }
-      if (calBytes(f.title.value) > 50) {
+      if(f.title.value.length > 50){
          alert("최대 50자까지 입력 가능합니다.");
          f.title.focus();
          return false;
@@ -72,32 +42,14 @@ function doOnload(){
          f.contents.focus();
          return false;
       }
-      if (calBytes(f.contents.value).length > 100) {
-         alert("최대 3000자까지 입력 가능합니다.");
+      if (f.contents.value.length > 2000) {
+         alert("최대 2000자까지 입력 가능합니다.");
          f.contents.focus();
          return false;
       }
 
    }
-   //글자 길이 바이트 단위로 체크하기(바이트값 전달)
-   function calBytes(str) {
 
-      var tcount = 0;
-      var tmpStr = new String(str);
-      var strCnt = tmpStr.length;
-
-      var onechar;
-      for (i = 0; i < srtCnt; i++) {
-         onechar = tmpStr.charAt(i);
-
-         if (escape(onechar).length > 4) {
-            tcount += 2;
-         } else {
-            tcount += 1;
-         }
-      }
-      return tcount;
-   }
    function doList(){
 	    location.href="/bbm/bbmList.do";
 	}

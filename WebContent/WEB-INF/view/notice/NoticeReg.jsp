@@ -32,8 +32,8 @@ function doOnload(){
          f.title.focus();
          return false;
       }
-      if (calBytes(f.title.value) > 35) {
-         alert("최대 35자까지 입력 가능합니다.");
+      if(f.title.value.length > 50){
+         alert("최대 50자까지 입력 가능합니다.");
          f.title.focus();
          return false;
       }
@@ -42,31 +42,12 @@ function doOnload(){
          f.contents.focus();
          return false;
       }
-      if (calBytes(f.contents.value) > 3000) {
-         alert("최대 3000자까지 입력 가능합니다.");
+      if (f.contents.value.length > 2000) {
+         alert("최대 2000자까지 입력 가능합니다.");
          f.contents.focus();
          return false;
       }
 
-   }
-   //글자 길이 바이트 단위로 체크하기(바이트값 전달)
-   function calBytes(str) {
-
-      var tcount = 0;
-      var tmpStr = new String(str);
-      var strCnt = tmpStr.length;
-
-      var onechar;
-      for (i = 0; i < srtCnt; i++) {
-         onechar = tmpStr.charAt(i);
-
-         if (escape(onechar).length > 4) {
-            tcount += 2;
-         } else {
-            tcount += 1;
-         }
-      }
-      return tcount;
    }
    function doList(){
 	    location.href="/notice/NoticeList.do";

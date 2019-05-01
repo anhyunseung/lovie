@@ -101,12 +101,12 @@ background-image:url('../img/bg/framebgd.png');
 		<div class="framebgm2">
 		<table border="0" width="100%">
 		<tr>
-			<td width="60" align="center">
+			<td width="13%" align="center">
 				<%
 					out.print(CmmUtil.nvl(rDTO.getinq_seq()));
 				%>
 			</td>
-			<td width="250" align="left"><a
+			<td width="54%" align="left"><a
 				href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getinq_seq())%>');">
 					<span style="color: black; font-weight: bold"> <b><%=CmmUtil.nvl(rDTO.getTitle())%></b>
 				</span>

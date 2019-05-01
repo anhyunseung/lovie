@@ -102,11 +102,11 @@ for (int i=0;i<a;i++){
  <div class="framebgm2">
    <table border="0" width="100%">
 <tr>
-   <td width="60" align="center">
+   <td width="13%" align="center">
    <%
       out.print(CmmUtil.nvl(rDTO.getbbm_seq()));
    %></td>
-   <td width="250" align="left">
+   <td width="54%" align="left">
    <a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getbbm_seq())%>');">
                <span style=" color: black;font-weight:bold">
                <%=CmmUtil.nvl(rDTO.getTitle())%>

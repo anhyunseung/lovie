@@ -22,7 +22,7 @@
 		clist = new ArrayList<Comment_noticeDTO>();
 	}
 	String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
-	String seq = CmmUtil.nvl((String) session.getAttribute("com_bbm_seq"));
+	String seq = CmmUtil.nvl((String) session.getAttribute("com_notice_seq"));
 	String com_seq=CmmUtil.nvl((String) session.getAttribute("com_seq"));
 
 	//본인이 작성한 글만 수정 가능하도록 하기(1:작성자 아님 / 2: 본인이 작성한 글 / 3: 로그인안함)
@@ -76,7 +76,7 @@ function doDelete(){
 	}
 }
 function doInfo(seq){
-    location.href="/notice/NoticeInfo.do?bbm_seq="+seq;
+    location.href="/notice/NoticeInfo.do?notice_seq="+seq;
 }
 
 function doDelete2(seq){
@@ -198,9 +198,9 @@ input {
 				</td>
 			</tr>
 			<tr>
-				<td align="center"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
-				<td align="right">|</td>
-				<td align="left"><img src="../img/notice/nots.png"/></td>
+				<td align="center"width="85%"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
+				<td align="right"width="5%">|</td>
+				<td align="left"width="10%"><img src="../img/notice/nots.png"/></td>
 
 			</tr>
 			<tr>
@@ -212,9 +212,22 @@ input {
 					<br /></b></td>
 			</tr>
 			<tr>
-				<td colspan="3" height="600px" valign="top">
-				&nbsp;
-				<%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>")%></td>
+				<td colspan="3" valign="top">
+				<%String content=(CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>"));
+				for(int i=0;i<=(content.length()-1)/70;i++){
+					String content2="";
+					if(i==(content.length()-1)/70){
+						content2=content.substring(70*i,content.length());
+					}else{
+						content2=content.substring(70*i,70*(i+1));
+					}
+					%>
+					&nbsp;<%=content2%><br>
+					<%
+				}
+				%>
+				<br><br><br>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="3" ><img src="../img/common/com.png"/></td>

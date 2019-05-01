@@ -36,56 +36,30 @@ function doOnload(){
       }
    }
 
-   function doSubmit(f) {
-      if (f.title.value == "") {
-         alert("제목을 입력하시기 바랍니다.");
-         f.title.focus();
-         return false;
-      }
+function doSubmit(f) {
+    if (f.title.value == "") {
+       alert("제목을 입력하시기 바랍니다.");
+       f.title.focus();
+       return false;
+    }
+    if(f.title.value.length > 50){
+       alert("최대 50자까지 입력 가능합니다.");
+       f.title.focus();
+       return false;
+    }
+    if (f.contents.value == "") {
+       alert("내용을 입력하시기 바랍니다.");
+       f.contents.focus();
+       return false;
+    }
+    if (f.contents.value.length > 2000) {
+       alert("최대 2000자까지 입력 가능합니다.");
+       f.contents.focus();
+       return false;
+    }
 
-      if (calBytes(f.title.value) > 35) {
-         alert("최대 35자까지 입력 가능합니다.");
-         f.title.focus();
-         return false;
-      }
+ }
 
-      var noticeCheck = false;
-      for (var i = 0; i < f.noticeYn.length; i++) {
-         if (f.noticeYn[i].checked) {
-            noticeCheck = true;
-         }
-      }
-      if (f.contents.value == "") {
-         alert("제목을 입력하시기 바랍니다.");
-         f.title.focus();
-         return false;
-      }
-      if (f.calBytes(f.contents.value) > 4000) {
-         alert("최대 4000Bytes까지 입력 가능합니다.");
-         f.contents.focus();
-         return false;
-      }
-   }
-
-   function calBytes(str) {
-
-      var tcount = 0;
-      var tmpStr = new String(str);
-      var strCnt = tmpStr.length;
-
-      var onechar;
-      for (i = 0; i < strCnt; i++) {
-         onechar = tmpStr.charAt(i);
-
-         if (escape(onechar).lengt > 4) {
-            tcount += 2;
-
-         } else {
-            tcount += 1;
-         }
-      }
-      return tcount;
-   }
    function doInfo(seq){
 	    location.href="/bbm/bbmInfo.do?bbm_seq="+ seq;
 	}

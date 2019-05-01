@@ -196,9 +196,9 @@ input {
 				</td>
 			</tr>
 			<tr>
-				<td align="center"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
-				<td align="right">|</td>
-				<td align="left"><img src="../img/total/read.png"/></td>
+				<td align="center"width="85%"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
+				<td align="right"width="5%">|</td>
+				<td align="left"width="10%"><img src="../img/total/read.png"/></td>
 
 			</tr>
 			<tr>
@@ -210,9 +210,22 @@ input {
 					<br /></b></td>
 			</tr>
 			<tr>
-				<td colspan="3" height="600px" valign="top">
-				&nbsp;
-				<%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>")%></td>
+				<td colspan="3" valign="top">
+				<%String content=(CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>"));
+				for(int i=0;i<=(content.length()-1)/70;i++){
+					String content2="";
+					if(i==(content.length()-1)/70){
+						content2=content.substring(70*i,content.length());
+					}else{
+						content2=content.substring(70*i,70*(i+1));
+					}
+					%>
+					&nbsp;<%=content2%><br>
+					<%
+				}
+				%>
+				<br><br><br>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="3" ><img src="../img/common/com.png"/></td>
