@@ -25,8 +25,31 @@ function doDetail(no){
    location.href="/user/manageInfo.do?user_no="+ no;
 }
 </script>
+<style>
+div.framebgt
+{
+background-image:url('../img/bg/framebgt.png');
+}
+div.framebgm
+{
+background-image:url('../img/bg/framebgm.png');
+}
+div.framebgm1
+{
+background-image:url('../img/bg/framebgm1.png');
+}
+div.framebgm2
+{
+background-image:url('../img/bg/framebgm3.png');
+}
+div.framebgd
+{
+background-image:url('../img/bg/framebgd.png');
+}
+</style>
 </head>
 <body>
+<div class="framebgt">
    <table border="0" width="100%">
       <tr>
          <td align="center"><br>
@@ -36,6 +59,8 @@ function doDetail(no){
             </td>
       </tr>
    </table>
+   </div>
+   <div class="framebgm1">
    <table border="0" width="100%">
       <tr>
          <td width="100" align="center"><img src="../img/user/userpw/names.png"/></td>
@@ -47,6 +72,8 @@ function doDetail(no){
    <hr>
    </td>
    </tr>
+      </table>
+   </div>
       <%
       int a=rList.size();
       int b=9;
@@ -67,15 +94,17 @@ function doDetail(no){
     	      rDTO = new UserDTO();
     	   }
       %>
+      <div class="framebgm2">
+      <table border="0" width="100%">
       <tr>
-         <td align="center">
+         <td align="center" width="100" >
                <%=CmmUtil.nvl(rDTO.getUser_name())%>
                </td>
-         <td align="center"><a
+         <td align="center"width="150" ><a
             href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getUser_no())%>');">
             <%=CmmUtil.nvl(rDTO.getUser_id())%>
             </a></td>
-         <td align="center"><%=CmmUtil.nvl(rDTO.getTel_1())%>&nbsp;-&nbsp;
+         <td align="center"width="200" ><%=CmmUtil.nvl(rDTO.getTel_1())%>&nbsp;-&nbsp;
             <%=CmmUtil.nvl(rDTO.getTel_2())%>&nbsp;-&nbsp; 
             <%=CmmUtil.nvl(rDTO.getTel_3())%></td>
       </tr>
@@ -84,12 +113,13 @@ function doDetail(no){
       <hr>
       </td>
       </tr>
+      </table>
+</div>
       <%
          }
       %>
-   </table>
-   
-   <table border="0" width="100%">
+<div class="framebgm">
+<table border="0" width="100%">
       <tr>
    <td align="center">
    <%int line=0; 
@@ -215,5 +245,15 @@ function doDetail(no){
    </td>
    </tr>
 </table>
+</div>
+			<div class="framebgd">
+   <table>
+   <tr>
+   <td>
+   <br>
+   </td>
+   </tr>
+   </table>
+   </div>
 </body>
 </html>

@@ -143,7 +143,7 @@ background-image:url('../img/bg/framebgd.png');
 		}
 	%>
 	</div>
-	<div class="framebgd">
+	<div class="framebgm">
 	<table border="0" width="100%">
 		<tr>
 			<td align="center">
@@ -357,5 +357,14 @@ background-image:url('../img/bg/framebgd.png');
 		</tr>
 	</table>
 </div>
+			<div class="framebgd">
+   <table>
+   <tr>
+   <td>
+   <br>
+   </td>
+   </tr>
+   </table>
+   </div>
 </body>
 </html>

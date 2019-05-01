@@ -73,17 +73,45 @@ input {
         width: 52px;
         cursor: pointer;
       }
+      div.framebgt
+	{
+	background-image:url('../img/bg/framebgt.png');
+	}
+	div.framebgm
+	{
+	background-image:url('../img/bg/framebgm.png');
+	}
+	div.framebgm1
+	{
+	background-image:url('../img/bg/framebgm1.png');
+	}
+	div.framebgd
+	{
+	background-image:url('../img/bg/framebgd.png');
+}
 </style>
 </head>
 <body>
+<div class="framebgt">
 <table border="0" width="100%">
 <tr>
 <td align="center">
 <br>
-<h2><img src="../img/user/usert.png" /></h2>
+<img src="../img/user/usert.png" />
 </td>
 </tr>
-</table><br><br><br>
+</table>
+</div>
+<div class=framebgm1>
+<table>
+<tr>
+<td>
+<br><br>
+</td>
+</tr>
+</table>
+</div>
+<div class=framebgm>
    <table width="500px">
    <col width="100px"/>
    <col width="200px"/>
@@ -126,7 +154,11 @@ input {
          <td><br><br>
          <%=CmmUtil.nvl(rDTO.getBirthday())%>
          </td>
-      </tr>         
+      </tr>       
+      </table>
+      </div>
+      <div class="framebgm">
+      <table width=100%>  
       <tr>
          <td colspan="5" align="center"><br><br>
          <br>
@@ -140,5 +172,15 @@ input {
          </td>
       </tr>
    </table>
+   </div>
+      <div class="framebgd">
+   <table>
+   <tr>
+   <td>
+   <br>
+   </td>
+   </tr>
+   </table>
+   </div>
 </body>
 </html>

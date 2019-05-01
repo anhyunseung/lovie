@@ -111,9 +111,13 @@ input {
         width: 52px;
         cursor: pointer;
       }
-                  div.infot{
+     div.infot{
       background-image: url('../img/bg/infot.png');
       }
+      div.framebgd
+	{
+	background-image:url('../img/bg/framebgd.png');
+	}
 </style>
 </head>
 <body>
@@ -158,19 +162,21 @@ input {
             <td colspan="3">&nbsp;&nbsp;<b><%=CmmUtil.nvl(rDTO.getUser_id()) %></b></td>
             </tr>
             <tr>
-            <td colspan="3"><img src="../img/user/userpw/emails.png"/>&nbsp; <%=CmmUtil.nvl(rDTO.getEmail1()) %>@<%=CmmUtil.nvl(rDTO.getEmail2()) %><br/><br/></td>
+            <td colspan="3"><img src="../img/total/emails.png"/>&nbsp; <%=CmmUtil.nvl(rDTO.getEmail1()) %>@<%=CmmUtil.nvl(rDTO.getEmail2()) %><br/><br/></td>
          </tr>
          <tr>
           <td colspan="3" height="600px" valign="top">&nbsp;<%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>") %></td>
        </tr>
-       <tr>
-          <td colspan="3"><br/>
-             -----------------------------------------------------------------
-          </td>
-       </tr>
        </table>
 			</div>
-			<table>
-      </table>
+			<div class="framebgd">
+   <table>
+   <tr>
+   <td>
+   <br>
+   </td>
+   </tr>
+   </table>
+   </div>
 </body>
 </html>

@@ -130,7 +130,7 @@ input {
         vertical-align: middle;
       }
       input.img-button2 {
-        background: url( "../img/total/cc.png" ) no-repeat;
+        background: url( "../img/button/cc.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;
@@ -146,6 +146,13 @@ input {
         width: 52px;
         cursor: pointer;
       }
+      div.infot{
+      background-image: url('../img/bg/infot.png');
+      }
+      div.framebgd
+	{
+	background-image:url('../img/bg/framebgd.png');
+	}
 </style>
 </head>
 <body onload="doOnload();">
@@ -153,10 +160,16 @@ input {
 		onsubmit="return doSubmit(this);">
 		<input type="hidden" name="inq_seq"
 			value="<%=CmmUtil.nvl(request.getParameter("inq_seq"))%>" />
-		<table border="0" width="100%">
+		<br>
+      <div class="infot">
+      <table border="0" width="100%">
 			<tr>
-				<td align="center" width="120px"><img src="../img/total/tit.png"/></td>
-				<td><input type="text" name="title" maxlength="35"
+				<td align="center" width="120px">
+				<br>
+				<img src="../img/total/tit.png"/></td>
+				<td>
+				<br>
+				<input type="text" name="title" maxlength="35"
 					value="<%=CmmUtil.nvl(rDTO.getTitle())%>" style="width: 425px" /></td>
 			</tr>
 			<tr>
@@ -165,7 +178,7 @@ input {
 				</td>
 			</tr>
 			<tr>
-				<td align="center"><b>이메일</b></td>
+				<td align="center"><img src="../img/total/emails.png"/></td>
 				<td><input type="text" name="email1" maxlength="16"
 					value="<%=CmmUtil.nvl(rDTO.getEmail1())%>" width="100%"
 					onkeydown="return doKeyIdPw(event)" />&nbsp;<b>@</b> <select
@@ -178,8 +191,9 @@ input {
 				</select></td>
 			</tr>
 			<tr>
-				<td><br>
-				<img src="../img/total/writes.png"/>
+				<td>
+				<br>
+				&nbsp;<img src="../img/total/writes.png"/>
 				</td>
 			</tr>
 			<tr>
@@ -188,8 +202,9 @@ input {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea name="contents"
-						style="width: 515px; height: 600px"><%=CmmUtil.nvl(rDTO.getContents())%></textarea>
+				<td colspan="2">&nbsp;&nbsp;&nbsp;
+				<textarea name="contents"
+						style="width: 1120px; height: 600px"><%=CmmUtil.nvl(rDTO.getContents())%></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -197,7 +212,7 @@ input {
 					href="/inquiry/inquiryList.do"> <input type="button"
 					class="img-button3"
 						onclick="javascript:doList();" value=" " />
-				</a></td>
+				</a>&nbsp;&nbsp;</td>
 			</tr>
 			<tr>
 				<td align="center" colspan="2"><input type="submit" class="img-button" value=" " />
@@ -207,6 +222,16 @@ input {
 				</a></td>
 			</tr>
 		</table>
+			</div>
+			<div class="framebgd">
+   <table>
+   <tr>
+   <td>
+   <br>
+   </td>
+   </tr>
+   </table>
+   </div>
 	</form>
 </body>
 </html>

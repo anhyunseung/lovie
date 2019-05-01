@@ -16,32 +16,12 @@
 		<tr>
 			<td>순위</td>
 			<td>영화명</td>
-			<td>개봉일</td>
-			<td>매출액</td>
-			<td>매출액점유율</td>
-			<td>매출액증감(전일대비)</td>
-			<td>누적매출액</td>
-			<td>관객수</td>
-			<td>관객수증감(전일대비)</td>
-			<td>누적관객수</td>
-			<td>스크린수</td>
-			<td>상영횟수</td>
 		</tr>
 		<c:if test="${not empty map.boxOfficeResult.dailyBoxOfficeList}">
 			<c:forEach items="${map.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
 				<tr>
 					<td><c:out value="${boxoffice.rank }" /></td>
 					<td><c:out value="${boxoffice.movieNm }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
-					<td><c:out value="${boxoffice.rank }" /></td>
 				</tr>
 			</c:forEach>
 			

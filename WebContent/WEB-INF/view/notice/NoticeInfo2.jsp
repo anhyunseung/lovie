@@ -154,7 +154,7 @@ input {
         vertical-align: middle;
       }
       input.img-button6 {
-        background: url( "../img/total/cc.png" ) no-repeat;
+        background: url( "../img/button/cc.png" ) no-repeat;
         border: none;
         height: 40px;
         width: 52px;

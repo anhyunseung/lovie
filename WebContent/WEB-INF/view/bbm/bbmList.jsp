@@ -136,7 +136,7 @@ for (int i=0;i<a;i++){
 </tr>
 </table>
 </div>
-<div class="framebgd">
+<div class="framebgm">
 <table border="0" width="100%">
       <tr>
    <td align="center">
@@ -264,5 +264,14 @@ for (int i=0;i<a;i++){
    </tr>
 </table>
 </div>
+			<div class="framebgd">
+   <table>
+   <tr>
+   <td>
+   <br>
+   </td>
+   </tr>
+   </table>
+   </div>
 </body>
 </html>
