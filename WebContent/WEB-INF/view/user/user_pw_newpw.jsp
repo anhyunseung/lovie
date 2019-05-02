@@ -55,6 +55,7 @@ System.out.println("user_id : "+ SESSION_USER_ID);
 <style>
 input {
         vertical-align: middle;
+        background-repeat: no-repeat;
       }
       input.img-button {
         background: url( "../img/button/sign.png" ) no-repeat;
@@ -65,21 +66,13 @@ input {
       }
 </style>
 </head>
-<body>
-   <table border="0" width="100%">
-      <tr>
-         <td align="center"><br>
-            <h2>
-               <img src="../img/pwfind.png" />
-            </h2></td>
-      </tr>
-   </table>
+<body background="../img/user/userpw/pwfbg.png">
    <br>
    <br>
    <br>
    <form action="/user/user_pw_confirm.do" name="f" method="post"
       onsubmit="return doSubmit(this);">
-      <table border="0" width="100%">
+      <table border="0" width="460">
          <tr>
             <td align="center"><br>
             <img src="../img/user/userpw/newpw.png"/></td>
@@ -101,7 +94,9 @@ input {
          </tr>
          <tr>
             <td colspan="2" align="right"><br>
+            <br>
             <input type="submit"  class="img-button" value=" " />
+            &nbsp;&nbsp;&nbsp;
             </td>
          </tr>
          <tr>

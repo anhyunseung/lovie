@@ -6,8 +6,14 @@
 <%@page import="poly.dto.Comment_bbmDTO"%>
 <%@page import="java.util.List"%>
 <%
-	BBMDTO rDTO = (BBMDTO) request.getAttribute("rDTO");
 
+String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
+System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
+System.out.println("ss_user_id : " + SESSION_USER_ID);
+	BBMDTO rDTO = (BBMDTO) request.getAttribute("rDTO");
+	
+	session.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+CmmUtil.nvl(rDTO.getbbm_seq()));
 	String bbm_seq = rDTO.getbbm_seq();
 	List<Comment_bbmDTO> clist = rDTO.getClist();
 	if (clist == null) {
@@ -69,6 +75,25 @@ function doDelete(){
 			alert("본인이 작성한 글만 삭제 가능합니다.");
 		}
 
+	}
+function doSubmit(f) {
+	   if(f.user_id.value == ""){
+	      alert("아이디 또는 비밀번호를 입력해주세요.");
+	      f.user_id.focus();
+	      return false;
+	   }
+	   if(f.pwd1.value == ""){
+	      alert("아이디 또는 비밀번호를 입력해주세요.");
+	      f.pwd1.focus();
+	      return false;
+	   }
+	}
+function doSubmit2(f) {
+	   if(f.comment2.value == ""){
+	      alert("댓글내용을 입력해주세요.");
+	      f.comment.focus();
+	      return false;
+	   }
 	}
 
 function doInfo(seq){
@@ -155,6 +180,16 @@ input {
         width: 52px;
         cursor: pointer;
       }
+      input {
+        vertical-align: middle;
+      }
+      input.img-button7 {
+        background: url( "../img/button/login.png" ) no-repeat;
+        border: none;
+        height: 45px;
+        width: 58px;
+        cursor: pointer;
+      }
                   div.infot{
       background-image: url('../img/bg/infot.png');
       }
@@ -166,14 +201,154 @@ input {
 		}
 </style>
 </head>
-<body>
+<body background="../img/top/bg.png">
+<div>
+	<table border="0" height="3000px" width="1500px" >
+	<form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
+		<tr>
+			<td width="48px" height="167px"><br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br></td>
+			<td colspan="4" align="right" width="1500px">
+			<img src="../img/bg/top.png" />
+			<br>
+			<a href="/top.do">
+				<img src="../img/common/Logo.png"/>
+			</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/notice/NoticeList.do"
+				target="ifrMain">
+				<img src="../img/top/notice.png"/>
+			</a> &nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;
+			
+			<a
+				href="/bbm/bbmList.do" target="ifrMain"> 
+				<img src="../img/top/newmo.png"/>
+			</a> &nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			<a
+				href="/bbm/bbmList.do" target="ifrMain"> 
+				<img src="../img/top/upmo.png"/>
+			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			<a
+				href="/bbm/bbmList.do" target="ifrMain"> 
+				<img src="../img/top/bbm.png"/>
+			</a> &nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			<a
+				href="/inquiry/inquiryList.do" target="ifrMain"> 
+				<img src="../img/top/inq.png"/>
+			</a>
+			<br>
+			</td>
+		</tr>
+		<tr>
+			<td height="50px">
+				<img src="../img/bg/rp.png"/>
+			</td>
+			<td align="right" valign="top" width="180">
+				<%if (SESSION_USER_ID.equals("")) {%>		
+			<img src="../img/top/Id.png"/> &nbsp;
+			
+			 <input type="text" name="user_id" maxlength="20"
+				style="width: 110px;" onkeydown="return doKeyIdPw(event)"/>
+				
+				<br>
+				
+				<img src="../img/top/pw.png"/>&nbsp;
+			<input type="password" name="pwd1" maxlength="20" style="width:110px;" onkeydown="return doKeyIdPw(event)"/>	
+				<br>
+				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
+				<a href="/user/manageList.do" target="ifrMain"> 
+				<span style=" font: italic 1.5em Georgia, serif ;">
+				<%
+				out.print(SESSION_USER_ID);
+				%> 
+				</span> 
+			</a>
+			 <img src="../img/top/inhi.png"/>
+				<%}else{%>
+				<a href="/user/userInfo.do" target="ifrMain"> 
+				<span style=" font: italic 1.5em Georgia, serif ;">
+				<%
+				out.print(SESSION_USER_ID);
+				%> 
+				</span> 
+			</a>
+			 <img src="../img/top/inhi.png"/>
+			 			 <%}%>
+			 			 </td>
+			 <td width="120px">
+			<%if (SESSION_USER_ID.equals("")) {%>	 
+			<input type="submit" class="img-button7" value=" "/>
+			<%}else{ %>
+			<img src="../img/top/loginss.png"/>
+			<%} %>
+			</td>
+			<td>
+			</td>
+			</tr>
+			<tr>
+			<td height="25px">
+			</td>
+			<%if (SESSION_USER_ID.equals("")) {%>
+			<td colspan="2" align="left" width="245px" >
+						&nbsp;
+				<a href="/user/user_join2.do" target="ifrMain">
+				<img src="../img/top/join.png"/>
+				</a>
+				<a href="/user/user_id_search.do" onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
+				<img src="../img/user/userjoin/idf.png"/>
+				</a>
+				<a href="/user/user_pw_search.do" onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
+				<img src="../img/top/pwf.png"/>
+				</a> 
+				<% } else { %> 
+				<td colspan="2" align="center" width="245px" >
+				<a href="/user/user_logout.do" >
+			 <img src="../img/top/logout.png"/>
+			 </a>
+			 			 &nbsp;&nbsp;&nbsp;
+			 &nbsp;&nbsp;&nbsp;
+			 <%}%>
+				</td>
+			<td></td>
+		</tr>
+			</form>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>
+				<h1>
+					<b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
+				</h1>
+			</td>
+			<td valign="top" width="1184px">
 	<form action="/bbm/commentupdate.do" method="post">
 	<div class="infot">
+   <table>
+   <tr>
+   <td>
+   <br>
+   </td>
+   </tr>
+   </table>
+   </div>
+	<div class="framebgm">
 		<table border="0" width="100%">
-		<tr></tr>
-		<tr></tr>
-		<tr></tr>
-		<tr></tr>
 			<tr>
 				<td align="right" colspan="3">
 					<%
@@ -247,6 +422,16 @@ input {
 				
 				<td align="left">
 				<%if(CmmUtil.nvl(a.getcom_seq()).equals(com_seq)){%>
+				<script>
+				<%
+				if(CmmUtil.nvl(a.getUser_id()).equals(SESSION_USER_ID)){
+					}else{%>
+					alert("잘못된 접근입니다.");
+					location.href = "/bbm/bbmInfo.do?bbm_seq=<%=CmmUtil.nvl(rDTO.getbbm_seq())%>";
+					<% 
+					}
+				%>
+				</script>
 				<input type="submit" class="img-button5" value=" " />
 				<input type="button" class="img-button6" onclick="javascript:doInfo('<%=seq%>');" value=" " />
 				<%}else{ %>
@@ -300,5 +485,10 @@ input {
 		</div>
 		<input type="hidden" name="bbm_seq" value="<%=bbm_seq%>">
 	</form>
+</td>
+			<td><img src="../img/bg/sidebg.png"/></td>
+		</tr>
+	</table>
+</div>
 </body>
 </html>

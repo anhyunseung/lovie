@@ -20,6 +20,7 @@ function Close_Event(){
 <style>
 input {
         vertical-align: middle;
+        background-repeat: no-repeat;
       }
       input.img-button {
         background: url( "../img/button/sign.png" ) no-repeat;
@@ -31,18 +32,10 @@ input {
 </style>
 </head>
 <body background="../img/user/userid/idfbg.png">
-<table width="460">
-   <col width="150" />
-   <col width="350" />
+<table width="460" border="0">
 <tr>
 <td align="center">
 <br>
-</td>
-</tr>
-</table><br><br><br>
-<table width="100%">
-<tr>
-<td align="center">
 <b><%=SS_USER_NAME %></b><img src="../img/user/userjoin/idfs.png"/> 
 </td>
 </tr>
@@ -54,16 +47,14 @@ input {
 <tr>
 <td align="right">
 <br>
-<br>
-<br>
 <input type="button" class="img-button" onclick="javascript:Close_Event();" value=" "/>
-      </td>
+      &nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
-<td align="right"><br><br> <img src="../img/user/userpw/pwfl.png"/><font color="black"><b>&nbsp;-></b></font>
+<td align="right"><br> <img src="../img/user/userpw/pwfl.png"/><font color="black"><b>&nbsp;-></b></font>
       <a href="user_pw_search.do" onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;" >
       <img src="../img/top/pwf.png"/>
-      </a>
+      </a>&nbsp;&nbsp;&nbsp;
       </td>
 </tr>
 </table>

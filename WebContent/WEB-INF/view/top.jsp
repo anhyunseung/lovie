@@ -9,17 +9,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	request.setCharacterEncoding("UTF-8");
- 
+session.setAttribute("url", "/top.do");
 	String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
-	
-	String targetDt = request.getParameter("targetDt")==null?"20120101":request.getParameter("targetDt");
-	String itemPerPage = request.getParameter("itemPerPage")==null?"10":request.getParameter("itemPerPage");
-	String multiMovieYn = request.getParameter("multiMovieYn")==null?"":request.getParameter("multiMovieYn");
-	String repNationCd = request.getParameter("repNationCd")==null?"":request.getParameter("repNationCd");
-	String wideAreaCd = request.getParameter("wideAreaCd")==null?"":request.getParameter("wideAreaCd");
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,12 +24,12 @@
 <script type="text/javascript">
 function doSubmit(f) {
    if(f.user_id.value == ""){
-      alert("비밀번호 또는 아이디를 입력해주세요.");
+      alert("아이디 또는 비밀번호를 입력해주세요.");
       f.user_id.focus();
       return false;
    }
    if(f.pwd1.value == ""){
-      alert("비밀번호 또는 아이디를 입력해주세요.");
+      alert("아이디 또는 비밀번호를 입력해주세요.");
       f.pwd1.focus();
       return false;
    }
@@ -84,6 +78,12 @@ input {
 			<td colspan="4" align="right" width="1500px">
 			<img src="../img/bg/top.png" />
 			<br>
+			<a href="/top.do">
+				<img src="../img/common/Logo.png"/>
+			</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="/notice/NoticeList.do"
 				target="ifrMain">
 				<img src="../img/top/notice.png"/>
@@ -97,22 +97,19 @@ input {
 				<img src="../img/top/newmo.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;
+			&nbsp;&nbsp;&nbsp;
 			<a
 				href="/bbm/bbmList.do" target="ifrMain"> 
 				<img src="../img/top/upmo.png"/>
 			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;
+			&nbsp;&nbsp;&nbsp;
 			<a
 				href="/bbm/bbmList.do" target="ifrMain"> 
 				<img src="../img/top/bbm.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;
+			&nbsp;&nbsp;&nbsp;
 			<a
 				href="/inquiry/inquiryList.do" target="ifrMain"> 
 				<img src="../img/top/inq.png"/>
@@ -156,7 +153,7 @@ input {
 			 <img src="../img/top/inhi.png"/>
 			 			 <%}%>
 			 			 </td>
-			 <td width="100px">
+			 <td width="120px">
 			<%if (SESSION_USER_ID.equals("")) {%>	 
 			<input type="submit" class="img-button" value=" "/>
 			<%}else{ %>
@@ -197,14 +194,14 @@ input {
 			<td></td>
 			<td>
 				<h1>
-					<b> &nbsp;&nbsp;&nbsp; </b>
+					<b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
 				</h1>
 			</td>
-			<td><iframe name="ifrMain" src="" frameborder="0" width="1200px"
+			<td>
+			<!-- <iframe name="ifrMain" src="" frameborder="0" width="1200px"
 					height="100%" scrolling="auto">
-					
-					
-					</iframe></td>
+			</iframe> -->		
+			</td>
 			<td><img src="../img/bg/sidebg.png"/></td>
 		</tr>
 	</table>

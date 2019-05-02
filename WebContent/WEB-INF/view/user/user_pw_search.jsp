@@ -74,7 +74,7 @@ input {
       }
 </style>
 </head>
-<body background="../img/user/userpw/pwfbg.png">
+<body background="../img/user/userpw/pwfbg.png" >
 	<form name="f" method="post" action="user_pw_search_proc.do"
 		onsubmit="return doSubmit(this);">
 		<table width="460">

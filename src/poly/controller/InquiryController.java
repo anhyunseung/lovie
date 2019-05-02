@@ -83,12 +83,10 @@ private Logger log = Logger.getLogger(this.getClass());
 		InquiryDTO rDTO = new InquiryDTO();
 		
 		rDTO.setinq_seq(seq);
-		
 		rDTO=InquiryService.getinquiryInfo(rDTO);
 		
 		model.addAttribute("rDTO", rDTO);
 		rDTO=null;
-		
 		return "/inquiry/inquiryInfo";
 	}
 	

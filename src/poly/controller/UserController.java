@@ -315,7 +315,9 @@ public class UserController {
 
 		session.setAttribute("USER_NO", "");
 		session.setAttribute("USER_ID", "");
-
+		
+		System.out.println(session.getAttribute("url"));
+		
 		return "/user/user_logout";
 	}
 

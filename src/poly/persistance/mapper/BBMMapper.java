@@ -5,6 +5,7 @@ import java.util.List;
 import config.Mapper;
 import poly.dto.BBMDTO;
 import poly.dto.Comment_bbmDTO;
+import poly.dto.UserDTO;
 
 @Mapper("BBMMapper")
 public interface BBMMapper {
@@ -28,5 +29,7 @@ public interface BBMMapper {
 	public List<Comment_bbmDTO> getComment(BBMDTO rdto) throws Exception;
 
 	void deleteCommentALL(String seq) throws Exception;
+	
+	String getCommentUserid(Comment_bbmDTO uDto) throws Exception;
 
 }
