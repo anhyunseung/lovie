@@ -4,6 +4,7 @@ import java.util.List;
 
 import poly.dto.BBMDTO;
 import poly.dto.Comment_bbmDTO;
+import poly.dto.UserDTO;
 
 public interface IBBMService {
 
@@ -24,4 +25,6 @@ public interface IBBMService {
    public BBMDTO updateComment(Comment_bbmDTO cdto)throws Exception;
 
    void deleteCommentALL(String seq) throws Exception;
+   
+   String getCommentUserid(Comment_bbmDTO cDTO) throws Exception;
 }

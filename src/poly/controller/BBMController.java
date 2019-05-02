@@ -174,24 +174,36 @@ public class BBMController {
 		String bbm_seq = CmmUtil.nvl((String) session.getAttribute("com_bbm_seq"));
 		session.setAttribute("com_bbm_seq", "");
 		String com_seq = request.getParameter("com_seq");
-
+		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		
 		Comment_bbmDTO cDTO = new Comment_bbmDTO();
-
+		
 		cDTO.setbbm_seq(bbm_seq);
 		cDTO.setcom_seq(com_seq);
 
 		System.out.println(com_seq);
 		System.out.println(bbm_seq);
+		String a=bbmService.getCommentUserid(cDTO);
+		System.out.println(a);
+		if(a.equals(SESSION_USER_ID) || SESSION_USER_ID.equals("admin")) {
+			bbmService.deleteComment(cDTO);
 
-		bbmService.deleteComment(cDTO);
+			cDTO = null;
 
-		cDTO = null;
+			request.setAttribute("msg", "댓글을 삭제하였습니다.");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+bbm_seq);
+			session.setAttribute("bbm_seq", bbm_seq);
 
-		request.setAttribute("msg", "댓글을 삭제하였습니다.");
-		request.setAttribute("url", "/bbm/bbmInfo.do");
-		session.setAttribute("bbm_seq", bbm_seq);
+			return "/bbm/MsgToList";
+		}else {
+			cDTO = null;
 
-		return "/bbm/MsgToList";
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+bbm_seq);
+			session.setAttribute("bbm_seq", bbm_seq);
+
+			return "/bbm/MsgToList";
+		}
 	}
 
 	@SuppressWarnings("unused")

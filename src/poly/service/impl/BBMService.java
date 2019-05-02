@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import poly.dto.BBMDTO;
 import poly.dto.Comment_bbmDTO;
+import poly.dto.UserDTO;
 import poly.persistance.mapper.BBMMapper;
 import poly.service.IBBMService;
 
@@ -86,6 +87,12 @@ public class BBMService implements IBBMService {
 	public void deleteCommentALL(String seq) throws Exception {
 		bbmMapper.deleteCommentALL(seq);
 
+	}
+
+	@Override
+	public String getCommentUserid(Comment_bbmDTO uDto) throws Exception {
+		// TODO Auto-generated method stub
+		return bbmMapper.getCommentUserid(uDto);
 	}
 	
 }

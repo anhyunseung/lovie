@@ -86,4 +86,9 @@
 		DELETE FROM COMMENT_BBM
 		WHERE BBM_SEQ = #{seq}
 	</delete>
+	
+	<select id="getCommentUserid" resultType="String">
+		SELECT USER_ID FROM COMMENT_BBM 
+		WHERE COM_SEQ = #{com_seq}
+	</select>
 </mapper>
