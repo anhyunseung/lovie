@@ -50,7 +50,11 @@
    <!-- 게시판 삭제 쿼리 -->
    <delete id="deleteinquiryInfo" parameterType="InquiryDTO">
       DELETE FROM Inquiry_INFO
-      WHERE inq_SEQ = #{inq_seq}   
+      WHERE INQ_SEQ = #{inq_seq}   
    </delete>
-         
+   
+   <select id="getInqUserid" resultType="String">
+		SELECT USER_ID FROM INQUIRY_INFO 
+		WHERE INQ_SEQ = #{inq_seq}
+	</select>
 </mapper>

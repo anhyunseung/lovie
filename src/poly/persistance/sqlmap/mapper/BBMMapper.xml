@@ -91,4 +91,9 @@
 		SELECT USER_ID FROM COMMENT_BBM 
 		WHERE COM_SEQ = #{com_seq}
 	</select>
+	
+	<select id="getBBMUserid" resultType="String">
+		SELECT USER_ID FROM BBM_INFO 
+		WHERE BBM_SEQ = #{bbm_seq}
+	</select>
 </mapper>

@@ -74,7 +74,7 @@ public class UserController {
 			request.setAttribute("url", url);
 		}
 
-		return "/user/MsgToList";
+		return "/MsgToList";
 	}
 
 	
@@ -157,7 +157,7 @@ public class UserController {
 			pDTO.equals(null);
 
 		}
-		return "/user/MsgToList2";
+		return "/MsgToList";
 	}
 
 	@SuppressWarnings("unused")
@@ -324,7 +324,7 @@ public class UserController {
 	@RequestMapping(value = "/user/userInfo", method = RequestMethod.GET)
 	public String User_Info(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
 
-		log.info("/user/user_logout");
+		log.info("/user/userInfo");
 
 		String user_no = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 
@@ -360,22 +360,31 @@ public class UserController {
 		
 		String user_no= request.getParameter("user_no");
 		System.out.println(user_no);
+		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		
 		UserDTO rDTO = new UserDTO();
 		
 		rDTO.setUser_no(user_no);
 		
-		userService.deleteUserInfo(rDTO);
+		if(SESSION_USER_NO.equals(user_no)) {
+			
+			userService.deleteUserInfo(rDTO);
+			
+			request.setAttribute("msg", "이용해주셔서 감사합니다.");
+			
+			session.setAttribute("USER_NO", "");
+			session.setAttribute("USER_ID", "");
+			
+		}else {
 		
-		rDTO=null;
+			request.setAttribute("msg", "잘못된 접근입니다.");
 		
-		request.setAttribute("msg", "이용해주셔서 감사합니다.");
+		}
 		request.setAttribute("url", "/top.do");
 		
-		session.setAttribute("USER_NO", "");
-		session.setAttribute("USER_ID", "");
+		rDTO=null;
 
-		return "/user/MsgToList2";
+		return "/MsgToList";
 	}
 	
 	@RequestMapping(value = "/user/userEditInfo", method = RequestMethod.GET)
@@ -451,7 +460,7 @@ public class UserController {
 			request.setAttribute("msg", "회원정보를 수정하였습니다.");
 			request.setAttribute("url", "/user/userInfo.do");
 	}
-		return "/user/MsgToList";
+		return "/MsgToList";
 	}
 	
 	@RequestMapping(value = "/user/manageList", method = RequestMethod.GET)
@@ -524,19 +533,28 @@ public class UserController {
 		
 		String user_no= request.getParameter("user_no");
 		System.out.println(user_no);
-		
+		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		UserDTO rDTO = new UserDTO();
 		
 		rDTO.setUser_no(user_no);
 		
-		userService.deleteUserInfo(rDTO);
+		if(SESSION_USER_ID.equals("admin")) {
+			
+			userService.deleteUserInfo(rDTO);
+			
+			request.setAttribute("msg", "회원을 탈퇴시켰습니다.");
+			request.setAttribute("url", "/user/manageList.do");
+			
+		}else {
+			
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
+			
+		}
 		
 		rDTO=null;
-		
-		request.setAttribute("msg", "회원을 탈퇴시켰습니다.");
-		request.setAttribute("url", "/top.do");
 
-		return "/user/MsgToList2";
+		return "/MsgToList";
 	}
 	
 	@RequestMapping(value = "/user/manageEditInfo", method = RequestMethod.GET)
@@ -613,7 +631,7 @@ public class UserController {
 			request.setAttribute("msg", "회원정보를 수정하였습니다.");
 			request.setAttribute("url", "/user/manageInfo.do");
 	}
-		return "/user/MsgToList";
+		return "/MsgToList";
 	}
 	
 	

@@ -18,4 +18,6 @@ public interface InquiryMapper {
 
    void deleteinquiryInfo(InquiryDTO pDTO) throws Exception;
 
+   String getInqUserid(String uDto) throws Exception;
+
 }

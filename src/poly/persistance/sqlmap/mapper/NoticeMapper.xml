@@ -88,4 +88,9 @@
 		DELETE FROM COMMENT_NOTICE
 		WHERE NOTICE_SEQ = #{seq}
 	</delete>
+	
+	<select id="getCommentUserid" resultType="String">
+		SELECT USER_ID FROM COMMENT_NOTICE 
+		WHERE COM_SEQ = #{com_seq}
+	</select>
 </mapper>

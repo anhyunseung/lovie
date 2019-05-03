@@ -92,8 +92,8 @@ public class NoticeController {
 		if(user_no=="") {
 			session.setAttribute("notice_seq",seq);
 			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
-			request.setAttribute("url", "/notice/NoticeInfo.do");
-			return "/notice/MsgToList";
+			request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
+			return "/MsgToList";
 		}
 		
 		NoticeService.insertComment(cDTO);
@@ -101,13 +101,13 @@ public class NoticeController {
 		
 		if(cDTO==null) {
 			request.setAttribute("msg", "댓글입력에 실패하였습니다.");
-			request.setAttribute("url", "/notice/NoticeInfo.do");
+			request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
 		}else {
 		request.setAttribute("msg", "댓글을 작성하였습니다.");
-		request.setAttribute("url", "/notice/NoticeInfo.do");
+		request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
 		session.setAttribute("notice_seq",seq);
 		}
-		return "/notice/MsgToList";
+		return "/MsgToList";
 	}
 	
 	@SuppressWarnings("unused")
@@ -131,15 +131,24 @@ public class NoticeController {
 		System.out.println(com_seq);
 		System.out.println(notice_seq);
 
-		NoticeService.deleteComment(cDTO);
-		
-		cDTO=null;
-		
-		request.setAttribute("msg", "댓글을 삭제하였습니다.");
-		request.setAttribute("url", "/notice/NoticeInfo.do");
+		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String a=NoticeService.getCommentUserid(com_seq);
+		System.out.println(a);
+		if(a.equals(SESSION_USER_ID) || SESSION_USER_ID.equals("admin")) {
+			NoticeService.deleteComment(cDTO);
+
+			cDTO=null;
+
+			request.setAttribute("msg", "댓글을 삭제하였습니다.");
+		}else {
+			cDTO=null;
+
+			request.setAttribute("msg", "잘못된 접근입니다.");
+		}
+		request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+notice_seq);
 		session.setAttribute("notice_seq",notice_seq);
 		
-		return "/notice/MsgToList";
+		return "/MsgToList";
 	}
 	
 	@SuppressWarnings("unused")
@@ -169,12 +178,12 @@ public class NoticeController {
 		NoticeService.updateComment(cDTO);
 		
 		request.setAttribute("msg", "댓글을 수정하였습니다.");
-		request.setAttribute("url", "/notice/NoticeInfo.do");
+		request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
 		session.setAttribute("notice_seq",seq);
 		
 		cDTO=null;
 		
-		return "/notice/MsgToList";
+		return "/MsgToList";
 	}
 	
 	@RequestMapping(value = "notice/NoticeInfo", method = RequestMethod.GET)
@@ -234,7 +243,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "notice/NoticeDelete", method = RequestMethod.GET)
-	public String NoticeDelete(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+	public String NoticeDelete(HttpServletRequest request,HttpSession session, HttpServletResponse response, ModelMap model)
 			throws Exception {
 		
 		System.out.println("NoDel");
@@ -247,15 +256,23 @@ public class NoticeController {
 		
 		rDTO.setnotice_seq(seq);
 		
-		NoticeService.deleteCommentALL(seq);
-		NoticeService.deleteNoticeInfo(rDTO);
+		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		
-		rDTO=null;
-		
-		request.setAttribute("msg", "글 삭제가 완료되었습니다.");
+		if(SESSION_USER_ID.equals("admin")) {
+			NoticeService.deleteCommentALL(seq);
+			NoticeService.deleteNoticeInfo(rDTO);
+
+			rDTO = null;
+
+			request.setAttribute("msg", "게시글을 삭제하였습니다.");
+		}else {
+			rDTO = null;
+
+			request.setAttribute("msg", "잘못된 접근입니다.");
+		}
 		request.setAttribute("url", "/notice/NoticeList.do");
 		
-		return "/notice/MsgToList";
+		return "/MsgToList";
 	}
 	
 	@RequestMapping(value = "notice/NoticeReg", method = RequestMethod.GET)
@@ -298,7 +315,7 @@ public class NoticeController {
 		
 		rDTO=null;
 		
-		return "/notice/MsgToList";
+		return "/MsgToList";
 	}
 	
 	@RequestMapping(value = "notice/NoticeEditInfo", method = RequestMethod.GET)
@@ -350,11 +367,11 @@ public class NoticeController {
 		NoticeService.updateNoticeInfo(rDTO);
 		
 		request.setAttribute("msg", "글 수정이 완료되었습니다.");
-		request.setAttribute("url", "/notice/NoticeInfo.do");
+		request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
 		session.setAttribute("notice_seq", seq);
 		
 		rDTO=null;
 		
-		return "/notice/MsgToList";
+		return "/MsgToList";
 	}
 }

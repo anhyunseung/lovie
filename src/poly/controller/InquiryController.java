@@ -91,7 +91,7 @@ private Logger log = Logger.getLogger(this.getClass());
 	}
 	
 	@RequestMapping(value = "inquiry/inquiryDelete", method = RequestMethod.GET)
-	public String InquiryDelete(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+	public String InquiryDelete(HttpServletRequest request,HttpSession session, HttpServletResponse response, ModelMap model)
 			throws Exception {
 		
 		System.out.println("inqDel");
@@ -104,14 +104,24 @@ private Logger log = Logger.getLogger(this.getClass());
 		
 		rDTO.setinq_seq(seq);
 		
-		InquiryService.deleteinquiryInfo(rDTO);
+		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String a=InquiryService.getInqUserid(seq);
+		System.out.println(a);
 		
-		rDTO=null;
-		
-		request.setAttribute("msg", "글 삭제 완료되었습니다.");
+		if(a.equals(SESSION_USER_ID)) {
+			InquiryService.deleteinquiryInfo(rDTO);
+
+			rDTO = null;
+
+			request.setAttribute("msg", "댓글을 삭제하였습니다.");
+		}else {
+			rDTO = null;
+
+			request.setAttribute("msg", "잘못된 접근입니다.");
+		}
 		request.setAttribute("url", "/inquiry/inquiryList.do");
 		
-		return "/inquiry/MsgToList";
+		return "/MsgToList";
 	}
 	
 	@RequestMapping(value = "inquiry/inquiryReg", method = RequestMethod.GET)
@@ -162,7 +172,7 @@ private Logger log = Logger.getLogger(this.getClass());
 		
 		rDTO=null;
 		
-		return "/inquiry/MsgToList";
+		return "/MsgToList";
 	}
 	
 	@RequestMapping(value = "inquiry/inquiryEditInfo", method = RequestMethod.GET)
@@ -220,12 +230,12 @@ private Logger log = Logger.getLogger(this.getClass());
 		InquiryService.updateinquiryInfo(rDTO);
 		
 		request.setAttribute("msg", "글 수정이 완료되었습니다.");
-		request.setAttribute("url", "/inquiry/inquiryInfo.do");
+		request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
 		session.setAttribute("inq_seq", seq);
 		
 		rDTO=null;
 		
-		return "/inquiry/MsgToList";
+		return "/MsgToList";
 	}
    
    

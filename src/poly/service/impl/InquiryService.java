@@ -45,4 +45,10 @@ public class InquiryService implements IInquiryService{
       // TODO Auto-generated method stub
       inquiryMapper.deleteinquiryInfo(pDTO);
    }
+   
+   @Override
+	public String getInqUserid(String uDto) throws Exception {
+		// TODO Auto-generated method stub
+		return inquiryMapper.getInqUserid(uDto);
+	}
 }

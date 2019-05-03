@@ -30,6 +30,8 @@ public interface BBMMapper {
 
 	void deleteCommentALL(String seq) throws Exception;
 	
-	String getCommentUserid(Comment_bbmDTO uDto) throws Exception;
+	String getCommentUserid(String uDto) throws Exception;
+
+	String getBBMUserid(String uDto) throws Exception;
 
 }

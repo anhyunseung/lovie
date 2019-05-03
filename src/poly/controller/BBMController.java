@@ -147,21 +147,21 @@ public class BBMController {
 		if (user_no == "") {
 			session.setAttribute("bbm_seq", seq);
 			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
-			request.setAttribute("url", "/bbm/bbmInfo.do");
-			return "/bbm/MsgToList";
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
+			return "/MsgToList";
 		}
 
 		bbmService.insertComment(cDTO);
 
 		if (cDTO == null) {
 			request.setAttribute("msg", "댓글입력에 실패하였습니다.");
-			request.setAttribute("url", "/bbm/bbmInfo.do");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
 		} else {
 			request.setAttribute("msg", "댓글을 작성하였습니다.");
-			request.setAttribute("url", "/bbm/bbmInfo.do");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
 			session.setAttribute("bbm_seq", seq);
 		}
-		return "/bbm/MsgToList";
+		return "/MsgToList";
 	}
 
 	@SuppressWarnings("unused")
@@ -183,7 +183,7 @@ public class BBMController {
 
 		System.out.println(com_seq);
 		System.out.println(bbm_seq);
-		String a=bbmService.getCommentUserid(cDTO);
+		String a=bbmService.getCommentUserid(com_seq);
 		System.out.println(a);
 		if(a.equals(SESSION_USER_ID) || SESSION_USER_ID.equals("admin")) {
 			bbmService.deleteComment(cDTO);
@@ -191,19 +191,17 @@ public class BBMController {
 			cDTO = null;
 
 			request.setAttribute("msg", "댓글을 삭제하였습니다.");
-			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+bbm_seq);
-			session.setAttribute("bbm_seq", bbm_seq);
-
-			return "/bbm/MsgToList";
+			
 		}else {
 			cDTO = null;
 
 			request.setAttribute("msg", "잘못된 접근입니다.");
-			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+bbm_seq);
-			session.setAttribute("bbm_seq", bbm_seq);
-
-			return "/bbm/MsgToList";
+			
 		}
+		request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+bbm_seq);
+		session.setAttribute("bbm_seq", bbm_seq);
+
+		return "/MsgToList";
 	}
 
 	@SuppressWarnings("unused")
@@ -235,16 +233,16 @@ public class BBMController {
 		System.out.println("?1");
 		
 		request.setAttribute("msg", "댓글을 수정하였습니다.");
-		request.setAttribute("url", "/bbm/bbmInfo.do");
+		request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
 		session.setAttribute("bbm_seq", seq);
 
 		cDTO = null;
 
-		return "/bbm/MsgToList";
+		return "/MsgToList";
 	}
 
 	@RequestMapping(value = "bbm/bbmDelete", method = RequestMethod.GET)
-	public String bbmDelete(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+	public String bbmDelete(HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model) throws Exception {
 
 		System.out.println("bbmDel");
 
@@ -255,15 +253,25 @@ public class BBMController {
 
 		rDTO.setbbm_seq(seq);
 		
-		bbmService.deleteCommentALL(seq);
-		bbmService.deletebbmInfo(rDTO);
+		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String a=bbmService.getBBMUserid(seq);
+		System.out.println(a);
+		
+		if(a.equals(SESSION_USER_ID) || SESSION_USER_ID.equals("admin")) {
+			bbmService.deleteCommentALL(seq);
+			bbmService.deletebbmInfo(rDTO);
 
-		rDTO = null;
+			rDTO = null;
 
-		request.setAttribute("msg", "글 삭제 완료되었습니다.");
+			request.setAttribute("msg", "게시글을 삭제하였습니다.");
+		}else {
+			rDTO = null;
+
+			request.setAttribute("msg", "잘못된 접근입니다.");
+		}
 		request.setAttribute("url", "/bbm/bbmList.do");
 
-		return "/bbm/MsgToList";
+		return "/MsgToList";
 	}
 
 	@RequestMapping(value = "bbm/bbmReg", method = RequestMethod.GET)
@@ -305,7 +313,7 @@ public class BBMController {
 
 		rDTO = null;
 
-		return "/bbm/MsgToList";
+		return "/MsgToList";
 	}
 
 	@RequestMapping(value = "bbm/bbmEditInfo", method = RequestMethod.GET)
@@ -357,11 +365,11 @@ public class BBMController {
 		bbmService.updatebbmInfo(rDTO);
 
 		request.setAttribute("msg", "글 수정이 완료되었습니다.");
-		request.setAttribute("url", "/bbm/bbmInfo.do");
+		request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
 		session.setAttribute("bbm_seq", seq);
 
 		rDTO = null;
 
-		return "/bbm/MsgToList";
+		return "/MsgToList";
 	}
 }

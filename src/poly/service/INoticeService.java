@@ -25,4 +25,6 @@ public interface INoticeService {
 
    void deleteCommentALL(String seq) throws Exception;
 
+   String getCommentUserid(String com_seq) throws Exception;
+
 }

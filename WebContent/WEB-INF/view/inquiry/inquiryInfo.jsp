@@ -3,14 +3,13 @@
 <%@ page import="poly.util.CmmUtil"%>
 <%@ page import="poly.dto.InquiryDTO" %>
 <%
-session.setAttribute("url", "/inquiry/inquiryInfo.do");
 String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 System.out.println("ss_user_id : " + SESSION_USER_ID);
 
 InquiryDTO rDTO = (InquiryDTO)request.getAttribute("rDTO");
-session.setAttribute("url", "/inquiry/inquiryInfo.do?=inq_seq="+CmmUtil.nvl(rDTO.getinq_seq()));
+session.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+CmmUtil.nvl(rDTO.getinq_seq()));
 //공지글 정보를 못불러왔다면, 객체 생성
 if (rDTO==null){
    rDTO = new InquiryDTO();

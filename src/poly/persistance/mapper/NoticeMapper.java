@@ -28,4 +28,6 @@ public interface NoticeMapper {
 	public List<Comment_noticeDTO> getComment(NoticeDTO rdto) throws Exception;
 
 	void deleteCommentALL(String seq) throws Exception;
+
+	String getCommentUserid(String uDto) throws Exception;
 }

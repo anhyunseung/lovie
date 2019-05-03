@@ -90,9 +90,15 @@ public class BBMService implements IBBMService {
 	}
 
 	@Override
-	public String getCommentUserid(Comment_bbmDTO uDto) throws Exception {
+	public String getCommentUserid(String uDto) throws Exception {
 		// TODO Auto-generated method stub
 		return bbmMapper.getCommentUserid(uDto);
+	}
+	
+	@Override
+	public String getBBMUserid(String uDto) throws Exception {
+		// TODO Auto-generated method stub
+		return bbmMapper.getBBMUserid(uDto);
 	}
 	
 }

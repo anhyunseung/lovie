@@ -26,5 +26,7 @@ public interface IBBMService {
 
    void deleteCommentALL(String seq) throws Exception;
    
-   String getCommentUserid(Comment_bbmDTO cDTO) throws Exception;
+   String getCommentUserid(String bbm_seq) throws Exception;
+
+   String getBBMUserid(String uDto) throws Exception;
 }

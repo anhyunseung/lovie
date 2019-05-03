@@ -15,4 +15,6 @@ public interface IInquiryService {
    void updateinquiryInfo(InquiryDTO pDTO) throws Exception;
    
    void deleteinquiryInfo(InquiryDTO pDTO) throws Exception;
+
+   String getInqUserid(String seq) throws Exception;
 }

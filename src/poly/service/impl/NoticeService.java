@@ -88,4 +88,10 @@ public class NoticeService implements INoticeService {
 		noticeMapper.deleteCommentALL(seq);
 
 	}
+	
+	@Override
+	public String getCommentUserid(String uDto) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.getCommentUserid(uDto);
+	}
 }
