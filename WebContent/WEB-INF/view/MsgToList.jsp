@@ -14,7 +14,7 @@
 <script type="text/javascript">
 
 <%if(msg==""){%>
-   location.href="<%=url%>"
+   top.location.href="<%=url%>";
 <%}else{%>
    alert("<%=msg%>");
    top.location.href="<%=url%>";
