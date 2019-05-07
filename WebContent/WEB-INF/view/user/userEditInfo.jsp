@@ -218,7 +218,7 @@ input {
 </head>
 <body background="../img/top/bg.png">
 <div>
-	<table border="0" height="3000px" width="1500px" >
+	<table border="0" height="500px" width="1500px" >
 	<form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit2(this);">
 		<tr>
 			<td width="48px" height="167px"><br>

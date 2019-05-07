@@ -107,7 +107,7 @@ input {
 </head>
 <body background="../img/top/bg.png" onload="doOnload();">
 <div>
-	<table border="0" height="3000px" width="1500px" >
+	<table border="0" height="500px" width="1500px" >
 		<tr>
 			<td width="48px" height="167px"><br>
 			<br>

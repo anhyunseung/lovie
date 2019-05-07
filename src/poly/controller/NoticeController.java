@@ -193,6 +193,25 @@ public class NoticeController {
 		System.out.println("NoIn");
 		
 		String seq= request.getParameter("notice_seq");
+		if(seq==null) {
+			seq= CmmUtil.nvl((String) session.getAttribute("com_notice_seq"));
+		}
+		String count=request.getParameter("count2");
+		
+		if(count==null) {
+			count="0";
+		}
+		
+		
+		System.out.println(Integer.parseInt(count));
+		
+		int count2 = Integer.parseInt(count);
+		
+		if(count2!=0) {
+			count2=count2-1;
+		}
+		
+		System.out.println(count2);
 		
 		if(seq==null) {
 			seq=CmmUtil.nvl((String) session.getAttribute("notice_seq"));
@@ -210,6 +229,8 @@ public class NoticeController {
 		rDTO=NoticeService.getNoticeInfo(rDTO);
 		
 		model.addAttribute("rDTO", rDTO);
+		request.setAttribute("count2", count2);
+		session.setAttribute("count3", count2);
 		rDTO=null;
 		
 		return "/notice/NoticeInfo";
@@ -223,7 +244,8 @@ public class NoticeController {
 		
 		String seq= CmmUtil.nvl((String) session.getAttribute("com_notice_seq"));
 		String com_seq = request.getParameter("com_seq");
-
+		int count2= (int) session.getAttribute("count3");
+		System.out.println(count2);
 		
 		session.setAttribute("com_seq",com_seq);
 		
@@ -237,6 +259,7 @@ public class NoticeController {
 		rDTO=NoticeService.getNoticeInfo(rDTO);
 		
 		model.addAttribute("rDTO", rDTO);
+		request.setAttribute("count3", count2);
 		rDTO=null;
 		
 		return "/notice/NoticeInfo2";

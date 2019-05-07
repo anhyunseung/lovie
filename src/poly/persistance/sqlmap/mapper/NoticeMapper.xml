@@ -81,7 +81,7 @@
 
 	<select id="getComment" resultType="Comment_noticeDTO" parameterType="NoticeDTO">
 		SELECT NOTICE_SEQ, COM_SEQ, CONTENTS, REG_USER_NO, REG_DT, USER_ID
-		FROM COMMENT_NOTICE WHERE NOTICE_SEQ = #{notice_seq} ORDER BY COM_SEQ DESC
+		FROM COMMENT_NOTICE WHERE NOTICE_SEQ = #{notice_seq} ORDER BY COM_SEQ ASC
 	</select>
 	
 	<delete id="deleteCommentALL" parameterType="String">

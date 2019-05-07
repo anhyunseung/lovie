@@ -93,7 +93,7 @@ background-image:url('../img/bg/framebgd.png');
 <body background="../img/top/bg.png">
 <div>
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
-	<table border="0" height="3000px" width="1500px" >
+	<table border="0" height="500px" width="1500px" >
 		<tr>
 			<td width="48px" height="167px"><br>
 			<br>

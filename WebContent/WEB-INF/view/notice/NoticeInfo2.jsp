@@ -11,6 +11,7 @@ String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 System.out.println("ss_user_id : " + SESSION_USER_ID);
 	NoticeDTO rDTO = (NoticeDTO) request.getAttribute("rDTO");
+	int count2 = (int)request.getAttribute("count3");
 
 	if (rDTO==null){
 		rDTO = new NoticeDTO();
@@ -207,7 +208,7 @@ input {
 </head>
 <body background="../img/top/bg.png">
 <div>
-	<table border="0" height="3000px" width="1500px" >
+	<table border="0" height="500px" width="1500px" >
 	<form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
 		<tr>
 			<td width="48px" height="167px"><br>
@@ -414,14 +415,30 @@ input {
 			</table>
 			</div>
 			<%
-				for (int i=clist.size()-1;i>-1;i--){
-					  Comment_noticeDTO a = clist.get(i);
+			int l=clist.size();
+			int b=9;
+			int c=l/10;
+			int d=l-c*10;
+			int e=(clist.size()-1)/10;
+
+			if(clist.size()>10){
+				l=10;
+			}
+			if(count2==c){
+				l=d;
+			}
+			for (int i=0;i<l;i++){
+				b--;
+				Comment_noticeDTO a = clist.get(count2*10+i);
 			%>
 			<div class="framebgm">
-			<table>
+			<table width="100%">
 			<tr>
-				<td colspan="2">&nbsp;<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b><%=CmmUtil.nvl(a.getReg_dt())%></td>
-				<td align="left">
+				<td colspan="2">&nbsp;<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b>
+				<%String date=CmmUtil.nvl(a.getReg_dt());%>
+   				<%=date.substring(0,4)%>.<%=date.substring(5,7)%>.<%=date.substring(8,10)%>.
+   				<%=date.substring(11,16)%></td>
+				<td align="right">
 				<%if(CmmUtil.nvl(a.getcom_seq()).equals(com_seq)){%>
 				<script>
 				<%
@@ -446,15 +463,16 @@ input {
 				%>
 				 	<input type="button" class="img-button2" onclick="javascript:doDelete2('<%=CmmUtil.nvl(a.getcom_seq())%>');" value=" " />
 				<%}}%>
+				&nbsp;
 				</td>
 			</tr>
 			<tr>
 			<%if(CmmUtil.nvl(a.getcom_seq()).equals(com_seq)){%>
 				<td colspan="3" valign="middle">&nbsp;
-				<%String b= CmmUtil.nvl(a.getcom_seq()); %>
-				<input type="hidden" name="com_seq" value="<%=b%>">
+				<%String q= CmmUtil.nvl(a.getcom_seq()); %>
+				<input type="hidden" name="com_seq" value="<%=q%>">
 				<textarea name="comment2"
-						style="width: 440px"><%=CmmUtil.nvl(a.getContents())%></textarea>
+						style="width: 700px"><%=CmmUtil.nvl(a.getContents())%></textarea>
 				<%}else{%>
 				<td colspan="3">&nbsp;<%=CmmUtil.nvl(a.getContents())%></td>
 				<%} %>
@@ -469,11 +487,136 @@ input {
 				}
 			%>
 			<div class="framebgm">
-			<table>
+			<table width="100%">
 			<tr>
-				<td colspan="3" valign="middle">&nbsp;<textarea name="comment"
-						style="width: 440px"></textarea> <input type="button" class="img-button4" onclick="javascript:doBack();" value=" " />
+				<td valign="middle">&nbsp;<textarea name="comment"
+						style="width: 700px"></textarea> <input type="button" class="img-button4" onclick="javascript:doBack();" value=" " />
+				&nbsp;
 				</td>
+			</tr>
+						<tr>
+			   <td colspan="2" align="center">
+   <%int line=0;
+   if(clist.size()>=100 && clist.size()<=999){
+		c=clist.size()/100;
+	}else if(clist.size()>=1000 && clist.size()<=9999){
+		c=clist.size()/1000;
+	}else if(clist.size()>=10000 && clist.size()<=99999){
+		c=clist.size()/10000;
+	}else{
+		c=clist.size()/10;
+	}
+   if(count2/10==0){ 
+	   int q=1;
+	   if(clist.size()>100){
+		  q=10;
+	   }else{
+		   q=(clist.size()-1)/10+1;
+	   }
+	   count2=count2+1;
+   for(line=1;line<=q;line++){
+   %>
+   <%if(count2==line){%>
+   &nbsp;
+   <a href="NoticeInfo.do?count2=<%=line%>">
+   <span style=" color: white; background-color:red ">
+   <b>
+   <%=line%>
+   </b>
+   </span>
+   </a>
+   <%}else{ %>
+   &nbsp;
+   <a href="NoticeInfo.do?count2=<%=line%>">
+   <span style=" color: black">
+   <b>
+   <%=line%>
+   </b>
+   </span>
+   </a>
+   <%} %>
+   <%} 
+   if(clist.size()>100){
+   %>
+   &nbsp;
+   <a href="NoticeInfo.do?count2=<%=11%>">
+   <span style=" color: black; background-color:gray">
+   <b>></b>
+   </span>
+</a>
+   <%}}else if(count2/10==c){
+   int color=count2+1;
+   %>
+   &nbsp;
+	<a href="NoticeInfo.do?count2=<%=count2/10*10-9%>">
+	<span style=" color: black; background-color:gray">
+   <b><</b>
+   </span>
+	</a>
+	<%
+   for(line=count2/10*10+1;line<=e+1;line++){
+	%>
+	<%if(color==line){%>
+	&nbsp;
+   <a href="NoticeInfo.do?count2=<%=line%>">
+   <span style=" color: white; background-color:red">
+   <b>
+   <%=line %>
+   </b>
+   </span>
+   </a>
+   <%}else{ %>
+   &nbsp;
+   <a href="NoticeInfo.do?count2=<%=line%>">
+   <span style=" color: black">
+   <b>
+   <%=line %>
+   </b>
+   </span>
+   </a>
+   <%} %>
+	<%}%>
+   <%}else{
+	   int color=count2+1;
+   %>
+   &nbsp;
+   <a href="NoticeInfo.do?count2=<%=count2/10*10-9%>">
+   <span style=" color: black; background-color:gray">
+   <b><</b>
+   </span>
+	</a>
+   <% 
+	   for(line=count2/10*10+1;line<=count2/10*10+10;line++){
+   %>
+   
+   <%if(color==line){%>
+   &nbsp;
+   <a href="NoticeInfo.do?count2=<%=line%>">
+   <span style=" color: white; background-color:red">
+   <b>
+   <%=line %>
+   </b>
+   </span>
+   </a>
+   <%}else{ %>
+   &nbsp;
+   <a href="NoticeInfo.do?count2=<%=line%>">
+   <span style=" color: black">
+   <b>
+   <%=line %>
+   </b>
+   </span>
+   </a>
+   <%} %>
+   <%} %>
+   &nbsp;
+   <a href="NoticeInfo.do?count2=<%=count2/10*10+11%>">
+   <span style=" color: black; background-color:gray">
+   <b>></b>
+   </span>
+	</a>
+<%} %>
+			</td>
 			</tr>
 			</table>
 			</div>

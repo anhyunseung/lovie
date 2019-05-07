@@ -79,7 +79,7 @@
 	
 	<select id="getComment" resultType="Comment_bbmDTO" parameterType="NoticeDTO">
 		SELECT BBM_SEQ, COM_SEQ, CONTENTS, REG_USER_NO, REG_DT, USER_ID
-		FROM COMMENT_BBM WHERE BBM_SEQ = #{bbm_seq} ORDER BY COM_SEQ DESC
+		FROM COMMENT_BBM WHERE BBM_SEQ = #{bbm_seq} ORDER BY COM_SEQ ASC
 	</select>
 	
 	<delete id="deleteCommentALL" parameterType="String">

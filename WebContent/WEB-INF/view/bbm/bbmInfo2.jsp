@@ -6,25 +6,31 @@
 <%@page import="poly.dto.Comment_bbmDTO"%>
 <%@page import="java.util.List"%>
 <%
-
 String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 System.out.println("ss_user_id : " + SESSION_USER_ID);
 	BBMDTO rDTO = (BBMDTO) request.getAttribute("rDTO");
-	
+	int count2 = (int)request.getAttribute("count3");
+
+	if (rDTO==null){
+		rDTO = new BBMDTO();
+
+	}
+
 	session.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+CmmUtil.nvl(rDTO.getbbm_seq()));
+
 	String bbm_seq = rDTO.getbbm_seq();
+	
 	List<Comment_bbmDTO> clist = rDTO.getClist();
 	if (clist == null) {
 
 		clist = new ArrayList<Comment_bbmDTO>();
 	}
-	//공지글 정보를 못불러왔다면, 객체 생성
 	String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 	String seq = CmmUtil.nvl((String) session.getAttribute("com_bbm_seq"));
 	String com_seq=CmmUtil.nvl((String) session.getAttribute("com_seq"));
-	
+
 	//본인이 작성한 글만 수정 가능하도록 하기(1:작성자 아님 / 2: 본인이 작성한 글 / 3: 로그인안함)
 	int edit = 1;
 
@@ -49,33 +55,32 @@ System.out.println("ss_user_id : " + SESSION_USER_ID);
 <script type="text/javascript">
 
 function doEdit(){
-   if ("<%=edit%>"==2 || "<%=ss_user_id%>"=="Admin"){
-      
-      location.href="/bbm/bbmEditInfo.do?bbm_seq=<%=CmmUtil.nvl(rDTO.getbbm_seq())%>";
-   
-   }else if ("<%=edit%>"==3){
-      alert("로그인 하시길 바랍니다.");
-      top.location.href="/top.do";
-      
-      
-   }else{
-      alert("본인이 작성한 글만 수정 가능합니다.")
-   }
+ if ("<%=edit%>"==2 ){
+    
+    location.href="/bbm/bbmEditInfo.do?bbm_seq=<%=CmmUtil.nvl(rDTO.getbbm_seq())%>";
+ 
+ }else if ("<%=edit%>"==3){
+    alert("로그인 하시길 바랍니다.");
+    top.location.href="/top.do";
+    
+    
+ }else{
+    alert("본인이 작성한 글만 수정 가능합니다.")
+ }
 }
 
 function doDelete(){
-   if ("<%=edit%>"==2 || "<%=ss_user_id%>"=="Admin"){
-      if(confirm("정말로 삭제하시겠습니까?")){
-         location.href="/bbm/bbmDelete.do?bbm_seq=<%=CmmUtil.nvl(rDTO.getbbm_seq())%>";
-   }else if ("<%=edit%>" == 3) {
-				alert("로그인 하시길 바랍니다.");
-				location.href = "/user/user_login.do";
+ if ("<%=edit%>"==2 || "<%=ss_user_id%>"=="admin"){
+    if(confirm("정말로 삭제하시겠습니까?")){
+       location.href="/bbm/bbmDelete.do?bbm_seq=<%=CmmUtil.nvl(rDTO.getbbm_seq())%>";
+ 		}else if ("<%=edit%>" == 3) {
+ 			alert("로그인 하시길 바랍니다.");
+			location.href = "/user/user_login.do";
 			}
-		} else {
-			alert("본인이 작성한 글만 삭제 가능합니다.");
-		}
-
+	} else {
+		alert("본인이 작성한 글만 삭제 가능합니다.")
 	}
+}
 function doSubmit(f) {
 	   if(f.user_id.value == ""){
 	      alert("아이디 또는 비밀번호를 입력해주세요.");
@@ -95,7 +100,6 @@ function doSubmit2(f) {
 	      return false;
 	   }
 	}
-
 function doInfo(seq){
     location.href="/bbm/bbmInfo.do?bbm_seq="+seq;
 }
@@ -103,18 +107,19 @@ function doInfo(seq){
 function doDelete2(seq){
     location.href="/bbm/commentdelete.do?com_seq="+seq;
 }
-	
-function doEdit2(seq){
-    location.href="/bbm/bbmInfo2.do?com_seq="+seq;
-}
 
-function doDelete2(seq){
-    location.href="/bbm/commentdelete.do?com_seq="+seq;
+function doEdit2(seq){
+	    location.href="/bbm/bbmInfo2.do?com_seq="+seq;
 }
+	
+function doDelete2(seq){
+	    location.href="/bbm/commentdelete.do?com_seq="+seq;
+}	
 
 function doBack(){
 	alert("댓글이 수정되지 않았습니다.");
 }
+
 	function doList() {
 		location.href = "/bbm/bbmList.do";
 	}
@@ -193,7 +198,7 @@ input {
                   div.infot{
       background-image: url('../img/bg/infot.png');
       }
-      div.framebgm{
+      		div.framebgm{
 		background-image:url('../img/bg/framebgm.png');
 		}
       		div.framebgd{
@@ -203,7 +208,7 @@ input {
 </head>
 <body background="../img/top/bg.png">
 <div>
-	<table border="0" height="3000px" width="1500px" >
+	<table border="0" height="500px" width="1500px" >
 	<form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
 		<tr>
 			<td width="48px" height="167px"><br>
@@ -337,6 +342,7 @@ input {
 				</h1>
 			</td>
 			<td valign="top" width="1184px">
+			
 	<form action="/bbm/commentupdate.do" method="post">
 	<div class="infot">
    <table>
@@ -352,17 +358,14 @@ input {
 			<tr>
 				<td align="right" colspan="3">
 					<%
-						if (edit == 2) {
-					%> <input type="button" class="img-button"
-					onclick="javascript:doEdit();" value=" " /> <%
+						if (edit == 2 || ss_user_id.equals("Admin")) {
+					%> 
+					<input type="button" class="img-button" onclick="javascript:doEdit();" value=" " />
+				 	<input type="button" class="img-button2" onclick="javascript:doDelete();" value=" " />
+				 						<%
  	}
- %> <%
- 	if (edit == 2 || ss_user_id.equals("Admin")) {
  %>
-					<input type="button" class="img-button2" onclick="javascript:doDelete();" value=" " />
-					<%
-						}
-					%> <input type="button" class="img-button3" onclick="javascript:doList();" value=" " />
+					<input type="button" class="img-button3" onclick="javascript:doList();" value=" " />
 				&nbsp;</td>
 			</tr>
 			<tr>
@@ -407,20 +410,35 @@ input {
 			</tr>
 			<tr>
 				<td colspan="3">
-					---------------------------------------------------------------</td>
+					&nbsp;---------------------------------------------------------------</td>
 			</tr>
 			</table>
 			</div>
 			<%
-				for (int i=clist.size()-1;i>-1;i--){
-					  Comment_bbmDTO a = clist.get(i);
+			int l=clist.size();
+			int b=9;
+			int c=l/10;
+			int d=l-c*10;
+			int e=(clist.size()-1)/10;
+
+			if(clist.size()>10){
+				l=10;
+			}
+			if(count2==c){
+				l=d;
+			}
+			for (int i=0;i<l;i++){
+				b--;
+				Comment_bbmDTO a = clist.get(count2*10+i);
 			%>
 			<div class="framebgm">
-			<table>
+			<table width="100%">
 			<tr>
-				<td colspan="2">&nbsp;<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b><%=CmmUtil.nvl(a.getReg_dt())%></td>
-				
-				<td align="left">
+				<td colspan="2">&nbsp;<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b>
+				<%String date=CmmUtil.nvl(a.getReg_dt());%>
+   				<%=date.substring(0,4)%>.<%=date.substring(5,7)%>.<%=date.substring(8,10)%>.
+   				<%=date.substring(11,16)%></td>
+				<td align="right">
 				<%if(CmmUtil.nvl(a.getcom_seq()).equals(com_seq)){%>
 				<script>
 				<%
@@ -445,15 +463,16 @@ input {
 				%>
 				 	<input type="button" class="img-button2" onclick="javascript:doDelete2('<%=CmmUtil.nvl(a.getcom_seq())%>');" value=" " />
 				<%}}%>
+				&nbsp;
 				</td>
 			</tr>
 			<tr>
 			<%if(CmmUtil.nvl(a.getcom_seq()).equals(com_seq)){%>
 				<td colspan="3" valign="middle">&nbsp;
-				<%String b= CmmUtil.nvl(a.getcom_seq()); %>
-				<input type="hidden" name="com_seq" value="<%=b%>">
+				<%String q= CmmUtil.nvl(a.getcom_seq()); %>
+				<input type="hidden" name="com_seq" value="<%=q%>">
 				<textarea name="comment2"
-						style="width: 440px"><%=CmmUtil.nvl(a.getContents())%></textarea>
+						style="width: 700px"><%=CmmUtil.nvl(a.getContents())%></textarea>
 				<%}else{%>
 				<td colspan="3">&nbsp;<%=CmmUtil.nvl(a.getContents())%></td>
 				<%} %>
@@ -468,24 +487,150 @@ input {
 				}
 			%>
 			<div class="framebgm">
-			<table>
+			<table width="100%">
 			<tr>
-				<td colspan="3" valign="middle">&nbsp;<textarea name="comment"
-						style="width: 440px"></textarea> <input type="button" class="img-button4" onclick="javascript:doBack();" value=" " />
+				<td valign="middle">&nbsp;<textarea name="comment"
+						style="width: 700px"></textarea> <input type="button" class="img-button4" onclick="javascript:doBack();" value=" " />
+				&nbsp;
 				</td>
+			</tr>
+						<tr>
+			   <td colspan="2" align="center">
+   <%int line=0;
+   if(clist.size()>=100 && clist.size()<=999){
+		c=clist.size()/100;
+	}else if(clist.size()>=1000 && clist.size()<=9999){
+		c=clist.size()/1000;
+	}else if(clist.size()>=10000 && clist.size()<=99999){
+		c=clist.size()/10000;
+	}else{
+		c=clist.size()/10;
+	}
+   if(count2/10==0){ 
+	   int q=1;
+	   if(clist.size()>100){
+		  q=10;
+	   }else{
+		   q=(clist.size()-1)/10+1;
+	   }
+	   count2=count2+1;
+   for(line=1;line<=q;line++){
+   %>
+   <%if(count2==line){%>
+   &nbsp;
+   <a href="bbmInfo.do?count2=<%=line%>">
+   <span style=" color: white; background-color:red ">
+   <b>
+   <%=line%>
+   </b>
+   </span>
+   </a>
+   <%}else{ %>
+   &nbsp;
+   <a href="bbmInfo.do?count2=<%=line%>">
+   <span style=" color: black">
+   <b>
+   <%=line%>
+   </b>
+   </span>
+   </a>
+   <%} %>
+   <%} 
+   if(clist.size()>100){
+   %>
+   &nbsp;
+   <a href="bbmInfo.do?count2=<%=11%>">
+   <span style=" color: black; background-color:gray">
+   <b>></b>
+   </span>
+</a>
+   <%}}else if(count2/10==c){
+   int color=count2+1;
+   %>
+   &nbsp;
+	<a href="bbmInfo.do?count2=<%=count2/10*10-9%>">
+	<span style=" color: black; background-color:gray">
+   <b><</b>
+   </span>
+	</a>
+	<%
+   for(line=count2/10*10+1;line<=e+1;line++){
+	%>
+	<%if(color==line){%>
+	&nbsp;
+   <a href="bbmInfo.do?count2=<%=line%>">
+   <span style=" color: white; background-color:red">
+   <b>
+   <%=line %>
+   </b>
+   </span>
+   </a>
+   <%}else{ %>
+   &nbsp;
+   <a href="bbmInfo.do?count2=<%=line%>">
+   <span style=" color: black">
+   <b>
+   <%=line %>
+   </b>
+   </span>
+   </a>
+   <%} %>
+	<%}%>
+   <%}else{
+	   int color=count2+1;
+   %>
+   &nbsp;
+   <a href="bbmInfo.do?count2=<%=count2/10*10-9%>">
+   <span style=" color: black; background-color:gray">
+   <b><</b>
+   </span>
+	</a>
+   <% 
+	   for(line=count2/10*10+1;line<=count2/10*10+10;line++){
+   %>
+   
+   <%if(color==line){%>
+   &nbsp;
+   <a href="bbmInfo.do?count2=<%=line%>">
+   <span style=" color: white; background-color:red">
+   <b>
+   <%=line %>
+   </b>
+   </span>
+   </a>
+   <%}else{ %>
+   &nbsp;
+   <a href="bbmInfo.do?count2=<%=line%>">
+   <span style=" color: black">
+   <b>
+   <%=line %>
+   </b>
+   </span>
+   </a>
+   <%} %>
+   <%} %>
+   &nbsp;
+   <a href="bbmInfo.do?count2=<%=count2/10*10+11%>">
+   <span style=" color: black; background-color:gray">
+   <b>></b>
+   </span>
+	</a>
+<%} %>
+			</td>
 			</tr>
 			</table>
 			</div>
 			<div class="framebgd">
 			<table>
 			<tr>
-				<td colspan="3"></br></td>
+				<td colspan="3">
+					</br></td>
 			</tr>
 		</table>
 		</div>
 		<input type="hidden" name="bbm_seq" value="<%=bbm_seq%>">
 	</form>
-</td>
+	</td>
 			<td><img src="../img/bg/sidebg.png"/></td>
 		</tr>
 	</table>
