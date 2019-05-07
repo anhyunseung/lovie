@@ -25,16 +25,11 @@ input {
       }
 </style>
 </head>
-<body>
-<table border="0" width="100%">
+<body background="../img/user/userpw/pwfbg.png">
+<table width="460">
 <tr>
 <td align="center">
-</td>
-</tr>
-</table><br><br><br>
-<table width="100%">
-<tr>
-<td align="center">
+<br><br><br><br><br><br><br>
 <img src="../img/user/userpw/pwch.png"/>
 </td>
 </tr>
@@ -43,7 +38,8 @@ input {
 <br>
 <br>
 <br>
-<input type="button" class="img-button" onclick="javascript:Close_Event();" value=" "/>
+<br>
+<input type="button" class="img-button" onclick="javascript:Close_Event();" value=" "/>&nbsp;&nbsp;&nbsp;
       </td>
 </tr>
 </table>

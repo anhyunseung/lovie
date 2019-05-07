@@ -32,6 +32,16 @@ input {
 </style>
 </head>
 <body background="../img/user/userid/idfbg.png">
+<%
+if (SS_USER_ID.isEmpty()){
+%>
+<script>
+    alert("잘못된 접근입니다.");
+    location.href="/user/user_id_search.do";
+</script>    
+<%
+ }
+%>
 <table width="460" border="0">
 <tr>
 <td align="center">

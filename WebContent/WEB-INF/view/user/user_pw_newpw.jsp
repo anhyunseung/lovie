@@ -67,6 +67,16 @@ input {
 </style>
 </head>
 <body background="../img/user/userpw/pwfbg.png">
+<%
+if (SESSION_USER_ID.isEmpty()){
+%>
+<script>
+    alert("잘못된 접근입니다.");
+    location.href="/user/user_pw_search.do";
+</script>    
+<%
+ }
+%>
    <br>
    <br>
    <br>

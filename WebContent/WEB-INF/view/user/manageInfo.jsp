@@ -248,11 +248,11 @@ input {
 </table>
 </div>
 <div class=framebgm>
-   <table width="500px">
+   <table width="100%">
    <col width="100px"/>
    <col width="200px"/>
       <tr>
-         <td align="center"><br><img src="../img/user/userjoin/name.png"/></td>
+         <td align="right" width="45%"><br><img src="../img/user/userjoin/name.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><%=CmmUtil.nvl(rDTO.getUser_name())%></td>
       </tr>
          <tr>
@@ -261,7 +261,7 @@ input {
 </td>
    </tr>
       <tr>
-      <td align="center"><br><img src="../img/top/Id.png"/></td>
+      <td align="right" width="45%"><br><img src="../img/top/Id.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><%=CmmUtil.nvl(rDTO.getUser_id())%>
          </td>
       </tr>
@@ -270,7 +270,7 @@ input {
       </td>
       </tr>
       <tr>
-         <td align="center"><br><img src="../img/top/pw.png"/></td>
+         <td align="right" width="45%"><br><img src="../img/top/pw.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><%=CmmUtil.nvl(rDTO.getPassword())%></td>
       </tr>
       <tr>
@@ -278,7 +278,7 @@ input {
       </td>
       </tr>    
       <tr>
-         <td align="center"><br><img src="../img/user/userjoin/email.png"/></td>
+         <td align="right" width="45%"><br><img src="../img/user/userjoin/email.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td colspan="2">
          <br>
             <%=CmmUtil.nvl(rDTO.getEmail1())%>&nbsp;<b>@</b>
@@ -286,7 +286,7 @@ input {
          </td>
       </tr>
       <tr>
-      <td align="center"><br><br><img src="../img/user/userjoin/phone.png"/></td>
+      <td align="right" width="45%"><br><br><img src="../img/user/userjoin/phone.png"/>&nbsp;&nbsp;&nbsp;</td>
       <td><br><br>
          <%=CmmUtil.nvl(rDTO.getTel_1())%>&nbsp;<b>-</b>
          <%=CmmUtil.nvl(rDTO.getTel_2())%>&nbsp;<b>-</b>
@@ -294,7 +294,7 @@ input {
       </td>
    </tr>   
    <tr>
-         <td align="center"><br><br><img src="../img/user/userjoin/birth.png"/></td>
+         <td align="right" width="45%"><br><br><img src="../img/user/userjoin/birth.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><br>
          <%=CmmUtil.nvl(rDTO.getBirthday())%>
          </td>

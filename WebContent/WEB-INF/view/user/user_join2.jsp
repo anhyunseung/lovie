@@ -306,7 +306,7 @@ input {
    <col width="100px"/>
    <col width="200px"/>
       <tr>
-         <td align="center"><br><img src="../img/user/userjoin/name.png"/></td>
+         <td align="right" width="45%"><br><img src="../img/user/userjoin/name.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><input type="text" name="user_name" disabled="disabled" maxlength="10" style="width:200px;"/></td>
       </tr>
          <tr>
@@ -315,7 +315,7 @@ input {
 </td>
    </tr>
       <tr>
-      <td align="center"><br><img src="../img/top/Id.png"/></td>
+      <td align="right" width="45%"><br><img src="../img/top/Id.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><input type="text" name="user_id" maxlength="20"  style="width:200px;" onkeydown="return doKeyIdPw(event)"/>
          &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="img-button" value=" "/>
          </td>
@@ -329,7 +329,7 @@ input {
       </td>
       </tr>
       <tr>
-         <td align="center"><br><img src="../img/top/pw.png"/></td>
+         <td align="right" width="45%"><br><img src="../img/top/pw.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><input type="password" name="pwd1" disabled="disabled" maxlength="20" style="width:200px;"/></td>
       </tr>
       <tr>
@@ -341,11 +341,11 @@ input {
       </td>
       </tr>
       <tr>
-      <td align="center"><br><img src="../img/user/userjoin/pwc.png"/></td>
+      <td align="right" width="45%"><br><img src="../img/user/userjoin/pwc.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><input type="password" name="pwd2"  disabled="disabled" maxlength="20" style="width:200px;"/></td>
       </tr>      
       <tr>
-         <td align="center"><br><br><img src="../img/user/userjoin/email.png"/></td>
+         <td align="right" width="45%"><br><br><img src="../img/user/userjoin/email.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td colspan="2">
          <br><br>
             <input type="text" name="email1" maxlength="16" style="width:100px;" disabled="disabled"/>&nbsp;<b>@</b>
@@ -353,7 +353,7 @@ input {
          </td>
       </tr>
       <tr>
-      <td align="center"><br><br><img src="../img/user/userjoin/phone.png"/></td>
+      <td align="right" width="45%"><br><br><img src="../img/user/userjoin/phone.png"/>&nbsp;&nbsp;&nbsp;</td>
       <td><br><br>
          <input type="text" name="tel_1" maxlength="4" disabled="disabled" style="width:50px" />&nbsp;<b>-</b>
          <input type="text" name="tel_2" maxlength="4" disabled="disabled" style="width:80px" />&nbsp;<b>-</b>
@@ -361,7 +361,7 @@ input {
       </td>
    </tr>   
    <tr>
-         <td align="center"><br><br><img src="../img/user/userjoin/birth.png"/></td>
+         <td align="right" width="45%"><br><br><img src="../img/user/userjoin/birth.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><br>
          <input type="text" name="birthday" disabled="disabled" maxlength="6" style="width:200px;"/>
          </td>
@@ -370,9 +370,6 @@ input {
          <td colspan="5" align="center"><br><br>
          <br>
             <input type="button" class="img-button2" onclick="javascript:doTop();" value=" "/>
-            <br>
-            <br>
-            <br>
          </td>
       </tr>
    </table>
@@ -387,11 +384,6 @@ input {
    </table>
    </div>
 </form>
-</td>
-			<td><img src="../img/bg/sidebg.png"/></td>
-		</tr>
-	</table>
-</div>
 </td>
 			<td><img src="../img/bg/sidebg.png"/></td>
 		</tr>

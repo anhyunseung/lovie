@@ -380,7 +380,7 @@ input {
    <col width="100px"/>
    <col width="200px"/>
       <tr>
-         <td align="center"><br><img src="../img/user/userjoin/name.png"/></td>
+         <td align="right" width="45%"><br><img src="../img/user/userjoin/name.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><input type="text" name="user_name" maxlength="10" style="width:200px;" onkeydown="return doKeyOnlyWord(event)"/></td>
       </tr>
          <tr>
@@ -389,7 +389,7 @@ input {
 </td>
    </tr>
       <tr>
-      <td align="center"><br><img src="../img/top/Id.png"/></td>
+      <td align="right" width="45%"><br><img src="../img/top/Id.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><input type="text" name="user_id" maxlength="20"  style="width:200px;" value="<%=id_over%>"  disabled="disabled"/>
          </td>
       </tr>
@@ -402,7 +402,7 @@ input {
       </td>
       </tr>
       <tr>
-         <td align="center"><br><img src="../img/top/pw.png"/></td>
+         <td align="right" width="45%"><br><img src="../img/top/pw.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><input type="password" name="pwd1" maxlength="20" style="width:200px;" onkeydown="return doKeyIdPw(event)"/></td>
       </tr>
       <tr>
@@ -414,11 +414,11 @@ input {
       </td>
       </tr>
       <tr>
-      <td align="center"><br><img src="../img/user/userjoin/pwc.png"/></td>
+      <td align="right" width="45%"><br><img src="../img/user/userjoin/pwc.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><input type="password" name="pwd2" maxlength="20" style="width:200px;"  onkeydown="return doKeyIdPw(event)"/></td>
       </tr>      
       <tr>
-         <td align="center"><br><br><img src="../img/user/userjoin/email.png"/></td>
+         <td align="right" width="45%"><br><br><img src="../img/user/userjoin/email.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td colspan="2">
          <br><br>
             <input type="text" name="email1" maxlength="16" style="width:100px;" onkeydown="return doKeyIdPw(event)"/>&nbsp;<b>@</b>
@@ -432,7 +432,7 @@ input {
          </td>
       </tr>
       <tr>
-      <td align="center"><br><br><img src="../img/user/userjoin/phone.png"/></td>
+      <td align="right" width="45%"><br><br><img src="../img/user/userjoin/phone.png"/>&nbsp;&nbsp;&nbsp;</td>
       <td><br><br>
          <select name="tel_1" style="width:50px;">
          <option value=""></option>
@@ -445,7 +445,7 @@ input {
       </td>
    </tr>   
    <tr>
-         <td align="center"><br><br><img src="../img/user/userjoin/birth.png"/></td>
+         <td align="right" width="45%"><br><br><img src="../img/user/userjoin/birth.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><br>
          <input type="text" name="birthday" maxlength="6" style="width:200px;" onkeydown="return doKeyOnlyNumber(event)"/>
          </td>
@@ -455,9 +455,6 @@ input {
          <br>
             <input type="submit" class="img-button" value=" "/>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" class="img-button2" onclick="javascript:dojoin2();" value=" "/>
-            <br>
-            <br>
-            <br>
          </td>
       </tr>
    </table>
@@ -472,11 +469,6 @@ input {
    </table>
    </div>
 </form>
-</td>
-			<td><img src="../img/bg/sidebg.png"/></td>
-		</tr>
-	</table>
-</div>
 </td>
 			<td><img src="../img/bg/sidebg.png"/></td>
 		</tr>
