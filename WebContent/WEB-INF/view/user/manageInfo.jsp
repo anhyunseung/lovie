@@ -41,7 +41,7 @@ function doList(){
  location.href="/user/manageList.do";
 }
 function doIdchange(){
-	window.open('/user/manage_id_change.do?user_id=<%=CmmUtil.nvl(rDTO.getUser_id())%>','비밀번호 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;
+	window.open('/user/manage_id_change.do?user_id=<%=CmmUtil.nvl(rDTO.getUser_id())%>','아이디 변경','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;
 	}
 
 </script>

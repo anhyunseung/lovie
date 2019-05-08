@@ -10,7 +10,7 @@ session.setAttribute("USER_ID_CH", "");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Let's see the movie! : Lovie - 아이디 찾기</title>
+<title>Let's see the movie! : Lovie - 아이디 변경</title>
 <script type="text/javascript">
 function Close_Event(){
     window.close();
