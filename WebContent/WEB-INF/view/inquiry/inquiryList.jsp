@@ -25,7 +25,7 @@ System.out.println("ss_user_id : " + SESSION_USER_ID);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>문의 리스트</title>
+<title>문의 : Lovie</title>
 <script type="text/javascript">
 function doSubmit(f) {
 	   if(f.user_id.value == ""){

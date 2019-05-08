@@ -39,7 +39,7 @@ System.out.println("ss_user_id : "+ss_user_id);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>문의 글보기</title>
+<title><%=CmmUtil.nvl(rDTO.getTitle())%> - 문의 : Lovie</title>
 <script type="text/javascript">
 <%
 if(CmmUtil.nvl(rDTO.getUser_id()).equals(SESSION_USER_ID) || SESSION_USER_ID.equals("admin")){
@@ -337,7 +337,7 @@ input {
          </tr>
          <tr>
             <td colspan="3">
-               -----------------------------------------------------------------
+            <hr/>
             </td>
          </tr>
          <tr>

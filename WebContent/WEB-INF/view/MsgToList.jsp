@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>처리페이지</title>
+<title>처리 중 : Lovie</title>
 <script type="text/javascript">
 
 <%if(msg==""){%>

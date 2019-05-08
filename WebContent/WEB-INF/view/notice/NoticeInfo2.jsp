@@ -51,7 +51,7 @@ System.out.println("ss_user_id : " + SESSION_USER_ID);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시판 글보기</title>
+<title><%=CmmUtil.nvl(rDTO.getTitle()) %> - 공지사항 : Lovie</title>
 <script type="text/javascript">
 
 function doEdit(){
@@ -374,7 +374,7 @@ input {
 			</tr>
 			<tr>
 				<td colspan="3">
-					&nbsp;---------------------------------------------------------------</td>
+					<hr/></td>
 			</tr>
 			<tr>
 				<td colspan="3">&nbsp;&nbsp;<b><%=CmmUtil.nvl(rDTO.getUser_id())%><br />
@@ -403,7 +403,7 @@ input {
 			</tr>
 			<tr>
 				<td colspan="3">
-					&nbsp;---------------------------------------------------------------</td>
+					<hr/></td>
 			</tr>
 			</table>
 			</div>
@@ -472,7 +472,7 @@ input {
 			</tr>
 			<tr>
 				<td colspan="3">
-					&nbsp;---------------------------------------------------------------</td>
+					<hr/></td>
 			</tr>
 			</table>
 			</div>

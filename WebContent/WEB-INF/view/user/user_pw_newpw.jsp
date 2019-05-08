@@ -14,7 +14,7 @@ System.out.println("user_id : "+ SESSION_USER_ID);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Let's see the movie! : Lovie - 비밀번호 찾기</title>
 <script type="text/javascript">
    function doSubmit(f) {
       if (f.pwd1.value.length >= 20) {

@@ -28,7 +28,7 @@ if (rList==null){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시판 리스트</title>
+<title>자유게시판 : Lovie</title>
 <script type="text/javascript">
 function doSubmit(f) {
 	   if(f.user_id.value == ""){

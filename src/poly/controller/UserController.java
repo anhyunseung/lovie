@@ -686,7 +686,7 @@ public class UserController {
 		uDTO = null;
 		}
 
-		return "/MsgToList";
+		return "/user/user_pw_proc";
 	}
 	
 	

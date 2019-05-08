@@ -10,7 +10,7 @@ session.setAttribute("url", "/notice/NoticeReg.do");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시판 글쓰기</title>
+<title>공지사항 : Lovie</title>
 <script type="text/javascript">
 function doOnload(){
    var user_id = "<%=SESSION_USER_ID%>";

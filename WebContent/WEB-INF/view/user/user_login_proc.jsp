@@ -8,7 +8,7 @@ String url = (String)session.getAttribute("url");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>처리페이지</title>
+<title>로그인 : Lovie</title>
 <script type="text/javascript">
    <%if(msg.equals("")){%>
          top.location.href="<%= url%>";

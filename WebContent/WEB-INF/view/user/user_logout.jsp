@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>처리페이지</title>
+<title>로그아웃 : Lovie</title>
 <script type="text/javascript">
    alert("로그아웃을 하였습니다");
    top.location.href="<%=url%>";

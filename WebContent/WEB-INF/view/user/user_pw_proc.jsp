@@ -10,7 +10,7 @@ String USER_NAME = (String)session.getAttribute("USER_NAME");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>처리페이지</title>
+<title>Let's see the movie! : Lovie - 처리 중</title>
 <script type="text/javascript">
    <%if(msg.equals("")){%>
          location.href="<%= url%>";

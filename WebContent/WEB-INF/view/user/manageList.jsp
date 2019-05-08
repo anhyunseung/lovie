@@ -24,7 +24,7 @@ int count2 = (int)request.getAttribute("count");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원관리 : Lovie</title>
 <script type="text/javascript">
 <%if(SESSION_USER_ID.equals("admin")){
 }else{%>
