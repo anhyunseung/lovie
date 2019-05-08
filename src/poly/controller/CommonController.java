@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService;
+import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import poly.service.ICommonService;
 import poly.util.MovieUtil;
 
@@ -39,14 +41,21 @@ public class CommonController {
    }
    @RequestMapping(value="top3", method=RequestMethod.GET)
    public String Top3(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-	   HashMap<String, Object> map = MovieUtil.getMovieList(request);
+	   
+	   String						targetDt		= request.getParameter("targetDt")==null?"20190411":request.getParameter("targetDt");
+	   String						itemPerPage		= request.getParameter("itemPerPage")==null?"10":request.getParameter("itemPerPage");
+	   String						key				= "257a360ca175e71f65d605e4238a4d90";
+	   KobisOpenAPIRestService		service			= new KobisOpenAPIRestService(key);
+	   String						dailyResponse	= service.getDailyBoxOffice(true, targetDt, itemPerPage, "", "", "");
+	   ObjectMapper					mapper			= new ObjectMapper();
+	   HashMap<String, Object>		map				= mapper.readValue(dailyResponse, HashMap.class);
 	   
 	   Iterator<String> mapIter = map.keySet().iterator();
 	   
        while(mapIter.hasNext()){
 
-           String key = mapIter.next();
-           Object value = map.get( key );
+           String key2 = mapIter.next();
+           Object value = map.get( key2 );
 
            log.info(key+" : "+value);
 
