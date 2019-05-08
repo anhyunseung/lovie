@@ -40,8 +40,8 @@ function doDelete(){
 function doList(){
  location.href="/user/manageList.do";
 }
-function doId(){
-	 location.href="/user/manageList.do";
+function doIdchange(){
+	window.open('/user/manage_id_change.do?user_id=<%=CmmUtil.nvl(rDTO.getUser_id())%>','비밀번호 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;
 	}
 
 </script>
@@ -76,6 +76,16 @@ input {
         width: 52px;
         cursor: pointer;
       }
+      input {
+        vertical-align: middle;
+      }
+      input.id_change {
+        background: url( "../img/button/change.png" ) no-repeat;
+        border: none;
+        height: 40px;
+        width: 52px;
+        cursor: pointer;
+      }
     div.framebgt
 	{
 	background-image:url('../img/bg/framebgt.png');
@@ -96,18 +106,11 @@ input {
 </head>
 <body background="../img/top/bg.png">
 <div>
-	<table border="0" height="500px" width="1500px" >
+	<table border="0" height="500px" width="1800px" >
 		<tr>
-			<td width="48px" height="167px"><br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br></td>
+			<td width="48px" height="167px"></td>
 			<td colspan="4" align="right" width="1500px">
-			<img src="../img/bg/top.png" />
-			<br>
+			
 			<a href="/top.do">
 				<img src="../img/common/Logo.png"/>
 			</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -263,6 +266,8 @@ input {
       <tr>
       <td align="right" width="45%"><br><img src="../img/top/Id.png"/>&nbsp;&nbsp;&nbsp;</td>
          <td><br><%=CmmUtil.nvl(rDTO.getUser_id())%>
+         &nbsp;&nbsp;&nbsp;
+         <input type="button" class="id_change" onclick="javascript:doIdchange();" value=" " />
          </td>
       </tr>
       <tr>

@@ -14,6 +14,8 @@ public interface IUserService {
    String userPwsearch(UserDTO uDto) throws Exception;
    
    void updatePw(UserDTO uDto) throws Exception;
+   
+   void updateId(UserDTO uDto) throws Exception;
 
    List<UserDTO> getUserList() throws Exception;
    

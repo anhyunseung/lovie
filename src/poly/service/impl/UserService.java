@@ -66,6 +66,13 @@ public class UserService implements IUserService {
 		userMapper.updatePw(uDto);
 
 	}
+	
+	@Override
+	public void updateId(UserDTO uDto) throws Exception {
+		// TODO Auto-generated method stub
+		userMapper.updateId(uDto);
+
+	}
 
 	@Override
 	public String getidover(UserDTO uDto) throws Exception {

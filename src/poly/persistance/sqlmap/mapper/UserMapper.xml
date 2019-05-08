@@ -54,6 +54,14 @@
 
 	</update>
 	
+	<update id="updateId" parameterType="UserDTO">
+		UPDATE USER_INFO SET
+		USER_ID =#{user_id}
+		WHERE
+		USER_NO =#{user_no}
+
+	</update>
+	
 	<select id="getUserList" resultType="UserDTO">
 		SELECT
 		USER_NO, USER_ID, USER_NAME, TEL_1, TEL_2, TEL_3
@@ -74,7 +82,7 @@
    <!-- 게시판 수정 쿼리 -->
    <update id="updateUserInfo" parameterType="UserDTO">
       UPDATE USER_INFO SET
-         USER_ID = #{user_id}, USER_NAME = #{user_name}, PASSWORD = #{password}, EMAIL1 = #{email1}, EMAIL2 = #{email2},
+         USER_NAME = #{user_name}, PASSWORD = #{password}, EMAIL1 = #{email1}, EMAIL2 = #{email2},
           TEL_1 = #{tel_1}, TEL_2 = #{tel_2}, TEL_3 = #{tel_3}, BIRTHDAY = #{birthday}
       WHERE
          USER_NO = #{user_no}   

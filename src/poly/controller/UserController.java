@@ -634,5 +634,60 @@ public class UserController {
 		return "/MsgToList";
 	}
 	
+	@RequestMapping(value = "/user/manage_id_change", method = RequestMethod.GET)
+	public String manage_id_change(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
+
+		log.info("/user/manage_id_change");
+
+		String user_id = (String) request.getParameter("user_id");
+		String user_id2=CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
+		System.out.println(user_id);
+		if(user_id==null) {
+			System.out.println(user_id2);
+		}else {
+		session.setAttribute("USER_ID_CHE",user_id);
+		}
+		
+		return "/user/manage_id_change";
+	}
+	
+	@RequestMapping(value = "/user/manage_id_check", method = RequestMethod.POST)
+	public String manage_id_update(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
+
+		log.info("/user/manage_id_check");
+
+		String user_id = (String) request.getParameter("user_id");
+		String user_id2 = CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
+		session.setAttribute("USER_ID_CHE",user_id2);
+		UserDTO uDTO = new UserDTO();
+		uDTO.setUser_id(user_id);
+		
+		System.out.println("중복 확인 :"+user_id);
+		
+		String id_over = userService.getidover(uDTO);
+		if(id_over==null) {
+			uDTO.setUser_id(user_id2);
+			System.out.println("번호 가져올 아이디 :"+user_id2);
+			String id_over2 = userService.getidover(uDTO);
+			
+			uDTO.setUser_no(id_over2);
+			System.out.println("가져온 번호 :"+id_over2);
+			
+			uDTO.setUser_id(user_id);
+			System.out.println("바꿀 아이디 :"+user_id);
+			userService.updateId(uDTO);
+			
+			session.setAttribute("USER_ID_CHE","");
+			uDTO = null;
+			return "/user/manage_id_confirm";
+		}else {
+			request.setAttribute("msg", "이미 존재하는 아이디입니다.");
+			request.setAttribute("url", "/user/manage_id_change.do");
+		uDTO = null;
+		}
+
+		return "/MsgToList";
+	}
+	
 	
 }

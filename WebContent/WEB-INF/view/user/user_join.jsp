@@ -221,19 +221,12 @@ input {
 </head>
 <body background="../img/top/bg.png">
 <div>
-	<table border="0" height="500px" width="1500px" >
+	<table border="0" height="500px" width="1800px" >
 	<form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit2(this);">
 		<tr>
-			<td width="48px" height="167px"><br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br></td>
+			<td width="48px" height="167px"></td>
 			<td colspan="4" align="right" width="1500px">
-			<img src="../img/bg/top.png" />
-			<br>
+			
 			<a href="/top.do">
 				<img src="../img/common/Logo.png"/>
 			</a>&nbsp;&nbsp;&nbsp;&nbsp;
