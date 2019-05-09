@@ -245,6 +245,13 @@
     	<scope>system</scope>
     	<systemPath>${project.basedir}/WebContent/WEB-INF/lib/kobis-opcl-rest-v1.0.jar</systemPath>
     </dependency>
+    <dependency>
+    	<groupId>jsoup</groupId>
+    	<artifactId>jsoup</artifactId>
+    	<version>1.11.3</version>
+    	<scope>system</scope>
+    	<systemPath>${project.basedir}/WebContent/WEB-INF/lib/jsoup-1.11.3.jar</systemPath>
+    </dependency>
     
     <!-- Tiles -->
         <dependency>
@@ -283,6 +290,11 @@
 			<id>movie-api</id>
 			<name>movie api kobis</name>
 			<url>file://${project.basedir}/WEB-INF/lib/kobis-opcl-rest-v1.0.jar</url>		
+		</repository>
+		<repository>
+			<id>jsoup</id>
+			<name>jsoup</name>
+			<url>file://${project.basedir}/WEB-INF/lib/jsoup-1.11.3.jar</url>		
 		</repository>
 	</repositories>
 	<build>

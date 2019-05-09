@@ -1,20 +1,71 @@
 <%@ page import="poly.util.CmmUtil"%>
 <%@ page import="poly.dto.UserDTO"%>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Collection" %>
+<%@ page import="java.awt.image.BufferedImage" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.net.URL" %>
+<%@ page import="javax.imageio.ImageIO" %>
+<%@ page import="org.jsoup.Jsoup" %>
+<%@ page import="org.jsoup.nodes.Document" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService" %>
+<%@ page import="org.jsoup.select.Elements" %>
+<%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	request.setCharacterEncoding("UTF-8");
-session.setAttribute("url", "/top.do");
+	session.setAttribute("url", "/top.do");
 	String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
-
+	Date dt= new Date(); 
+	dt.setDate(dt.getDate()-1); 
+	int year=dt.getYear()+1900;
+	int mon=dt.getMonth()+1; 
+	String month=""; 
+	if(mon<10) { 
+		month="0"+mon; 
+		}else {
+	month=""+mon; 
+	} 
+	int day=dt.getDate(); 
+	String day2=""; 
+	if(day<10) {
+	day2="0"+day; 
+	}else { 
+		day2=""+day; 
+		} 
+	String date=year+month+day2;
+	System.out.println(date);
+	
+	String targetDt =	request.getParameter("targetDt")==null?date:request.getParameter("targetDt");
+	String itemPerPage =request.getParameter("itemPerPage")==null?"9":request.getParameter("itemPerPage"); 
+	String key = "257a360ca175e71f65d605e4238a4d90";
+	KobisOpenAPIRestService service = new KobisOpenAPIRestService(key); 
+	String dailyResponse = service.getDailyBoxOffice(true, targetDt, itemPerPage, "","", ""); 
+	ObjectMapper mapper = new ObjectMapper(); 
+	HashMap<String, Object> map = mapper.readValue(dailyResponse, HashMap.class);
+	
+	Iterator<String> mapIter = map.keySet().iterator();
+	String movie="";
+	String key2="";
+	Object value="";
+	while(mapIter.hasNext()){
+	key2 = mapIter.next(); 
+	value = map.get( key2 );
+	}
+	movie = value.toString();
+	String moviec[]=movie.split("movieNm=");
+	int i=1;
+	request.setAttribute("map",map);
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -59,6 +110,9 @@ input {
         height: 45px;
         width: 58px;
         cursor: pointer;
+      }
+      img.poster{
+      border:2px solid gray;
       }
 </style>
 
@@ -190,10 +244,96 @@ input {
 					<b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
 				</h1>
 			</td>
-			<td>
-			<!-- <iframe name="ifrMain" src="" frameborder="0" width="1200px"
-					height="100%" scrolling="auto">
-			</iframe> -->		
+			<td valign="top">
+			<table  border="0">
+			<c:if test="${not empty map.boxOfficeResult.dailyBoxOfficeList}">
+			<tr>
+			<c:forEach items="${map.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+			<%if(i<=3){ %>
+				<td width="400px" align="center" height="350px" valign="top">
+				<%
+				String moviec2[]=moviec[i].split(",");
+				System.out.println(moviec2[0]);
+				String link = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+moviec2[0];
+				System.out.println(link);
+				Document doc = Jsoup.connect(link).get();
+
+				Elements pngs = doc.select("a.sp_thmb");
+				
+				String linkHref = pngs.attr("href");
+				Document doc2 = Jsoup.connect(linkHref).get();
+				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
+				
+				String linkHref2 = pngs2.attr("src");
+				i=i+1;
+				%>
+				<img src="<%=linkHref2%>" border="2px" class="poster"/>
+				<br><span style=" color: white;font-weight:bold">
+				
+				${boxoffice.movieNm}
+				</span>
+				</td>
+				<%}else if(i>3&&i<7){
+				if(i==4){%>
+				</tr>
+				<tr>
+				<%} %>
+				<td width="400px" align="center" height="450px" valign="top">
+				<br><br><br><br>
+				<%
+				String moviec2[]=moviec[i].split(",");
+				System.out.println(moviec2[0]);
+				String link = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+moviec2[0];
+				System.out.println(link);
+				Document doc = Jsoup.connect(link).get();
+
+				Elements pngs = doc.select("a.sp_thmb");
+				
+				String linkHref = pngs.attr("href");
+				Document doc2 = Jsoup.connect(linkHref).get();
+				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
+				
+				String linkHref2 = pngs2.attr("src");
+				i=i+1;
+				%>
+				<img src="<%=linkHref2%>" border="2px" class="poster"/>
+				<br><span style=" color: white;font-weight:bold">
+				${boxoffice.movieNm}
+				</span>
+				</td>
+				<%}else{ %>
+				<%if(i==7){%>
+				</tr>
+				<tr>
+				<%} %>
+				<td width="400px" align="center" height="420px" valign="top">
+				<br><br><br>
+				<%
+				String moviec2[]=moviec[i].split(",");
+				System.out.println(moviec2[0]);
+				String link = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+moviec2[0];
+				System.out.println(link);
+				Document doc = Jsoup.connect(link).get();
+
+				Elements pngs = doc.select("a.sp_thmb");
+				
+				String linkHref = pngs.attr("href");
+				Document doc2 = Jsoup.connect(linkHref).get();
+				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
+				
+				String linkHref2 = pngs2.attr("src");
+				i=i+1;
+				%>
+				<img src="<%=linkHref2%>" border="2px" class="poster"/>
+				<br><span style=" color: white;font-weight:bold">
+				${boxoffice.movieNm}
+				</span>
+				</td>
+				<%} %>
+				</c:forEach>
+				</tr>
+			</c:if>
+			</table>
 			</td>
 			<td><img src="../img/bg/sidebg.png"/></td>
 		</tr>
