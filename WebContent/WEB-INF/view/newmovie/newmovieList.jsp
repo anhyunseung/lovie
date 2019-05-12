@@ -35,34 +35,6 @@
 	int day=dt.getDate()-1;
 	int mon=dt.getMonth();
 	
-	int randomyearsub=year-2010;
-	int randomyear = randomGenerator.nextInt(randomyearsub);
-	int randommonth=randomGenerator.nextInt(11);
-	int randomday=randomGenerator.nextInt(30)+1;
-	
-	if(randomyear==year){
-		if(randommonth>mon){
-			randomday=randomGenerator.nextInt(30)+1;
-		}
-		if(randommonth==mon){
-			randomday=randomGenerator.nextInt(day)+1;
-		}
-	}
-	
-	if(randommonth==3||randommonth==5||randommonth==8||randommonth==10){
-		if(randomday==31){
-			randomday=randomGenerator.nextInt(29)+1;
-		}
-	}
-	
-	if(randommonth==1){
-		if(randomday>=29){
-			randomday=randomGenerator.nextInt(27)+1;
-		}
-	}
-	
-	year=randomyear+2010;
-	mon=randommonth+1;
 	String month=""; 
 	if(mon<10) { 
 		month="0"+mon; 
@@ -70,7 +42,6 @@
 	month=""+mon; 
 	} 
 	
-	day=randomday; 
 	String day2=""; 
 	if(day<10) {
 	day2="0"+day; 
@@ -178,13 +149,13 @@ input {
 			&nbsp;
 			
 			<a
-				href="/newmovie/newmovieList.do" target="ifrMain"> 
+				href="/bbm/bbmList.do" target="ifrMain"> 
 				<img src="../img/top/newmo.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/upmovie/upmovieList.do" target="ifrMain"> 
+				href="/bbm/bbmList.do" target="ifrMain"> 
 				<img src="../img/top/upmo.png"/>
 			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;

@@ -111,7 +111,7 @@ a=a+1;
 
 String[] moviename=new String[a];
 for(int con=1;con<moviec.length;con++){
-String moviec2[]=moviec[con].split(",");
+String moviec2[]=moviec[con].split(", openDt=");
 String moviecc2[]=moviecc[con].split(",");
 String openDTy=moviecc2[0].substring(5, 7);
 if(openDTy.equals(mon5)){ //1월이면

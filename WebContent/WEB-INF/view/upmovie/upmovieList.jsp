@@ -29,65 +29,70 @@
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
 	
+	int year1=2019;
+	int mon1=1;
+	int day1=1;
+
 	Date dt= new Date(); 
-	Random randomGenerator = new Random();
-	int year=dt.getYear()+1900;
-	int day=dt.getDate()-1;
-	int mon=dt.getMonth();
-	
-	int randomyearsub=year-2010;
-	int randomyear = randomGenerator.nextInt(randomyearsub);
-	int randommonth=randomGenerator.nextInt(11);
-	int randomday=randomGenerator.nextInt(30)+1;
-	
-	if(randomyear==year){
-		if(randommonth>mon){
-			randomday=randomGenerator.nextInt(30)+1;
+	int mon3=dt.getMonth()+1;
+	int day3=dt.getDate();
+
+	int day4=28;
+	int i=0;
+	int n=mon1+1;
+
+	String month="";
+	String day2="";
+
+	day4=28;
+	String[] date1=new String[7];
+
+	for(mon1=1;mon1<=n;mon1++){
+		if(mon1==mon3){
+			day4=day3;
 		}
-		if(randommonth==mon){
-			randomday=randomGenerator.nextInt(day)+1;
+		if(mon1==n){
+			day4=1;
+		}
+		for(day1=1;day1<=day4;day1=day1+7){
+			
+			if(mon1<10) { 
+					month="0"+mon1; 
+				}else {
+					month=""+mon1; 
+				} 
+			
+			if(day1<10) {
+					day2="0"+day1; 
+				}else { 
+					day2=""+day1; 
+				}
+			date1[i]="2019"+month+day2;
+			System.out.println(date1[i]+" "+i);
+			i++;
 		}
 	}
-	
-	if(randommonth==3||randommonth==5||randommonth==8||randommonth==10){
-		if(randomday==31){
-			randomday=randomGenerator.nextInt(29)+1;
-		}
-	}
-	
-	if(randommonth==1){
-		if(randomday>=29){
-			randomday=randomGenerator.nextInt(27)+1;
-		}
-	}
-	
-	year=randomyear+2010;
-	mon=randommonth+1;
-	String month=""; 
-	if(mon<10) { 
-		month="0"+mon; 
-		}else {
-	month=""+mon; 
+
+	mon1=1;
+	int q=0;
+	String mon5="";
+	if(mon1<10) { 
+		mon5="0"+mon1; 
+	}else {
+		mon5=""+mon1; 
 	} 
-	
-	day=randomday; 
-	String day2=""; 
-	if(day<10) {
-	day2="0"+day; 
-	}else { 
-		day2=""+day; 
-		} 
-	String date=year+month+day2;
-	System.out.println(date);
-	
-	String targetDt =	date;
-	String itemPerPage =request.getParameter("itemPerPage")==null?"9":request.getParameter("itemPerPage"); 
+
+	String[] moviename22=new String[50];
+	for(int c=0;c<i;c++){
+		
+	String targetDt =date1[c];
+	String itemPerPage ="10"; 
 	String key = "257a360ca175e71f65d605e4238a4d90";
 	KobisOpenAPIRestService service = new KobisOpenAPIRestService(key); 
 	String dailyResponse = service.getDailyBoxOffice(true, targetDt, itemPerPage, "","", ""); 
 	ObjectMapper mapper = new ObjectMapper(); 
 	HashMap<String, Object> map = mapper.readValue(dailyResponse, HashMap.class);
-	
+
 	Iterator<String> mapIter = map.keySet().iterator();
 	String movie="";
 	String key2="";
@@ -99,10 +104,37 @@
 	movie = value.toString();
 	System.out.println(movie);
 	String moviec[]=movie.split("movieNm=");
-	String movied[]=movie.split("openDt=");
-	int i=1;
-	request.setAttribute("map",map);
-	
+	String moviecc[]=movie.split("openDt=");
+
+	int a=0;
+
+	for(int con=1;con<moviec.length;con++){
+		String moviec2[]=moviec[con].split(",");
+	a=a+1;
+	}
+
+	String[] moviename=new String[a];
+	for(int con=1;con<moviec.length;con++){
+	String moviec2[]=moviec[con].split(", openDt=");
+	String moviecc2[]=moviecc[con].split(",");
+	String openDTy=moviecc2[0].substring(5, 7);
+	if(openDTy.equals(mon5)){ //1월이면
+		int nn=0;
+		moviename22[q]="";
+		for(int ad=0;ad<=q;ad++){ //중복있는지 확인한다
+			if(moviename22[ad].equals(moviec2[0])){
+				nn=1;
+			}
+		}
+		if(nn==0){
+			moviename22[q]=moviec2[0];
+			System.out.println(moviename22[q]+" "+(q));
+			q=q+1;
+		}
+	}
+	}
+	}
+	i=1;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -178,13 +210,13 @@ input {
 			&nbsp;
 			
 			<a
-				href="/newmovie/newmovieList.do" target="ifrMain"> 
+				href="/bbm/bbmList.do" target="ifrMain"> 
 				<img src="../img/top/newmo.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/upmovie/upmovieList.do" target="ifrMain"> 
+				href="/bbm/bbmList.do" target="ifrMain"> 
 				<img src="../img/top/upmo.png"/>
 			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
@@ -284,33 +316,29 @@ input {
 			</td>
 			<td valign="top">
 			<table  border="0">
-			<c:if test="${not empty map.boxOfficeResult.dailyBoxOfficeList}">
 			<tr>
-			<c:forEach items="${map.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+			<%for(int qe=0;qe<q;qe++){ %>
 			<%if(i<=3){ %>
 				<td width="400px" align="center" height="350px" valign="top">
 				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+" "+movied2[0]);
-				if(moviec2[0].contains("%")){
-					String moviec3[]=moviec2[0].split("%");
-					moviec2[0]="";
+				if(moviename22[qe].contains("%")){
+					String moviec3[]=moviename22[qe].split("%");
+					moviename22[qe]="";
 					for(int hk=0;hk<moviec3.length;hk++){
 						if(hk==moviec3.length-1){
-							moviec2[0]=moviec2[0]+moviec3[hk];
+							moviename22[qe]=moviename22[qe]+moviec3[hk];
 						}else{
-						moviec2[0]=moviec2[0]+moviec3[hk]+"%25";
+						moviename22[qe]=moviename22[qe]+moviec3[hk]+"%25";
 						}
 						if(moviec3.length-1==0) {
-							moviec2[0]=moviec3[hk]+"%25";
+							moviename22[qe]=moviec3[hk]+"%25";
 						}
 					}
 				}
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
+				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
+					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 				
@@ -336,7 +364,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
+						if(cnn2<=year1){
 						wpq=con5[0].length();
 						System.out.println(wpq);
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
@@ -358,7 +386,7 @@ input {
 				<img src="<%=linkHref2%>" border="2px" class="poster"/>
 				<br><span style=" color: white;font-weight:bold">
 				
-				${boxoffice.movieNm}
+				<%= moviename22[qe]%>
 				</span>
 				</td>
 				<%}else if(i>3&&i<7){
@@ -369,27 +397,25 @@ input {
 				<td width="400px" align="center" height="450px" valign="top">
 				<br><br><br><br>
 				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+movied2[0]);
-				if(moviec2[0].contains("%")){
-					String moviec3[]=moviec2[0].split("%");
-					moviec2[0]="";
+				System.out.println(moviename22[qe]+" "+year1);
+				if(moviename22[qe].contains("%")){
+					String moviec3[]=moviename22[qe].split("%");
+					moviename22[qe]="";
 					for(int hk=0;hk<moviec3.length;hk++){
 						if(hk==moviec3.length-1){
-							moviec2[0]=moviec2[0]+moviec3[hk];
+							moviename22[qe]=moviename22[qe]+moviec3[hk];
 						}else{
-						moviec2[0]=moviec2[0]+moviec3[hk]+"%25";
+						moviename22[qe]=moviename22[qe]+moviec3[hk]+"%25";
 						}
 						if(moviec3.length-1==0) {
-							moviec2[0]=moviec3[hk]+"%25";
+							moviename22[qe]=moviec3[hk]+"%25";
 						}
 					}
 				}
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
+				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
+					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 
@@ -415,7 +441,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
+						if(cnn2<=year1){
 						wpq=con5[0].length();
 						System.out.println(wpq);
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
@@ -436,38 +462,36 @@ input {
 				%>
 				<img src="<%=linkHref2%>" border="2px" class="poster"/>
 				<br><span style=" color: white;font-weight:bold">
-				${boxoffice.movieNm}
+				<%= moviename22[qe]%>
 				</span>
 				</td>
-				<%}else{ %>
+				<%}else if(i>6&&i<10){ %>
 				<%if(i==7){%>
 				</tr>
 				<tr>
 				<%} %>
-				<td width="400px" align="center" height="420px" valign="top">
+				<td width="400px" align="center" height="460px" valign="top">
 				<br><br><br>
 				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+movied2[0]);
-				if(moviec2[0].contains("%")){
-					String moviec3[]=moviec2[0].split("%");
-					moviec2[0]="";
+				System.out.println(moviename22[qe]+" "+year1);
+				if(moviename22[qe].contains("%")){
+					String moviec3[]=moviename22[qe].split("%");
+					moviename22[qe]="";
 					for(int hk=0;hk<moviec3.length;hk++){
 						if(hk==moviec3.length-1){
-							moviec2[0]=moviec2[0]+moviec3[hk];
+							moviename22[qe]=moviename22[qe]+moviec3[hk];
 						}else{
-						moviec2[0]=moviec2[0]+moviec3[hk]+"%25";
+						moviename22[qe]=moviename22[qe]+moviec3[hk]+"%25";
 						}
 						if(moviec3.length-1==0) {
-							moviec2[0]=moviec3[hk]+"%25";
+							moviename22[qe]=moviec3[hk]+"%25";
 						}
 					}
 				}
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
+				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
+					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 
@@ -493,7 +517,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
+						if(cnn2<=year1){
 							
 						wpq=con5[0].length();
 						System.out.println(wpq);
@@ -516,13 +540,246 @@ input {
 				%>
 				<img src="<%=linkHref2%>" border="2px" class="poster"/>
 				<br><span style=" color: white;font-weight:bold">
-				${boxoffice.movieNm}
+				<%= moviename22[qe]%>
+				</span>
+				</td>
+				<%}else if(i>9&&i<13){ %>
+				<%if(i==10){%>
+				</tr>
+				<tr>
+				<%} %>
+				<td width="400px" align="center" height="460px" valign="top">
+				<br><br><br>
+				<%
+				System.out.println(moviename22[qe]+" "+year1);
+				if(moviename22[qe].contains("%")){
+					String moviec3[]=moviename22[qe].split("%");
+					moviename22[qe]="";
+					for(int hk=0;hk<moviec3.length;hk++){
+						if(hk==moviec3.length-1){
+							moviename22[qe]=moviename22[qe]+moviec3[hk];
+						}else{
+						moviename22[qe]=moviename22[qe]+moviec3[hk]+"%25";
+						}
+						if(moviec3.length-1==0) {
+							moviename22[qe]=moviec3[hk]+"%25";
+						}
+					}
+				}
+				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
+					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
+				}
+				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
+				System.out.println(link);
+				Document doc = Jsoup.connect(link).get();
+
+				Elements pngs = doc.select("ul.search_list_1 li dl");
+				
+				String[] png3=new String[1];
+				
+				int tj=0;
+				int wpq=0;
+				for(Element pngs2 : pngs) {
+					String con=pngs2.text();
+					String con2[]=pngs2.toString().split("href=");
+					
+					String con3[]=con2[1].split(">");
+					String conn=pngs2.toString();
+					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
+					String con5[]=con4[1].split("</em>");
+					
+					if(tj==0) {
+						wpq=con5[0].length();
+						png3[0]=con3[0].substring(1,con3[0].length()-1);
+					}
+					if(wpq<=con5[0].length()) {
+						String con6[]=conn.split("year=");
+						int cnn2=Integer.parseInt(con6[1].substring(0,4));
+						if(cnn2<=year1){
+							
+						wpq=con5[0].length();
+						System.out.println(wpq);
+						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						}
+					}
+					tj=tj+1;
+					if(tj==8){
+						break;
+					}
+					
+				}
+				
+				String linkHref = "https://movie.naver.com/"+png3[0];
+				Document doc2 = Jsoup.connect(linkHref).get();
+				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
+				
+				String linkHref2 = pngs2.attr("src");
+				i=i+1;
+				%>
+				<img src="<%=linkHref2%>" border="2px" class="poster"/>
+				<br><span style=" color: white;font-weight:bold">
+				<%= moviename22[qe]%>
+				</span>
+				</td>
+				<%}else if(i>12&&i<16){ %>
+				<%if(i==13){%>
+				</tr>
+				<tr>
+				<%} %>
+				<td width="400px" align="center" height="420px" valign="top">
+				<br><br><br>
+				<%
+				System.out.println(moviename22[qe]+" "+year1);
+				if(moviename22[qe].contains("%")){
+					String moviec3[]=moviename22[qe].split("%");
+					moviename22[qe]="";
+					for(int hk=0;hk<moviec3.length;hk++){
+						if(hk==moviec3.length-1){
+							moviename22[qe]=moviename22[qe]+moviec3[hk];
+						}else{
+						moviename22[qe]=moviename22[qe]+moviec3[hk]+"%25";
+						}
+						if(moviec3.length-1==0) {
+							moviename22[qe]=moviec3[hk]+"%25";
+						}
+					}
+				}
+				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
+					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
+				}
+				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
+				System.out.println(link);
+				Document doc = Jsoup.connect(link).get();
+
+				Elements pngs = doc.select("ul.search_list_1 li dl");
+				
+				String[] png3=new String[1];
+				
+				int tj=0;
+				int wpq=0;
+				for(Element pngs2 : pngs) {
+					String con=pngs2.text();
+					String con2[]=pngs2.toString().split("href=");
+					
+					String con3[]=con2[1].split(">");
+					String conn=pngs2.toString();
+					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
+					String con5[]=con4[1].split("</em>");
+					
+					if(tj==0) {
+						wpq=con5[0].length();
+						png3[0]=con3[0].substring(1,con3[0].length()-1);
+					}
+					if(wpq<=con5[0].length()) {
+						String con6[]=conn.split("year=");
+						int cnn2=Integer.parseInt(con6[1].substring(0,4));
+						if(cnn2<=year1){
+							
+						wpq=con5[0].length();
+						System.out.println(wpq);
+						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						}
+					}
+					tj=tj+1;
+					if(tj==8){
+						break;
+					}
+					
+				}
+				
+				String linkHref = "https://movie.naver.com/"+png3[0];
+				Document doc2 = Jsoup.connect(linkHref).get();
+				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
+				
+				String linkHref2 = pngs2.attr("src");
+				i=i+1;
+				%>
+				<img src="<%=linkHref2%>" border="2px" class="poster"/>
+				<br><span style=" color: white;font-weight:bold">
+				<%= moviename22[qe]%>
+				</span>
+				</td>
+				<%}else if(i>15&&i<19){ %>
+				<%if(i==16){%>
+				</tr>
+				<tr>
+				<%} %>
+				<td width="400px" align="center" height="430px" valign="top">
+				<br><br><br>
+				<%
+				System.out.println(moviename22[qe]+" "+year1);
+				if(moviename22[qe].contains("%")){
+					String moviec3[]=moviename22[qe].split("%");
+					moviename22[qe]="";
+					for(int hk=0;hk<moviec3.length;hk++){
+						if(hk==moviec3.length-1){
+							moviename22[qe]=moviename22[qe]+moviec3[hk];
+						}else{
+						moviename22[qe]=moviename22[qe]+moviec3[hk]+"%25";
+						}
+						if(moviec3.length-1==0) {
+							moviename22[qe]=moviec3[hk]+"%25";
+						}
+					}
+				}
+				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
+					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
+				}
+				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
+				System.out.println(link);
+				Document doc = Jsoup.connect(link).get();
+
+				Elements pngs = doc.select("ul.search_list_1 li dl");
+				
+				String[] png3=new String[1];
+				
+				int tj=0;
+				int wpq=0;
+				for(Element pngs2 : pngs) {
+					String con=pngs2.text();
+					String con2[]=pngs2.toString().split("href=");
+					
+					String con3[]=con2[1].split(">");
+					String conn=pngs2.toString();
+					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
+					String con5[]=con4[1].split("</em>");
+					
+					if(tj==0) {
+						wpq=con5[0].length();
+						png3[0]=con3[0].substring(1,con3[0].length()-1);
+					}
+					if(wpq<=con5[0].length()) {
+						String con6[]=conn.split("year=");
+						int cnn2=Integer.parseInt(con6[1].substring(0,4));
+						if(cnn2<=year1){
+							
+						wpq=con5[0].length();
+						System.out.println(wpq);
+						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						}
+					}
+					tj=tj+1;
+					if(tj==8){
+						break;
+					}
+					
+				}
+				
+				String linkHref = "https://movie.naver.com/"+png3[0];
+				Document doc2 = Jsoup.connect(linkHref).get();
+				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
+				
+				String linkHref2 = pngs2.attr("src");
+				i=i+1;
+				%>
+				<img src="<%=linkHref2%>" border="2px" class="poster"/>
+				<br><span style=" color: white;font-weight:bold">
+				<%= moviename22[qe]%>
 				</span>
 				</td>
 				<%} %>
-				</c:forEach>
+				<%} %>
 				</tr>
-			</c:if>
 			</table>
 			</td>
 			<td><img src="../img/bg/sidebg.png"/></td>
