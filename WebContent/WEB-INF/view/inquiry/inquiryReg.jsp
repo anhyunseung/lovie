@@ -10,6 +10,7 @@ session.setAttribute("url", "/inquiry/inquiryReg.do");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/inquiry/inquiryReg.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>문의 : Lovie</title>
 <script type="text/javascript">
 function doOnload(){

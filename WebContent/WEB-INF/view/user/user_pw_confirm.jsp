@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/user/user_pw_confirm.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>Let's see the movie! : Lovie - 비밀번호 찾기</title>
 <script type="text/javascript">
 function Close_Event(){

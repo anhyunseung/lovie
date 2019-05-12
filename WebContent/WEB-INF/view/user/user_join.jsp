@@ -14,6 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/user/user_join.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>회원가입 : Lovie</title>
 <script type="text/javascript">
 <%if(SESSION_USER_ID.isEmpty()){%>

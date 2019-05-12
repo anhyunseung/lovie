@@ -10,6 +10,7 @@ session.setAttribute("url", "/bbm/bbmReg.do");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/bbm/bbmReg.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>자유게시판 : Lovie</title>
 <script type="text/javascript">
 function doOnload(){

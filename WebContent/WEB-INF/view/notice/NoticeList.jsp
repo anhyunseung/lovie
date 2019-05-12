@@ -27,6 +27,7 @@ if (rList==null){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/notice/NoticeList.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>공지사항 : Lovie</title>
 <script type="text/javascript">
 function doSubmit(f) {

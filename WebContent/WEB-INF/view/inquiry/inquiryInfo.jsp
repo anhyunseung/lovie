@@ -39,6 +39,7 @@ System.out.println("ss_user_id : "+ss_user_id);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/inquiry/inquiryInfo.do/../../img/common/icon.ico" type="image/x-icon" />
 <title><%=CmmUtil.nvl(rDTO.getTitle())%> - 문의 : Lovie</title>
 <script type="text/javascript">
 <%

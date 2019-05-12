@@ -8,6 +8,7 @@ String url = (String)session.getAttribute("url");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/user/user_login_proc.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>로그인 : Lovie</title>
 <script type="text/javascript">
    <%if(msg.equals("")){%>

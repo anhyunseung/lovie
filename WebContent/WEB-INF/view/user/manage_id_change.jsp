@@ -10,6 +10,7 @@ System.out.print(SS_USER_ID_CH);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/user/manage_id_change.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>Let's see the movie! : Lovie - 아이디 변경</title>
 <script type="text/javascript">
 function doIdchack(f){

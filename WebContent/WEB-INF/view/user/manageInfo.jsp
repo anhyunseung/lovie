@@ -21,6 +21,7 @@ if (rDTO==null){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/user/manageInfo.do/../../img/common/icon.ico" type="image/x-icon" />
 <title><%=SESSION_USER_NO%> - 회원관리 : Lovie</title>
 <script type="text/javascript">
 <%if(SESSION_USER_ID.equals("admin")){

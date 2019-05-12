@@ -10,6 +10,7 @@ String USER_NAME = (String)session.getAttribute("USER_NAME");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://localhost:8080/user/user_pw_proc.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>Let's see the movie! : Lovie - 처리 중</title>
 <script type="text/javascript">
    <%if(msg.equals("")){%>

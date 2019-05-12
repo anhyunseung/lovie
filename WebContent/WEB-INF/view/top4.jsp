@@ -13,7 +13,6 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService" %>
 <%@ page import="org.jsoup.select.Elements" %>
-<%@ page import="org.jsoup.nodes.Element" %>
 <%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
 <%@ page import="java.util.Random" %>
 
@@ -35,7 +34,7 @@
 	int day=dt.getDate()-1;
 	int mon=dt.getMonth();
 	
-	int randomyearsub=year-2010;
+	int randomyearsub=year-2003;
 	int randomyear = randomGenerator.nextInt(randomyearsub);
 	int randommonth=randomGenerator.nextInt(11);
 	int randomday=randomGenerator.nextInt(30)+1;
@@ -49,9 +48,22 @@
 		}
 	}
 	
-	if(randommonth==3||randommonth==5||randommonth==8||randommonth==10){
-		if(randomday==31){
-			randomday=randomGenerator.nextInt(29)+1;
+	if(randomyear==0){
+		if(randommonth<10){
+			randommonth=randomGenerator.nextInt(1)+10;
+		}
+		if(randommonth==10){
+			if(randomday<11){
+				randomday=randomGenerator.nextInt(19)+11;
+			}
+		}
+	}
+	
+	if(randomyear>0){
+		if(randommonth==3||randommonth==5||randommonth==8||randommonth==10){
+			if(randomday==31){
+				randomday=randomGenerator.nextInt(29)+1;
+			}
 		}
 	}
 	
@@ -61,8 +73,9 @@
 		}
 	}
 	
-	year=randomyear+2010;
-	mon=randommonth+1;
+	dt.setDate(dt.getDate()-1);
+	year=dt.getYear()+2003;
+	mon=dt.getMonth()+1; 
 	String month=""; 
 	if(mon<10) { 
 		month="0"+mon; 
@@ -70,7 +83,7 @@
 	month=""+mon; 
 	} 
 	
-	day=randomday; 
+	day=dt.getDate(); 
 	String day2=""; 
 	if(day<10) {
 	day2="0"+day; 
@@ -80,7 +93,7 @@
 	String date=year+month+day2;
 	System.out.println(date);
 	
-	String targetDt =	date;
+	String targetDt =	request.getParameter("targetDt")==null?date:request.getParameter("targetDt");
 	String itemPerPage =request.getParameter("itemPerPage")==null?"9":request.getParameter("itemPerPage"); 
 	String key = "257a360ca175e71f65d605e4238a4d90";
 	KobisOpenAPIRestService service = new KobisOpenAPIRestService(key); 
@@ -99,7 +112,6 @@
 	movie = value.toString();
 	System.out.println(movie);
 	String moviec[]=movie.split("movieNm=");
-	String movied[]=movie.split("openDt=");
 	int i=1;
 	request.setAttribute("map",map);
 	
@@ -290,65 +302,15 @@ input {
 			<%if(i<=3){ %>
 				<td width="400px" align="center" height="350px" valign="top">
 				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+" "+movied2[0]);
-				if(moviec2[0].contains("%")){
-					String moviec3[]=moviec2[0].split("%");
-					moviec2[0]="";
-					for(int hk=0;hk<moviec3.length;hk++){
-						if(hk==moviec3.length-1){
-							moviec2[0]=moviec2[0]+moviec3[hk];
-						}else{
-						moviec2[0]=moviec2[0]+moviec3[hk]+"%25";
-						}
-						if(moviec3.length-1==0) {
-							moviec2[0]=moviec3[hk]+"%25";
-						}
-					}
-				}
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
-				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				String moviec2[]=moviec[i].split(",");
+				System.out.println(moviec2[0]);
+				String link = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+moviec2[0];
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
+
+				Elements pngs = doc.select("a.sp_thmb");
 				
-				Elements pngs = doc.select("ul.search_list_1 li dl");
-				
-				String[] png3=new String[1];
-				
-				int tj=0;
-				int wpq=0;
-				for(Element pngs2 : pngs) {
-					String con=pngs2.text();
-					String con2[]=pngs2.toString().split("href=");
-					
-					String con3[]=con2[1].split(">");
-					String conn=pngs2.toString();
-					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
-					String con5[]=con4[1].split("</em>");
-					
-					if(tj==0) {
-						wpq=con5[0].length();
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-					}
-					if(wpq<=con5[0].length()) {
-						String con6[]=conn.split("year=");
-						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
-						wpq=con5[0].length();
-						System.out.println(wpq);
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						}
-					}
-					tj=tj+1;
-					if(tj==8){
-						break;
-					}
-				}
-				
-				String linkHref = "https://movie.naver.com/"+png3[0];
+				String linkHref = pngs.attr("href");
 				Document doc2 = Jsoup.connect(linkHref).get();
 				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
 				
@@ -369,65 +331,15 @@ input {
 				<td width="400px" align="center" height="450px" valign="top">
 				<br><br><br><br>
 				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+movied2[0]);
-				if(moviec2[0].contains("%")){
-					moviec2[0]="";
-					String moviec3[]=moviec2[0].split("%");
-					for(int hk=0;hk<moviec3.length;hk++){
-						if(hk==moviec3.length-1){
-							moviec2[0]=moviec2[0]+moviec3[hk];
-						}else{
-						moviec2[0]=moviec2[0]+moviec3[hk]+"%25";
-						}
-						if(moviec3.length-1==0) {
-							moviec2[0]=moviec3[hk]+"%25";
-						}
-					}
-				}
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
-				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				String moviec2[]=moviec[i].split(",");
+				System.out.println(moviec2[0]);
+				String link = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+moviec2[0];
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 
-				Elements pngs = doc.select("ul.search_list_1 li dl");
+				Elements pngs = doc.select("a.sp_thmb");
 				
-				String[] png3=new String[1];
-				
-				int tj=0;
-				int wpq=0;
-				for(Element pngs2 : pngs) {
-					String con=pngs2.text();
-					String con2[]=pngs2.toString().split("href=");
-					
-					String con3[]=con2[1].split(">");
-					String conn=pngs2.toString();
-					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
-					String con5[]=con4[1].split("</em>");
-					
-					if(tj==0) {
-						wpq=con5[0].length();
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-					}
-					if(wpq<=con5[0].length()) {
-						String con6[]=conn.split("year=");
-						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
-						wpq=con5[0].length();
-						System.out.println(wpq);
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						}
-					}
-					tj=tj+1;
-					if(tj==8){
-						break;
-					}
-				}
-				
-				String linkHref = "https://movie.naver.com/"+png3[0];
+				String linkHref = pngs.attr("href");
 				Document doc2 = Jsoup.connect(linkHref).get();
 				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
 				
@@ -447,67 +359,15 @@ input {
 				<td width="400px" align="center" height="420px" valign="top">
 				<br><br><br>
 				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+movied2[0]);
-				if(moviec2[0].contains("%")){
-					moviec2[0]="";
-					String moviec3[]=moviec2[0].split("%");
-					for(int hk=0;hk<moviec3.length;hk++){
-						if(hk==moviec3.length-1){
-							moviec2[0]=moviec2[0]+moviec3[hk];
-						}else{
-						moviec2[0]=moviec2[0]+moviec3[hk]+"%25";
-						}
-						if(moviec3.length-1==0) {
-							moviec2[0]=moviec3[hk]+"%25";
-						}
-					}
-				}
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
-				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				String moviec2[]=moviec[i].split(",");
+				System.out.println(moviec2[0]);
+				String link = "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query="+moviec2[0];
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 
-				Elements pngs = doc.select("ul.search_list_1 li dl");
+				Elements pngs = doc.select("a.sp_thmb");
 				
-				String[] png3=new String[1];
-				
-				int tj=0;
-				int wpq=0;
-				for(Element pngs2 : pngs) {
-					String con=pngs2.text();
-					String con2[]=pngs2.toString().split("href=");
-					
-					String con3[]=con2[1].split(">");
-					String conn=pngs2.toString();
-					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
-					String con5[]=con4[1].split("</em>");
-					
-					if(tj==0) {
-						wpq=con5[0].length();
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-					}
-					if(wpq<=con5[0].length()) {
-						String con6[]=conn.split("year=");
-						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
-							
-						wpq=con5[0].length();
-						System.out.println(wpq);
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						}
-					}
-					tj=tj+1;
-					if(tj==8){
-						break;
-					}
-					
-				}
-				
-				String linkHref = "https://movie.naver.com/"+png3[0];
+				String linkHref = pngs.attr("href");
 				Document doc2 = Jsoup.connect(linkHref).get();
 				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
 				
