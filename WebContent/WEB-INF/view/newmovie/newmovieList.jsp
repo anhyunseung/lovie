@@ -29,11 +29,11 @@
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
 	
-	Date dt= new Date(); 
-	Random randomGenerator = new Random();
+	Date dt= new Date();
+	dt.setDate(dt.getDate()-1);
 	int year=dt.getYear()+1900;
-	int day=dt.getDate()-1;
-	int mon=dt.getMonth();
+	int day=dt.getDate();
+	int mon=dt.getMonth()+1;
 	
 	String month=""; 
 	if(mon<10) { 
