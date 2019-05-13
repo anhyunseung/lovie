@@ -31,6 +31,21 @@ public class UpMovieController {
          ModelMap model) throws Exception {
 	   
 	   log.info("upmovieList");
+	   
+	   String count=request.getParameter("count");
+		
+		if(count==null) {
+			count="0";
+		}
+		
+		
+		System.out.println(Integer.parseInt(count));
+		
+		int count2 = Integer.parseInt(count);
+		
+		System.out.println(count2);
+		
+		request.setAttribute("count", count2);
 
       return "/upmovie/upmovieList";
    }

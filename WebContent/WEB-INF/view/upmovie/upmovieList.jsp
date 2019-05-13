@@ -23,20 +23,34 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	request.setCharacterEncoding("UTF-8");
-	session.setAttribute("url", "/top.do");
+	session.setAttribute("url", "/upmovie/upmovieList.do");
 	String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
+	String SES_year = CmmUtil.nvl((String) session.getAttribute("year"));
+	String SES_month = CmmUtil.nvl((String) session.getAttribute("month"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
+	
+	int count = (int)request.getAttribute("count");
+	System.out.println("count : " + count);
 	
 	int year1=2019;
 	int mon1=1;
 	int day1=1;
 
 	Date dt= new Date(); 
+	dt.setDate(dt.getDate()-7);
+	int year3=dt.getYear()+1900;
 	int mon3=dt.getMonth()+1;
 	int day3=dt.getDate();
-
+	
+	if(SES_year.isEmpty()){
+		SES_year=year3+"";
+	}
+	if(SES_month.isEmpty()){
+		SES_month=mon3+"";
+	}
+	
 	int day4=28;
 	int i=0;
 	int n=mon1+1;
@@ -133,6 +147,9 @@
 		}
 	}
 	}
+	if(q>=9+count*9){
+		break;
+	}
 	}
 	i=1;
 %>
@@ -144,17 +161,32 @@
 <title>Let's see the movie! : Lovie</title>
 <script type="text/javascript">
 function doSubmit(f) {
-   if(f.user_id.value == ""){
-      alert("아이디 또는 비밀번호를 입력해주세요.");
-      f.user_id.focus();
-      return false;
-   }
-   if(f.pwd1.value == ""){
-      alert("아이디 또는 비밀번호를 입력해주세요.");
-      f.pwd1.focus();
-      return false;
-   }
+	   if(f.user_id.value == ""){
+	      alert("아이디 또는 비밀번호를 입력해주세요.");
+	      f.user_id.focus();
+	      return false;
+	   }
+if(f.pwd1.value == ""){
+   alert("아이디 또는 비밀번호를 입력해주세요.");
+   f.pwd1.focus();
+   return false;
 }
+}
+
+function doSubmit2(s) {
+	var now = new Date();
+	now.setDate(now.getDate()-1);
+	var nowY = now.getFullYear();
+	var nowM = now.getMonth()+1;
+	   if(s.year.value == nowY){
+		   if(s.month.value>nowM){
+	      alert("아직 개봉되지 않은 날자입니다.");
+	      s.month.focus();
+	      return false;
+		   }
+	   }
+}
+
 function doId(){
     location.href="/user/user_login_proc.do";
 }
@@ -184,13 +216,24 @@ input {
       img.poster{
       border:2px solid gray;
       }
+      
+input {
+        vertical-align: middle;
+      }
+      input.img-button1 {
+        background: url( "../img/upmovie/date.png" ) no-repeat;
+        border: none;
+        height: 22px;
+        width: 76px;
+        cursor: pointer;
+      }
 </style>
 
 </head>
 <body background="../img/top/bg.png">
 <div>
+	<table border="1" height="1510px" width="1800px">
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
-	<table border="0" height="1510px" width="1800px">
 		<tr>
 			<td width="48px" height="167px"></td>
 			<td colspan="4" align="right" width="1500px">
@@ -280,6 +323,7 @@ input {
 			<td>
 			</td>
 			</tr>
+			</form>
 			<tr>
 			<td height="25px">
 			</td>
@@ -304,12 +348,53 @@ input {
 			 &nbsp;&nbsp;&nbsp;
 			 <%}%>
 				</td>
-			<td></td>
+			<td>
+			<form name="s" method="post" action="/upmovie/upmovieDate.do" onsubmit="return doSubmit2(this);">
+			<table>
+			<tr>
+			<td>
+			<select name="year">
+			<%for(int cyear=year3;cyear>=2010;cyear--) {%>
+			 <option value="<%=cyear%>" 
+			 <%if(cyear==Integer.parseInt(SES_year)){%>
+			 selected="selected"
+			 <%} %>
+			 ><%=cyear%></option>
+			 <%} %>
+            </select>
+            <img src="../img/upmovie/year.png"/>
+            <select name="month">
+			<%for(int cmonth=1;cmonth<=12;cmonth++) {%>
+			 <option value="<%=cmonth%>"
+			 <%if(cmonth==Integer.parseInt(SES_month)){%>
+			 selected="selected"
+			 <%} %>
+			 ><%=cmonth%></option>
+			 <%} %>
+            </select>
+            <img src="../img/upmovie/month.png"/>
+            <input type="submit" class="img-button1" value=" "/>
+            
+            </td>
+            </tr>
+            </table>
+            </form>
+			</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td></td>
 			<td>
+			<%if(count>=1) {%>
+			<a href="upmovieList.do?count=<%=count-1%>">
+   			<span style=" color: white">
+   			<b>
+   			<
+   			</b>
+   			</span>
+   			</a>
+			<%} %>
+			<br>
 				<h1>
 					<b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
 				</h1>
@@ -317,7 +402,14 @@ input {
 			<td valign="top">
 			<table  border="0">
 			<tr>
-			<%for(int qe=0;qe<q;qe++){ %>
+			
+			<!-- 반복문 시작  -->
+			<%
+			int count2=9+count*9;
+			if(count2>=q){
+				count2=q;
+			}
+			for(int qe=count*9;qe<count2;qe++){ %>
 			<%if(i<=3){ %>
 				<td width="400px" align="center" height="350px" valign="top">
 				<%
@@ -470,7 +562,7 @@ input {
 				</tr>
 				<tr>
 				<%} %>
-				<td width="400px" align="center" height="460px" valign="top">
+				<td width="400px" align="center" height="420px" valign="top">
 				<br><br><br>
 				<%
 				System.out.println(moviename22[qe]+" "+year1);
@@ -543,7 +635,7 @@ input {
 				<%= moviename22[qe]%>
 				</span>
 				</td>
-				<%}else if(i>9&&i<13){ %>
+				<%-- <%}else if(i>9&&i<13){ %>
 				<%if(i==10){%>
 				</tr>
 				<tr>
@@ -778,16 +870,26 @@ input {
 				<br><span style=" color: white;font-weight:bold">
 				<%= moviename22[qe]%>
 				</span>
-				</td>
+				</td> --%>
 				<%} %>
 				<%} %>
 				</tr>
 			</table>
 			</td>
-			<td><img src="../img/bg/sidebg.png"/></td>
+			<td>
+			<%if(i==10) {%>
+			<a href="upmovieList.do?count=<%=count+1%>">
+   			<span style=" color: white">
+   			<b>
+   			>
+   			</b>
+   			</span>
+   			</a>
+			<%} %>
+			<br>
+			<img src="../img/bg/sidebg.png"/></td>
 		</tr>
 	</table>
-	</form>
 </div>
 </body>
 </html>
