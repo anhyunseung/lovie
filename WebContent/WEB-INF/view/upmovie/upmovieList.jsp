@@ -140,7 +140,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="http://localhost:8080/top.do/../img/common/icon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="http://localhost:8080/upmovie/upmovieList.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>Let's see the movie! : Lovie</title>
 <script type="text/javascript">
 function doSubmit(f) {
@@ -210,13 +210,13 @@ input {
 			&nbsp;
 			
 			<a
-				href="/bbm/bbmList.do" target="ifrMain"> 
+				href="/newmovie/newmovieList.do" target="ifrMain"> 
 				<img src="../img/top/newmo.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/bbm/bbmList.do" target="ifrMain"> 
+				href="/upmovie/upmovieList.do" target="ifrMain"> 
 				<img src="../img/top/upmo.png"/>
 			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;

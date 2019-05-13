@@ -118,13 +118,13 @@ background-image:url('../img/bg/framebgd.png');
 			&nbsp;
 			
 			<a
-				href="/bbm/bbmList.do" target="ifrMain"> 
+				href="/newmovie/newmovieList.do" target="ifrMain"> 
 				<img src="../img/top/newmo.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/bbm/bbmList.do" target="ifrMain"> 
+				href="/upmovie/upmovieList.do" target="ifrMain"> 
 				<img src="../img/top/upmo.png"/>
 			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
