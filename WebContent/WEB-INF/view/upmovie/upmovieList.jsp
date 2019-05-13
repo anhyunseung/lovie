@@ -371,7 +371,7 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviename22[qe].equals("패션왕")){
 						break;
 					}
 				}
@@ -448,7 +448,7 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviename22[qe].equals("패션왕")){
 						break;
 					}
 				}
@@ -525,7 +525,7 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviename22[qe].equals("패션왕")){
 						break;
 					}
 					
@@ -603,7 +603,7 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviename22[qe].equals("패션왕")){
 						break;
 					}
 					
@@ -669,6 +669,7 @@ input {
 					if(tj==0) {
 						wpq=con5[0].length();
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						
 					}
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
@@ -681,7 +682,7 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviename22[qe].equals("패션왕")){
 						break;
 					}
 					
@@ -747,6 +748,7 @@ input {
 					if(tj==0) {
 						wpq=con5[0].length();
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						
 					}
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
@@ -759,7 +761,7 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviename22[qe].equals("패션왕")){
 						break;
 					}
 					

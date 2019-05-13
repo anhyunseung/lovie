@@ -332,18 +332,19 @@ input {
 					if(tj==0) {
 						wpq=con5[0].length();
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						
 					}
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
+						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
 						wpq=con5[0].length();
 						System.out.println(wpq);
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviec2[0].equals("패션왕")){
 						break;
 					}
 				}
@@ -411,18 +412,19 @@ input {
 					if(tj==0) {
 						wpq=con5[0].length();
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						
 					}
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
+						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
 						wpq=con5[0].length();
 						System.out.println(wpq);
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviec2[0].equals("패션왕")){
 						break;
 					}
 				}
@@ -489,11 +491,12 @@ input {
 					if(tj==0) {
 						wpq=con5[0].length();
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						
 					}
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])){
+						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
 							
 						wpq=con5[0].length();
 						System.out.println(wpq);
@@ -501,7 +504,7 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8){
+					if(tj==8||moviec2[0].equals("패션왕")){
 						break;
 					}
 					
