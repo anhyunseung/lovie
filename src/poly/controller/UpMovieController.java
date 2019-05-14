@@ -7,6 +7,7 @@ import java.util.Iterator;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class UpMovieController {
    private ICommonService commonService;
    
    @RequestMapping(value="/upmovie/upmovieList", method=RequestMethod.GET)
-   public String Top4(HttpServletRequest request, HttpServletResponse response, 
+   public String upmovieList(HttpServletRequest request, HttpServletResponse response, 
          ModelMap model) throws Exception {
 	   
 	   log.info("upmovieList");
@@ -46,6 +47,25 @@ public class UpMovieController {
 		System.out.println(count2);
 		
 		request.setAttribute("count", count2);
+
+      return "/upmovie/upmovieList";
+   }
+   
+   @RequestMapping(value="/upmovie/upmovieDate", method=RequestMethod.POST)
+   public String upmovieDate(HttpServletRequest request,HttpSession session, HttpServletResponse response, 
+         ModelMap model) throws Exception {
+	   
+	   log.info("upmovieDate");
+	   
+	   String year=request.getParameter("year");
+		
+	   String month=request.getParameter("month");
+		
+		int count2 = 0;
+		
+		request.setAttribute("count", count2);
+		session.setAttribute("upmyear", year);
+		session.setAttribute("upmmonth", month);
 
       return "/upmovie/upmovieList";
    }

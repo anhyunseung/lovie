@@ -26,20 +26,16 @@
 	session.setAttribute("url", "/upmovie/upmovieList.do");
 	String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
-	String SES_year = CmmUtil.nvl((String) session.getAttribute("year"));
-	String SES_month = CmmUtil.nvl((String) session.getAttribute("month"));
+	String SES_year = CmmUtil.nvl((String) session.getAttribute("upmyear"));
+	String SES_month = CmmUtil.nvl((String) session.getAttribute("upmmonth"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
 	
 	int count = (int)request.getAttribute("count");
 	System.out.println("count : " + count);
-	
-	int year1=2019;
-	int mon1=1;
-	int day1=1;
 
 	Date dt= new Date(); 
-	dt.setDate(dt.getDate()-7);
+	dt.setDate(dt.getDate()-4);
 	int year3=dt.getYear()+1900;
 	int mon3=dt.getMonth()+1;
 	int day3=dt.getDate();
@@ -51,6 +47,10 @@
 		SES_month=mon3+"";
 	}
 	
+	int year1=Integer.parseInt(SES_year);
+	int mon1=Integer.parseInt(SES_month);
+	int day1=1;
+	
 	int day4=28;
 	int i=0;
 	int n=mon1+1;
@@ -61,14 +61,16 @@
 	day4=28;
 	String[] date1=new String[7];
 
-	for(mon1=1;mon1<=n;mon1++){
-		if(mon1==mon3){
-			day4=day3;
-		}
+	for(mon1=Integer.parseInt(SES_month);mon1<=n;mon1++){
 		if(mon1==n){
 			day4=1;
 		}
-		for(day1=1;day1<=day4;day1=day1+7){
+		if(Integer.parseInt(SES_month)==mon3){
+			n=mon1;
+			day4=day3;
+		}
+		
+		for(day1=1;day1<=day4;day1=day1+5){
 			
 			if(mon1<10) { 
 					month="0"+mon1; 
@@ -81,13 +83,13 @@
 				}else { 
 					day2=""+day1; 
 				}
-			date1[i]="2019"+month+day2;
+			date1[i]=year1+month+day2;
 			System.out.println(date1[i]+" "+i);
 			i++;
 		}
 	}
 
-	mon1=1;
+	mon1=Integer.parseInt(SES_month);
 	int q=0;
 	String mon5="";
 	if(mon1<10) { 
@@ -146,9 +148,6 @@
 			q=q+1;
 		}
 	}
-	}
-	if(q>=9+count*9){
-		break;
 	}
 	}
 	i=1;
@@ -232,7 +231,7 @@ input {
 </head>
 <body background="../img/top/bg.png">
 <div>
-	<table border="1" height="1510px" width="1800px">
+	<table border="0" height="1510px" width="1800px">
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
 		<tr>
 			<td width="48px" height="167px"></td>
@@ -430,6 +429,9 @@ input {
 				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
 					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
+				if(moviename22[qe].equals("비정한 도시 감독판")){
+					moviename22[qe]="비정한 도시";
+				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
@@ -456,7 +458,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=year1){
+						if(cnn2<=year1&&cnn2>=year1-4){
 						wpq=con5[0].length();
 						System.out.println(wpq);
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
@@ -507,6 +509,9 @@ input {
 				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
 					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
+				if(moviename22[qe].equals("비정한 도시 감독판")){
+					moviename22[qe]="비정한 도시";
+				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
@@ -533,7 +538,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=year1){
+						if(cnn2<=year1&&cnn2>=year1-4){
 						wpq=con5[0].length();
 						System.out.println(wpq);
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
@@ -583,6 +588,9 @@ input {
 				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
 					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
+				if(moviename22[qe].equals("비정한 도시 감독판")){
+					moviename22[qe]="비정한 도시";
+				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
@@ -609,7 +617,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=year1){
+						if(cnn2<=year1&&cnn2>=year1-4){
 							
 						wpq=con5[0].length();
 						System.out.println(wpq);
@@ -687,7 +695,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=year1){
+						if(cnn2<=year1&&cnn2>=year1-4){
 							
 						wpq=con5[0].length();
 						System.out.println(wpq);
@@ -766,7 +774,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=year1){
+						if(cnn2<=year1&&cnn2>=year1-4){
 							
 						wpq=con5[0].length();
 						System.out.println(wpq);
@@ -845,7 +853,7 @@ input {
 					if(wpq<=con5[0].length()) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=year1){
+						if(cnn2<=year1&&cnn2>=year1-4){
 							
 						wpq=con5[0].length();
 						System.out.println(wpq);
@@ -877,7 +885,7 @@ input {
 			</table>
 			</td>
 			<td>
-			<%if(i==10) {%>
+			<%if(q>(count+1)*9) {%>
 			<a href="upmovieList.do?count=<%=count+1%>">
    			<span style=" color: white">
    			<b>

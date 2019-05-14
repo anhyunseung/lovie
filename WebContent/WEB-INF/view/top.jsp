@@ -310,6 +310,9 @@ input {
 				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
 					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
+				if(moviec2[0].equals("비정한 도시 감독판")){
+					moviec2[0]="비정한 도시";
+				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
@@ -390,6 +393,9 @@ input {
 				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
 					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
+				if(moviec2[0].equals("비정한 도시 감독판")){
+					moviec2[0]="비정한 도시";
+				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
@@ -468,6 +474,9 @@ input {
 				}
 				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
 					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
+				}
+				if(moviec2[0].equals("비정한 도시 감독판")){
+					moviec2[0]="비정한 도시";
 				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
 				System.out.println(link);
