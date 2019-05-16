@@ -61,6 +61,10 @@ function doDetail(seq){
 }
 </script>
 <style>
+a.line:hover{
+ color:gray;
+ text-decoration: underline;
+ }
 input {
         vertical-align: middle;
       }
@@ -71,17 +75,17 @@ input {
         width: 58px;
         cursor: pointer;
       }
-div.framebgt
+div.infot
 {
-background-image:url('../img/bg/framebgt.png');
+background-image:url('../img/bg/infot.png');
 }
 div.framebgm
 {
 background-image:url('../img/bg/framebgm.png');
 }
-div.framebgm1
+div.framebgm
 {
-background-image:url('../img/bg/framebgm1.png');
+background-image:url('../img/bg/framebgm.png');
 }
 div.framebgm2
 {
@@ -91,15 +95,19 @@ div.framebgd
 {
 background-image:url('../img/bg/framebgd.png');
 }
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 </style>
 </head>
 <body background="../img/top/bg.png">
+<font face='Segoe UI' style=' line-height:1.4'>
 <div>
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
 	<table border="0" height="500px" width="1800px" >
 		<tr>
 			<td width="48px" height="167px"></td>
-			<td colspan="4" align="right" width="1500px">
+			<td colspan="4" align="left" width="1500px">
 			
 			<a href="/top.do">
 				<img src="../img/common/Logo.png"/>
@@ -158,7 +166,7 @@ background-image:url('../img/bg/framebgd.png');
 				<br>
 				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
 				<a href="/user/manageList.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -167,7 +175,7 @@ background-image:url('../img/bg/framebgd.png');
 			 <img src="../img/top/inhi.png"/>
 				<%}else{%>
 				<a href="/user/userInfo.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -224,27 +232,17 @@ background-image:url('../img/bg/framebgd.png');
 			
 			
 			
-<div class="framebgt">
+
+<div class="infot">
 <table border="0" width="100%">
 <tr>
-<td align="center"><br>
-<a href="/notice/NoticeList.do">
-<img src="../img/notice/nott.png" />
-</a>
-</td>
-</tr>
-</table>
-</div>
-<div class="framebgm1">
-<table border="0" width="100%">
-<tr>
-  <td width="13%" align="center"> <img src="../img/total/wrin.png"/></td>
-  <td width="54%" align="center"><img src="../img/total/tit.png"/></td>
-  <td width="13%" align="center"><img src="../img/total/wriu.png"/></td>
-  <td width="90" align="center"><img src="../img/total/wrid.png"/></td>
 </tr>
    <tr>
    <td colspan="4">
+   
+ <h2>&nbsp;&nbsp;&nbsp;  
+   공지사항
+   </h2>
    <hr>
    </td>
    </tr>
@@ -281,7 +279,7 @@ for (int i=0;i<a;i++){
    <input type="hidden" name="seq" value="<%=CmmUtil.nvl(rDTO.getnotice_seq())%>">
    </td>
    <td width="54%">
-   <a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getnotice_seq())%>');">
+   <a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getnotice_seq())%>');" class="line">
                <span style=" color: black;font-weight:bold">
                <%=CmmUtil.nvl(rDTO.getTitle())%>
                </span>
@@ -446,10 +444,9 @@ for (int i=0;i<a;i++){
 </table>
 </div>
 			<div class="framebgd">
-   <table>
+   			<table height="27px">
    <tr>
    <td>
-   <br>
    </td>
    </tr>
    </table>
@@ -465,6 +462,6 @@ for (int i=0;i<a;i++){
 </div>
 
 
-
+</font>
 </body>
 </html>

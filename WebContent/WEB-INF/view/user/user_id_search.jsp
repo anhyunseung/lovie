@@ -43,6 +43,9 @@ function Close_Event(){
 </script>
 
 <style>
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 input {
         vertical-align: middle;
       }
@@ -57,6 +60,7 @@ input {
 
 </head>
 <body background="../img/user/userid/idfbg.png">
+<font face='Segoe UI' style=' line-height:1.4'>
 <div>
 <form name="f" method="post" action="/user/user_id_search_proc.do" onsubmit="return doSubmit(this);">
 
@@ -115,5 +119,6 @@ input {
 </table>
 </form>
 </div>
+</font>
 </body>
 </html>

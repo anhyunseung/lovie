@@ -54,6 +54,9 @@ System.out.println("user_id : "+ SESSION_USER_ID);
    }
 </script>
 <style>
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 input {
         vertical-align: middle;
         background-repeat: no-repeat;
@@ -68,6 +71,7 @@ input {
 </style>
 </head>
 <body background="../img/user/userpw/pwfbg.png">
+<font face='Segoe UI' style=' line-height:1.4'>
 <%
 if (SESSION_USER_ID.isEmpty()){
 %>
@@ -118,5 +122,6 @@ if (SESSION_USER_ID.isEmpty()){
          </tr>
       </table>
    </form>
+   </font>
 </body>
 </html>

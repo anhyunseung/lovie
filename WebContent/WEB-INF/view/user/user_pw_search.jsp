@@ -63,6 +63,9 @@
 	}
 </script>
 <style>
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 input {
         vertical-align: middle;
       }
@@ -76,6 +79,7 @@ input {
 </style>
 </head>
 <body background="../img/user/userpw/pwfbg.png" >
+<font face='Segoe UI' style=' line-height:1.4'>
 	<form name="f" method="post" action="user_pw_search_proc.do"
 		onsubmit="return doSubmit(this);">
 		<table width="460">
@@ -160,5 +164,6 @@ input {
 			</tr>
 		</table>
 	</form>
-</body>
-</html>
+	</font>
+	</body>
+	</html>

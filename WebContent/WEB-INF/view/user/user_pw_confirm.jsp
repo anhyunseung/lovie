@@ -14,6 +14,9 @@ function Close_Event(){
 }
 </script>
 <style>
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 input {
         vertical-align: middle;
       }
@@ -27,6 +30,7 @@ input {
 </style>
 </head>
 <body background="../img/user/userpw/pwfbg.png">
+<font face='Segoe UI' style=' line-height:1.4'>
 <table width="460">
 <tr>
 <td align="center">
@@ -44,5 +48,6 @@ input {
       </td>
 </tr>
 </table>
+</font>
 </body>
 </html>

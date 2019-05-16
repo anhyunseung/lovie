@@ -59,6 +59,13 @@ function doSubmit(f) {
 	}
 </script>
 <style>
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
+ a.line:hover{
+ color:gray;
+ text-decoration: underline;
+ }
 input {
         vertical-align: middle;
       }
@@ -69,17 +76,17 @@ input {
         width: 58px;
         cursor: pointer;
       }
-div.framebgt
+div.framebgm
 {
-background-image:url('../img/bg/framebgt.png');
+background-image:url('../img/bg/framebgm.png');
 }
 div.framebgm
 {
 background-image:url('../img/bg/framebgm.png');
 }
-div.framebgm1
+div.infot
 {
-background-image:url('../img/bg/framebgm1.png');
+background-image:url('../img/bg/infot.png');
 }
 div.framebgm2
 {
@@ -92,12 +99,13 @@ background-image:url('../img/bg/framebgd.png');
 </style>
 </head>
 <body background="../img/top/bg.png">
+<font face='Segoe UI' style=' line-height:1.4'>
 <div>
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
 	<table border="0" height="500px" width="1800px" >
 		<tr>
 			<td width="48px" height="167px"></td>
-			<td colspan="4" align="right" width="1500px">
+			<td colspan="4" align="left" width="1500px">
 			
 			<a href="/top.do">
 				<img src="../img/common/Logo.png"/>
@@ -156,7 +164,7 @@ background-image:url('../img/bg/framebgd.png');
 				<br>
 				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
 				<a href="/user/manageList.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -165,7 +173,7 @@ background-image:url('../img/bg/framebgd.png');
 			 <img src="../img/top/inhi.png"/>
 				<%}else{%>
 				<a href="/user/userInfo.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -219,29 +227,16 @@ background-image:url('../img/bg/framebgd.png');
 				</h1>
 			</td>
 			<td valign="top" width="1184px">
-<div class="framebgt">
+
+	<div class="infot">
 	<table border="0" width="100%">
 		<tr>
-			<td align="center"><br> 
-			<a href="/inquiry/inquiryList.do">
-			<img src="../img/inquiry/inqt.png" />
-			</a>
-			</td>
-		</tr>
-	</table>
-	</div>
-	<div class="framebgm1">
-	<table border="0" width="100%">
-		<tr>
-			<td width="13%" align="center"><img src="../img/total/wrin.png" /></td>
-			<td width="54%" align="center"><img src="../img/total/tit.png" /></td>
-			<td width="13%" align="center"><img src="../img/total/wriu.png" /></td>
-			<td width="90" align="center"><img src="../img/total/wrid.png" /></td>
-		</tr>
-		<tr>
-			<td colspan="4">
-				<hr>
-			</td>
+		<td colspan="4">
+    <h2>&nbsp;&nbsp;&nbsp;  
+  문의
+   </h2>
+   <hr>
+   </td>
 		</tr>
 		</table>
 		</div>
@@ -277,7 +272,7 @@ background-image:url('../img/bg/framebgd.png');
 				%>
 			</td>
 			<td width="54%" align="left"><a
-				href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getinq_seq())%>');">
+				href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getinq_seq())%>');" class="line">
 					<span style="color: black; font-weight: bold"> <b><%=CmmUtil.nvl(rDTO.getTitle())%></b>
 				</span>
 			</a></td>
@@ -533,10 +528,9 @@ background-image:url('../img/bg/framebgd.png');
 	</table>
 </div>
 			<div class="framebgd">
-   <table>
+   			<table height="27px">
    <tr>
    <td>
-   <br>
    </td>
    </tr>
    </table>
@@ -547,5 +541,6 @@ background-image:url('../img/bg/framebgd.png');
 	</table>
 	</form>
 </div>
+</font>
 </body>
 </html>

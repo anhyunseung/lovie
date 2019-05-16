@@ -8609,7 +8609,7 @@ nhn.husky.SE_WYSIWYGStyler = jindo.$Class({
 			if(oCursorStyle.underline == "@^"){
 				this.oApp.delayedExec("EXECCOMMAND", ["underline"], 0);
 			}
-			if(oCursorStyle.italic == "@^"){
+			if(oCursorStyle.== "@^"){
 				this.oApp.delayedExec("EXECCOMMAND", ["italic"], 0);
 			}
 			if(oCursorStyle.lineThrough == "@^"){
@@ -8723,7 +8723,7 @@ nhn.husky.SE_WYSIWYGStyleGetter = jindo.$Class({
 		underline : {
 			command : "underline"
 		},
-		italic : {
+		italic: {
 			command : "italic"
 		},
 		lineThrough : {

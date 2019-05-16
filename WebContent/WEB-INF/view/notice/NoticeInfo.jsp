@@ -124,6 +124,9 @@ function doDelete2(seq){
 	}
 </script>
 <style>
+ a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 input {
         vertical-align: middle;
       }
@@ -187,11 +190,12 @@ input {
 </head>
 <body background="../img/top/bg.png">
 <div>
+<font face='Segoe UI' style=' line-height:1.4'>
 	<table border="0" height="500px" width="1800px" >
 	<form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
 		<tr>
 			<td width="48px" height="167px"></td>
-			<td colspan="4" align="right" width="1500px">
+			<td colspan="4" align="left" width="1500px">
 			
 			<a href="/top.do">
 				<img src="../img/common/Logo.png"/>
@@ -250,7 +254,7 @@ input {
 				<br>
 				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
 				<a href="/user/manageList.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -259,7 +263,7 @@ input {
 			 <img src="../img/top/inhi.png"/>
 				<%}else{%>
 				<a href="/user/userInfo.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -379,7 +383,8 @@ input {
 						content2=content.substring(70*i,70*(i+1));
 					}
 					%>
-					&nbsp;<%=content2%><br>
+					&nbsp;
+					<%=content2%><br>
 					<%
 				}
 				%>
@@ -586,9 +591,9 @@ input {
 			</table>
 			</div>
 			<div class="framebgd">
-			<table>
+   			<table height="27px">
 						<tr>
-				<td colspan="3"></br></td>
+				<td colspan="3"></td>
 			</tr>
 		</table>
 		</div>
@@ -599,6 +604,7 @@ input {
 			<td><img src="../img/bg/sidebg.png"/></td>
 		</tr>
 	</table>
+	</font>
 </div>
 </body>
 </html>

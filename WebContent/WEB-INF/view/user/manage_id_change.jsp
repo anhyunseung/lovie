@@ -32,6 +32,9 @@ function doKeyIdPw(event) {
 	}
 </script>
 <style>
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 input {
         vertical-align: middle;
         background-repeat: no-repeat;
@@ -46,6 +49,7 @@ input {
 </style>
 </head>
 <body background="../img/user/userid/idfbg.png">
+<font face='Segoe UI' style=' line-height:1.4'>
 <form name="f" method="post" action="/user/manage_id_check.do" onsubmit="return doIdchack(this);">
 <%
 if (SS_USER_ID.equals("admin")){
@@ -81,5 +85,6 @@ if (SS_USER_ID.equals("admin")){
 </tr>
 </table>
 </form>
+</font>
 </body>
 </html>

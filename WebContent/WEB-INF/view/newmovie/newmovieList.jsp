@@ -73,14 +73,14 @@ session.setAttribute("url", "/newmovie/newmovieList.do");
 	String movied[]=movie.split("openDt=");
 	int i=1;
 	request.setAttribute("map",map);
-	
+	String moviecode="";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="http://localhost:8080/newmovie/newmovieList.do/../../img/common/icon.ico" type="image/x-icon" />
-<title>Let's see the movie! : Lovie</title>
+<title>최신영화 : Lovie</title>
 <script type="text/javascript">
 function doSubmit(f) {
    if(f.user_id.value == ""){
@@ -123,16 +123,20 @@ input {
       img.poster{
       border:2px solid gray;
       }
+      a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 </style>
 
 </head>
 <body background="../img/top/bg.png">
+<font face='Segoe UI' style=' line-height:1.4'>
 <div>
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
 	<table border="0" height="1510px" width="1800px">
 		<tr>
 			<td width="48px" height="167px"></td>
-			<td colspan="4" align="right" width="1500px">
+			<td colspan="4" align="left" width="1500px">
 			
 			<a href="/top.do">
 				<img src="../img/common/Logo.png"/>
@@ -191,7 +195,7 @@ input {
 				<br>
 				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
 				<a href="/user/manageList.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -200,7 +204,7 @@ input {
 			 <img src="../img/top/inhi.png"/>
 				<%}else{%>
 				<a href="/user/userInfo.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -320,17 +324,23 @@ input {
 				}
 				
 				String linkHref = "https://movie.naver.com/"+png3[0];
+				String[] moviecodeout=linkHref.split("code=");
+				moviecode=moviecodeout[1];
 				Document doc2 = Jsoup.connect(linkHref).get();
 				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
 				
 				String linkHref2 = pngs2.attr("src");
 				i=i+1;
 				%>
+				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
 				<img src="<%=linkHref2%>" border="2px" class="poster"/>
-				<br><span style=" color: white;font-weight:bold">
-				
+				</a>
+				<br>
+				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
+				<span style=" color: white;font-weight:bold">
 				${boxoffice.movieNm}
 				</span>
+				</a>
 				</td>
 				<%}else if(i>3&&i<7){
 				if(i==4){%>
@@ -399,16 +409,23 @@ input {
 				}
 				
 				String linkHref = "https://movie.naver.com/"+png3[0];
+				String[] moviecodeout=linkHref.split("code=");
+				moviecode=moviecodeout[1];
 				Document doc2 = Jsoup.connect(linkHref).get();
 				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
 				
 				String linkHref2 = pngs2.attr("src");
 				i=i+1;
 				%>
+				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
 				<img src="<%=linkHref2%>" border="2px" class="poster"/>
-				<br><span style=" color: white;font-weight:bold">
+				</a>
+				<br>
+				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
+				<span style=" color: white;font-weight:bold">
 				${boxoffice.movieNm}
 				</span>
+				</a>
 				</td>
 				<%}else{ %>
 				<%if(i==7){%>
@@ -479,16 +496,23 @@ input {
 				}
 				
 				String linkHref = "https://movie.naver.com/"+png3[0];
+				String[] moviecodeout=linkHref.split("code=");
+				moviecode=moviecodeout[1];
 				Document doc2 = Jsoup.connect(linkHref).get();
 				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
 				
 				String linkHref2 = pngs2.attr("src");
 				i=i+1;
 				%>
+				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
 				<img src="<%=linkHref2%>" border="2px" class="poster"/>
-				<br><span style=" color: white;font-weight:bold">
+				</a>
+				<br>
+				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
+				<span style=" color: white;font-weight:bold">
 				${boxoffice.movieNm}
 				</span>
+				</a>
 				</td>
 				<%} %>
 				</c:forEach>
@@ -501,5 +525,6 @@ input {
 	</table>
 	</form>
 </div>
+</font>
 </body>
 </html>

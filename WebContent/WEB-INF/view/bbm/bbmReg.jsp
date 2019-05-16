@@ -56,6 +56,9 @@ function doOnload(){
 	}
 </script>
 <style>
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 input {
         vertical-align: middle;
       }
@@ -107,11 +110,12 @@ input {
 
 </head>
 <body background="../img/top/bg.png" onload="doOnload();">
+<font face='Segoe UI' style=' line-height:1.4'>
 <div>
 	<table border="0" height="500px" width="1800px" >
 		<tr>
 			<td width="48px" height="167px"></td>
-			<td colspan="4" align="right" width="1500px">
+			<td colspan="4" align="left" width="1500px">
 			
 			<a href="/top.do">
 				<img src="../img/common/Logo.png"/>
@@ -170,7 +174,7 @@ input {
 				<br>
 				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
 				<a href="/user/manageList.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -179,7 +183,7 @@ input {
 			 <img src="../img/top/inhi.png"/>
 				<%}else{%>
 				<a href="/user/userInfo.do" target="ifrMain"> 
-				<span style=" font: italic 1.5em Georgia, serif ;">
+				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
 				%> 
@@ -281,10 +285,9 @@ input {
        </table>
 			</div>
 			<div class="framebgd">
-   <table>
+   			<table height="27px">
    <tr>
    <td>
-   <br>
    </td>
    </tr>
    </table>
@@ -296,5 +299,6 @@ input {
 		</tr>
 	</table>
 </div>
+</font>
 </body>
 </html>

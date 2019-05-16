@@ -19,6 +19,9 @@ function Close_Event(){
 }
 </script>
 <style>
+a:link { text-decoration: none;}
+ a:visited {text-decoration: none;}
+ a:hover { text-decoration: none;}
 input {
         vertical-align: middle;
         background-repeat: no-repeat;
@@ -33,6 +36,7 @@ input {
 </style>
 </head>
 <body background="../img/user/userid/idfbg.png">
+<font face='Segoe UI' style=' line-height:1.4'>
 <%
 if (SS_USER_ID.isEmpty()){
 %>
@@ -69,5 +73,6 @@ if (SS_USER_ID.isEmpty()){
       </td>
 </tr>
 </table>
+</font>
 </body>
 </html>
