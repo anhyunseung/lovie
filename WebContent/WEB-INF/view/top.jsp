@@ -321,7 +321,39 @@ input {
 				if(moviec2[0].equals("반지의 제왕 : 두개의 탑 (확장판)")){
 					moviec2[0]="반지의 제왕 : 두개의 탑";
 				}
+				if(moviec2[0].equals("반지의 제왕 : 반지원정대 (확장판)")){
+					moviec2[0]="반지의 제왕 : 반지원정대";
+				}
+				if(moviec2[0].equals("반지의 제왕 : 왕의 귀환 (확장판)")){
+					moviec2[0]="반지의 제왕 : 왕의 귀환";
+				}
+				String movienameback="";
+				if(moviec2[0].equals("딥")||moviec2[0].equals("더 서클")||moviec2[0].equals("더 보이")||
+						moviec2[0].equals("레전드")||moviec2[0].equals("홈")||moviec2[0].equals("스파이")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+movied2[0];
+				}
+				if(moviec2[0].equals("라이언")||moviec2[0].equals("그녀")||moviec2[0].equals("슈퍼히어로")||moviec2[0].equals("눈의 여왕")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
+				}
+				if(moviec2[0].equals("노트북")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+2004;
+				}
+				if(moviec2[0].equals("러브 액츄얼리")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+2003;
+				}
+				if(moviec2[0].equals("마스터 ")&&(Integer.parseInt(movied2[0])==2013)){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
+				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				if(moviec2[0].equals(movienameback+movied2[0])||moviec2[0].equals(movienameback+(Integer.parseInt(movied2[0])-1))||
+						moviec2[0].equals(movienameback+2004)||moviec2[0].equals(movienameback+2003)){
+					moviec2[0]=movienameback;
+				}
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 				
@@ -345,7 +377,7 @@ input {
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
 						
 					}
-					if(wpq<=con5[0].length()) {
+					if(wpq<=con5[0].length()||moviec2[0].equals("가디언즈 오브 갤럭시")) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
 						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
@@ -355,7 +387,8 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8||moviec2[0].equals("패션왕")){
+					if(tj==9||moviec2[0].equals("패션왕")||moviec2[0].equals("콜드 워")||moviec2[0].equals("그것")||
+							moviec2[0].equals("더 플랜")||moviec2[0].equals("링스")){
 						break;
 					}
 				}
@@ -413,7 +446,39 @@ input {
 				if(moviec2[0].equals("반지의 제왕 : 두개의 탑 (확장판)")){
 					moviec2[0]="반지의 제왕 : 두개의 탑";
 				}
+				if(moviec2[0].equals("반지의 제왕 : 반지원정대 (확장판)")){
+					moviec2[0]="반지의 제왕 : 반지원정대";
+				}
+				if(moviec2[0].equals("반지의 제왕 : 왕의 귀환 (확장판)")){
+					moviec2[0]="반지의 제왕 : 왕의 귀환";
+				}
+				String movienameback="";
+				if(moviec2[0].equals("딥")||moviec2[0].equals("더 서클")||moviec2[0].equals("더 보이")||
+						moviec2[0].equals("레전드")||moviec2[0].equals("홈")||moviec2[0].equals("스파이")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+movied2[0];
+				}
+				if(moviec2[0].equals("라이언")||moviec2[0].equals("그녀")||moviec2[0].equals("슈퍼히어로")||moviec2[0].equals("눈의 여왕")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
+				}
+				if(moviec2[0].equals("노트북")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+2004;
+				}
+				if(moviec2[0].equals("러브 액츄얼리")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+2003;
+				}
+				if(moviec2[0].equals("마스터 ")&&(Integer.parseInt(movied2[0])==2013)){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
+				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				if(moviec2[0].equals(movienameback+movied2[0])||moviec2[0].equals(movienameback+(Integer.parseInt(movied2[0])-1))||
+						moviec2[0].equals(movienameback+2004)||moviec2[0].equals(movienameback+2003)){
+					moviec2[0]=movienameback;
+				}
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 
@@ -437,7 +502,7 @@ input {
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
 						
 					}
-					if(wpq<=con5[0].length()) {
+					if(wpq<=con5[0].length()||moviec2[0].equals("가디언즈 오브 갤럭시")) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
 						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
@@ -447,7 +512,8 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8||moviec2[0].equals("패션왕")){
+					if(tj==9||moviec2[0].equals("패션왕")||moviec2[0].equals("콜드 워")||moviec2[0].equals("그것")||
+							moviec2[0].equals("더 플랜")||moviec2[0].equals("링스")){
 						break;
 					}
 				}
@@ -505,7 +571,39 @@ input {
 				if(moviec2[0].equals("반지의 제왕 : 두개의 탑 (확장판)")){
 					moviec2[0]="반지의 제왕 : 두개의 탑";
 				}
+				if(moviec2[0].equals("반지의 제왕 : 반지원정대 (확장판)")){
+					moviec2[0]="반지의 제왕 : 반지원정대";
+				}
+				if(moviec2[0].equals("반지의 제왕 : 왕의 귀환 (확장판)")){
+					moviec2[0]="반지의 제왕 : 왕의 귀환";
+				}
+				String movienameback="";
+				if(moviec2[0].equals("딥")||moviec2[0].equals("더 서클")||moviec2[0].equals("더 보이")||
+						moviec2[0].equals("레전드")||moviec2[0].equals("홈")||moviec2[0].equals("스파이")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+movied2[0];
+				}
+				if(moviec2[0].equals("라이언")||moviec2[0].equals("그녀")||moviec2[0].equals("슈퍼히어로")||moviec2[0].equals("눈의 여왕")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
+				}
+				if(moviec2[0].equals("노트북")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+2004;
+				}
+				if(moviec2[0].equals("러브 액츄얼리")){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+2003;
+				}
+				if(moviec2[0].equals("마스터 ")&&(Integer.parseInt(movied2[0])==2013)){
+					movienameback=moviec2[0];
+					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
+				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
+				if(moviec2[0].equals(movienameback+movied2[0])||moviec2[0].equals(movienameback+(Integer.parseInt(movied2[0])-1))||
+						moviec2[0].equals(movienameback+2004)||moviec2[0].equals(movienameback+2003)){
+					moviec2[0]=movienameback;
+				}
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 
@@ -529,7 +627,7 @@ input {
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
 						
 					}
-					if(wpq<=con5[0].length()) {
+					if(wpq<=con5[0].length()||moviec2[0].equals("가디언즈 오브 갤럭시")) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
 						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
@@ -540,7 +638,8 @@ input {
 						}
 					}
 					tj=tj+1;
-					if(tj==8||moviec2[0].equals("패션왕")){
+					if(tj==9||moviec2[0].equals("패션왕")||moviec2[0].equals("콜드 워")||moviec2[0].equals("그것")||
+							moviec2[0].equals("더 플랜")||moviec2[0].equals("링스")){
 						break;
 					}
 					

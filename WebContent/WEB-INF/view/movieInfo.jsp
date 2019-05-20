@@ -104,7 +104,7 @@ input {
 <div>
 <font face='Segoe UI' style=' line-height:1.4'>
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
-	<table border="0" height="1510px" width="1800px">
+	<table border="0" height="500px" width="1800px">
 		<tr>
 			<td width="48px" height="167px"></td>
 			<td colspan="4" align="left" width="1500px">
