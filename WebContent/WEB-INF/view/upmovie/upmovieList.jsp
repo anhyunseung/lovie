@@ -256,7 +256,7 @@ input {
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="/notice/NoticeList.do"
-				target="ifrMain">
+				>
 				<img src="../img/top/notice.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
@@ -264,25 +264,25 @@ input {
 			&nbsp;
 			
 			<a
-				href="/newmovie/newmovieList.do" target="ifrMain"> 
+				href="/newmovie/newmovieList.do" > 
 				<img src="../img/top/newmo.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/upmovie/upmovieList.do" target="ifrMain"> 
+				href="/upmovie/upmovieList.do" > 
 				<img src="../img/top/upmo.png"/>
 			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/bbm/bbmList.do" target="ifrMain"> 
+				href="/bbm/bbmList.do" > 
 				<img src="../img/top/bbm.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/inquiry/inquiryList.do" target="ifrMain"> 
+				href="/inquiry/inquiryList.do" > 
 				<img src="../img/top/inq.png"/>
 			</a>
 			<br>
@@ -305,7 +305,7 @@ input {
 			<input type="password" name="pwd1" maxlength="20" style="width:110px;" onkeydown="return doKeyIdPw(event)"/>	
 				<br>
 				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
-				<a href="/user/manageList.do" target="ifrMain"> 
+				<a href="/user/manageList.do" > 
 				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
@@ -314,7 +314,7 @@ input {
 			</a>
 			 <img src="../img/top/inhi.png"/>
 				<%}else{%>
-				<a href="/user/userInfo.do" target="ifrMain"> 
+				<a href="/user/userInfo.do" > 
 				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
@@ -341,7 +341,7 @@ input {
 			<%if (SESSION_USER_ID.equals("")) {%>
 			<td colspan="2" align="left" width="245px" >
 						&nbsp;
-				<a href="/user/user_join2.do" target="ifrMain">
+				<a href="/user/user_join2.do" >
 				<img src="../img/top/join.png"/>
 				</a>
 				<a href="/user/user_id_search.do" onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
@@ -426,19 +426,11 @@ input {
 				<%
 				System.out.println(moviename22[qe]+" "+year1);
 				if(moviename22[qe].contains("%")){
-					String moviec3[]=moviename22[qe].split("%");
-					moviename22[qe]="";
-					for(int hk=0;hk<moviec3.length;hk++){
-						if(hk==moviec3.length-1){
-							moviename22[qe]=moviename22[qe]+moviec3[hk];
-						}else{
-						moviename22[qe]=moviename22[qe]+moviec3[hk]+"%25";
-						}
-						if(moviec3.length-1==0) {
-							moviename22[qe]=moviec3[hk]+"%25";
-						}
-					}
-				}
+			         moviename22[qe]=moviename22[qe].replaceAll("%", "%25");
+			      }
+			      if(moviename22[qe].contains("&")){
+			         moviename22[qe]=moviename22[qe].replaceAll("&", "%26");
+			      }
 				if(moviename22[qe].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
 					moviename22[qe]="헨젤과 그레텔: 마녀 사냥꾼";
 				}
@@ -457,7 +449,9 @@ input {
 				String movienameback="";
 				if(moviename22[qe].equals("딥")||moviename22[qe].equals("더 서클")||
 						moviename22[qe].equals("더 보이")||moviename22[qe].equals("홈")||
-						moviename22[qe].equals("레전드")||moviename22[qe].equals("스파이")){
+						moviename22[qe].equals("레전드")||moviename22[qe].equals("스파이")||
+						moviename22[qe].equals("신들의 전쟁")||moviename22[qe].equals("블라인드")||moviename22[qe].equals("레지던트")||
+					      moviename22[qe].equals("레드")||moviename22[qe].equals("골든 슬럼버")){
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+year1;
 				}
@@ -466,6 +460,10 @@ input {
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+(year1-1);
 				}
+				 if(moviename22[qe].equals("비지터")||moviename22[qe].equals("파라노말 액티비티")) {
+			         moviename22[qe]=moviename22[qe]+"2007";
+			      }
+
 				if(moviename22[qe].equals("노트북")){
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+2004;
@@ -480,9 +478,15 @@ input {
 				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				if(moviename22[qe].equals(movienameback+year1)||moviename22[qe].equals(movienameback+(year1-1))||
-						moviename22[qe].equals(movienameback+2004)||moviename22[qe].equals(movienameback+2003)){
+						moviename22[qe].equals(movienameback+2004)||moviename22[qe].equals(movienameback+2003)  ||moviename22[qe].equals(movienameback+2007)){
 					moviename22[qe]=movienameback;
 				}
+				 if(moviename22[qe].contains("%25")){
+			         moviename22[qe]=moviename22[qe].replaceAll("%25", "%");
+			      }
+			      if(moviename22[qe].contains("%26")){
+			         moviename22[qe]=moviename22[qe].replaceAll("%26", "&");
+			      }
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
 				
@@ -504,8 +508,11 @@ input {
 					if(tj==0) {
 						wpq=con5[0].length();
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						if(moviename22[qe].equals("데블")){
+				            tj=7;
+				         }
 					}
-					if(wpq<=con5[0].length()||moviename22[qe].equals("가디언즈 오브 갤럭시")) {
+					if(wpq<=con5[0].length()||moviename22[qe].equals("가디언즈 오브 갤럭시")||moviename22[qe].equals("개구쟁이 스머프")) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
 						if(cnn2<=year1&&cnn2>=year1-4){
@@ -516,7 +523,14 @@ input {
 					}
 					tj=tj+1;
 					if(tj==9||moviename22[qe].equals("패션왕")||moviename22[qe].equals("콜드 워")||
-							moviename22[qe].equals("그것")||moviename22[qe].equals("더 플랜")||moviename22[qe].equals("링스")){
+							moviename22[qe].equals("그것")||moviename22[qe].equals("더 플랜")||moviename22[qe].equals("링스")||
+							moviename22[qe].equals("눈길")||moviename22[qe].equals("그레이트 월")||moviename22[qe].equals("트롤")||
+					         moviename22[qe].equals("선생님의 일기")||moviename22[qe].equals("대결")||moviename22[qe].equals("빅")||
+					         moviename22[qe].equals("부활")||moviename22[qe].equals("괴물의 아이")||moviename22[qe].equals("카트")||
+					         moviename22[qe].equals("이브 생 로랑")||moviename22[qe].equals("살인자")||moviename22[qe].equals("링컨")||
+					         moviename22[qe].equals("더 자이언트")||moviename22[qe].equals("용의자X")||moviename22[qe].equals("나는 왕이로소이다")||
+					         moviename22[qe].equals("50/50")||moviename22[qe].equals("레지던트")||moviename22[qe].equals("발렌타인 데이")||
+					         moviename22[qe].equals("공주와 개구리")){
 						break;
 					}
 				}
@@ -581,7 +595,9 @@ input {
 				String movienameback="";
 				if(moviename22[qe].equals("딥")||moviename22[qe].equals("더 서클")||
 						moviename22[qe].equals("더 보이")||moviename22[qe].equals("홈")||
-						moviename22[qe].equals("레전드")||moviename22[qe].equals("스파이")){
+						moviename22[qe].equals("레전드")||moviename22[qe].equals("스파이")||
+						moviename22[qe].equals("신들의 전쟁")||moviename22[qe].equals("블라인드")||moviename22[qe].equals("레지던트")||
+					      moviename22[qe].equals("레드")||moviename22[qe].equals("골든 슬럼버")){
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+year1;
 				}
@@ -590,6 +606,10 @@ input {
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+(year1-1);
 				}
+				 if(moviename22[qe].equals("비지터")||moviename22[qe].equals("파라노말 액티비티")) {
+			         moviename22[qe]=moviename22[qe]+"2007";
+			      }
+
 				if(moviename22[qe].equals("노트북")){
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+2004;
@@ -604,12 +624,18 @@ input {
 				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				if(moviename22[qe].equals(movienameback+year1)||moviename22[qe].equals(movienameback+(year1-1))||
-						moviename22[qe].equals(movienameback+2004)||moviename22[qe].equals(movienameback+2003)){
+						moviename22[qe].equals(movienameback+2004)||moviename22[qe].equals(movienameback+2003)  ||moviename22[qe].equals(movienameback+2007)){
 					moviename22[qe]=movienameback;
 				}
+				 if(moviename22[qe].contains("%25")){
+			         moviename22[qe]=moviename22[qe].replaceAll("%25", "%");
+			      }
+			      if(moviename22[qe].contains("%26")){
+			         moviename22[qe]=moviename22[qe].replaceAll("%26", "&");
+			      }
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
-
+				
 				Elements pngs = doc.select("ul.search_list_1 li dl");
 				
 				String[] png3=new String[1];
@@ -628,8 +654,11 @@ input {
 					if(tj==0) {
 						wpq=con5[0].length();
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						if(moviename22[qe].equals("데블")){
+				            tj=7;
+				         }
 					}
-					if(wpq<=con5[0].length()||moviename22[qe].equals("가디언즈 오브 갤럭시")) {
+					if(wpq<=con5[0].length()||moviename22[qe].equals("가디언즈 오브 갤럭시")||moviename22[qe].equals("개구쟁이 스머프")) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
 						if(cnn2<=year1&&cnn2>=year1-4){
@@ -640,7 +669,14 @@ input {
 					}
 					tj=tj+1;
 					if(tj==9||moviename22[qe].equals("패션왕")||moviename22[qe].equals("콜드 워")||
-							moviename22[qe].equals("그것")||moviename22[qe].equals("더 플랜")||moviename22[qe].equals("링스")){
+							moviename22[qe].equals("그것")||moviename22[qe].equals("더 플랜")||moviename22[qe].equals("링스")||
+							moviename22[qe].equals("눈길")||moviename22[qe].equals("그레이트 월")||moviename22[qe].equals("트롤")||
+					         moviename22[qe].equals("선생님의 일기")||moviename22[qe].equals("대결")||moviename22[qe].equals("빅")||
+					         moviename22[qe].equals("부활")||moviename22[qe].equals("괴물의 아이")||moviename22[qe].equals("카트")||
+					         moviename22[qe].equals("이브 생 로랑")||moviename22[qe].equals("살인자")||moviename22[qe].equals("링컨")||
+					         moviename22[qe].equals("더 자이언트")||moviename22[qe].equals("용의자X")||moviename22[qe].equals("나는 왕이로소이다")||
+					         moviename22[qe].equals("50/50")||moviename22[qe].equals("레지던트")||moviename22[qe].equals("발렌타인 데이")||
+					         moviename22[qe].equals("공주와 개구리")){
 						break;
 					}
 				}
@@ -705,7 +741,9 @@ input {
 				String movienameback="";
 				if(moviename22[qe].equals("딥")||moviename22[qe].equals("더 서클")||
 						moviename22[qe].equals("더 보이")||moviename22[qe].equals("홈")||
-						moviename22[qe].equals("레전드")||moviename22[qe].equals("스파이")){
+						moviename22[qe].equals("레전드")||moviename22[qe].equals("스파이")||
+						moviename22[qe].equals("신들의 전쟁")||moviename22[qe].equals("블라인드")||moviename22[qe].equals("레지던트")||
+					      moviename22[qe].equals("레드")||moviename22[qe].equals("골든 슬럼버")){
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+year1;
 				}
@@ -714,6 +752,10 @@ input {
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+(year1-1);
 				}
+				 if(moviename22[qe].equals("비지터")||moviename22[qe].equals("파라노말 액티비티")) {
+			         moviename22[qe]=moviename22[qe]+"2007";
+			      }
+
 				if(moviename22[qe].equals("노트북")){
 					movienameback=moviename22[qe];
 					moviename22[qe]=moviename22[qe]+2004;
@@ -728,12 +770,18 @@ input {
 				}
 				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviename22[qe]+"&section=all&ie=utf8";
 				if(moviename22[qe].equals(movienameback+year1)||moviename22[qe].equals(movienameback+(year1-1))||
-						moviename22[qe].equals(movienameback+2004)||moviename22[qe].equals(movienameback+2003)){
+						moviename22[qe].equals(movienameback+2004)||moviename22[qe].equals(movienameback+2003)  ||moviename22[qe].equals(movienameback+2007)){
 					moviename22[qe]=movienameback;
 				}
+				 if(moviename22[qe].contains("%25")){
+			         moviename22[qe]=moviename22[qe].replaceAll("%25", "%");
+			      }
+			      if(moviename22[qe].contains("%26")){
+			         moviename22[qe]=moviename22[qe].replaceAll("%26", "&");
+			      }
 				System.out.println(link);
 				Document doc = Jsoup.connect(link).get();
-
+				
 				Elements pngs = doc.select("ul.search_list_1 li dl");
 				
 				String[] png3=new String[1];
@@ -752,12 +800,14 @@ input {
 					if(tj==0) {
 						wpq=con5[0].length();
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
+						if(moviename22[qe].equals("데블")){
+				            tj=7;
+				         }
 					}
-					if(wpq<=con5[0].length()||moviename22[qe].equals("가디언즈 오브 갤럭시")) {
+					if(wpq<=con5[0].length()||moviename22[qe].equals("가디언즈 오브 갤럭시")||moviename22[qe].equals("개구쟁이 스머프")) {
 						String con6[]=conn.split("year=");
 						int cnn2=Integer.parseInt(con6[1].substring(0,4));
 						if(cnn2<=year1&&cnn2>=year1-4){
-							
 						wpq=con5[0].length();
 						System.out.println(wpq);
 						png3[0]=con3[0].substring(1,con3[0].length()-1);
@@ -765,7 +815,14 @@ input {
 					}
 					tj=tj+1;
 					if(tj==9||moviename22[qe].equals("패션왕")||moviename22[qe].equals("콜드 워")||
-							moviename22[qe].equals("그것")||moviename22[qe].equals("더 플랜")||moviename22[qe].equals("링스")){
+							moviename22[qe].equals("그것")||moviename22[qe].equals("더 플랜")||moviename22[qe].equals("링스")||
+							moviename22[qe].equals("눈길")||moviename22[qe].equals("그레이트 월")||moviename22[qe].equals("트롤")||
+					         moviename22[qe].equals("선생님의 일기")||moviename22[qe].equals("대결")||moviename22[qe].equals("빅")||
+					         moviename22[qe].equals("부활")||moviename22[qe].equals("괴물의 아이")||moviename22[qe].equals("카트")||
+					         moviename22[qe].equals("이브 생 로랑")||moviename22[qe].equals("살인자")||moviename22[qe].equals("링컨")||
+					         moviename22[qe].equals("더 자이언트")||moviename22[qe].equals("용의자X")||moviename22[qe].equals("나는 왕이로소이다")||
+					         moviename22[qe].equals("50/50")||moviename22[qe].equals("레지던트")||moviename22[qe].equals("발렌타인 데이")||
+					         moviename22[qe].equals("공주와 개구리")){
 						break;
 					}
 					

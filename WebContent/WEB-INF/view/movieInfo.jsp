@@ -116,7 +116,7 @@ input {
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="/notice/NoticeList.do"
-				target="ifrMain">
+				>
 				<img src="../img/top/notice.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
@@ -124,25 +124,25 @@ input {
 			&nbsp;
 			
 			<a
-				href="/newmovie/newmovieList.do" target="ifrMain"> 
+				href="/newmovie/newmovieList.do" > 
 				<img src="../img/top/newmo.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/upmovie/upmovieList.do" target="ifrMain"> 
+				href="/upmovie/upmovieList.do" > 
 				<img src="../img/top/upmo.png"/>
 			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/bbm/bbmList.do" target="ifrMain"> 
+				href="/bbm/bbmList.do" > 
 				<img src="../img/top/bbm.png"/>
 			</a> &nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
 			<a
-				href="/inquiry/inquiryList.do" target="ifrMain"> 
+				href="/inquiry/inquiryList.do" > 
 				<img src="../img/top/inq.png"/>
 			</a>
 			<br>
@@ -165,7 +165,7 @@ input {
 			<input type="password" name="pwd1" maxlength="20" style="width:110px;" onkeydown="return doKeyIdPw(event)"/>	
 				<br>
 				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
-				<a href="/user/manageList.do" target="ifrMain"> 
+				<a href="/user/manageList.do" > 
 				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
@@ -174,7 +174,7 @@ input {
 			</a>
 			 <img src="../img/top/inhi.png"/>
 				<%}else{%>
-				<a href="/user/userInfo.do" target="ifrMain"> 
+				<a href="/user/userInfo.do" > 
 				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
@@ -200,7 +200,7 @@ input {
 			<%if (SESSION_USER_ID.equals("")) {%>
 			<td colspan="2" align="left" width="245px" >
 						&nbsp;
-				<a href="/user/user_join2.do" target="ifrMain">
+				<a href="/user/user_join2.do" >
 				<img src="../img/top/join.png"/>
 				</a>
 				<a href="/user/user_id_search.do" onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
@@ -294,7 +294,7 @@ input {
 							<a href="#" onClick="window.open('<%="https://www.youtube.com/results?search_query="+moviename %>');">
 							<span style=" color: black;">
 							<b>
-							유튜브로 관련영상 보기
+							유튜브로 해당영화 검색
 							</b>
 							</span>
 							</a>
