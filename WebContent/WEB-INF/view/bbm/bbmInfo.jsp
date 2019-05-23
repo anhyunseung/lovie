@@ -334,6 +334,7 @@ input {
 	<div class="framebgm">
 		<table border="0" width="100%">
 			<tr>
+			<td width="10px"></td>
 				<td align="right" colspan="3">
 					<%
 						if (edit == 2 || ss_user_id.equals("Admin")) {
@@ -346,61 +347,73 @@ input {
 					<input type="button" class="img-button3" onclick="javascript:doList();" value=" " />
 					&nbsp;
 				</td>
+				<td width="10px"></td>
 			</tr>
 			<tr>
+			<td width="10px"></td>
 				<td colspan="3">
 					<hr>
 				</td>
+				<td width="10px"></td>
 			</tr>
 			<tr>
-				<td align="center"width="85%"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
+			<td width="10px"></td>
+				<td align="center"width="83%"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
 				<td align="right"width="5%">|</td>
 				<td align="left"width="10%"><img src="../img/total/read.png"/></td>
-
+<td width="10px"></td>
 			</tr>
 			<tr>
+			<td width="10px"></td>
 				<td colspan="3">
 					<hr/></td>
+					<td width="10px"></td>
 			</tr>
 			<tr>
+			<td width="10px"></td>
 				<td colspan="3">&nbsp;&nbsp;<b><%=CmmUtil.nvl(rDTO.getUser_id())%><br />
 					<br /></b></td>
+					<td width="10px"></td>
 			</tr>
 			<tr>
+			<td width="10px"></td>
 								<td colspan="3" valign="top">
 				<%
 				String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
 				String contenttest2 = contenttest1.replaceAll("& lt;", "<");
 				String contenttest3 = contenttest2.replaceAll("& gt;", ">");
 				String contenttest4 = contenttest3.replaceAll("& #40;", "(");
-				String contenttest5 = contenttest3.replaceAll("& #41;", ")");
+				String contenttest5 = contenttest4.replaceAll("& #41;", ")");
 				String content=contenttest5;
-				for(int i=0;i<=(content.length()-1)/70;i++){
-					String content2="";
-					if(i==(content.length()-1)/70){
-						content2=content.substring(70*i,content.length());
-					}else{
-						content2=content.substring(70*i,70*(i+1));
-					}
 					%>
-					&nbsp;<%=content2%><br>
-					<%
-				}
-				%>
+					<%=content%><br>
 				<br><br><br>
 				</td>
+				<td width="10px"></td>
 			</tr>
 			<tr>
-				<td colspan="3" ><img src="../img/common/com.png"/></td>
+			<td width="10px"></td>
+				<td colspan="3" ><img src="../img/common/com.png"/>
+				<%int l=clist.size(); 
+				if(l==0){
+				}else{
+				%>
+				<span style="color:rgb(2, 151, 128);font-weight:bold; font-size: large;">
+				[<%=l %>]
+				</span>
+				<%} %>
+				</td>
+				<td width="10px"></td>
 			</tr>
 			<tr>
+			<td width="10px"></td>
 				<td colspan="3">
 					<hr/></td>
+					<td width="10px"></td>
 			</tr>
 			</table>
 			</div>
 			<%
-			int l=clist.size();
 			int b=9;
 			int c=l/10;
 			int d=l-c*10;
@@ -419,6 +432,7 @@ input {
 			<div class="framebgm">
 			<table width="100%">
 			<tr>
+			<td width="10px"></td>
 				<td colspan="2">&nbsp;<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b>
 				<%String date=CmmUtil.nvl(a.getReg_dt());%>
    				<%=date.substring(0,4)%>.<%=date.substring(5,7)%>.<%=date.substring(8,10)%>.
@@ -439,13 +453,18 @@ input {
 				<%} %>
 				&nbsp;
 				</td>
+				<td width="10px"></td>
 			</tr>
 			<tr>
+			<td width="10px"></td>
 				<td colspan="3">&nbsp;<%=CmmUtil.nvl(a.getContents())%></td>
+				<td width="10px"></td>
 			</tr>
 			<tr>
+			<td width="10px"></td>
 				<td colspan="3">
 					<hr/></td>
+					<td width="10px"></td>
 			</tr>
 			</table>
 			</div>
@@ -455,13 +474,15 @@ input {
 			<div class="framebgm">
 			<table width="100%">
 			<tr>
+			<td width="10px"></td>
 				<td valign="middle">&nbsp;
-				<textarea name="comment" style="width: 700px"></textarea>
+				<textarea name="comment" style="width: 700px; resize:none;"></textarea>
 				</td>
 				<td align="right">
 						 <input type="submit" class="img-button4" value=" " />
 				&nbsp;
 				</td>
+				<td width="10px"></td>
 			</tr>
 			<tr>
 			   <td colspan="2" align="center">

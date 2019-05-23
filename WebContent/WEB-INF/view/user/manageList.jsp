@@ -198,12 +198,14 @@ a:link { text-decoration: none;}
    <div class="infot">
    <table border="0" width="100%">
       <tr>
+      <td width="10px"></td>
       <td colspan="4">
     <h2>&nbsp;&nbsp;&nbsp;  
   회원리스트
    </h2>
    <hr>
    </td>
+   <td width="10px"></td>
        </tr>
       </table>
    </div>
@@ -230,23 +232,27 @@ a:link { text-decoration: none;}
       <div class="framebgm2">
       <table border="0" width="100%">
       <tr>
-         <td align="center" width="100" >
+      <td width="10px"></td>
+         <td align="center" width="300px" >
                <%=CmmUtil.nvl(rDTO.getUser_name())%>
                </td>
-         <td align="center"width="150" >
+         <td align="center"width="440px" >
          <a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getUser_no())%>');" class="line">
          <span style=" color: gray;">
             <%=CmmUtil.nvl(rDTO.getUser_id())%>
             </span>
             </a></td>
-         <td align="center"width="200" ><%=CmmUtil.nvl(rDTO.getTel_1())%>&nbsp;-&nbsp;
+         <td align="center"width="590px" ><%=CmmUtil.nvl(rDTO.getTel_1())%>&nbsp;-&nbsp;
             <%=CmmUtil.nvl(rDTO.getTel_2())%>&nbsp;-&nbsp; 
             <%=CmmUtil.nvl(rDTO.getTel_3())%></td>
+            <td width="10px"></td>
       </tr>
       <tr>
+      <td width="10px"></td>
       <td colspan="3">
       <hr>
       </td>
+      <td width="10px"></td>
       </tr>
       </table>
 </div>

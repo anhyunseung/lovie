@@ -230,13 +230,18 @@ background-image:url('../img/bg/framebgd.png');
 
 	<div class="infot">
 	<table border="0" width="100%">
+	<tr>
+	</tr>
 		<tr>
+		<td width="10px"></td>
 		<td colspan="4">
     <h2>&nbsp;&nbsp;&nbsp;  
   문의
    </h2>
+   
    <hr>
    </td>
+   <td width="10px"></td>
 		</tr>
 		</table>
 		</div>
@@ -266,28 +271,35 @@ background-image:url('../img/bg/framebgd.png');
 		<div class="framebgm2">
 		<table border="0" width="100%">
 		<tr>
-			<td width="13%" align="center">
-				<%
-					out.print(CmmUtil.nvl(rDTO.getinq_seq()));
-				%>
-			</td>
-			<td width="54%" align="left"><a
-				href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getinq_seq())%>');" class="line">
-					<span style="color: black; font-weight: bold"> <b><%=CmmUtil.nvl(rDTO.getTitle())%></b>
-				</span>
-			</a></td>
-			<td width="60" align="center"><%=CmmUtil.nvl(rDTO.getUser_name())%></td>
-			<td width="90" align="center">
-			<%String date=CmmUtil.nvl(rDTO.getReg_dt());%>
+			<td width="10px"></td>
+   <td width="110px" align="center">
+   <%
+      out.print(CmmUtil.nvl(rDTO.getinq_seq()));
+   %>
+   <input type="hidden" name="seq" value="<%=CmmUtil.nvl(rDTO.getinq_seq())%>">
+   </td>
+   <td width="600px">
+   &nbsp;
+   <a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getinq_seq())%>');" class="line">
+               <span style=" color: black;font-weight:bold">
+               <%=CmmUtil.nvl(rDTO.getTitle())%>
+               </span>
+               </a>
+   </td>
+   <td width="130px" align="center"><%=CmmUtil.nvl(rDTO.getUser_id())%></td>
+   <td width="200px" align="center">
+   <%String date=CmmUtil.nvl(rDTO.getReg_dt());%>
    <%=date.substring(0,4)%>.<%=date.substring(5,7)%>.<%=date.substring(8,10)%>.
    <%=date.substring(11,16)%>
-
-</td>
-		</tr>
+   </td>
+   <td width="10px"></td>
+   </tr>
 		<tr>
+		<td width="10px"></td>
 			<td colspan="4">
 				<hr>
 			</td>
+			<td width="10px"></td>
 		</tr>
 		</table>
 	</div>
@@ -304,9 +316,11 @@ background-image:url('../img/bg/framebgd.png');
 	%>
 	<table border="0" width="100%">
 		<tr>
+		<td width="10px"></td>
 			<td align="right"><a href="inquiryReg.do"> <img
 					src="../img/button/write.png" />
 			</a>&nbsp;</td>
+			<td width="10px"></td>
 		</tr>
 	</table>
 	<%

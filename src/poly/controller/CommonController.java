@@ -23,7 +23,7 @@ import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import poly.service.ICommonService;
 import poly.util.CmmUtil;
-import poly.util.MovieUtil;
+
 
 @Controller
 public class CommonController {

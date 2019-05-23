@@ -14,7 +14,8 @@ public class InquiryDTO {
 	private String chg_dt;
 	private String email1;
 	private String email2;
-
+	private String filename;
+	private String ext;
 	private String user_name;
 
 	public String getinq_seq() {

@@ -13,8 +13,10 @@ public class NoticeDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
-	private String user_name;
+	private String filename;
+	private String ext;
 	private List<Comment_noticeDTO> clist;
+	private String com_count;
 
 	public String getnotice_seq() {
 		return notice_seq;
@@ -88,19 +90,19 @@ public class NoticeDTO {
 		this.chg_dt = chg_dt;
 	}
 
-	public String getUser_name() {
-		return user_name;
-	}
-
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
-
 	public List<Comment_noticeDTO> getClist() {
 		return clist;
 	}
 
 	public void setClist(List<Comment_noticeDTO> clist) {
 		this.clist = clist;
+	}
+	
+	public String getCom_count() {
+		return com_count;
+	}
+
+	public void setCom_count(String com_count) {
+		this.com_count = com_count;
 	}
 }

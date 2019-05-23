@@ -113,7 +113,7 @@ private Logger log = Logger.getLogger(this.getClass());
 
 			rDTO = null;
 
-			request.setAttribute("msg", "댓글을 삭제하였습니다.");
+			request.setAttribute("msg", "문의내역을 삭제하였습니다.");
 		}else {
 			rDTO = null;
 

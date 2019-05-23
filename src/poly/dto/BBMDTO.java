@@ -14,7 +14,10 @@ public class BBMDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
+	private String filename;
+	private String ext;
 	private List<Comment_bbmDTO> clist;
+	private String com_count;
 
 	private String user_name;
 
@@ -112,5 +115,13 @@ public class BBMDTO {
 
 	public void setClist(List<Comment_bbmDTO> clist) {
 		this.clist = clist;
+	}
+	
+	public String getCom_count() {
+		return com_count;
+	}
+
+	public void setCom_count(String com_count) {
+		this.com_count = com_count;
 	}
 }

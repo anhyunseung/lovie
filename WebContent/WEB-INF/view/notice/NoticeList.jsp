@@ -238,6 +238,7 @@ a:link { text-decoration: none;}
 <tr>
 </tr>
    <tr>
+   <td width="10px"></td>
    <td colspan="4">
    
  <h2>&nbsp;&nbsp;&nbsp;  
@@ -245,6 +246,7 @@ a:link { text-decoration: none;}
    </h2>
    <hr>
    </td>
+   <td width="10px"></td>
    </tr>
    </table>
    </div>
@@ -272,30 +274,41 @@ for (int i=0;i<a;i++){
 <div class="framebgm2">
    <table border="0" width="100%">
 <tr>
-   <td width="13%" align="center">
+<td width="10px"></td>
+   <td width="110px" align="center">
    <%
       out.print(CmmUtil.nvl(rDTO.getnotice_seq()));
    %>
    <input type="hidden" name="seq" value="<%=CmmUtil.nvl(rDTO.getnotice_seq())%>">
    </td>
-   <td width="54%">
+   <td width="600px">
+   &nbsp;
    <a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getnotice_seq())%>');" class="line">
                <span style=" color: black;font-weight:bold">
                <%=CmmUtil.nvl(rDTO.getTitle())%>
                </span>
                </a>
+               <%if(CmmUtil.nvl(rDTO.getCom_count()).equals("0")){ 
+               }else{%>
+               <span style="color:rgb(2, 151, 128);font-weight:bold; font-size: small;">
+               [<%=CmmUtil.nvl(rDTO.getCom_count()) %>]
+               </span>
+               <%} %>
    </td>
-   <td width="60" align="center"><%=CmmUtil.nvl(rDTO.getUser_id())%></td>
-   <td width="90" align="center">
+   <td width="130px" align="center"><%=CmmUtil.nvl(rDTO.getUser_id())%></td>
+   <td width="200px" align="center">
    <%String date=CmmUtil.nvl(rDTO.getReg_dt());%>
    <%=date.substring(0,4)%>.<%=date.substring(5,7)%>.<%=date.substring(8,10)%>.
    <%=date.substring(11,16)%>
    </td>
+   <td width="10px"></td>
    </tr>
       <tr>
+      <td width="10px"></td>
    <td colspan="4">
    <hr>
    </td>
+   <td width="10px"></td>
    </tr>
 </table>
 </div>
@@ -306,11 +319,13 @@ for (int i=0;i<a;i++){
 <table border="0" width="100%">
 <%if(SESSION_USER_ID.equals("admin")){%>
 <tr>
+<td width="10px"></td>
 <td align="right">
 <a href="NoticeReg.do">
 <img src="../img/button/write.png"/>
 </a>&nbsp;
 </td>
+<td width="10px"></td>
 </tr>
 <%} %>
 </table>

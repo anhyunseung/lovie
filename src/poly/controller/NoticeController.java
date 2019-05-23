@@ -1,6 +1,7 @@
 package poly.controller;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,10 +15,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import poly.dto.Comment_noticeDTO;
 import poly.dto.NoticeDTO;
 import poly.service.INoticeService;
 import poly.util.CmmUtil;
+import poly.util.Constants;
 
 @Controller
 public class NoticeController {
@@ -312,7 +317,16 @@ public class NoticeController {
 			throws Exception {
 		
 		System.out.println("NoInsert");
-		
+		MultipartRequest multi = new MultipartRequest(request, Constants.UPLOAD_PATH,
+				Constants.MAX_UPLOAD,"utf-8",new DefaultFileRenamePolicy());
+		String filename="";
+		try {
+			Enumeration files=multi.getFileNames();
+			while(files.hasMoreElements()) {
+				//46.55
+			}
+			}
+		//https://www.youtube.com/watch?v=JOE0BubzJ8k&list=PLY9pe3iUjRrSq3OdFIUg_QsdGiiBiOhqy&index=17
 		String title= request.getParameter("title");
 		
 		String contents= request.getParameter("contents");

@@ -315,6 +315,7 @@ input {
 	<div class="framebgm">
       <table border="0" width="100%">
          <tr>
+         <td width="10px"></td>
             <td align="right" colspan="3">
             <%if(edit == 2) {%>
             <a href="javascript:doEdit();">
@@ -328,46 +329,54 @@ input {
             <input type="button" class="img-button3" value=" "/>
             </a>
            &nbsp; </td>
+           <td width="10px"></td>
          </tr>
          <tr>
+         <td width="10px"></td>
             <td colspan="3">
                <hr>
             </td>
+            <td width="10px"></td>
          </tr>
          <tr>
-            <td align="center"width="85%"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
+         <td width="10px"></td>
+            <td align="center"width="83%"><b><%=CmmUtil.nvl(rDTO.getTitle())%></b></td>
             <td align="right"width="5%">|</td>
             <td align="left"width="10%"><img src="../img/inquiry/inqs.png"/></td>
-            
+            <td width="10px"></td>
          </tr>
          <tr>
+         <td width="10px"></td>
             <td colspan="3">
             <hr/>
             </td>
+            <td width="10px"></td>
          </tr>
          <tr>
+         <td width="10px"></td>
             <td colspan="3">&nbsp;&nbsp;<b><%=CmmUtil.nvl(rDTO.getUser_id()) %></b></td>
+            <td width="10px"></td>
             </tr>
             <tr>
+            <td width="10px"></td>
             <td colspan="3"><img src="../img/total/emails.png"/>&nbsp; <%=CmmUtil.nvl(rDTO.getEmail1()) %>@<%=CmmUtil.nvl(rDTO.getEmail2()) %><br/><br/></td>
+            <td width="10px"></td>
          </tr>
          <tr>
+         <td width="10px"></td>
           				<td colspan="3" valign="top">
-				<%String content=(CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>"));
-				for(int i=0;i<=(content.length()-1)/70;i++){
-					String content2="";
-					if(i==(content.length()-1)/70){
-						content2=content.substring(70*i,content.length());
-					}else{
-						content2=content.substring(70*i,70*(i+1));
-					}
+				<%
+				String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
+				String contenttest2 = contenttest1.replaceAll("& lt;", "<");
+				String contenttest3 = contenttest2.replaceAll("& gt;", ">");
+				String contenttest4 = contenttest3.replaceAll("& #40;", "(");
+				String contenttest5 = contenttest4.replaceAll("& #41;", ")");
+				String content=contenttest5;
 					%>
-					&nbsp;<%=content2%><br>
-					<%
-				}
-				%>
+					<%=content%><br>
 				<br>
 				</td>
+				<td width="10px"></td>
        </tr>
        </table>
 			</div>

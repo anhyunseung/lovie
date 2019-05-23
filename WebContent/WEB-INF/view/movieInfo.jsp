@@ -242,6 +242,7 @@ input {
 			<div class="framebgm">
 				<table  border="0" width="100%">
 					<tr>
+					<td width="10px"></td>
 						<td width="40%" align="center" valign="middle" rowspan="3">
 					<img src="<%=imgsrc %>" border="2px" class="poster">
 						</td>
@@ -253,14 +254,18 @@ input {
 					</h1>
 					<hr/>
 						</td>
+						<td width="10px"></td>
 					</tr>
 					<tr>
+					<td width="10px"></td>
 						<td valign="top">
 					<img src="../img/total/genre.png"/>
 					<%=genre %>
 						</td>
+						<td width="10px"></td>
 					</tr>
 					<tr>
+					<td width="10px"></td>
 						<td>
 					<br/>
 					<img src="../img/total/story.png"/>
@@ -269,16 +274,20 @@ input {
 					<%=story.replaceAll("\\. ",".<br/>") %>
 					</font>
 						</td>
+						<td width="10px"></td>
 					</tr>
 					<tr>
+					<td width="10px"></td>
 						<td colspan="2">
 						<br/>
 						<hr/>
 						&nbsp;
 						<img src="../img/total/video.png">
 						</td>
+						<td width="10px"></td>
 					</tr>
 					<tr>
+					<td width="10px"></td>
 						<td align="center" colspan="2">
 							<iframe name="vedio1" width="300" height="200" src="https://www.youtube.com/embed/<%=videoL1 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							&nbsp;&nbsp;&nbsp;&nbsp;
@@ -286,8 +295,10 @@ input {
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<iframe name="vedio3" width="300" height="200" src="https://www.youtube.com/embed/<%=videoL3 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</td>
+						<td width="10px"></td>
 					</tr>
 					<tr>
+					<td width="10px"></td>
 						<td>
 							<br/>
 							&nbsp;
@@ -299,6 +310,7 @@ input {
 							</span>
 							</a>
 						</td>
+						<td width="10px"></td>
 					</tr>
 				</table>
 			</div>

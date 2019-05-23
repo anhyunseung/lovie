@@ -310,7 +310,7 @@ input {
 				</h1>
 			</td>
 			<td valign="top" width="1184px">
-<div class="framebgm">
+<div class="infot">
 <table border="0" width="100%">
 <tr>
 <td align="center">
