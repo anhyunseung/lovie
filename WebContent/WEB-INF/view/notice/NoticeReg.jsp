@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ page import="poly.util.CmmUtil"%>
+<%@ page import="org.apache.commons.io.output.*"%>
 <%
    request.setCharacterEncoding("UTF-8");
 session.setAttribute("url", "/notice/NoticeReg.do");
@@ -243,7 +244,7 @@ input {
          <tr>
          <td width="10px"></td>
             <td colspan="2">
-            <input type="file" name="file"><br><br>
+            <input type="file" name="file" multiple="multiple"><br><br>
             <textarea name="contents" id="contents" rows="10" cols="100" onKeyUp="checkByte(this.form);" 
                   style="width:100%; height:600px; display:none;"></textarea></td>
                   <td width="10px"></td>

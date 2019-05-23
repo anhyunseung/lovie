@@ -105,4 +105,12 @@ public class NoticeDTO {
 	public void setCom_count(String com_count) {
 		this.com_count = com_count;
 	}
+	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 }

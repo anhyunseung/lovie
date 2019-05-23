@@ -18,10 +18,10 @@
 		INSERT INTO NOTICE_INFO
 		(
 		TITLE, CONTENTS, USER_ID,
-		REG_USER_NO, REG_DT
+		REG_USER_NO, REG_DT , FILENAME
 		)
 		VALUES(
-		#{title}, #{contents}, #{user_id}, #{reg_user_no}, NOW()
+		#{title}, #{contents}, #{user_id}, #{reg_user_no}, NOW(),#{filename} 
 		)
 	</insert>
 
