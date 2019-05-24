@@ -1,11 +1,14 @@
 package poly.controller;
 
-import java.io.File;
+import java.io.*;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.sql.*;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.apache.commons.io.output.*;
 
-import com.oreilly.servlet.*;
-import com.oreilly.servlet.multipart.*;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.MultipartRequest;
 
 import poly.dto.Comment_noticeDTO;
 import poly.dto.NoticeDTO;
@@ -314,37 +317,24 @@ public class NoticeController {
 		return "/notice/NoticeReg";
 	}
 	
-	@RequestMapping(value = "notice/NoticeInsert", method = RequestMethod.POST,headers = ("content-type=multipart/*"))
+	@RequestMapping(value = "notice/NoticeInsert", method = RequestMethod.POST)
 	public String NoticeInsert(HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model)
 			throws Exception {
 		
 		System.out.println("NoInsert");
-		MultipartRequest multi = new MultipartRequest(request, Constants.UPLOAD_PATH,
+		String filename1="";
+		System.out.println("multi1");
+		MultipartRequest multi = new MultipartRequest(request,Constants.UPLOAD_PATH,
 				Constants.MAX_UPLOAD,"utf-8",new DefaultFileRenamePolicy());
-		String filename="";
-		int filesize=0;
-		try {
-			Enumeration files=multi.getFileNames();
-			while(files.hasMoreElements()) {
-				String file1=(String)files.nextElement();
-				filename=multi.getFilesystemName(file1);
-				File f1=multi.getFile(file1);
-				if(f1!=null) {
-					filesize=(int)f1.length();
-				}
-			}
-		}catch(Exception e) {
-				e.printStackTrace();
-		}
+		System.out.println("multi");
 		//https://www.youtube.com/watch?v=JOE0BubzJ8k&list=PLY9pe3iUjRrSq3OdFIUg_QsdGiiBiOhqy&index=17
 		String title= multi.getParameter("title");
-		
 		String contents= multi.getParameter("contents");
 		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		
-		if(filename==null || filename.equals("")) {
-			filename="-";
+		if(filename1==null || filename1.equals("")) {
+			filename1="-";
 		}
 		
 		System.out.println(title);
@@ -358,7 +348,7 @@ public class NoticeController {
 		rDTO.setReg_user_no(SESSION_USER_NO);
 		rDTO.setUser_id(SESSION_USER_ID);
 		rDTO.setContents(contents);
-		rDTO.setFilename(filename);
+		rDTO.setFilename(filename1);
 		
 		
 		NoticeService.InsertNoticeInfo(rDTO);
