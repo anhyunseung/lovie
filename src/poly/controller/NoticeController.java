@@ -67,12 +67,48 @@ public class NoticeController {
 		
 		request.setAttribute("count", count2);
 		model.addAttribute("rList", rList);
-
 		rList = null;
 
 		log.info(this.getClass().getName() + ".NoticeList end!");
 
 		return "/notice/NoticeList";
+	}
+	@RequestMapping(value = "top4", method = RequestMethod.GET)
+	public String Top4(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+			throws Exception {
+
+		log.info(this.getClass().getName() + ".NoticeList start!");
+		List<NoticeDTO> rList = NoticeService.getNoticeList();
+		
+		String count=request.getParameter("count");
+		
+		if(count==null) {
+			count="0";
+		}
+		
+		
+		System.out.println(Integer.parseInt(count));
+		
+		int count2 = Integer.parseInt(count);
+		
+		if(count2!=0) {
+			count2=count2-1;
+		}
+		
+		System.out.println(count2);
+		
+		if (rList == null) {
+			rList = new ArrayList<NoticeDTO>();
+
+		}
+		
+		request.setAttribute("count", count2);
+		model.addAttribute("rList", rList);
+		rList = null;
+
+		log.info(this.getClass().getName() + ".NoticeList end!");
+
+		return "top4";
 	}
 	
 	@SuppressWarnings("unused")
@@ -323,13 +359,15 @@ public class NoticeController {
 		
 		System.out.println("NoInsert");
 		String filename1="";
-		System.out.println("multi1");
-		MultipartRequest multi = new MultipartRequest(request,Constants.UPLOAD_PATH,
-				Constants.MAX_UPLOAD,"utf-8",new DefaultFileRenamePolicy());
-		System.out.println("multi");
+		/*
+		 * System.out.println("multi1"); MultipartRequest multi = new
+		 * MultipartRequest(request,Constants.UPLOAD_PATH,
+		 * Constants.MAX_UPLOAD,"utf-8",new DefaultFileRenamePolicy());
+		 * System.out.println("multi");
+		 */
 		//https://www.youtube.com/watch?v=JOE0BubzJ8k&list=PLY9pe3iUjRrSq3OdFIUg_QsdGiiBiOhqy&index=17
-		String title= multi.getParameter("title");
-		String contents= multi.getParameter("contents");
+		String title= request.getParameter("title");
+		String contents= request.getParameter("contents");
 		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		

@@ -212,7 +212,7 @@ input {
 			</td>
 			<td valign="top" width="1184px">
 			
-   <form name="f" method="post" enctype="multipart/form-data" action="/notice/NoticeInsert.do">
+   <form name="f" method="post" action="/notice/NoticeInsert.do">
       <br>
       <div class="infot">
       <table border="0" width="100%">
@@ -244,7 +244,7 @@ input {
          <tr>
          <td width="10px"></td>
             <td colspan="2">
-            <input type="file" name="file"><br><br>
+            <!-- <input type="file" name="file"><br><br> -->
             <textarea name="contents" id="contents" rows="10" cols="100" onKeyUp="checkByte(this.form);" 
                   style="width:100%; height:600px; display:none;"></textarea></td>
                   <td width="10px"></td>

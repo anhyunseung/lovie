@@ -40,6 +40,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="http://localhost:8080/movieInfo.do/../img/common/icon.ico" type="image/x-icon" />
 <title><%=moviename %> - 영화소개 : Lovie</title>

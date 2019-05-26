@@ -1,731 +1,813 @@
 <%@ page import="poly.util.CmmUtil"%>
+<%@ page import="poly.dto.CommonDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page import="poly.dto.UserDTO"%>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Collection" %>
-<%@ page import="java.awt.image.BufferedImage" %>
-<%@ page import="java.io.IOException" %>
-<%@ page import="java.net.URL" %>
-<%@ page import="javax.imageio.ImageIO" %>
-<%@ page import="org.jsoup.Jsoup" %>
-<%@ page import="org.jsoup.nodes.Document" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService" %>
-<%@ page import="org.jsoup.select.Elements" %>
-<%@ page import="org.jsoup.nodes.Element" %>
-<%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
-<%@ page import="java.util.Random" %>
+<%@ page import="java.util.Map"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.Collection"%>
+<%@ page import="java.awt.image.BufferedImage"%>
+<%@ page import="java.io.IOException"%>
+<%@ page import="java.net.URL"%>
+<%@ page import="javax.imageio.ImageIO"%>
+<%@ page import="org.jsoup.Jsoup"%>
+<%@ page import="org.jsoup.nodes.Document"%>
+<%@ page import="java.util.Iterator"%>
+<%@ page
+	import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService"%>
+<%@ page import="org.jsoup.select.Elements"%>
+<%@ page import="org.jsoup.nodes.Element"%>
+<%@ page import="com.fasterxml.jackson.databind.ObjectMapper"%>
+<%@ page import="java.util.Random"%>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	session.setAttribute("url", "/top.do");
-	String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+	String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
-	
-	Date dt= new Date(); 
+
+	List<CommonDTO> nList = (List<CommonDTO>) request.getAttribute("nList");
+	if (nList == null) {
+		nList = new ArrayList<CommonDTO>();
+
+	}
+	System.out.print(nList);
+	List<CommonDTO> bList = (List<CommonDTO>) request.getAttribute("bList");
+	if (bList == null) {
+		bList = new ArrayList<CommonDTO>();
+
+	}
+	System.out.print(bList);
+	Date dt = new Date();
 	Random randomGenerator = new Random();
-	int year=dt.getYear()+1900;
-	int day=dt.getDate()-1;
-	int mon=dt.getMonth();
-	
-	int randomyearsub=year-2010;
+	int year = dt.getYear() + 1900;
+	int day = dt.getDate() - 1;
+	int mon = dt.getMonth();
+
+	int randomyearsub = year - 2010;
 	int randomyear = randomGenerator.nextInt(randomyearsub);
-	int randommonth=randomGenerator.nextInt(11);
-	int randomday=randomGenerator.nextInt(30)+1;
-	
-	if(randomyear==year){
-		if(randommonth>mon){
-			randomday=randomGenerator.nextInt(30)+1;
+	int randommonth = randomGenerator.nextInt(11);
+	int randomday = randomGenerator.nextInt(30) + 1;
+
+	if (randomyear == year) {
+		if (randommonth > mon) {
+			randomday = randomGenerator.nextInt(30) + 1;
 		}
-		if(randommonth==mon){
-			randomday=randomGenerator.nextInt(day)+1;
-		}
-	}
-	
-	if(randommonth==3||randommonth==5||randommonth==8||randommonth==10){
-		if(randomday==31){
-			randomday=randomGenerator.nextInt(29)+1;
+		if (randommonth == mon) {
+			randomday = randomGenerator.nextInt(day) + 1;
 		}
 	}
-	
-	if(randommonth==1){
-		if(randomday>=29){
-			randomday=randomGenerator.nextInt(27)+1;
+
+	if (randommonth == 3 || randommonth == 5 || randommonth == 8 || randommonth == 10) {
+		if (randomday == 31) {
+			randomday = randomGenerator.nextInt(29) + 1;
 		}
 	}
-	
-	year=randomyear+2010;
-	mon=randommonth+1;
-	String month=""; 
-	if(mon<10) { 
-		month="0"+mon; 
-		}else {
-	month=""+mon; 
-	} 
-	
-	day=randomday; 
-	String day2=""; 
-	if(day<10) {
-	day2="0"+day; 
-	}else { 
-		day2=""+day; 
-		} 
-	String date=year+month+day2;
+
+	if (randommonth == 1) {
+		if (randomday >= 29) {
+			randomday = randomGenerator.nextInt(27) + 1;
+		}
+	}
+
+	year = randomyear + 2010;
+	mon = randommonth + 1;
+	String month = "";
+	if (mon < 10) {
+		month = "0" + mon;
+	} else {
+		month = "" + mon;
+	}
+
+	day = randomday;
+	String day2 = "";
+	if (day < 10) {
+		day2 = "0" + day;
+	} else {
+		day2 = "" + day;
+	}
+	String date = year + month + day2;
 	System.out.println(date);
-	
-	String targetDt =	date;
-	String itemPerPage =request.getParameter("itemPerPage")==null?"9":request.getParameter("itemPerPage"); 
+
+	String targetDt = date;
+	String itemPerPage = request.getParameter("itemPerPage") == null
+			? "10"
+			: request.getParameter("itemPerPage");
 	String key = "257a360ca175e71f65d605e4238a4d90";
-	KobisOpenAPIRestService service = new KobisOpenAPIRestService(key); 
-	String dailyResponse = service.getDailyBoxOffice(true, targetDt, itemPerPage, "","", ""); 
-	ObjectMapper mapper = new ObjectMapper(); 
+	KobisOpenAPIRestService service = new KobisOpenAPIRestService(key);
+	String dailyResponse = service.getDailyBoxOffice(true, targetDt, itemPerPage, "", "", "");
+	ObjectMapper mapper = new ObjectMapper();
 	HashMap<String, Object> map = mapper.readValue(dailyResponse, HashMap.class);
-	
+
 	Iterator<String> mapIter = map.keySet().iterator();
-	String movie="";
-	String key2="";
-	Object value="";
-	while(mapIter.hasNext()){
-	key2 = mapIter.next(); 
-	value = map.get( key2 );
+	String movie = "";
+	String key2 = "";
+	Object value = "";
+	while (mapIter.hasNext()) {
+		key2 = mapIter.next();
+		value = map.get(key2);
 	}
 	movie = value.toString();
 	System.out.println(movie);
-	String moviec[]=movie.split("movieNm=");
-	String movied[]=movie.split("openDt=");
-	int i=1;
-	request.setAttribute("map",map);
-	String moviecode="";
+	String moviec[] = movie.split("movieNm=");
+	String movied[] = movie.split("openDt=");
+	int i = 1;
+	request.setAttribute("map", map);
+	String moviecode = "";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="http://localhost:8080/top.do/../img/common/icon.ico" type="image/x-icon" />
+<link rel="shortcut icon"
+	href="http://localhost:8080/top.do/../img/common/icon.ico"
+	type="image/x-icon" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <title>Let's see the movie! : Lovie</title>
 <script type="text/javascript">
-function doSubmit(f) {
-   if(f.user_id.value == ""){
-      alert("아이디 또는 비밀번호를 입력해주세요.");
-      f.user_id.focus();
-      return false;
-   }
-   if(f.pwd1.value == ""){
-      alert("아이디 또는 비밀번호를 입력해주세요.");
-      f.pwd1.focus();
-      return false;
-   }
-}
-function doId(){
-    location.href="/user/user_login_proc.do";
-}
-function doKeyIdPw(event) {
-	   event = event || window.event;
-	   var keyID = (event.which) ? event.which : event.KeyCode;
-	   
-	   if((keyID >= 48 && keyID <= 57) || (keyID>=96 && keyID <=105) || (keyID >= 65 && keyID <= 90) || keyID==8 || keyID==37 || keyID==39 || keyID==9){
-	      return true;
-	   }else{
-	      return false;
-	   }
+	var j = $.noConflict(true); // $.noConflict(true) 를 사용해서 $ -> 변수로 선언한 j로 바꾸니 해결!
+	j(document).ready(function() {
+		var main = j('.bxslider').bxSlider({
+			mode : 'fade',
+			auto : true, //자동으로 슬라이드 
+			controls : true, //좌우 화살표	
+			autoControls : true, //stop,play 
+			pager : true, //페이징 
+			pause : 5000,
+			autoDelay : 0,
+			speed : 800,
+			stopAutoOnclick : true,
+			autoHover : true,
+			touchEnabled : (navigator.maxTouchPoints > 0)
+		});
+		j(".bx-stop").click(function() { // 중지버튼 눌렀을때 
+			main.stopAuto();
+			j(".bx-stop").hide();
+			j(".bx-start").show();
+			return false;
+		});
+		j(".bx-start").click(function() { //시작버튼 눌렀을때 
+			main.startAuto();
+			j(".bx-start").hide();
+			j(".bx-stop").show();
+			return false;
+		});
+		j(".bx-start").hide(); //onload시 시작버튼 숨김. 
+	});
+	function doNDetail(seq) {
+		location.href = "/notice/NoticeInfo.do?notice_seq=" + seq;
 	}
-
+	function doBDetail(seq) {
+		location.href = "/bbm/bbmInfo.do?bbm_seq=" + seq;
+	}
 </script>
 <style>
-input {
-        vertical-align: middle;
-      }
-      input.img-button {
-        background: url( "../img/button/login.png" ) no-repeat;
-        border: none;
-        height: 45px;
-        width: 58px;
-        cursor: pointer;
-      }
-      img.poster{
-      border:2px solid gray;
-      }
-      a:link {text-decoration: none;}
- a:visited { text-decoration: none;}
- a:hover {  text-decoration: none;}
-      
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a.tag {
+	color: gray;
+}
+
+a.tag:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+body {
+	margin: 0;
+}
+
+.navbar {
+	background-image: url("../img/common/headerbg.png");
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	width: 6000px;
+	z-index: 2;
+}
+
+.navbar>li {
+	display: inline-block;
+}
+
+img.logo {
+	position: relative;
+	top: 10px
+}
+
+.navbar>li>a {
+	display: block;
+	text-decoration: none;
+	padding: 0px 20px;
+}
+
+.navbar>li>a#nologo {
+	display: block;
+	text-decoration: none;
+	padding: 20px 40px;
+	color: gray;
+}
+
+.navbar>li>a#nologo:hover {
+	color: #ffffff;
+}
+
+div.login {
+	position: fixed;
+	right: 0%;
+	z-index: 3;
+}
+/* 여기까지 상단  */
+div.mainmenu {
+	background-repeat: no-repeat;
+	background-size: 100% 1000px;
+	width: 100%;
+	height: 600px;
+	text-align: center;
+}
+
+div.mainmenuin {
+	background-color: rgba(255, 255, 255, 0.9);
+	width: 100%;
+	height: 600px;
+	text-align: center;
+}
+
+img.movieimg {
+	position: relative;
+	width: 280px;
+	height: 400px;
+	top: 0px;
+	left: 20%;
+	opacity: 0.9;
+	border: 10px solid rgba(102, 51, 0, 0.3);
+}
+
+img.movieimg:hover {
+	cursor: pointer;
+	-webkit-transform: scale(1.1); /*  크롬 */
+	-moz-transform: scale(1.1); /* FireFox */
+	-o-transform: scale(1.1); /* Opera */
+	transform: scale(1.1);
+	transition: transform .35s;
+	-o-transition: transform .35s;
+	-moz-transition: transform .35s;
+	-webkit-transition: transform .35s;
+}
+
+span.moviename {
+	position: relative;
+	left: 20%;
+	top: 250px;
+}
+
+font.namefont {
+	z-index: 1;
+	color: rgba(0, 0, 0, 0.4);
+}
+/* 여기까지 탑1 */
+div.menu {
+	background-color: #f3f3f3;
+	width: 100%;
+	height: 400px;
+	text-align: center;
+}
+
+div.menuboth {
+	
+}
+
+div.menu>div>div {
+	display: inline-block;
+}
+
+div.mainlogin {
+	background-color: #ffffff;
+	width: 300px;
+	height: 250px;
+	margin: 45px 30px;
+	padding: 30px 20px;
+	box-shadow:1px 1px 3px 0 rgba(213, 213, 213, 0.5);
+}
+
+div.loginbg{
+	background-image : url("../img/top/tableuser.png");
+	width: 272px;
+	height: 110px;
+    margin-left: 10px;
+}
+div.tabletext{
+	background-image : url("../img/top/tabletext.png");
+	width: 272px;
+	height: 42px;
+    margin-left: 10px;
+}
+div.tabletextmove{
+	position: relative;
+	top: 23%;
+}
+a.user {
+	color: gray;
+}
+
+a.user:hover {
+	color: #494949;
+	text-decoration: none;
+}
+div.notice {
+	background-color: #ffffff;
+	width: 300px;
+	height: 250px;
+	margin: 45px 30px;
+	padding: 30px 20px;
+	box-shadow:1px 1px 3px 0 rgba(213, 213, 213, 0.8);
+}
+
+div.bbm {
+	background-color: #ffffff;
+	width: 300px;
+	height: 250px;
+	margin: 45px 30px;
+	padding: 30px 20px;
+	box-shadow:1px 1px 3px 0 rgba(213, 213, 213, 0.5);
+}
+/* 여기까지 탑2 */
+div.menu3d {
+	width: 100%;
+	height: 600px;
+}
+
+a.tag2 {
+	color: #4f4f4f;
+}
+
+a.tag2:hover {
+	color: #000000;
+	text-decoration: underline;
+}
 </style>
-
 </head>
-<body background="../img/top/bg.png">
-<font face='Segoe UI' style=' line-height:1.4'>
-<div>
-<form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
-	<table border="0" height="1510px" width="1800px">
-		<tr>
-			<td width="48px" height="167px"></td>
-			<td colspan="4" align="left" width="1500px">
-			
-			<a href="/top.do">
-				<img src="../img/common/Logo.png"/>
-			</a>&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="/notice/NoticeList.do"
-				>
-				<img src="../img/top/notice.png"/>
-			</a> &nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;
-			
-			<a
-				href="/newmovie/newmovieList.do" > 
-				<img src="../img/top/newmo.png"/>
-			</a> &nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;
-			<a
-				href="/upmovie/upmovieList.do" > 
-				<img src="../img/top/upmo.png"/>
-			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;
-			<a
-				href="/bbm/bbmList.do" > 
-				<img src="../img/top/bbm.png"/>
-			</a> &nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;
-			<a
-				href="/inquiry/inquiryList.do" > 
-				<img src="../img/top/inq.png"/>
-			</a>
-			<br>
-			</td>
-		</tr>
-		<tr>
-			<td height="50px">
-				<img src="../img/bg/rp.png"/>
-			</td>
-			<td align="right" valign="top" width="180">
-				<%if (SESSION_USER_ID.equals("")) {%>		
-			<img src="../img/top/Id.png"/> &nbsp;
-			
-			 <input type="text" name="user_id" maxlength="20"
-				style="width: 110px;" onkeydown="return doKeyIdPw(event)"/>
-				
-				<br>
-				
-				<img src="../img/top/pw.png"/>&nbsp;
-			<input type="password" name="pwd1" maxlength="20" style="width:110px;" onkeydown="return doKeyIdPw(event)"/>	
-				<br>
-				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
-				<a href="/user/manageList.do" > 
-				<span style=" font: 1.5em Georgia, serif ;">
-				<%
-				out.print(SESSION_USER_ID);
-				%> 
-				</span> 
-			</a>
-			 <img src="../img/top/inhi.png"/>
-				<%}else{%>
-				<a href="/user/userInfo.do" > 
-				<span style=" font: 1.5em Georgia, serif ;">
-				<%
-				out.print(SESSION_USER_ID);
-				%> 
-				</span> 
-			</a>
-			 <img src="../img/top/inhi.png"/>
-			 			 <%}%>
-			 			 </td>
-			 <td width="120px">
-			<%if (SESSION_USER_ID.equals("")) {%>	 
-			<input type="submit" class="img-button" value=" "/>
-			<%}else{ %>
-			<img src="../img/top/loginss.png"/>
-			<%} %>
-			</td>
-			<td>
-			</td>
-			</tr>
-			<tr>
-			<td height="25px">
-			</td>
-			<%if (SESSION_USER_ID.equals("")) {%>
-			<td colspan="2" align="left" width="245px" >
-						&nbsp;
-				<a href="/user/user_join2.do" >
-				<img src="../img/top/join.png"/>
-				</a>
-				<a href="/user/user_id_search.do" onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
-				<img src="../img/user/userjoin/idf.png"/>
-				</a>
-				<a href="/user/user_pw_search.do" onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
-				<img src="../img/top/pwf.png"/>
-				</a> 
-				<% } else { %> 
-				<td colspan="2" align="center" width="245px" >
-				<a href="/user/user_logout.do" >
-			 <img src="../img/top/logout.png"/>
-			 </a>
-			 			 &nbsp;&nbsp;&nbsp;
-			 &nbsp;&nbsp;&nbsp;
-			 <%}%>
-				</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td>
-				<h1>
-					<b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
-				</h1>
-			</td>
-			<td valign="top">
-			<table  border="0">
-			<c:if test="${not empty map.boxOfficeResult.dailyBoxOfficeList}">
-			<tr>
-			<c:forEach items="${map.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
-			<%if(i<=3){ %>
-				<td width="400px" align="center" height="350px" valign="top">
-				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+" "+movied2[0]);
-				if(moviec2[0].contains("%")){
-					String moviec3[]=moviec2[0].split("%");
-					moviec2[0]="";
-					for(int hk=0;hk<moviec3.length;hk++){
-						if(hk==moviec3.length-1){
-							moviec2[0]=moviec2[0]+moviec3[hk];
-						}else{
-						moviec2[0]=moviec2[0]+moviec3[hk]+"%25";
-						}
-						if(moviec3.length-1==0) {
-							moviec2[0]=moviec3[hk]+"%25";
-						}
-					}
-				}
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
-				}
-				if(moviec2[0].equals("비정한 도시 감독판")){
-					moviec2[0]="비정한 도시";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 두개의 탑 (확장판)")){
-					moviec2[0]="반지의 제왕 : 두개의 탑";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 반지원정대 (확장판)")){
-					moviec2[0]="반지의 제왕 : 반지원정대";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 왕의 귀환 (확장판)")){
-					moviec2[0]="반지의 제왕 : 왕의 귀환";
-				}
-				String movienameback="";
-				if(moviec2[0].equals("딥")||moviec2[0].equals("더 서클")||moviec2[0].equals("더 보이")||
-						moviec2[0].equals("레전드")||moviec2[0].equals("홈")||moviec2[0].equals("스파이")||
-						 moviec2[0].equals("신들의 전쟁")||moviec2[0].equals("블라인드")||moviec2[0].equals("레지던트")||
-					      moviec2[0].equals("레드")||moviec2[0].equals("골든 슬럼버")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+movied2[0];
-				}
-				if(moviec2[0].equals("라이언")||moviec2[0].equals("그녀")||moviec2[0].equals("슈퍼히어로")||moviec2[0].equals("눈의 여왕")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
-				}
-				if(moviec2[0].equals("비지터")||moviec2[0].equals("파라노말 액티비티")) {
-			         moviec2[0]=moviec2[0]+"2007";
-			      }
-				if(moviec2[0].equals("노트북")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+2004;
-				}
-				if(moviec2[0].equals("러브 액츄얼리")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+2003;
-				}
-				if(moviec2[0].equals("마스터 ")&&(Integer.parseInt(movied2[0])==2013)){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
-				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
-				if(moviec2[0].equals(movienameback+movied2[0])||moviec2[0].equals(movienameback+(Integer.parseInt(movied2[0])-1))||
-						moviec2[0].equals(movienameback+2004)||moviec2[0].equals(movienameback+2003)||moviec2[0].equals(movienameback+2007)){
-					moviec2[0]=movienameback;
-				}
-				 if(moviec2[0].contains("%25")){
-			         moviec2[0]=moviec2[0].replaceAll("%25", "%");
-			      }
-			      if(moviec2[0].contains("%26")){
-			         moviec2[0]=moviec2[0].replaceAll("%26", "&");
-			      }
-				System.out.println(link);
-				Document doc = Jsoup.connect(link).get();
+<body style="min-width: 1250px">
+	<font face='Malgun Gothic' style='line-height: 1.4' />
+	<ul class="navbar">
+		<li><a href="/top.do"> <img class="logo"
+				src="../img/common/Logo.png" />
+		</a></li>
+		<li><a id="nologo" href="/notice/NoticeList.do">공지사항</a></li>
+		<li><a id="nologo" href="/newmovie/newmovieList.do">최신영화</a></li>
+		<li><a id="nologo" href="/upmovie/upmovieList.do">추천영화</a></li>
+		<li><a id="nologo" href="/bbm/bbmList.do">자유게시판</a></li>
+		<li><a id="nologo" href="/inquiry/inquiryList.do">문의</a></li>
+	</ul>
+	<div class="login">
+		<%
+			if (SESSION_USER_ID.equals("")) {
+		%>
+		<a href="/user/user_login.do"><img src="../img/top/uplogin.png"
+			onmouseover="this.src='../img/top/uplogin2.png'"
+			onmouseout="this.src='../img/top/uplogin.png'"></a>
+		<%
+			} else {
+		%>
+		<a href="/user/user_logout.do"><img src="../img/top/uplogout.png"
+			onmouseover="this.src='../img/top/uplogout2.png'"
+			onmouseout="this.src='../img/top/uplogout.png'"></a>
+		<%
+			}
+		%>
+	</div>
+	<!-- 여기까지 상단  -->
+	<div class="mainmenu">
+		<div class="home__slider">
+			<div class="bxslider">
+				<c:forEach items="${map.boxOfficeResult.dailyBoxOfficeList}"
+					var="boxoffice">
+					<%
+						String moviec2[] = moviec[i].split(", openDt");
+							String movied2[] = movied[i].split("-");
+							System.out.println(moviec2[0] + " " + movied2[0]);
+							if (moviec2[0].contains("%")) {
+								String moviec3[] = moviec2[0].split("%");
+								moviec2[0] = "";
+								for (int hk = 0; hk < moviec3.length; hk++) {
+									if (hk == moviec3.length - 1) {
+										moviec2[0] = moviec2[0] + moviec3[hk];
+									} else {
+										moviec2[0] = moviec2[0] + moviec3[hk] + "%25";
+									}
+									if (moviec3.length - 1 == 0) {
+										moviec2[0] = moviec3[hk] + "%25";
+									}
+								}
+							}
+							if (movied2[0].length() > 4) {
+								break;
+							}
+							if (moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")) {
+								moviec2[0] = "헨젤과 그레텔: 마녀 사냥꾼";
+							}
+							if (moviec2[0].equals("비정한 도시 감독판")) {
+								moviec2[0] = "비정한 도시";
+							}
+							if (moviec2[0].equals("반지의 제왕 : 두개의 탑 (확장판)")) {
+								moviec2[0] = "반지의 제왕 : 두개의 탑";
+							}
+							if (moviec2[0].equals("반지의 제왕 : 반지원정대 (확장판)")) {
+								moviec2[0] = "반지의 제왕 : 반지원정대";
+							}
+							if (moviec2[0].equals("반지의 제왕 : 왕의 귀환 (확장판)")) {
+								moviec2[0] = "반지의 제왕 : 왕의 귀환";
+							}
+							String movienameback = "";
+							if (moviec2[0].equals("딥") || moviec2[0].equals("더 서클") || moviec2[0].equals("더 보이")
+									|| moviec2[0].equals("레전드") || moviec2[0].equals("홈") || moviec2[0].equals("스파이")
+									|| moviec2[0].equals("신들의 전쟁") || moviec2[0].equals("블라인드") || moviec2[0].equals("레지던트")
+									|| moviec2[0].equals("레드") || moviec2[0].equals("골든 슬럼버")) {
+								movienameback = moviec2[0];
+								moviec2[0] = moviec2[0] + movied2[0];
+							}
+							if (moviec2[0].equals("라이언") || moviec2[0].equals("그녀") || moviec2[0].equals("슈퍼히어로")
+									|| moviec2[0].equals("눈의 여왕")) {
+								movienameback = moviec2[0];
+								moviec2[0] = moviec2[0] + (Integer.parseInt(movied2[0]) - 1);
+							}
+							if (moviec2[0].equals("비지터") || moviec2[0].equals("파라노말 액티비티")) {
+								moviec2[0] = moviec2[0] + "2007";
+							}
+							if (moviec2[0].equals("노트북")) {
+								movienameback = moviec2[0];
+								moviec2[0] = moviec2[0] + 2004;
+							}
+							if (moviec2[0].equals("러브 액츄얼리")) {
+								movienameback = moviec2[0];
+								moviec2[0] = moviec2[0] + 2003;
+							}
+							if (moviec2[0].equals("마스터 ") && (Integer.parseInt(movied2[0]) == 2013)) {
+								movienameback = moviec2[0];
+								moviec2[0] = moviec2[0] + (Integer.parseInt(movied2[0]) - 1);
+							}
+							String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query=" + moviec2[0]
+									+ "&section=all&ie=utf8";
+							if (moviec2[0].equals(movienameback + movied2[0])
+									|| moviec2[0].equals(movienameback + (Integer.parseInt(movied2[0]) - 1))
+									|| moviec2[0].equals(movienameback + 2004) || moviec2[0].equals(movienameback + 2003)
+									|| moviec2[0].equals(movienameback + 2007)) {
+								moviec2[0] = movienameback;
+							}
+							if (moviec2[0].contains("%25")) {
+								moviec2[0] = moviec2[0].replaceAll("%25", "%");
+							}
+							if (moviec2[0].contains("%26")) {
+								moviec2[0] = moviec2[0].replaceAll("%26", "&");
+							}
+							System.out.println(link);
+							Document doc = Jsoup.connect(link).get();
 
-				Elements pngs = doc.select("ul.search_list_1 li dl");
-				
-				String[] png3=new String[1];
-				
-				int tj=0;
-				int wpq=0;
-				for(Element pngs2 : pngs) {
-					String con=pngs2.text();
-					String con2[]=pngs2.toString().split("href=");
-					
-					String con3[]=con2[1].split(">");
-					String conn=pngs2.toString();
-					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
-					String con5[]=con4[1].split("</em>");
-					
-					if(tj==0) {
-						wpq=con5[0].length();
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						 if(moviec2[0].equals("데블")){
-					            tj=7;
-					         }
-					}
-					if(wpq<=con5[0].length()||moviec2[0].equals("가디언즈 오브 갤럭시")||moviec2[0].equals("개구쟁이 스머프")) {
-						String con6[]=conn.split("year=");
-						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
-						wpq=con5[0].length();
-						System.out.println(wpq);
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						}
-					}
-					tj=tj+1;
-					if(tj==9||moviec2[0].equals("패션왕")||moviec2[0].equals("콜드 워")||moviec2[0].equals("그것")||
-							moviec2[0].equals("더 플랜")||moviec2[0].equals("링스") ||moviec2[0].equals("눈길")||
-							moviec2[0].equals("그레이트 월")||moviec2[0].equals("트롤")||
-					         moviec2[0].equals("선생님의 일기")||moviec2[0].equals("대결")||moviec2[0].equals("빅")||
-					         moviec2[0].equals("부활")||moviec2[0].equals("괴물의 아이")||moviec2[0].equals("카트")||
-					         moviec2[0].equals("이브 생 로랑")||moviec2[0].equals("살인자")||moviec2[0].equals("링컨")||
-					         moviec2[0].equals("더 자이언트")||moviec2[0].equals("용의자X")||moviec2[0].equals("나는 왕이로소이다")||
-					         moviec2[0].equals("50/50")||moviec2[0].equals("레지던트")||moviec2[0].equals("발렌타인 데이")||
-					         moviec2[0].equals("공주와 개구리")){
-						break;
-					}
-				}
-				
-				String linkHref = "https://movie.naver.com/"+png3[0];
-				String[] moviecodeout=linkHref.split("code=");
-				moviecode=moviecodeout[1];
-				Document doc2 = Jsoup.connect(linkHref).get();
-				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
-				
-				String linkHref2 = pngs2.attr("src");
-				i=i+1;
-				%>
-				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
-				<img src="<%=linkHref2%>" border="2px" class="poster"/>
-				</a>
-				<br>
-				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
-				<span style=" color: white;font-weight:bold">
-				${boxoffice.movieNm}
-				</span>
-				</a>
-				</td>
-				<%}else if(i>3&&i<7){
-				if(i==4){%>
-				</tr>
-				<tr>
-				<%} %>
-				<td width="400px" align="center" height="450px" valign="top">
-				<br><br><br><br>
-				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+movied2[0]);
-				if(moviec2[0].contains("%")){
-			         moviec2[0]=moviec2[0].replaceAll("%", "%25");
-			      }
-			      if(moviec2[0].contains("&")){
-			         moviec2[0]=moviec2[0].replaceAll("&", "%26");
-			      }
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
-				}
-				if(moviec2[0].equals("비정한 도시 감독판")){
-					moviec2[0]="비정한 도시";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 두개의 탑 (확장판)")){
-					moviec2[0]="반지의 제왕 : 두개의 탑";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 반지원정대 (확장판)")){
-					moviec2[0]="반지의 제왕 : 반지원정대";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 왕의 귀환 (확장판)")){
-					moviec2[0]="반지의 제왕 : 왕의 귀환";
-				}
-				String movienameback="";
-				if(moviec2[0].equals("딥")||moviec2[0].equals("더 서클")||moviec2[0].equals("더 보이")||
-						moviec2[0].equals("레전드")||moviec2[0].equals("홈")||moviec2[0].equals("스파이")||
-						 moviec2[0].equals("신들의 전쟁")||moviec2[0].equals("블라인드")||moviec2[0].equals("레지던트")||
-					      moviec2[0].equals("레드")||moviec2[0].equals("골든 슬럼버")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+movied2[0];
-				}
-				if(moviec2[0].equals("라이언")||moviec2[0].equals("그녀")||moviec2[0].equals("슈퍼히어로")||moviec2[0].equals("눈의 여왕")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
-				}
-				if(moviec2[0].equals("비지터")||moviec2[0].equals("파라노말 액티비티")) {
-			         moviec2[0]=moviec2[0]+"2007";
-			      }
-				if(moviec2[0].equals("노트북")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+2004;
-				}
-				if(moviec2[0].equals("러브 액츄얼리")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+2003;
-				}
-				if(moviec2[0].equals("마스터 ")&&(Integer.parseInt(movied2[0])==2013)){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
-				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
-				if(moviec2[0].equals(movienameback+movied2[0])||moviec2[0].equals(movienameback+(Integer.parseInt(movied2[0])-1))||
-						moviec2[0].equals(movienameback+2004)||moviec2[0].equals(movienameback+2003)||moviec2[0].equals(movienameback+2007)){
-					moviec2[0]=movienameback;
-				}
-				 if(moviec2[0].contains("%25")){
-			         moviec2[0]=moviec2[0].replaceAll("%25", "%");
-			      }
-			      if(moviec2[0].contains("%26")){
-			         moviec2[0]=moviec2[0].replaceAll("%26", "&");
-			      }
-				System.out.println(link);
-				Document doc = Jsoup.connect(link).get();
+							Elements pngs = doc.select("ul.search_list_1 li dl");
 
-				Elements pngs = doc.select("ul.search_list_1 li dl");
-				
-				String[] png3=new String[1];
-				
-				int tj=0;
-				int wpq=0;
-				for(Element pngs2 : pngs) {
-					String con=pngs2.text();
-					String con2[]=pngs2.toString().split("href=");
-					
-					String con3[]=con2[1].split(">");
-					String conn=pngs2.toString();
-					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
-					String con5[]=con4[1].split("</em>");
-					
-					if(tj==0) {
-						wpq=con5[0].length();
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						 if(moviec2[0].equals("데블")){
-					            tj=7;
-					         }
-					}
-					if(wpq<=con5[0].length()||moviec2[0].equals("가디언즈 오브 갤럭시")||moviec2[0].equals("개구쟁이 스머프")) {
-						String con6[]=conn.split("year=");
-						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
-						wpq=con5[0].length();
-						System.out.println(wpq);
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						}
-					}
-					tj=tj+1;
-					if(tj==9||moviec2[0].equals("패션왕")||moviec2[0].equals("콜드 워")||moviec2[0].equals("그것")||
-							moviec2[0].equals("더 플랜")||moviec2[0].equals("링스") ||moviec2[0].equals("눈길")||
-							moviec2[0].equals("그레이트 월")||moviec2[0].equals("트롤")||
-					         moviec2[0].equals("선생님의 일기")||moviec2[0].equals("대결")||moviec2[0].equals("빅")||
-					         moviec2[0].equals("부활")||moviec2[0].equals("괴물의 아이")||moviec2[0].equals("카트")||
-					         moviec2[0].equals("이브 생 로랑")||moviec2[0].equals("살인자")||moviec2[0].equals("링컨")||
-					         moviec2[0].equals("더 자이언트")||moviec2[0].equals("용의자X")||moviec2[0].equals("나는 왕이로소이다")||
-					         moviec2[0].equals("50/50")||moviec2[0].equals("레지던트")||moviec2[0].equals("발렌타인 데이")||
-					         moviec2[0].equals("공주와 개구리")){
-						break;
-					}
-				}
-				
-				String linkHref = "https://movie.naver.com/"+png3[0];
-				String[] moviecodeout=linkHref.split("code=");
-				moviecode=moviecodeout[1];
-				Document doc2 = Jsoup.connect(linkHref).get();
-				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
-				
-				String linkHref2 = pngs2.attr("src");
-				i=i+1;
-				%>
-				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
-				<img src="<%=linkHref2%>" border="2px" class="poster"/>
-				</a>
-				<br>
-				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
-				<span style=" color: white;font-weight:bold">
-				${boxoffice.movieNm}
-				</span>
-				</a>
-				</td>
-				<%}else{ %>
-				<%if(i==7){%>
-				</tr>
-				<tr>
-				<%} %>
-				<td width="400px" align="center" height="420px" valign="top">
-				<br><br><br>
-				<%
-				String moviec2[]=moviec[i].split(", openDt");
-				String movied2[]=movied[i].split("-");
-				System.out.println(moviec2[0]+movied2[0]);
-				if(moviec2[0].contains("%")){
-					String moviec3[]=moviec2[0].split("%");
-					moviec2[0]="";
-					for(int hk=0;hk<moviec3.length;hk++){
-						if(hk==moviec3.length-1){
-							moviec2[0]=moviec2[0]+moviec3[hk];
-						}else{
-						moviec2[0]=moviec2[0]+moviec3[hk]+"%25";
-						}
-						if(moviec3.length-1==0) {
-							moviec2[0]=moviec3[hk]+"%25";
-						}
-					}
-				}
-				if(moviec2[0].equals("헨젤과 그레텔: 마녀 사냥꾼 3D")){
-					moviec2[0]="헨젤과 그레텔: 마녀 사냥꾼";
-				}
-				if(moviec2[0].equals("비정한 도시 감독판")){
-					moviec2[0]="비정한 도시";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 두개의 탑 (확장판)")){
-					moviec2[0]="반지의 제왕 : 두개의 탑";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 반지원정대 (확장판)")){
-					moviec2[0]="반지의 제왕 : 반지원정대";
-				}
-				if(moviec2[0].equals("반지의 제왕 : 왕의 귀환 (확장판)")){
-					moviec2[0]="반지의 제왕 : 왕의 귀환";
-				}
-				String movienameback="";
-				if(moviec2[0].equals("딥")||moviec2[0].equals("더 서클")||moviec2[0].equals("더 보이")||
-						moviec2[0].equals("레전드")||moviec2[0].equals("홈")||moviec2[0].equals("스파이")||
-						 moviec2[0].equals("신들의 전쟁")||moviec2[0].equals("블라인드")||moviec2[0].equals("레지던트")||
-					      moviec2[0].equals("레드")||moviec2[0].equals("골든 슬럼버")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+movied2[0];
-				}
-				if(moviec2[0].equals("라이언")||moviec2[0].equals("그녀")||moviec2[0].equals("슈퍼히어로")||moviec2[0].equals("눈의 여왕")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
-				}
-				if(moviec2[0].equals("비지터")||moviec2[0].equals("파라노말 액티비티")) {
-			         moviec2[0]=moviec2[0]+"2007";
-			      }
-				if(moviec2[0].equals("노트북")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+2004;
-				}
-				if(moviec2[0].equals("러브 액츄얼리")){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+2003;
-				}
-				if(moviec2[0].equals("마스터 ")&&(Integer.parseInt(movied2[0])==2013)){
-					movienameback=moviec2[0];
-					moviec2[0]=moviec2[0]+(Integer.parseInt(movied2[0])-1);
-				}
-				String link = "https://movie.naver.com/movie/search/result.nhn?section=movie&query="+moviec2[0]+"&section=all&ie=utf8";
-				if(moviec2[0].equals(movienameback+movied2[0])||moviec2[0].equals(movienameback+(Integer.parseInt(movied2[0])-1))||
-						moviec2[0].equals(movienameback+2004)||moviec2[0].equals(movienameback+2003)||moviec2[0].equals(movienameback+2007)){
-					moviec2[0]=movienameback;
-				}
-				 if(moviec2[0].contains("%25")){
-			         moviec2[0]=moviec2[0].replaceAll("%25", "%");
-			      }
-			      if(moviec2[0].contains("%26")){
-			         moviec2[0]=moviec2[0].replaceAll("%26", "&");
-			      }
-				System.out.println(link);
-				Document doc = Jsoup.connect(link).get();
+							String[] png3 = new String[1];
 
-				Elements pngs = doc.select("ul.search_list_1 li dl");
-				
-				String[] png3=new String[1];
-				
-				int tj=0;
-				int wpq=0;
-				for(Element pngs2 : pngs) {
-					String con=pngs2.text();
-					String con2[]=pngs2.toString().split("href=");
-					
-					String con3[]=con2[1].split(">");
-					String conn=pngs2.toString();
-					String con4[]=conn.split("<em class=\""+"cuser_cnt"+"\">");
-					String con5[]=con4[1].split("</em>");
-					
-					if(tj==0) {
-						wpq=con5[0].length();
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						 if(moviec2[0].equals("데블")){
-					            tj=7;
-					         }
-					}
-					if(wpq<=con5[0].length()||moviec2[0].equals("가디언즈 오브 갤럭시")||moviec2[0].equals("개구쟁이 스머프")) {
-						String con6[]=conn.split("year=");
-						int cnn2=Integer.parseInt(con6[1].substring(0,4));
-						if(cnn2<=Integer.parseInt(movied2[0])&&cnn2>=Integer.parseInt(movied2[0])-4){
-						wpq=con5[0].length();
-						System.out.println(wpq);
-						png3[0]=con3[0].substring(1,con3[0].length()-1);
-						}
-					}
-					tj=tj+1;
-					if(tj==9||moviec2[0].equals("패션왕")||moviec2[0].equals("콜드 워")||moviec2[0].equals("그것")||
-							moviec2[0].equals("더 플랜")||moviec2[0].equals("링스") ||moviec2[0].equals("눈길")||
-							moviec2[0].equals("그레이트 월")||moviec2[0].equals("트롤")||
-					         moviec2[0].equals("선생님의 일기")||moviec2[0].equals("대결")||moviec2[0].equals("빅")||
-					         moviec2[0].equals("부활")||moviec2[0].equals("괴물의 아이")||moviec2[0].equals("카트")||
-					         moviec2[0].equals("이브 생 로랑")||moviec2[0].equals("살인자")||moviec2[0].equals("링컨")||
-					         moviec2[0].equals("더 자이언트")||moviec2[0].equals("용의자X")||moviec2[0].equals("나는 왕이로소이다")||
-					         moviec2[0].equals("50/50")||moviec2[0].equals("레지던트")||moviec2[0].equals("발렌타인 데이")||
-					         moviec2[0].equals("공주와 개구리")){
-						break;
-					}
-					
-				}
-				
-				String linkHref = "https://movie.naver.com/"+png3[0];
-				String[] moviecodeout=linkHref.split("code=");
-				moviecode=moviecodeout[1];
-				Document doc2 = Jsoup.connect(linkHref).get();
-				Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
-				
-				String linkHref2 = pngs2.attr("src");
-				i=i+1;
-				%>
-				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
-				<img src="<%=linkHref2%>" border="2px" class="poster"/>
-				</a>
-				<br>
-				<a href="/movieInfo.do?moviecode=<%=moviecode%>">
-				<span style=" color: white;font-weight:bold">
-				${boxoffice.movieNm}
-				</span>
-				</a>
-				</td>
-				<%} %>
+							int tj = 0;
+							int wpq = 0;
+							for (Element pngs2 : pngs) {
+								String con = pngs2.text();
+								String con2[] = pngs2.toString().split("href=");
+
+								String con3[] = con2[1].split(">");
+								String conn = pngs2.toString();
+								String con4[] = conn.split("<em class=\"" + "cuser_cnt" + "\">");
+								String con5[] = con4[1].split("</em>");
+
+								if (tj == 0) {
+									wpq = con5[0].length();
+									png3[0] = con3[0].substring(1, con3[0].length() - 1);
+									if (moviec2[0].equals("데블")) {
+										tj = 7;
+									}
+								}
+								if (wpq <= con5[0].length() || moviec2[0].equals("가디언즈 오브 갤럭시") || moviec2[0].equals("개구쟁이 스머프")) {
+									String con6[] = conn.split("year=");
+									int cnn2 = Integer.parseInt(con6[1].substring(0, 4));
+									if (cnn2 <= Integer.parseInt(movied2[0]) && cnn2 >= Integer.parseInt(movied2[0]) - 4) {
+										wpq = con5[0].length();
+										System.out.println(wpq);
+										png3[0] = con3[0].substring(1, con3[0].length() - 1);
+									}
+								}
+								tj = tj + 1;
+								if (tj == 9 || moviec2[0].equals("패션왕") || moviec2[0].equals("콜드 워") || moviec2[0].equals("그것")
+										|| moviec2[0].equals("더 플랜") || moviec2[0].equals("링스") || moviec2[0].equals("눈길")
+										|| moviec2[0].equals("그레이트 월") || moviec2[0].equals("트롤") || moviec2[0].equals("선생님의 일기")
+										|| moviec2[0].equals("대결") || moviec2[0].equals("빅") || moviec2[0].equals("부활")
+										|| moviec2[0].equals("괴물의 아이") || moviec2[0].equals("카트") || moviec2[0].equals("이브 생 로랑")
+										|| moviec2[0].equals("살인자") || moviec2[0].equals("링컨") || moviec2[0].equals("더 자이언트")
+										|| moviec2[0].equals("용의자X") || moviec2[0].equals("나는 왕이로소이다") || moviec2[0].equals("50/50")
+										|| moviec2[0].equals("레지던트") || moviec2[0].equals("발렌타인 데이")
+										|| moviec2[0].equals("공주와 개구리")) {
+									break;
+								}
+							}
+
+							String linkHref = "https://movie.naver.com/" + png3[0];
+							String[] moviecodeout = linkHref.split("code=");
+							moviecode = moviecodeout[1];
+							Document doc2 = Jsoup.connect(linkHref).get();
+							Elements pngs2 = doc2.select("div.mv_info_area div.poster a img");
+							String linkHref2 = pngs2.attr("src");
+							String bigimg = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=" + moviecode;
+							Document doc3 = Jsoup.connect(bigimg).get();
+							Elements pngs3 = doc3.select("div#page_content a img#targetImage");
+							String bigimg2 = pngs3.attr("src");
+							i = i + 1;
+					%>
+					<div class="mainmenu"
+						style="background-image: url('<%=bigimg2%>');">
+							<div class="mainmenuin">
+								<span class="moviename" style="color: white; font-weight: bold;">
+								<a href="/movieInfo.do?moviecode=<%=moviecode%>" class="user">
+									<font face='Malgun Gothic' size="10px">
+										${boxoffice.movieNm}</font>
+										</a>
+										 <br />
+								<br /> 
+								<a href="/movieInfo.do?moviecode=<%=moviecode%>">
+								<font face='Malgun Gothic' size="3px" class="namefont">
+										랜덤 추천 결과 입니다.</font>
+								</a>
+								</span> 
+								<a href="/movieInfo.do?moviecode=<%=moviecode%>">
+								<img class="movieimg" src="<%=linkHref2%>">
+								</a>
+							</div>
+					</div>
 				</c:forEach>
-				</tr>
-			</c:if>
-			</table>
-			</td>
-			<td><img src="../img/bg/sidebg.png"/></td>
-		</tr>
-	</table>
-	</form>
-</div>
-</font>
+			</div>
+		</div>
+	</div>
+	<!-- 여기까지 메뉴1 -->
+	<div class="menu">
+		<div class="menuboth">
+			<div class="mainlogin">
+				<table background="../img/top/tablebg.png" align="center"
+					height="100%" width="100%">
+					<%
+						if (SESSION_USER_ID.equals("")) {
+					%>
+					<tr>
+						<td>
+						<div class="loginbg">
+						<br/>
+						<font face='Malgun Gothic' size="10px">
+						<a href="/user/user_login.do" class="user">
+						로그인
+						</a>
+						</font>
+						</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">영화 후기를 남겨주세요!</td>
+					</tr>
+					<tr>
+						<td valign="top">
+						<div class="tabletext">
+							<div class="tabletextmove">
+						<span
+							style="padding: 10px 7px; color: gray;"> <a class="tag"
+								href="/user/user_join2.do"> <font face='Malgun Gothic'
+									size="2px"> 회원가입 </font>
+							</a>
+						</span> <span style="padding: 10px 0px; color: gray;"> <font
+								face='Malgun Gothic' size="2px" color="gray"> | </font>
+						</span> <span style="padding: 10px 7px; color: gray;"> <a
+								class="tag" href="/user/user_id_search.do"
+								onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
+									<font face='Malgun Gothic' size="2px"> 아이디찾기 </font>
+							</a>
+						</span> <span style="padding: 10px 0px; color: gray;"> <font
+								face='Malgun Gothic' size="2px" color="gray"> | </font>
+						</span> <span style="padding: 10px 7px; color: gray;"> <a
+								class="tag" href="/user/user_pw_search.do"
+								onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
+									<font face='Malgun Gothic' size="2px"> 비밀번호 찾기 </font>
+							</a>
+						</span>
+							</div>
+						</div>
+						</td>
+					</tr>
+					<%
+						} else if(SESSION_USER_ID.equals("admin")) {
+					%>
+					<tr>
+						<td>
+						<div class="loginbg">
+						<br/>
+						<font face='Malgun Gothic' size="10px">
+						<a href="/user/manageList.do" class="user">
+						<%=SESSION_USER_ID %>
+						</a>
+						</font>
+						</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">관리를 시작합니다.</td>
+					</tr>
+					<tr>
+						<td valign="top">
+						<div class="tabletext">
+							<div class="tabletextmove">
+						<span
+							style="padding: 10px 7px; color: gray;"> <a class="tag"
+								href="/user/manageList.do"> <font face='Malgun Gothic'
+									size="2px"> 회원관리 </font>
+							</a>
+						</span><span style="padding: 10px 0px; color: gray;"> <font
+								face='Malgun Gothic' size="2px" color="gray"> | </font>
+						</span> <span
+							style="padding: 10px 7px; color: gray;"> <a class="tag"
+								href="/user/userInfo.do"> <font face='Malgun Gothic'
+									size="2px"> 내 정보 </font>
+							</a>
+						</span><span style="padding: 10px 0px; color: gray;"> <font
+								face='Malgun Gothic' size="2px" color="gray"> | </font>
+						</span> <span style="padding: 10px 7px; color: gray;"> <a
+								class="tag" href="/user/user_logout.do"> <font
+									face='Malgun Gothic' size="2px"> 로그아웃 </font>
+							</a>
+						</span>
+							</div>
+						</div>
+						</td>
+					</tr>
+					<%
+						}else{
+					%>
+					<tr>
+						<td>
+						<div class="loginbg">
+						<br/>
+						<font face='Malgun Gothic' size="10px">
+						<a href="/user/userInfo.do" class="user">
+						<%=SESSION_USER_ID %>
+						</a>
+						</font>
+						</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">Lovie 에 어서오세요!</td>
+					</tr>
+					<tr>
+						<td valign="top">
+						<div class="tabletext">
+							<div class="tabletextmove">
+						<span
+							style="padding: 10px 7px; color: gray;"> <a class="tag"
+								href="/user/userInfo.do"> <font face='Malgun Gothic'
+									size="2px"> 내 정보 </font>
+							</a>
+						</span><span style="padding: 10px 0px; color: gray;"> <font
+								face='Malgun Gothic' size="2px" color="gray"> | </font>
+						</span> <span style="padding: 10px 7px; color: gray;"> <a
+								class="tag" href="/user/user_logout.do"> <font
+									face='Malgun Gothic' size="2px"> 로그아웃 </font>
+							</a>
+						</span>
+							</div>
+						</div>
+						</td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+			<!-- 공지사항  -->
+			<div class="notice">
+				<table width="100%" height="100%">
+					<tr>
+						<td align="left" valign="top" height="10px"><font
+							face='Malgun Gothic' size="5px" color="gray"> <b>공지사항</b>
+						</font></td>
+						<td align="right" valign="top"><a
+							href="/notice/NoticeList.do" class="tag"> <font
+								face='Malgun Gothic' size="5px"> <b>+</b>
+							</font></a></td>
+					</tr>
+					<tr>
+						<td colspan="2" valign="top">
+							<hr />
+						</td>
+					</tr>
+					<%
+						int a1 = nList.size();
+						if (a1 > 5) {
+							a1 = 5;
+						}
+						for (int count = 0; count < a1; count++) {
+							CommonDTO nDTO = nList.get(count);
+							if (nDTO == null) {
+								nDTO = new CommonDTO();
+							}
+					%>
+					<tr>
+						<td align="left" valign="top"><span
+							style="color: #4f4f4f; font-weight: bold;"> - </span> <a
+							href="javascript:doNDetail('<%=CmmUtil.nvl(nDTO.getnotice_seq())%>');"
+							class="tag2"> <span style="font-weight: bold"> <%=CmmUtil.nvl(nDTO.getnotice_Title())%>
+							</span>
+						</a> <%
+ 	if (CmmUtil.nvl(nDTO.getnotice_com_count()).equals("0")) {
+ 		} else {
+ %> <span
+							style="color: rgb(2, 151, 128); font-weight: bold; font-size: small;">
+								[<%=CmmUtil.nvl(nDTO.getnotice_com_count())%>]
+						</span></td>
+					</tr>
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+				</table>
+			</div>
+			<!-- 자유게시판  -->
+			<div class="bbm">
+				<table width="100%" height="100%">
+					<tr>
+						<td align="left" valign="top" height="10px"><font
+							face='Malgun Gothic' size="5px" color="gray"> <b>자유게시판</b>
+						</font></td>
+						<td align="right" valign="top"><a href="/bbm/bbmList.do"
+							class="tag"> <font face='Malgun Gothic' size="5px"> <b>+</b>
+							</font>
+						</a></td>
+					</tr>
+					<tr>
+						<td colspan="2" valign="top">
+							<hr />
+						</td>
+					</tr>
+					<%
+						int a = bList.size();
+						if (a > 5) {
+							a = 5;
+						}
+						for (int count = 0; count < a; count++) {
+							CommonDTO bDTO = bList.get(count);
+							if (bDTO == null) {
+								bDTO = new CommonDTO();
+							}
+					%>
+					<tr>
+						<td align="left" valign="top"><span
+							style="color: #4f4f4f; font-weight: bold;"> - </span> <a
+							href="javascript:doBDetail('<%=CmmUtil.nvl(bDTO.getbbm_seq())%>');"
+							class="tag2"> <span style="font-weight: bold"> <%=CmmUtil.nvl(bDTO.getbbm_Title())%>
+							</span>
+						</a> <%
+ 	if (CmmUtil.nvl(bDTO.getbbm_com_count()).equals("0")) {
+ 		} else {
+ %> <span
+							style="color: rgb(2, 151, 128); font-weight: bold; font-size: small;">
+								[<%=CmmUtil.nvl(bDTO.getbbm_com_count())%>]
+						</span></td>
+					</tr>
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- 여기까지 메뉴2  -->
+	<div class="menu3d"></div>
 </body>
 </html>

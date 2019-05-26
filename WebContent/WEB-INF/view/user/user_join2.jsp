@@ -38,8 +38,8 @@ function doTop(){
 }
 
 function doSubmit(f) {
-   if(f.user_id.value.length >= 20){
-      alert("아이디가 20자를 초과했습니다.");
+   if(f.user_id.value.length >= 9){
+      alert("아이디가 9자를 초과했습니다.");
       f.user_id.focus();
       return false;
    }

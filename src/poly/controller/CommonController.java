@@ -1,8 +1,10 @@
 package poly.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService;
 import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import poly.dto.BBMDTO;
+import poly.dto.CommonDTO;
+import poly.dto.NoticeDTO;
+import poly.service.IBBMService;
 import poly.service.ICommonService;
+import poly.service.INoticeService;
 import poly.util.CmmUtil;
 
 
@@ -35,23 +43,58 @@ public class CommonController {
    @RequestMapping(value="main", method=RequestMethod.GET)
    public String Main(HttpServletRequest request, HttpServletResponse response, 
          ModelMap model) throws Exception {
-	   
+	   List<CommonDTO> nList = commonService.getNoticeList();
+	   List<CommonDTO> bList = commonService.getBBMList();
+	   if (nList == null) {
+			nList = new ArrayList<CommonDTO>();
+
+		}
+	   if (bList == null) {
+			bList = new ArrayList<CommonDTO>();
+
+		}
+	   model.addAttribute("nList", nList);
+	   model.addAttribute("bList", bList);
+	   System.out.println(nList);
+	   System.out.println(bList);
+	   nList = null;
+	   bList = null;
       return "top";
    }
-   @RequestMapping(value="top", method=RequestMethod.GET)
-   public String Top(HttpServletRequest request, HttpServletResponse response, 
+   @RequestMapping(value="top2", method=RequestMethod.GET)
+   public String Top2(HttpServletRequest request, HttpServletResponse response, 
          ModelMap model) throws Exception {
 	   
-	   log.info("top");
+	   log.info("top2");
 	   
 		
-      return "top";
+      return "top2";
    }
    @RequestMapping(value="top3", method=RequestMethod.GET)
    public String Top3(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
 	   
 	   
       return "top3";
+   }
+   @RequestMapping(value="top", method=RequestMethod.GET)
+   public String Top(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+	   List<CommonDTO> nList = commonService.getNoticeList();
+	   List<CommonDTO> bList = commonService.getBBMList();
+	   if (nList == null) {
+			nList = new ArrayList<CommonDTO>();
+
+		}
+	   if (bList == null) {
+			bList = new ArrayList<CommonDTO>();
+
+		}
+	   model.addAttribute("nList", nList);
+	   model.addAttribute("bList", bList);
+	   System.out.println(nList);
+	   System.out.println(bList);
+	   nList = null;
+	   bList = null;
+      return "top";
    }
    
    @RequestMapping(value="video", method=RequestMethod.GET)
