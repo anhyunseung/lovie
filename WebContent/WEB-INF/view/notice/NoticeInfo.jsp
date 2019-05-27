@@ -107,7 +107,6 @@ function doDelete(){
 html, body {
 	margin: 0;
 	height: 100%;
-	min-height: 1400px;
 }
 
 a.line:hover {
@@ -145,7 +144,7 @@ body {
 	margin: 0;
 	padding: 0;
 	position: fixed;
-	width: 100%;
+	width: 30000px;
 	z-index: 2;
 }
 
@@ -192,12 +191,13 @@ div.leftmenu {
 	width: 27%;
 	height: 100%;
 	box-shadow: 2px 2px 3px 0 rgba(100, 100, 100, 0.6);
-	position: fixed;
+	min-width: 337px;
+	float: left;
 }
 
 div.leftmenu2 {
 	margin: 0;
-	padding: 100px 0 0 0;
+	padding: 100px 0 162px 0;
 	width: 300px;
 	background-image: url("../img/total/listbg.jpg");
 	height: 600px;
@@ -240,7 +240,7 @@ div.rightmenu {
 }
 
 div.writemenu {
-	margin: 162px 0 0 160px;
+	margin: 162px 0 162px 160px;
 	padding: 10px 10px;
 	background-color: rgba(255, 255, 255);
 	width: 700px;
@@ -457,6 +457,7 @@ a.linetag2:hover {
 		%>
 	</div>
 	<div class="blank"></div>
+	<div style="height: 100%">
 	<div align="right" class="leftmenu">
 		<div class="leftmenu2">
 			<div class="loginmenu">
@@ -923,6 +924,7 @@ a.linetag2:hover {
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

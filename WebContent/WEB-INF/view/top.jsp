@@ -204,7 +204,7 @@ body {
 	margin: 0;
 	padding: 0;
 	position: fixed;
-	width: 6000px;
+	width: 30000px;
 	z-index: 2;
 }
 
