@@ -30,19 +30,22 @@
 	type="image/x-icon" />
 <title>공지사항 : Lovie</title>
 <script type="text/javascript">
-function doDetail(seq){
-	   location.href="/notice/NoticeInfo.do?notice_seq="+ seq;
+	function doDetail(seq) {
+		location.href = "/notice/NoticeInfo.do?notice_seq=" + seq;
 	}
 </script>
 <style>
 html, body {
 	margin: 0;
 	height: 100%;
+	min-height:1000px;
 }
-a.line:hover{
- color:black;
- text-decoration: underline;
- }
+
+a.line:hover {
+	color: black;
+	text-decoration: underline;
+}
+
 a:link {
 	text-decoration: none;
 }
@@ -117,8 +120,8 @@ div.blank {
 /* 여기까지 상단  */
 div.fullscreen {
 	background-color: #f3f3f3;
-	width:100%;
-	height: 1300px;
+	width: 100%;
+	height: 100%;
 }
 
 div.fullscreen>div {
@@ -169,16 +172,45 @@ div.rightmenu {
 }
 
 div.writemenu {
-
 	margin: 100px 0 0 160px;
 	padding: 10px 10px;
 	background-color: rgba(255, 255, 255);
 	width: 700px;
 	box-shadow: 1px 1px 2px 0 rgba(100, 100, 100, 0.6);
 }
+td.paging > div{
+	display: inline-block;
+}
+div.linebox{
+	width:25px;
+	height: 25px;
+	background-color: #dddddd;
+	vertical-align: bottom;
+}
+div.linebox2{
+	width:25px;
+	height: 25px;
+	background-color: #white;
+	vertical-align: bottom;
+}
+div.linebox3{
+	width:25px;
+	height: 25px;
+	background-color: #111111;
+	vertical-align: bottom;
+}
+a.linetag:hover {
+	text-decoration: underline;
+	color: white;
+}
+a.linetag2:hover {
+	text-decoration: underline;
+	color: #55555;
+}
+/* 여기까지 오른쪽 정렬  */
 </style>
 </head>
-<body style="min-width: 1250px; background-color: #f3f3f3;">
+<body ondragstart="return false" style="min-width: 1250px; background-color: #f3f3f3;">
 	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
 		<li><a href="/top.do"> <img class="logo"
@@ -287,35 +319,23 @@ div.writemenu {
 					<tr>
 						<td colspan="4"><font face='Malgun Gothic' size="6px"
 							style="color: #555555; margin: 0 0 0 0;"> <b>공지사항</b>
-						</font>
-						<br/><br/>
-						</td>
+						</font> <br />
+						<br /></td>
 					</tr>
 					<tr style="background-color: #dddddd;">
-						<td align="center" height="23px">
-						<font face='Malgun Gothic' size="2px"
-							style="color: #555555; margin: 0 0 0 0;">
-							 <b>글 번호</b>
-						</font>
-						</td>
-						<td align="center">
-						<font face='Malgun Gothic' size="2px"
-							style="color: #555555; margin: 0 0 0 0;">
-							 <b>제목</b>
-						</font>
-						</td>
-						<td align="center">
-						<font face='Malgun Gothic' size="2px"
-							style="color: #555555; margin: 0 0 0 0;">
-							 <b>작성자</b>
-						</font>
-						</td>
-						<td align="center">
-						<font face='Malgun Gothic' size="2px"
-							style="color: #555555; margin: 0 0 0 0;">
-							 <b>작성일</b>
-						</font>
-						</td>
+						<td align="center" height="23px"><font face='Malgun Gothic'
+							size="2px" style="color: #555555; margin: 0 0 0 0;"> <b>글
+									번호</b>
+						</font></td>
+						<td align="center"><font face='Malgun Gothic' size="2px"
+							style="color: #555555; margin: 0 0 0 0;"> <b>제목</b>
+						</font></td>
+						<td align="center"><font face='Malgun Gothic' size="2px"
+							style="color: #555555; margin: 0 0 0 0;"> <b>작성자</b>
+						</font></td>
+						<td align="center"><font face='Malgun Gothic' size="2px"
+							style="color: #555555; margin: 0 0 0 0;"> <b>작성일</b>
+						</font></td>
 					</tr>
 					<%
 						int a = rList.size();
@@ -347,7 +367,11 @@ div.writemenu {
 						<td width="600px">&nbsp; <a
 							href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getnotice_seq())%>');"
 							class="line"> <span style="color: black; font-weight: bold">
-									<%=CmmUtil.nvl(rDTO.getTitle())%>
+							<%if(CmmUtil.nvl(rDTO.getTitle()).length()>20){ %>
+								<%=CmmUtil.nvl(rDTO.getTitle()).substring(0,20)+"..."%>
+							<%}else{ %>
+								<%=CmmUtil.nvl(rDTO.getTitle())%>
+							<%} %>
 							</span>
 						</a> <%
  	if (CmmUtil.nvl(rDTO.getCom_count()).equals("0")) {
@@ -375,139 +399,162 @@ div.writemenu {
 					<%
 						}
 					%>
-					<%if(SESSION_USER_ID.equals("admin")){%>
-<tr>
-<td align="right" colspan="4">
-<a href="NoticeReg.do">
-<img src="../img/button/write.png"/>
-</a>&nbsp;
-</td>
-</tr>
-<%} %>
-					      <tr>
-   <td align="center" colspan="4">
-   <%int line=0; 
-   if(rList.size()>=200 && rList.size()<=1999){
-		c=rList.size()/200;
-	}else if(rList.size()>=2000 && rList.size()<=19999){
-		c=rList.size()/2000;
-	}else if(rList.size()>=20000 && rList.size()<=199999){
-		c=rList.size()/20000;
-	}else{
-		c=rList.size()/20;
-	}
-   if(count2/10==0){ 
-	   int q=1;
-	   if(rList.size()>200){
-		  q=10;
-	   }else{
-		   q=(rList.size()-1)/20+1;
-	   }
-	   count2=count2+1;
-   for(line=1;line<=q;line++){
-   %>
-   <%if(count2==line){%>
-   &nbsp;
-   <a href="NoticeList.do?count=<%=line%>">
-   <span style=" color: white; background-color:red ">
-   <b>
-   <%=line%>
-   </b>
-   </span>
-   </a>
-   <%}else{ %>
-   &nbsp;
-   <a href="NoticeList.do?count=<%=line%>">
-   <span style=" color: black">
-   <b>
-   <%=line%>
-   </b>
-   </span>
-   </a>
-   <%} %>
-   <%} 
-   if(rList.size()>200){
-   %>
-   &nbsp;
-   <a href="NoticeList.do?count=<%=11%>">
-   <span style=" color: black; background-color:gray">
-   <b>></b>
-   </span>
-</a>
-   <%}}else if(count2/10==c){
-   int color=count2+1;
-   %>
-   &nbsp;
-	<a href="NoticeList.do?count=<%=count2/10*10-9%>">
-	<span style=" color: black; background-color:gray">
-   <b><</b>
-   </span>
-	</a>
-	<%
-   for(line=count2/10*10+1;line<=e+1;line++){
-	%>
-	<%if(color==line){%>
-	&nbsp;
-   <a href="NoticeList.do?count=<%=line%>">
-   <span style=" color: white; background-color:red">
-   <b>
-   <%=line %>
-   </b>
-   </span>
-   </a>
-   <%}else{ %>
-   &nbsp;
-   <a href="NoticeList.do?count=<%=line%>">
-   <span style=" color: black">
-   <b>
-   <%=line %>
-   </b>
-   </span>
-   </a>
-   <%} %>
-	<%}%>
-   <%}else{
-	   int color=count2+1;
-   %>
-   &nbsp;
-   <a href="NoticeList.do?count=<%=count2/10*10-9%>">
-   <span style=" color: black; background-color:gray">
-   <b><</b>
-   </span>
-	</a>
-   <% 
-	   for(line=count2/10*10+1;line<=count2/10*10+10;line++){
-   %>
-   
-   <%if(color==line){%>
-   &nbsp;
-   <a href="NoticeList.do?count=<%=line%>">
-   <span style=" color: white; background-color:red">
-   <b>
-   <%=line %>
-   </b>
-   </span>
-   </a>
-   <%}else{ %>
-   &nbsp;
-   <a href="NoticeList.do?count=<%=line%>">
-   <span style=" color: black">
-   <b>
-   <%=line %>
-   </b>
-   </span>
-   </a>
-   <%} %>
-   <%} %>
-   &nbsp;
-   <a href="NoticeList.do?count=<%=count2/10*10+11%>">
-   <span style=" color: black; background-color:gray">
-   <b>></b>
-   </span>
-	</a>
-<%} %>
-   </td>
-   </tr>
+					<%
+						if (SESSION_USER_ID.equals("admin")) {
+					%>
+					<tr>
+						<td align="right" colspan="4"><a href="NoticeReg.do"> <img
+								src="../img/button/write.png" />
+						</a>&nbsp;</td>
+					</tr>
+					<%
+						}
+					%>
+					<tr>
+						<td class="paging"align="center" colspan="4" valign="bottom" height="30px">
+							<%
+								int line = 0;
+								if (rList.size() >= 200 && rList.size() <= 1999) {
+									c = rList.size() / 200;
+								} else if (rList.size() >= 2000 && rList.size() <= 19999) {
+									c = rList.size() / 2000;
+								} else if (rList.size() >= 20000 && rList.size() <= 199999) {
+									c = rList.size() / 20000;
+								} else {
+									c = rList.size() / 20;
+								}
+								count2=10;
+								if (count2 / 10 == 0) {
+									int q = 1;
+									if (rList.size() > 200) {
+										q = 10;
+									} else {
+										q = (rList.size() - 1) / 20 + 1;
+									}
+									count2 = count2 + 1;
+									for (line = 1; line <=10; line++) {
+							%> <%
+ 	if (count2 == line) {%> 
+ 					<div class="linebox" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
+ 						<span style="color: white;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	} else {
+ %>	<div class="linebox2" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
+ 						<span style="color: #555555;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ %> <%
+ 	}
+ 		if (rList.size() > 200) {
+ %><div class="linebox3" align="center">
+ 						<a href="NoticeList.do?count=<%=11%>" class="linetag3">
+ 						<span style="color: #555555;">
+							<b>
+										>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ 	} else if (count2 / 10 == c) {
+ 		int color = count2 + 1;
+ %> <div class="linebox3" align="center">
+ 						<a href="NoticeList.do?count=<%=count2/10*10-9%>" class="linetag3">
+ 						<span style="color: #555555;">
+							<b>
+										<
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	for (line = count2 / 10 * 10 + 1; line <= e + 1; line++) {
+ %> <%
+ 	if (color == line) {
+ %> <div class="linebox" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
+ 						<span style="color: white;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	} else {
+ %><div class="linebox2" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+ 						<span style="color: #555555;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ %> <%
+ 	}
+ %> <%
+ 	} else {
+ 		int color = count2 + 1;
+ %> <div class="linebox3" align="center">
+ 						<a href="NoticeList.do?count=<%=count2/10*10-9%>" class="linetag3">
+ 						<span style="color: #555555;">
+							<b>
+										<
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	for (line = count2 / 10 * 10 + 1; line <= count2 / 10 * 10 + 10; line++) {
+ %> <%
+ 	if (color == line) {
+ %><div class="linebox" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
+ 						<span style="color: white;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	} else {
+ %><div class="linebox2" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+ 						<span style="color: #555555;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ %> <%
+ 	}
+ %>
+	<div class="linebox3" align="center">
+ 						<a href="NoticeList.do?count=<%=count2 / 10 * 10 + 11%>" class="linetag3">
+ 						<span style="color: #555555;">
+							<b>
+										>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ %>
+						</td>
+					</tr>
 				</table>
 			</div>
 		</div>

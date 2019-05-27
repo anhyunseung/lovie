@@ -737,7 +737,12 @@ a.tag2:hover {
 						<td align="left" valign="top"><span
 							style="color: #4f4f4f; font-weight: bold;"> - </span> <a
 							href="javascript:doNDetail('<%=CmmUtil.nvl(nDTO.getnotice_seq())%>');"
-							class="tag2"> <span style="font-weight: bold"> <%=CmmUtil.nvl(nDTO.getnotice_Title())%>
+							class="tag2"> <span style="font-weight: bold"> 
+							<%if(CmmUtil.nvl(nDTO.getnotice_Title()).length()>10){%>
+								<%=CmmUtil.nvl(nDTO.getnotice_Title()).substring(0, 10)+"..." %>	
+							<%}else{%>
+							<%=CmmUtil.nvl(nDTO.getnotice_Title())%>
+							<%} %>
 							</span>
 						</a> <%
  	if (CmmUtil.nvl(nDTO.getnotice_com_count()).equals("0")) {
@@ -787,7 +792,12 @@ a.tag2:hover {
 						<td align="left" valign="top"><span
 							style="color: #4f4f4f; font-weight: bold;"> - </span> <a
 							href="javascript:doBDetail('<%=CmmUtil.nvl(bDTO.getbbm_seq())%>');"
-							class="tag2"> <span style="font-weight: bold"> <%=CmmUtil.nvl(bDTO.getbbm_Title())%>
+							class="tag2"> <span style="font-weight: bold">
+							 <%if(CmmUtil.nvl(bDTO.getbbm_Title()).length()>10){%>
+								<%=CmmUtil.nvl(bDTO.getbbm_Title()).substring(0, 10)+"..." %>	
+							<%}else{%>
+							<%=CmmUtil.nvl(bDTO.getbbm_Title())%>
+							<%} %>
 							</span>
 						</a> <%
  	if (CmmUtil.nvl(bDTO.getbbm_com_count()).equals("0")) {
