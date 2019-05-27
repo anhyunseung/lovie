@@ -816,7 +816,7 @@ a.linetag2:hover {
  	if (count2 == line) {
  %>
 									<div class="linebox" align="center">
-										<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
 											style="color: white;"> <b> <%=line%>
 											</b>
 										</span>
@@ -825,7 +825,7 @@ a.linetag2:hover {
  	} else {
  %>
 									<div class="linebox2" align="center">
-										<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
 											<span style="color: #555555;"> <b> <%=line%>
 											</b>
 										</span>
@@ -836,7 +836,7 @@ a.linetag2:hover {
  	}
  		if (clist.size() > 100) {
  %><div class="linebox3" align="center">
-										<a href="NoticeList.do?count=<%=11%>" class="linetag3"> <span
+										<a href="NoticeInfo.do?count2=<%=11%>" class="linetag3"> <span
 											style="color: #555555;"> <b> > </b>
 										</span>
 										</a>
@@ -846,7 +846,7 @@ a.linetag2:hover {
  		int color = count2 + 1;
  %>
 									<div class="linebox3" align="center">
-										<a href="NoticeList.do?count=<%=count2 / 10 * 10 - 9%>"
+										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 - 9%>"
 											class="linetag3"> <span style="color: #999999;"> <b>
 													< </b>
 										</span>
@@ -857,7 +857,7 @@ a.linetag2:hover {
  	if (color == line) {
  %>
 									<div class="linebox" align="center">
-										<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
 											style="color: white;"> <b> <%=line%>
 											</b>
 										</span>
@@ -865,7 +865,7 @@ a.linetag2:hover {
 									</div> <%
  	} else {
  %><div class="linebox2" align="center">
-										<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
 											<span style="color: #555555;"> <b> <%=line%>
 											</b>
 										</span>
@@ -879,7 +879,7 @@ a.linetag2:hover {
  		int color = count2 + 1;
  %>
 									<div class="linebox3" align="center">
-										<a href="NoticeList.do?count=<%=count2 / 10 * 10 - 9%>"
+										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 - 9%>"
 											class="linetag3"> <span style="color: #999999;"> <b>
 													< </b>
 										</span>
@@ -889,7 +889,7 @@ a.linetag2:hover {
  %> <%
  	if (color == line) {
  %><div class="linebox" align="center">
-										<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
 											style="color: white;"> <b> <%=line%>
 											</b>
 										</span>
@@ -897,7 +897,7 @@ a.linetag2:hover {
 									</div> <%
  	} else {
  %><div class="linebox2" align="center">
-										<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
 											<span style="color: #555555;"> <b> <%=line%>
 											</b>
 										</span>
@@ -908,7 +908,7 @@ a.linetag2:hover {
  	}
  %>
 									<div class="linebox3" align="center">
-										<a href="NoticeList.do?count=<%=count2 / 10 * 10 + 11%>"
+										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 + 11%>"
 											class="linetag3"> <span style="color: #999999;"> <b>
 													> </b>
 										</span>
