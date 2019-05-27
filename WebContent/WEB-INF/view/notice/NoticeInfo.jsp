@@ -61,7 +61,7 @@ function doEdit(){
  
  }else if ("<%=edit%>"==3){
     alert("로그인 하시길 바랍니다.");
-    top.location.href="/top.do";
+    top.location.href="/user/user_login.do";
     
     
  }else{
@@ -73,11 +73,10 @@ function doDelete(){
  if ("<%=edit%>"==2 || "<%=ss_user_id%>"=="admin"){
     if(confirm("정말로 삭제하시겠습니까?")){
        location.href="/notice/NoticeDelete.do?notice_seq=<%=CmmUtil.nvl(rDTO.getnotice_seq())%>";
- 		}else if ("<%=edit%>
-	" == 3) {
+ 			}
+ 		}else if ("<%=edit%>" == 3) {
 				alert("로그인 하시길 바랍니다.");
 				location.href = "/user/user_login.do";
-			}
 		} else {
 			alert("본인이 작성한 글만 삭제 가능합니다.")
 		}
@@ -95,7 +94,9 @@ function doDelete(){
 	}
 
 	function doDelete2(seq) {
-		location.href = "/notice/commentdelete.do?com_seq=" + seq;
+		if(confirm("정말로 삭제하시겠습니까?")){
+			location.href = "/notice/commentdelete.do?com_seq=" + seq;
+		 		}
 	}
 
 	function doList() {
@@ -321,61 +322,73 @@ div.tabledown {
 }
 
 .mas {
-  position: absolute;
-  color: #777;
-  text-align: center;
-  width: 101%;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  position: absolute;
-  font-size: 20px;
-  margin-top: 12px;
-  overflow: hidden;
+ position: absolute;
+ color: #777;
+ text-align: center;
+ width: 101%;
+ font-family: 'Lato', sans-serif;
+ font-weight: 300;
+ position: absolute;
+ font-size: 20px;
+ margin-top: 12px;
+ overflow: hidden;
 }
 
 @-webkit-keyframes ani {
-  from {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
-  to {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
+ from {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+
+ to {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
 }
+
 @keyframes ani {
-  from {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
-  to {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
+ from {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+
+ to {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
 }
+
 @-webkit-keyframes ani2 {
-  from {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
-  to {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
+ from {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+
+ to {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
 }
+
 @keyframes ani2 {
-  from {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
-  to {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
+ from {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+
+ to {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
 }
-td.paging1> div> div {
+td.paging1>div>div {
 	display: inline-block;
 }
+
+div.comaliggn>div {
+	display: inline-block;
+}
+
 td.paging>div {
 	display: inline-block;
 }
@@ -605,8 +618,24 @@ a.linetag2:hover {
 					<td><font face='Malgun Gothic' size="6px"
 						style="color: #555555;"> <b>공지사항</b>
 					</font><br /> <br /></td>
-					<td align="right" valign="bottom"><a href="NoticeList.do">
-							<img src="../img/button/list.png"
+					<td align="right" valign="bottom">
+					<%
+						if (edit == 2 || ss_user_id.equals("admin")) {
+					%> 
+					<a
+						href="javascript:void(0);"
+						onclick="doEdit();"> <img
+							src="../img/button/rewri.png"
+							onmouseover="this.src='../img/button/rewri2.png'"
+							onmouseout="this.src='../img/button/rewri.png'" />
+					</a> <a href="javascript:void(0);"
+						onclick="doDelete();"> <img
+							src="../img/button/del.png"
+							onmouseover="this.src='../img/button/del2.png'"
+							onmouseout="this.src='../img/button/del.png'" />
+					</a>
+					<%} %>
+					 <a href="NoticeList.do"> <img src="../img/button/list.png"
 							onmouseover="this.src='../img/button/list2.png'"
 							onmouseout="this.src='../img/button/list.png'" />
 					</a></td>
@@ -648,174 +677,200 @@ a.linetag2:hover {
 					%>
 					<%=content%>
 				</div>
-				<form action="/notice/commentreg.do" onsubmit="return doSubmit2(this);" method="post">
-				<div class="tabledown">
-					<table width="100%">
-						<tr>
-							<td colspan="2"><font face='Malgun Gothic' size="4px"
-								style="color: #555555;"> <b>댓글</b>
-							</font> <%
+				<form action="/notice/commentreg.do"
+					onsubmit="return doSubmit2(this);" method="post">
+					<div class="tabledown">
+						<table width="100%">
+							<tr>
+								<td colspan="2"><font face='Malgun Gothic' size="4px"
+									style="color: #555555;"> <b>댓글</b>
+								</font> <%
  	int l = clist.size();
  	if (l != 0) {
- %> <span
-								style="color: rgb(2, 151, 128); font-weight: bold; ">
-									[<%=l%>]
-							</span> <%
+ %> <span style="color: rgb(2, 151, 128); font-weight: bold;"> [<%=l%>]
+								</span> <%
  	}
  %></td>
-						</tr>
-						<tr style="background-color: #dddddd;">
-							<td colspan="2" height="1px"></td>
-						</tr>
-						<tr>
-							<td valign="middle" height="100%" class="paging1">
-							<div style="margin: 5px 0 0 0;">
-								<div>
-									<textarea name="comment"
-										style="height: 46px; width: 516px; resize: none;"></textarea>
-								</div>
-								<div class="button-container-2">
-									<span class="mas"><b>등록</b></span>
-									<button type="submit" name="Hover">
-										<b>등록</b>
-									</button>
-								</div>
-								</div>
-							</td>
-						</tr>
-						<%
-							int b = 9;
-							int c = l / 10;
-							int d = l - c * 10;
-							int e = (clist.size() - 1) / 10;
+							</tr>
+							<tr style="background-color: #dddddd;">
+								<td colspan="2" height="1px"></td>
+							</tr>
+							<tr>
+								<td valign="middle" height="100%" class="paging1">
+									<div style="margin: 5px 0 0 0;">
+										<div>
+											<textarea name="comment"
+												style="height: 46px; width: 516px; resize: none;"></textarea>
+										</div>
+										<div class="button-container-2">
+											<span class="mas"><b>등록</b></span>
+											<button type="submit" name="Hover">
+												<b>등록</b>
+											</button>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<%
+								int b = 9;
+								int c = l / 10;
+								int d = l - c * 10;
+								int e = (clist.size() - 1) / 10;
 
-							if (clist.size() > 10) {
-								l = 10;
-							}
-							if (count2 == c) {
-								l = d;
-							}
-							for (int i = 0; i < l; i++) {
-								b--;
-								Comment_noticeDTO a = clist.get(count2 * 10 + i);
-						%>
-						<tr style="background-color: #dddddd;">
-							<td colspan="2"></td>
-						</tr>
-						<tr>
-						<td colspan="2">
-						
-				<div style="margin:7px 7px;">
-				<div style="width:">
-						<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b>
-					<font size="2px" color="#777777"> 
-				<%String comdate=CmmUtil.nvl(a.getReg_dt());%>
-   				<%=comdate.substring(0,4)%>.<%=comdate.substring(5,7)%>.<%=comdate.substring(8,10)%>.
-   				<%=comdate.substring(11,16)%>
-   				</font>
-   				</div>
-   				<div></div>
-   				<div style="margin:3px 0;"></div>
-				<%String commenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
-						String commenttest2 = contenttest1.replaceAll("& lt;", "<");
-						String commenttest3 = contenttest2.replaceAll("& gt;", ">");
-						String commenttest4 = contenttest3.replaceAll("& #40;", "(");
-						String commenttest5 = contenttest4.replaceAll("& #41;", ")");
-						String comment = contenttest5;
-						System.out.println(comment);%>
-				<%=comment%>
-				
-				</div>
-				</td>
-				</tr>
-						<%
-							}
-						%>
-						<tr style="background-color: #dddddd;">
-							<td colspan="2" height="1px"></td>
-						</tr>
-						<tr>
-							<td class="paging" align="center" colspan="2" valign="bottom"
-								height="30px">
-								<%
-									int line = 0;
-									if (clist.size() >= 100 && clist.size() <= 999) {
-										c = clist.size() / 100;
-									} else if (clist.size() >= 1000 && clist.size() <= 9999) {
-										c = clist.size() / 1000;
-									} else if (clist.size() >= 10000 && clist.size() <= 99999) {
-										c = clist.size() / 10000;
-									} else {
-										c = clist.size() / 10;
-									}
-									if (count2 / 10 == 0) {
-										int q = 1;
-										if (clist.size() > 100) {
-											q = 10;
+								if (clist.size() > 10) {
+									l = 10;
+								}
+								if (count2 == c) {
+									l = d;
+								}
+								for (int i = 0; i < l; i++) {
+									b--;
+									Comment_noticeDTO a = clist.get(count2 * 10 + i);
+							%>
+							<tr style="background-color: #dddddd;">
+								<td colspan="2"></td>
+							</tr>
+							<tr>
+								<td colspan="2">
+
+									<div style="margin: 7px 7px;">
+										<div class="comaliggn" style="vertical-align: middle;">
+											<div style="width: 65%; height: 27px">
+												<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b>
+												<font size="2px" color="#777777"> <%
+ 	String comdate = CmmUtil.nvl(a.getReg_dt());
+ %> <%=comdate.substring(0, 4)%>.<%=comdate.substring(5, 7)%>.<%=comdate.substring(8, 10)%>.
+													<%=comdate.substring(11, 16)%>
+												</font>
+											</div>
+											<div align="right"
+												style="width: 34%; position: relative; top: 7px">
+												<div>
+												<%
+												if(ss_user_id.equals(CmmUtil.nvl(a.getUser_id()))){
+												%>
+													<a href="javascript:void(0);"
+														onclick="doEdit2(<%=CmmUtil.nvl(a.getcom_seq())%>);">
+														<img src="../img/button/rewri.png"
+														onmouseover="this.src='../img/button/rewri2.png'"
+														onmouseout="this.src='../img/button/rewri.png'" />
+													</a>
+													<%} 
+												if(ss_user_id.equals(CmmUtil.nvl(a.getUser_id()))||ss_user_id.equals("admin")){
+													%>
+													 <a href="javascript:void(0);"
+														onclick="doDelete2(<%=CmmUtil.nvl(a.getcom_seq())%>);">
+														<img src="../img/button/del.png"
+														onmouseover="this.src='../img/button/del2.png'"
+														onmouseout="this.src='../img/button/del.png'" />
+													</a>
+													<%} %>
+												</div>
+											</div>
+										</div>
+										<div style="margin: 4px 0;"></div>
+										<%
+											String commenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
+												String commenttest2 = contenttest1.replaceAll("& lt;", "<");
+												String commenttest3 = contenttest2.replaceAll("& gt;", ">");
+												String commenttest4 = contenttest3.replaceAll("& #40;", "(");
+												String commenttest5 = contenttest4.replaceAll("& #41;", ")");
+												String comment = contenttest5;
+												System.out.println(comment);
+										%>
+										<%=comment%>
+
+									</div>
+								</td>
+							</tr>
+							<%
+								}
+							%>
+							<tr style="background-color: #dddddd;">
+								<td colspan="2" height="1px"></td>
+							</tr>
+							<tr>
+								<td class="paging" align="center" colspan="2" valign="bottom"
+									height="30px">
+									<%
+										int line = 0;
+										if (clist.size() >= 100 && clist.size() <= 999) {
+											c = clist.size() / 100;
+										} else if (clist.size() >= 1000 && clist.size() <= 9999) {
+											c = clist.size() / 1000;
+										} else if (clist.size() >= 10000 && clist.size() <= 99999) {
+											c = clist.size() / 10000;
 										} else {
-											q = (clist.size() - 1) / 10 + 1;
+											c = clist.size() / 10;
 										}
-										count2 = count2 + 1;
-										for (line = 1; line <= q; line++) {
-								%> <%
+										if (count2 / 10 == 0) {
+											int q = 1;
+											if (clist.size() > 100) {
+												q = 10;
+											} else {
+												q = (clist.size() - 1) / 10 + 1;
+											}
+											count2 = count2 + 1;
+											for (line = 1; line <= q; line++) {
+									%> <%
  	if (count2 == line) {
  %>
-								<div class="linebox" align="center">
-									<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
-										style="color: white;"> <b> <%=line%>
-										</b>
-									</span>
-									</a>
-								</div> <%
+									<div class="linebox" align="center">
+										<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+											style="color: white;"> <b> <%=line%>
+											</b>
+										</span>
+										</a>
+									</div> <%
  	} else {
  %>
-								<div class="linebox2" align="center">
-									<a href="NoticeList.do?count=<%=line%>" class="linetag2"> <span
-										style="color: #555555;"> <b> <%=line%>
-										</b>
-									</span>
-									</a>
-								</div> <%
+									<div class="linebox2" align="center">
+										<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+											<span style="color: #555555;"> <b> <%=line%>
+											</b>
+										</span>
+										</a>
+									</div> <%
  	}
  %> <%
  	}
  		if (clist.size() > 100) {
  %><div class="linebox3" align="center">
-									<a href="NoticeList.do?count=<%=11%>" class="linetag3"> <span
-										style="color: #555555;"> <b> > </b>
-									</span>
-									</a>
-								</div> <%
+										<a href="NoticeList.do?count=<%=11%>" class="linetag3"> <span
+											style="color: #555555;"> <b> > </b>
+										</span>
+										</a>
+									</div> <%
  	}
  	} else if (count2 / 10 == c) {
  		int color = count2 + 1;
  %>
-								<div class="linebox3" align="center">
-									<a href="NoticeList.do?count=<%=count2 / 10 * 10 - 9%>"
-										class="linetag3"> <span style="color: #999999;"> <b>
-												< </b>
-									</span>
-									</a>
-								</div> <%
+									<div class="linebox3" align="center">
+										<a href="NoticeList.do?count=<%=count2 / 10 * 10 - 9%>"
+											class="linetag3"> <span style="color: #999999;"> <b>
+													< </b>
+										</span>
+										</a>
+									</div> <%
  	for (line = count2 / 10 * 10 + 1; line <= e + 1; line++) {
  %> <%
  	if (color == line) {
  %>
-								<div class="linebox" align="center">
-									<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
-										style="color: white;"> <b> <%=line%>
-										</b>
-									</span>
-									</a>
-								</div> <%
+									<div class="linebox" align="center">
+										<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+											style="color: white;"> <b> <%=line%>
+											</b>
+										</span>
+										</a>
+									</div> <%
  	} else {
  %><div class="linebox2" align="center">
-									<a href="NoticeList.do?count=<%=line%>" class="linetag2"> <span
-										style="color: #555555;"> <b> <%=line%>
-										</b>
-									</span>
-									</a>
-								</div> <%
+										<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+											<span style="color: #555555;"> <b> <%=line%>
+											</b>
+										</span>
+										</a>
+									</div> <%
  	}
  %> <%
  	}
@@ -823,48 +878,48 @@ a.linetag2:hover {
  	} else {
  		int color = count2 + 1;
  %>
-								<div class="linebox3" align="center">
-									<a href="NoticeList.do?count=<%=count2 / 10 * 10 - 9%>"
-										class="linetag3"> <span style="color: #999999;"> <b>
-												< </b>
-									</span>
-									</a>
-								</div> <%
+									<div class="linebox3" align="center">
+										<a href="NoticeList.do?count=<%=count2 / 10 * 10 - 9%>"
+											class="linetag3"> <span style="color: #999999;"> <b>
+													< </b>
+										</span>
+										</a>
+									</div> <%
  	for (line = count2 / 10 * 10 + 1; line <= count2 / 10 * 10 + 10; line++) {
  %> <%
  	if (color == line) {
  %><div class="linebox" align="center">
-									<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
-										style="color: white;"> <b> <%=line%>
-										</b>
-									</span>
-									</a>
-								</div> <%
+										<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+											style="color: white;"> <b> <%=line%>
+											</b>
+										</span>
+										</a>
+									</div> <%
  	} else {
  %><div class="linebox2" align="center">
-									<a href="NoticeList.do?count=<%=line%>" class="linetag2"> <span
-										style="color: #555555;"> <b> <%=line%>
-										</b>
-									</span>
-									</a>
-								</div> <%
+										<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+											<span style="color: #555555;"> <b> <%=line%>
+											</b>
+										</span>
+										</a>
+									</div> <%
  	}
  %> <%
  	}
  %>
-								<div class="linebox3" align="center">
-									<a href="NoticeList.do?count=<%=count2 / 10 * 10 + 11%>"
-										class="linetag3"> <span style="color: #999999;"> <b>
-												> </b>
-									</span>
-									</a>
-								</div> <%
+									<div class="linebox3" align="center">
+										<a href="NoticeList.do?count=<%=count2 / 10 * 10 + 11%>"
+											class="linetag3"> <span style="color: #999999;"> <b>
+													> </b>
+										</span>
+										</a>
+									</div> <%
  	}
  %>
-							</td>
-						</tr>
-					</table>
-				</div>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</form>
 			</div>
 		</div>

@@ -29,6 +29,69 @@
 	href="http://localhost:8080/notice/NoticeList.do/../../img/common/icon.ico"
 	type="image/x-icon" />
 <title>공지사항 : Lovie</title>
+<style>
+/* 보관용  */
+.mas {
+ position: absolute;
+ color: #000;
+ text-align: center;
+ width: 101%;
+ font-family: 'Lato', sans-serif;
+ font-weight: 300;
+ position: absolute;
+ font-size: 20px;
+ margin-top: 12px;
+ overflow: hidden;
+}
+
+@-webkit-keyframes ani {
+ from {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+
+ to {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+}
+
+@keyframes ani {
+ from {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+
+ to {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+}
+
+@-webkit-keyframes ani2 {
+ from {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+
+ to {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+}
+
+@keyframes ani2 {
+ from {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+
+ to {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+}
+</style>
 <script type="text/javascript">
 	function doDetail(seq) {
 		location.href = "/notice/NoticeInfo.do?notice_seq=" + seq;
