@@ -38,7 +38,7 @@
 html, body {
 	margin: 0;
 	height: 100%;
-	min-height:1000px;
+	min-height: 1400px;
 }
 
 a.line:hover {
@@ -76,7 +76,7 @@ body {
 	margin: 0;
 	padding: 0;
 	position: fixed;
-	width: 6000px;
+	width: 100%;
 	z-index: 2;
 }
 
@@ -118,22 +118,13 @@ div.blank {
 	border-color: black;
 }
 /* 여기까지 상단  */
-div.fullscreen {
-	background-color: #f3f3f3;
-	width: 100%;
-	height: 100%;
-}
-
-div.fullscreen>div {
-	display: inline-block;
-}
 
 div.leftmenu {
 	background-color: rgba(184, 184, 184, 0.9);
 	width: 27%;
 	height: 100%;
 	box-shadow: 2px 2px 3px 0 rgba(100, 100, 100, 0.6);
-	float: left;
+	position: fixed;
 }
 
 div.leftmenu2 {
@@ -152,6 +143,14 @@ div.loginmenu {
 	height: 160px;
 	background-color: rgba(255, 255, 255);
 	box-shadow: 2px 0 3px 0 rgba(100, 100, 100, 0.6);
+}
+a.user {
+	color: gray;
+}
+
+a.user:hover {
+	color: #494949;
+	text-decoration: none;
 }
 
 div.listmenu {
@@ -172,45 +171,52 @@ div.rightmenu {
 }
 
 div.writemenu {
-	margin: 100px 0 0 160px;
+	margin: 162px 0 0 160px;
 	padding: 10px 10px;
 	background-color: rgba(255, 255, 255);
 	width: 700px;
 	box-shadow: 1px 1px 2px 0 rgba(100, 100, 100, 0.6);
 }
-td.paging > div{
+
+td.paging>div {
 	display: inline-block;
 }
-div.linebox{
-	width:25px;
+
+div.linebox {
+	width: 25px;
 	height: 25px;
 	background-color: #dddddd;
 	vertical-align: bottom;
 }
-div.linebox2{
-	width:25px;
+
+div.linebox2 {
+	width: 25px;
 	height: 25px;
 	background-color: #white;
 	vertical-align: bottom;
 }
-div.linebox3{
-	width:25px;
+
+div.linebox3 {
+	width: 25px;
 	height: 25px;
 	background-color: #111111;
 	vertical-align: bottom;
 }
+
 a.linetag:hover {
 	text-decoration: underline;
 	color: white;
 }
+
 a.linetag2:hover {
 	text-decoration: underline;
-	color: #55555;
+	color: #555555;
 }
 /* 여기까지 오른쪽 정렬  */
 </style>
 </head>
-<body ondragstart="return false" style="min-width: 1250px; background-color: #f3f3f3;">
+<body ondragstart="return false"
+	style="min-width: 1250px; background-color: #f3f3f3;">
 	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
 		<li><a href="/top.do"> <img class="logo"
@@ -240,13 +246,14 @@ a.linetag2:hover {
 		%>
 	</div>
 	<div class="blank"></div>
-	<div class="fullscreen">
 		<div align="right" class="leftmenu">
 			<div class="leftmenu2">
 				<div class="loginmenu">
 					<table width="100%" height="100%">
+						<%if(SESSION_USER_ID.equals("")){ %>
 						<tr>
-							<td colspan="3" valign="bottom" align="center"><a
+							<td colspan="3" valign="bottom" align="center" height="80px">
+							<a
 								href="/user/user_login.do"> <img
 									src="../img/total/leftlogin.png"
 									onmouseover="this.src='../img/total/leftlogin2.png'"
@@ -285,11 +292,87 @@ a.linetag2:hover {
 								</div>
 							</td>
 						</tr>
+						<%}else if(SESSION_USER_ID.equals("admin")){ %>
+						<tr>
+							<td colspan="3" valign="bottom" align="center" height="80px">
+							<font face='Malgun Gothic' size="10px">
+							<a
+								href="/user/manageList.do" class="user">
+								<%=SESSION_USER_ID %>
+							</a>
+							</font>
+							</td>
+						</tr>
+						<tr>
+							<td width="3px"></td>
+							<td valign="bottom"><hr /></td>
+							<td width="3px"></td>
+						</tr>
+						<tr>
+							<td colspan="3" height="40px" align="center">
+								<div>
+									<span style="padding: 10px 7px;"> <a class="tag"
+										href="/user/manageList.do"> <font face='Malgun Gothic'
+											size="2px"> 회원관리 </font>
+									</a>
+									</span> <span style="padding: 10px 0px;"> <font
+										face='Malgun Gothic' size="2px" style="color: #6b7177;">
+											| </font>
+									</span> <span style="padding: 10px 7px;"> <a class="tag"
+										href="/user/userInfo">
+											<font face='Malgun Gothic' size="2px"> 내 정보 </font>
+									</a>
+									</span> <span style="padding: 10px 0px;"> <font
+										face='Malgun Gothic' size="2px" style="color: #6b7177;">
+											| </font>
+									</span> <span style="padding: 10px 7px;"> <a class="tag"
+										href="/user/user_logout.do">
+											<font face='Malgun Gothic' size="2px"> 로그아웃 </font>
+									</a>
+									</span>
+								</div>
+							</td>
+						</tr>
+						<%}else{ %>
+						<tr>
+							<td colspan="3" valign="bottom" align="center" height="80px">
+							<font face='Malgun Gothic' size="10px">
+							<a
+								href="/user/userInfo.do" class="user">
+								<%=SESSION_USER_ID %>
+							</a>
+							</font>
+							</td>
+						</tr>
+						<tr>
+							<td width="3px"></td>
+							<td valign="bottom"><hr /></td>
+							<td width="3px"></td>
+						</tr>
+						<tr>
+							<td colspan="3" height="40px" align="center">
+								<div>
+									<span style="padding: 10px 7px;"> <a class="tag"
+										href="/user/userInfo.do">
+											<font face='Malgun Gothic' size="2px"> 내 정보</font>
+									</a>
+									</span> <span style="padding: 10px 0px;"> <font
+										face='Malgun Gothic' size="2px" style="color: #6b7177;">
+											| </font>
+									</span> <span style="padding: 10px 7px;"> <a class="tag"
+										href="/user/user_logout.do">
+											<font face='Malgun Gothic' size="2px"> 로그아웃 </font>
+									</a>
+									</span>
+								</div>
+							</td>
+						</tr>
+						<%} %>
 					</table>
 				</div>
 				<div class="listmenu">
 					<font face='Malgun Gothic' size="6px"
-						style="color: #555555; margin: 0 10px 0 0;"> 게시판</font> <a
+						style="color: rgb(85,85,85,0.7); margin: 0 10px 0 0;"> <b>게시판</b></font> <a
 						href="/notice/NoticeList.do"> <img
 						src="../img/total/listnotice.jpg"
 						onmouseover="this.src='../img/total/listnotice2.jpg'"
@@ -318,23 +401,22 @@ a.linetag2:hover {
 				<table width="100%">
 					<tr>
 						<td colspan="4"><font face='Malgun Gothic' size="6px"
-							style="color: #555555; margin: 0 0 0 0;"> <b>공지사항</b>
-						</font> <br />
-						<br /></td>
+							style="color: #555555; "> <b>공지사항</b>
+						</font> <br /> <br /></td>
 					</tr>
 					<tr style="background-color: #dddddd;">
 						<td align="center" height="23px"><font face='Malgun Gothic'
-							size="2px" style="color: #555555; margin: 0 0 0 0;"> <b>글
+							size="2px" style="color: #555555; "> <b>글
 									번호</b>
 						</font></td>
 						<td align="center"><font face='Malgun Gothic' size="2px"
-							style="color: #555555; margin: 0 0 0 0;"> <b>제목</b>
+							style="color: #555555; "> <b>제목</b>
 						</font></td>
 						<td align="center"><font face='Malgun Gothic' size="2px"
-							style="color: #555555; margin: 0 0 0 0;"> <b>작성자</b>
+							style="color: #555555; "> <b>작성자</b>
 						</font></td>
 						<td align="center"><font face='Malgun Gothic' size="2px"
-							style="color: #555555; margin: 0 0 0 0;"> <b>작성일</b>
+							style="color: #555555; "> <b>작성일</b>
 						</font></td>
 					</tr>
 					<%
@@ -367,11 +449,14 @@ a.linetag2:hover {
 						<td width="600px">&nbsp; <a
 							href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getnotice_seq())%>');"
 							class="line"> <span style="color: black; font-weight: bold">
-							<%if(CmmUtil.nvl(rDTO.getTitle()).length()>20){ %>
-								<%=CmmUtil.nvl(rDTO.getTitle()).substring(0,20)+"..."%>
-							<%}else{ %>
-								<%=CmmUtil.nvl(rDTO.getTitle())%>
-							<%} %>
+									<%
+										if (CmmUtil.nvl(rDTO.getTitle()).length() > 20) {
+									%> <%=CmmUtil.nvl(rDTO.getTitle()).substring(0, 20) + "..."%>
+									<%
+										} else {
+									%> <%=CmmUtil.nvl(rDTO.getTitle())%> <%
+ 	}
+ %>
 							</span>
 						</a> <%
  	if (CmmUtil.nvl(rDTO.getCom_count()).equals("0")) {
@@ -405,13 +490,14 @@ a.linetag2:hover {
 					<tr>
 						<td align="right" colspan="4"><a href="NoticeReg.do"> <img
 								src="../img/button/write.png" />
-						</a>&nbsp;</td>
+						</a></td>
 					</tr>
 					<%
 						}
 					%>
 					<tr>
-						<td class="paging"align="center" colspan="4" valign="bottom" height="30px">
+						<td class="paging" align="center" colspan="4" valign="bottom"
+							height="30px">
 							<%
 								int line = 0;
 								if (rList.size() >= 200 && rList.size() <= 1999) {
@@ -423,7 +509,6 @@ a.linetag2:hover {
 								} else {
 									c = rList.size() / 20;
 								}
-								count2=10;
 								if (count2 / 10 == 0) {
 									int q = 1;
 									if (rList.size() > 200) {
@@ -432,132 +517,125 @@ a.linetag2:hover {
 										q = (rList.size() - 1) / 20 + 1;
 									}
 									count2 = count2 + 1;
-									for (line = 1; line <=10; line++) {
+									for (line = 1; line <= q; line++) {
 							%> <%
- 	if (count2 == line) {%> 
- 					<div class="linebox" align="center">
- 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
- 						<span style="color: white;">
-							<b>
-										<%=line%>
-							</b>
-						</span>
-						</a>
-					</div><%
- 	} else {
- %>	<div class="linebox2" align="center">
- 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
- 						<span style="color: #555555;">
-							<b>
-										<%=line%>
-							</b>
-						</span>
-						</a>
-					</div><%
- 	}
- %> <%
+ 	if (count2 == line) {
+ %>
+							<div class="linebox" align="center">
+								<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+									style="color: white;"> <b> <%=line%>
+									</b>
+								</span>
+								</a>
+							</div>
+							<%
+								} else {
+							%>
+							<div class="linebox2" align="center">
+								<a href="NoticeList.do?count=<%=line%>" class="linetag2"> <span
+									style="color: #555555;"> <b> <%=line%>
+									</b>
+								</span>
+								</a>
+							</div>
+							<%
+								}
+							%> <%
  	}
  		if (rList.size() > 200) {
  %><div class="linebox3" align="center">
- 						<a href="NoticeList.do?count=<%=11%>" class="linetag3">
- 						<span style="color: #555555;">
-							<b>
-										>
-							</b>
-						</span>
-						</a>
-					</div><%
- 	}
- 	} else if (count2 / 10 == c) {
- 		int color = count2 + 1;
- %> <div class="linebox3" align="center">
- 						<a href="NoticeList.do?count=<%=count2/10*10-9%>" class="linetag3">
- 						<span style="color: #555555;">
-							<b>
-										<
-							</b>
-						</span>
-						</a>
-					</div><%
- 	for (line = count2 / 10 * 10 + 1; line <= e + 1; line++) {
- %> <%
+								<a href="NoticeList.do?count=<%=11%>" class="linetag3"> <span
+									style="color: #555555;"> <b> > </b>
+								</span>
+								</a>
+							</div>
+							<%
+								}
+								} else if (count2 / 10 == c) {
+									int color = count2 + 1;
+							%>
+							<div class="linebox3" align="center">
+								<a href="NoticeList.do?count=<%=count2 / 10 * 10 - 9%>"
+									class="linetag3"> <span style="color: #999999;"> <b>
+											< </b>
+								</span>
+								</a>
+							</div>
+							<%
+								for (line = count2 / 10 * 10 + 1; line <= e + 1; line++) {
+							%> <%
  	if (color == line) {
- %> <div class="linebox" align="center">
- 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
- 						<span style="color: white;">
-							<b>
-										<%=line%>
-							</b>
-						</span>
-						</a>
-					</div><%
- 	} else {
- %><div class="linebox2" align="center">
- 						<a href="NoticeList.do?count=<%=line%>" class="linetag2">
- 						<span style="color: #555555;">
-							<b>
-										<%=line%>
-							</b>
-						</span>
-						</a>
-					</div><%
- 	}
- %> <%
+ %>
+							<div class="linebox" align="center">
+								<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+									style="color: white;"> <b> <%=line%>
+									</b>
+								</span>
+								</a>
+							</div>
+							<%
+								} else {
+							%><div class="linebox2" align="center">
+								<a href="NoticeList.do?count=<%=line%>" class="linetag2"> <span
+									style="color: #555555;"> <b> <%=line%>
+									</b>
+								</span>
+								</a>
+							</div>
+							<%
+								}
+							%> <%
  	}
  %> <%
  	} else {
  		int color = count2 + 1;
- %> <div class="linebox3" align="center">
- 						<a href="NoticeList.do?count=<%=count2/10*10-9%>" class="linetag3">
- 						<span style="color: #555555;">
-							<b>
-										<
-							</b>
-						</span>
-						</a>
-					</div><%
- 	for (line = count2 / 10 * 10 + 1; line <= count2 / 10 * 10 + 10; line++) {
- %> <%
+ %>
+							<div class="linebox3" align="center">
+								<a href="NoticeList.do?count=<%=count2 / 10 * 10 - 9%>"
+									class="linetag3"> <span style="color: #999999;"> <b>
+											< </b>
+								</span>
+								</a>
+							</div>
+							<%
+								for (line = count2 / 10 * 10 + 1; line <= count2 / 10 * 10 + 10; line++) {
+							%> <%
  	if (color == line) {
  %><div class="linebox" align="center">
- 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
- 						<span style="color: white;">
-							<b>
-										<%=line%>
-							</b>
-						</span>
-						</a>
-					</div><%
- 	} else {
- %><div class="linebox2" align="center">
- 						<a href="NoticeList.do?count=<%=line%>" class="linetag2">
- 						<span style="color: #555555;">
-							<b>
-										<%=line%>
-							</b>
-						</span>
-						</a>
-					</div><%
- 	}
- %> <%
+								<a href="NoticeList.do?count=<%=line%>" class="linetag"> <span
+									style="color: white;"> <b> <%=line%>
+									</b>
+								</span>
+								</a>
+							</div>
+							<%
+								} else {
+							%><div class="linebox2" align="center">
+								<a href="NoticeList.do?count=<%=line%>" class="linetag2"> <span
+									style="color: #555555;"> <b> <%=line%>
+									</b>
+								</span> 
+								</a>
+							</div>
+							<%
+								}
+							%> <%
  	}
  %>
-	<div class="linebox3" align="center">
- 						<a href="NoticeList.do?count=<%=count2 / 10 * 10 + 11%>" class="linetag3">
- 						<span style="color: #555555;">
-							<b>
-										>
-							</b>
-						</span>
-						</a>
-					</div><%
- 	}
- %>
+							<div class="linebox3" align="center">
+								<a href="NoticeList.do?count=<%=count2 / 10 * 10 + 11%>"
+									class="linetag3"> <span style="color: #999999;"> <b>
+											> </b>
+								</span>
+								</a>
+							</div>
+							<%
+								}
+							%>
 						</td>
 					</tr>
 				</table>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
