@@ -88,6 +88,11 @@ function doDelete(){
 			f.comment.focus();
 			return false;
 		}
+		if (f.comment.value.length > 3000) {
+			alert("최대 3000자까지 입력 가능합니다.");
+			f.comment.focus();
+			return false;
+		}
 	}
 	function doEdit2(seq) {
 		location.href = "/notice/NoticeInfo2.do?com_seq=" + seq;
@@ -107,6 +112,7 @@ function doDelete(){
 html, body {
 	margin: 0;
 	height: 100%;min-height: 1450px;
+	word-break:break-all;
 }
 
 a.line:hover {
@@ -270,6 +276,7 @@ div.tableright {
 }
 
 div.tablemiddle {
+	width:678px;
 	padding: 50px 10px;
 }
 
@@ -590,9 +597,7 @@ a.linetag2:hover {
 				<font face='Malgun Gothic' size="6px"
 					style="color: rgb(85, 85, 85, 0.7); margin: 0 10px 0 0;"> <b>게시판</b></font>
 				<a href="/notice/NoticeList.do"> <img
-					src="../img/total/listnotice.jpg"
-					onmouseover="this.src='../img/total/listnotice2.jpg'"
-					onmouseout="this.src='../img/total/listnotice.jpg'">
+					src="../img/total/listnotice2.jpg">
 				</a> <a href="/newmovie/newmovieList.do"> <img
 					src="../img/total/listnewmo.jpg"
 					onmouseover="this.src='../img/total/listnewmo2.jpg'"

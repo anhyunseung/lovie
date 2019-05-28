@@ -1,7 +1,7 @@
 CREATE TABLE `bbm_info` (
   `BBM_SEQ` int(8) NOT NULL AUTO_INCREMENT,
   `TITLE` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `CONTENTS` varchar(3000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `CONTENTS` varchar(20000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `REG_USER_NO` int(8) NOT NULL,
   `REG_DT` datetime NOT NULL,
   `CHG_USER_NO` int(8) DEFAULT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `comment_notice` (
 CREATE TABLE `inquiry_info` (
   `INQ_SEQ` int(8) NOT NULL AUTO_INCREMENT,
   `TITLE` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `CONTENTS` varchar(3000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `CONTENTS` varchar(20000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `REG_USER_NO` int(8) NOT NULL,
   `REG_DT` datetime NOT NULL,
   `CHG_USER_NO` int(8) DEFAULT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `inquiry_info` (
 CREATE TABLE `notice_info` (
   `NOTICE_SEQ` int(8) NOT NULL AUTO_INCREMENT,
   `TITLE` varchar(50) COLLATE utf8_bin NOT NULL,
-  `CONTENTS` varchar(3000) COLLATE utf8_bin NOT NULL,
+  `CONTENTS` varchar(20000) COLLATE utf8_bin NOT NULL,
   `REG_USER_NO` int(8) NOT NULL,
   `REG_DT` datetime NOT NULL,
   `CHG_USER_NO` int(8) DEFAULT NULL,

@@ -92,6 +92,11 @@ function doInfo(seq){
 			f.comment.focus();
 			return false;
 		}
+		if (f.comment2.value.length > 3000) {
+			alert("최대 3000자까지 입력 가능합니다.");
+			f.comment.focus();
+			return false;
+		}
 	}
 	function doEdit2(seq) {
 		location.href = "/inquiry/inquiryInfo2.do?com_seq=" + seq;
@@ -114,6 +119,7 @@ function doInfo(seq){
 html, body {
 	margin: 0;
 	height: 100%;min-height: 1450px;
+	word-break:break-all;
 }
 
 a.line:hover {

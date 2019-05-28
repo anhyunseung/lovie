@@ -14,7 +14,7 @@ String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID")); 
 <title>공지사항 : Lovie</title>
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
-<%-- function doOnload(){
+function doOnload(){
    var user_id = "<%=SESSION_USER_ID%>";
    
    if (user_id!="admin"){
@@ -23,7 +23,7 @@ String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID")); 
       
    }
    
-} --%>
+}
 
 //로그인 여부 체크
 
@@ -35,6 +35,7 @@ String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID")); 
 html, body {
 	margin: 0;
 	height: 100%;min-height: 1450px;
+	word-break:break-all;
 }
 
 a.line:hover {
@@ -553,8 +554,8 @@ function submitContents(elClickedObj) {
 		 alert("내용을 입력하시기 바랍니다.");
 	      return false;
 	 }
-	 if (document.getElementById("contents").value.length > 2000) {
-	      alert("최대 2000자까지 입력 가능합니다.");
+	 if (document.getElementById("contents").value.length > 20000) {
+	      alert("최대 20000자까지 입력 가능합니다.");
 	      return false;
 	   }
 	elClickedObj.form.submit();
