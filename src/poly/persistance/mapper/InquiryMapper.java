@@ -4,6 +4,8 @@ import java.util.List;
 
 import config.Mapper;
 import poly.dto.InquiryDTO;
+import poly.dto.Comment_inqDTO;
+import poly.dto.InquiryDTO;
 
 @Mapper("InquiryMapper")
 public interface InquiryMapper {
@@ -17,6 +19,18 @@ public interface InquiryMapper {
    InquiryDTO getinquiryInfo(InquiryDTO pDTO) throws Exception;
 
    void deleteinquiryInfo(InquiryDTO pDTO) throws Exception;
+   
+   public void insertComment(Comment_inqDTO cdto) throws Exception;
+	
+	public void deleteComment(Comment_inqDTO cdto) throws Exception;
+	
+	public void updateComment(Comment_inqDTO cdto) throws Exception;
+
+	public List<Comment_inqDTO> getComment(InquiryDTO rdto) throws Exception;
+
+	void deleteCommentALL(String seq) throws Exception;
+	
+	String getCommentUserid(String uDto) throws Exception;
 
    String getInqUserid(String uDto) throws Exception;
 

@@ -36,7 +36,7 @@ System.out.println("ss_user_id : " + SESSION_USER_ID);
 html, body {
 	margin: 0;
 	height: 100%;
-	min-height: 1300px;
+	min-height: 1450px;
 }
 
 a.line:hover {
@@ -120,7 +120,6 @@ div.blank {
 div.leftmenu {
 	background-color: rgba(184, 184, 184, 0.9);
 	width: 27%;
-	padding: 0 0 300px 0;
 	height: 100%;
 	box-shadow: 2px 2px 3px 0 rgba(100, 100, 100, 0.6);
 	float: left;
@@ -442,10 +441,12 @@ a.linetag2:hover {
 					%>
 					<tr>
 						<td  align="center">
+						<div style="padding: 8px 0;">
 							<%
 								out.print(CmmUtil.nvl(rDTO.getinq_seq()));
 							%> <input type="hidden" name="seq"
 							value="<%=CmmUtil.nvl(rDTO.getinq_seq())%>">
+							</div>
 						</td>
 						<td >&nbsp; <a
 							href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getinq_seq())%>');"
@@ -469,11 +470,9 @@ a.linetag2:hover {
 							<%=date.substring(11, 16)%>
 						</td>
 					</tr>
-					<tr>
-						<td colspan="4">
-							<hr>
-						</td>
-					</tr>
+					<tr style="background-color: #dddddd;">
+					<td colspan="4"></td>
+				</tr>
 					<%
 						}
 					}

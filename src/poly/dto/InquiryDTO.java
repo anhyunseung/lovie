@@ -1,5 +1,7 @@
 package poly.dto;
 
+import java.util.List;
+
 public class InquiryDTO {
 
 	private String inq_seq;
@@ -12,10 +14,11 @@ public class InquiryDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
-	private String email1;
-	private String email2;
 	private String filename;
 	private String ext;
+	private List<Comment_inqDTO> clist;
+	private String com_count;
+	
 	private String user_name;
 
 	public String getinq_seq() {
@@ -106,19 +109,19 @@ public class InquiryDTO {
 		this.user_name = user_name;
 	}
 
-	public String getEmail1() {
-		return email1;
+	public List<Comment_inqDTO> getClist() {
+		return clist;
 	}
 
-	public void setEmail1(String email1) {
-		this.email1 = email1;
+	public void setClist(List<Comment_inqDTO> clist) {
+		this.clist = clist;
+	}
+	
+	public String getCom_count() {
+		return com_count;
 	}
 
-	public String getEmail2() {
-		return email2;
-	}
-
-	public void setEmail2(String email2) {
-		this.email2 = email2;
+	public void setCom_count(String com_count) {
+		this.com_count = com_count;
 	}
 }

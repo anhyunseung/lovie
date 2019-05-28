@@ -7,6 +7,7 @@
       <typeAlias type="poly.dto.BBMDTO" alias="BBMDTO"/>
       <typeAlias type="poly.dto.Comment_bbmDTO" alias="Comment_bbmDTO"/>
       <typeAlias type="poly.dto.Comment_noticeDTO" alias="Comment_noticeDTO"/>
+      <typeAlias type="poly.dto.Comment_inqDTO" alias="Comment_inqDTO"/>
       <typeAlias type="poly.dto.CommonDTO" alias="CommonDTO"/>
       <typeAlias type="poly.dto.NoticeDTO" alias="NoticeDTO"/>
       <typeAlias type="poly.dto.UserDTO" alias="UserDTO"/> 

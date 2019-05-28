@@ -14,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import poly.dto.BBMDTO;
 import poly.dto.InquiryDTO;
 import poly.service.IInquiryService;
 import poly.util.CmmUtil;
@@ -65,29 +66,83 @@ private Logger log = Logger.getLogger(this.getClass());
       return "/inquiry/inquiryList";
    }
    
-	@RequestMapping(value = "inquiry/inquiryInfo", method = RequestMethod.GET)
-	public String InquiryInfo(HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model)
+   @RequestMapping(value = "inquiry/inquiryInfo", method = RequestMethod.GET)
+	public String inquiryInfo(HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model)
 			throws Exception {
-		
-		System.out.println("inqIn");
-		
-		String seq= request.getParameter("inq_seq");
-		
+
+		System.out.println("inquiryIn");
+
+		String seq = request.getParameter("inq_seq");
 		if(seq==null) {
-			seq=CmmUtil.nvl((String) session.getAttribute("inq_seq"));
-			session.setAttribute("inq_seq","");
+			seq= CmmUtil.nvl((String) session.getAttribute("com_inq_seq"));
+		}
+		String count=request.getParameter("count2");
+		
+		if(count==null) {
+			count="0";
 		}
 		
+		
+		System.out.println(Integer.parseInt(count));
+		
+		int count2 = Integer.parseInt(count);
+		
+		if(count2!=0) {
+			count2=count2-1;
+		}
+		
+		System.out.println(count2);
+		
+		if (seq == null) {
+			seq = CmmUtil.nvl((String) session.getAttribute("inq_seq"));
+			session.setAttribute("inq_seq", "");
+		}
+		
+		session.setAttribute("com_inq_seq", seq);
+
 		System.out.println(seq);
-		
+
 		InquiryDTO rDTO = new InquiryDTO();
-		
+
 		rDTO.setinq_seq(seq);
-		rDTO=InquiryService.getinquiryInfo(rDTO);
-		
+
+		rDTO = InquiryService.getinquiryInfo(rDTO);
+
 		model.addAttribute("rDTO", rDTO);
-		rDTO=null;
+		request.setAttribute("count2", count2);
+		session.setAttribute("count3", count2);
+		rDTO = null;
+
 		return "/inquiry/inquiryInfo";
+	}
+
+	@RequestMapping(value = "inquiry/inquiryInfo2", method = RequestMethod.GET)
+	public String inquiryInfo2(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+			ModelMap model) throws Exception {
+
+		System.out.println("inquiryIn2");
+
+		String seq = CmmUtil.nvl((String) session.getAttribute("com_inq_seq"));
+		String com_seq = request.getParameter("com_seq");
+		int count2= (int) session.getAttribute("count3");
+		System.out.println(count2);
+
+		session.setAttribute("com_seq", com_seq);
+
+		System.out.println(seq);
+		System.out.println(com_seq);
+
+		InquiryDTO rDTO = new InquiryDTO();
+
+		rDTO.setinq_seq(seq);
+
+		rDTO = InquiryService.getinquiryInfo(rDTO);
+
+		model.addAttribute("rDTO", rDTO);
+		request.setAttribute("count3", count2);
+		rDTO = null;
+
+		return "/inquiry/inquiryInfo2";
 	}
 	
 	@RequestMapping(value = "inquiry/inquiryDelete", method = RequestMethod.GET)
@@ -145,16 +200,12 @@ private Logger log = Logger.getLogger(this.getClass());
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		String seq = request.getParameter("inq_seq");
-		String email1 = request.getParameter("email1");
-		String email2 = request.getParameter("email2");
 		
 		System.out.println(title);
 		System.out.println(contents);
 		System.out.println(SESSION_USER_NO);
 		System.out.println(SESSION_USER_ID);
 		System.out.println(seq);
-		System.out.println(email1);
-		System.out.println(email2);
 		
 		InquiryDTO rDTO = new InquiryDTO();
 		
@@ -162,8 +213,6 @@ private Logger log = Logger.getLogger(this.getClass());
 		rDTO.setReg_user_no(SESSION_USER_NO);
 		rDTO.setUser_id(SESSION_USER_ID);
 		rDTO.setContents(contents);
-		rDTO.setEmail1(email1);
-		rDTO.setEmail2(email2);
 		
 		InquiryService.InsertinquiryInfo(rDTO);
 		
@@ -208,15 +257,11 @@ private Logger log = Logger.getLogger(this.getClass());
 		String contents= request.getParameter("contents");
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("inq_seq");
-		String email1 = request.getParameter("email1");
-		String email2 = request.getParameter("email2");
 		
 		System.out.println(title);
 		System.out.println(contents);
 		System.out.println(SESSION_USER_NO);
 		System.out.println(seq);
-		System.out.println(email1);
-		System.out.println(email2);
 		
 		InquiryDTO rDTO = new InquiryDTO();
 		
@@ -224,8 +269,6 @@ private Logger log = Logger.getLogger(this.getClass());
 		rDTO.setChg_user_no(SESSION_USER_NO);
 		rDTO.setContents(contents);
 		rDTO.setinq_seq(seq);
-		rDTO.setEmail1(email1);
-		rDTO.setEmail2(email2);
 		
 		InquiryService.updateinquiryInfo(rDTO);
 		

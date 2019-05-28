@@ -1,33 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="poly.util.CmmUtil"%>
-<%@ page import="poly.dto.NoticeDTO"%>
+<%@ page import="poly.dto.InquiryDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="poly.dto.Comment_noticeDTO"%>
+<%@page import="poly.dto.Comment_inqDTO"%>
 <%@page import="java.util.List"%>
 <%
 	String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
-	NoticeDTO rDTO = (NoticeDTO) request.getAttribute("rDTO");
+	InquiryDTO rDTO = (InquiryDTO) request.getAttribute("rDTO");
 	int count2 = (int)request.getAttribute("count3");
 
 	if (rDTO == null) {
-		rDTO = new NoticeDTO();
+		rDTO = new InquiryDTO();
 
 	}
 
-	session.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+CmmUtil.nvl(rDTO.getnotice_seq()));
-	String notice_seq = rDTO.getnotice_seq();
+	session.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+CmmUtil.nvl(rDTO.getinq_seq()));
+	String inq_seq = rDTO.getinq_seq();
 
-	List<Comment_noticeDTO> clist = rDTO.getClist();
+	List<Comment_inqDTO> clist = rDTO.getClist();
 	if (clist == null) {
 
-		clist = new ArrayList<Comment_noticeDTO>();
+		clist = new ArrayList<Comment_inqDTO>();
 	}
 	String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
-	String seq = CmmUtil.nvl((String) session.getAttribute("com_notice_seq"));
+	String seq = CmmUtil.nvl((String) session.getAttribute("com_inq_seq"));
 	String com_seq=CmmUtil.nvl((String) session.getAttribute("com_seq"));
 	//본인이 작성한 글만 수정 가능하도록 하기(1:작성자 아님 / 2: 본인이 작성한 글 / 3: 로그인안함)
 	int edit = 1;
@@ -50,15 +50,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon"
-	href="http://localhost:8080/notice/NoticeInfo.do/../../img/common/icon.ico"
+	href="http://localhost:8080/inquiry/inquiryInfo.do/../../img/common/icon.ico"
 	type="image/x-icon" />
-<title><%=CmmUtil.nvl(rDTO.getTitle())%> - 공지사항 : Lovie</title>
+<title><%=CmmUtil.nvl(rDTO.getTitle())%> - 문의 : Lovie</title>
 <script type="text/javascript">
 
 function doEdit(){
  if ("<%=edit%>"==2 ){
     
-    location.href="/notice/NoticeEditInfo.do?notice_seq=<%=CmmUtil.nvl(rDTO.getnotice_seq())%>";
+    location.href="/inquiry/inquiryEditInfo.do?inq_seq=<%=CmmUtil.nvl(rDTO.getinq_seq())%>";
  
  }else if ("<%=edit%>"==3){
     alert("로그인 하시길 바랍니다.");
@@ -73,7 +73,7 @@ function doEdit(){
 function doDelete(){
  if ("<%=edit%>"==2 || "<%=ss_user_id%>"=="admin"){
     if(confirm("정말로 삭제하시겠습니까?")){
-       location.href="/notice/NoticeDelete.do?notice_seq=<%=CmmUtil.nvl(rDTO.getnotice_seq())%>";
+       location.href="/inquiry/inquiryDelete.do?inq_seq=<%=CmmUtil.nvl(rDTO.getinq_seq())%>";
  			}
  		}else if ("<%=edit%>" == 3) {
 				alert("로그인 하시길 바랍니다.");
@@ -83,7 +83,7 @@ function doDelete(){
 		}
 	}
 function doInfo(seq){
-    location.href="/notice/NoticeInfo.do?notice_seq="+seq;
+    location.href="/inquiry/inquiryInfo.do?inq_seq="+seq;
 }
 
 	function doSubmit2(f) {
@@ -94,17 +94,17 @@ function doInfo(seq){
 		}
 	}
 	function doEdit2(seq) {
-		location.href = "/notice/NoticeInfo2.do?com_seq=" + seq;
+		location.href = "/inquiry/inquiryInfo2.do?com_seq=" + seq;
 	}
 
 	function doDelete2(seq) {
 		if(confirm("정말로 삭제하시겠습니까?")){
-			location.href = "/notice/commentdelete.do?com_seq=" + seq;
+			location.href = "/inquiry/commentdelete.do?com_seq=" + seq;
 		 		}
 	}
 
 	function doList() {
-		location.href = "/notice/NoticeList.do";
+		location.href = "/inquiry/inquiryList.do";
 	}
 	function doBack(){
 		alert("댓글이 수정되지 않았습니다.");
@@ -727,7 +727,9 @@ a.linetag2:hover {
 				<font face='Malgun Gothic' size="6px"
 					style="color: rgb(85, 85, 85, 0.7); margin: 0 10px 0 0;"> <b>게시판</b></font>
 				<a href="/notice/NoticeList.do"> <img
-					src="../img/total/listnotice2.jpg">
+					src="../img/total/listnotice.jpg"
+					onmouseover="this.src='../img/total/listnotice2.jpg'"
+					onmouseout="this.src='../img/total/listnotice.jpg'">
 				</a> <a href="/newmovie/newmovieList.do"> <img
 					src="../img/total/listnewmo.jpg"
 					onmouseover="this.src='../img/total/listnewmo2.jpg'"
@@ -740,9 +742,7 @@ a.linetag2:hover {
 					onmouseover="this.src='../img/total/listbbm2.jpg'"
 					onmouseout="this.src='../img/total/listbbm.jpg'">
 				</a> <a href="/inquiry/inquiryList.do"> <img
-					src="../img/total/listinq.jpg"
-					onmouseover="this.src='../img/total/listinq2.jpg'"
-					onmouseout="this.src='../img/total/listinq.jpg'">
+					src="../img/total/listinq2.jpg">
 				</a>
 			</div>
 		</div>
@@ -771,7 +771,7 @@ a.linetag2:hover {
 							onmouseout="this.src='../img/button/del.png'" />
 					</a>
 					<%} %>
-					 <a href="NoticeList.do"> <img src="../img/button/list.png"
+					 <a href="inquiryList.do"> <img src="../img/button/list.png"
 							onmouseover="this.src='../img/button/list2.png'"
 							onmouseout="this.src='../img/button/list.png'" />
 					</a></td>
@@ -815,7 +815,7 @@ a.linetag2:hover {
 					%>
 					<%=content%>
 				</div>
-				<form action="/notice/commentreg.do"
+				<form action="/inquiry/commentreg.do"
 					onsubmit="return doSubmit2(this);" method="post">
 					<div class="tabledown">
 						<table width="100%">
@@ -840,7 +840,7 @@ a.linetag2:hover {
 											<textarea name="comment"
 												style="height: 46px; width: 516px; resize: none;"></textarea>
 										</div>
-										<input type="hidden" name="notice_seq" value="<%=notice_seq%>">
+										<input type="hidden" name="inq_seq" value="<%=inq_seq%>">
 										<div class="button-container">
 											<span class="mas"><b>등록</b></span>
 											<button type="button" onclick="javascript:doBack();" name="Hover">
@@ -864,7 +864,7 @@ a.linetag2:hover {
 								}
 								for (int i = 0; i < l; i++) {
 									b--;
-									Comment_noticeDTO a = clist.get(count2 * 10 + i);
+									Comment_inqDTO a = clist.get(count2 * 10 + i);
 							%>
 							<tr style="background-color: #dddddd;">
 								<td colspan="2"></td>
@@ -890,7 +890,7 @@ a.linetag2:hover {
 													<%if(CmmUtil.nvl(a.getUser_id()).equals(SESSION_USER_ID)){
 														}else{%>
 														alert("잘못된 접근입니다.");
-														location.href = "/notice/NoticeInfo.do?notice_seq=<%=CmmUtil.nvl(rDTO.getnotice_seq())%>";
+														location.href = "/inquiry/inquiryInfo.do?inq_seq=<%=CmmUtil.nvl(rDTO.getinq_seq())%>";
 													<%}%></script>
 												<%}else{
 												if(ss_user_id.equals(CmmUtil.nvl(a.getUser_id()))){
@@ -982,7 +982,7 @@ a.linetag2:hover {
  	if (count2 == line) {
  %>
 									<div class="linebox" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
+										<a href="inquiryInfo.do?count2=<%=line%>" class="linetag"> <span
 											style="color: white;"> <b> <%=line%>
 											</b>
 										</span>
@@ -991,7 +991,7 @@ a.linetag2:hover {
  	} else {
  %>
 									<div class="linebox2" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
+										<a href="inquiryInfo.do?count2=<%=line%>" class="linetag2">
 											<span style="color: #555555;"> <b> <%=line%>
 											</b>
 										</span>
@@ -1002,7 +1002,7 @@ a.linetag2:hover {
  	}
  		if (clist.size() > 100) {
  %><div class="linebox3" align="center">
-										<a href="NoticeInfo.do?count2=<%=11%>" class="linetag3"> <span
+										<a href="inquiryInfo.do?count2=<%=11%>" class="linetag3"> <span
 											style="color: #555555;"> <b> > </b>
 										</span>
 										</a>
@@ -1012,7 +1012,7 @@ a.linetag2:hover {
  		int color = count2 + 1;
  %>
 									<div class="linebox3" align="center">
-										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 - 9%>"
+										<a href="inquiryInfo.do?count2=<%=count2 / 10 * 10 - 9%>"
 											class="linetag3"> <span style="color: #999999;"> <b>
 													< </b>
 										</span>
@@ -1023,7 +1023,7 @@ a.linetag2:hover {
  	if (color == line) {
  %>
 									<div class="linebox" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
+										<a href="inquiryInfo.do?count2=<%=line%>" class="linetag"> <span
 											style="color: white;"> <b> <%=line%>
 											</b>
 										</span>
@@ -1031,7 +1031,7 @@ a.linetag2:hover {
 									</div> <%
  	} else {
  %><div class="linebox2" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
+										<a href="inquiryInfo.do?count2=<%=line%>" class="linetag2">
 											<span style="color: #555555;"> <b> <%=line%>
 											</b>
 										</span>
@@ -1045,7 +1045,7 @@ a.linetag2:hover {
  		int color = count2 + 1;
  %>
 									<div class="linebox3" align="center">
-										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 - 9%>"
+										<a href="inquiryInfo.do?count2=<%=count2 / 10 * 10 - 9%>"
 											class="linetag3"> <span style="color: #999999;"> <b>
 													< </b>
 										</span>
@@ -1055,7 +1055,7 @@ a.linetag2:hover {
  %> <%
  	if (color == line) {
  %><div class="linebox" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
+										<a href="inquiryInfo.do?count2=<%=line%>" class="linetag"> <span
 											style="color: white;"> <b> <%=line%>
 											</b>
 										</span>
@@ -1063,7 +1063,7 @@ a.linetag2:hover {
 									</div> <%
  	} else {
  %><div class="linebox2" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
+										<a href="inquiryInfo.do?count2=<%=line%>" class="linetag2">
 											<span style="color: #555555;"> <b> <%=line%>
 											</b>
 										</span>
@@ -1074,7 +1074,7 @@ a.linetag2:hover {
  	}
  %>
 									<div class="linebox3" align="center">
-										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 + 11%>"
+										<a href="inquiryInfo.do?count2=<%=count2 / 10 * 10 + 11%>"
 											class="linetag3"> <span style="color: #999999;"> <b>
 													> </b>
 										</span>

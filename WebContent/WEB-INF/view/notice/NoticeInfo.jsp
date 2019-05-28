@@ -106,7 +106,7 @@ function doDelete(){
 <style>
 html, body {
 	margin: 0;
-	height: 100%;
+	height: 100%;min-height: 1450px;
 }
 
 a.line:hover {
@@ -661,8 +661,10 @@ a.linetag2:hover {
 					<div class="tableright" align="right">
 						<font size="2px" color="#777777"> <b>공지사항</b> | <%
  	String date = CmmUtil.nvl(rDTO.getReg_dt());
- %> <%=date.substring(0, 4)%>.<%=date.substring(5, 7)%>.<%=date.substring(8, 10)%>.
-							<%=date.substring(11, 16)%>
+						if(date.equals("")){}else{
+							 %> <%=date.substring(0, 4)%>.<%=date.substring(5, 7)%>.<%=date.substring(8, 10)%>.
+														<%=date.substring(11, 16)%>
+														<%} %>
 						</font>
 					</div>
 				</div>
@@ -703,6 +705,7 @@ a.linetag2:hover {
 											<textarea name="comment"
 												style="height: 46px; width: 516px; resize: none;"></textarea>
 										</div>
+										<input type="hidden" name="notice_seq" value="<%=notice_seq%>">
 										<div class="button-container-2">
 											<span class="mas"><b>등록</b></span>
 											<button type="submit" name="Hover">
@@ -771,13 +774,12 @@ a.linetag2:hover {
 										</div>
 										<div style="margin: 4px 0;"></div>
 										<%
-											String commenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
-												String commenttest2 = contenttest1.replaceAll("& lt;", "<");
-												String commenttest3 = contenttest2.replaceAll("& gt;", ">");
-												String commenttest4 = contenttest3.replaceAll("& #40;", "(");
-												String commenttest5 = contenttest4.replaceAll("& #41;", ")");
-												String comment = contenttest5;
-												System.out.println(comment);
+										String commenttest1 = CmmUtil.nvl(a.getContents()).replaceAll("\r\n", "<br/>");
+										String commenttest2 = commenttest1.replaceAll("& lt;", "<");
+										String commenttest3 = commenttest1.replaceAll("& gt;", ">");
+										String commenttest4 = commenttest3.replaceAll("& #40;", "(");
+										String commenttest5 = commenttest4.replaceAll("& #41;", ")");
+										String comment = commenttest5;
 										%>
 										<%=comment%>
 

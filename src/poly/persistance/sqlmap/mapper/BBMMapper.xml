@@ -78,7 +78,7 @@
 		COM_SEQ = #{com_seq}
 	</update>
 	
-	<select id="getComment" resultType="Comment_bbmDTO" parameterType="NoticeDTO">
+	<select id="getComment" resultType="Comment_bbmDTO" parameterType="BBMDTO">
 		SELECT BBM_SEQ, COM_SEQ, CONTENTS, REG_USER_NO, REG_DT, USER_ID
 		FROM COMMENT_BBM WHERE BBM_SEQ = #{bbm_seq} ORDER BY COM_SEQ ASC
 	</select>
