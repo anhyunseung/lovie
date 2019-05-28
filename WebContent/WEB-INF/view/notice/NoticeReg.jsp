@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ page import="poly.util.CmmUtil"%>
-<%@ page import="org.apache.commons.io.output.*"%>
 <%
 request.setCharacterEncoding("UTF-8");
 session.setAttribute("url", "/notice/NoticeReg.do");
@@ -11,12 +10,11 @@ String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID")); 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon"
-	href="http://localhost:8080/notice/NoticeInfo.do/../../img/common/icon.ico"
-	type="image/x-icon" />
+<link rel="shortcut icon" href="http://localhost:8080/notice/NoticeReg.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>공지사항 : Lovie</title>
+<script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
-function doOnload(){
+<%-- function doOnload(){
    var user_id = "<%=SESSION_USER_ID%>";
    
    if (user_id!="admin"){
@@ -25,7 +23,7 @@ function doOnload(){
       
    }
    
-}
+} --%>
 
 //로그인 여부 체크
 
@@ -183,11 +181,12 @@ div.tableborder {
 
 div.tableup {
 	background-color: #eeeeee;
-	padding: 8px 8px;
+	padding: 14px 50px 10px 50px;
 	border-bottom: 1px solid #dddddd;
+	vertical-align: middle;
 }
 
-div.tableup>div {
+div.tableup >div{
 	display: inline-block;
 }
 
@@ -200,117 +199,15 @@ div.tableright {
 }
 
 div.tablemiddle {
-	padding: 50px 10px;
+	padding: 10px 10px;
 }
 
 div.tabledown {
-	margin: 0 20px 20px 20px;
-	padding: 10px 10px;
-	box-shadow: 0 0 3px 0 rgba(100, 100, 100, 0.4);
+	background-color: #eeeeee;
+	padding: 8px 8px 1px 8px;
+	border-bottom: 1px solid #dddddd;	
 }
 
-@import url("https://fonts.googleapis.com/css?family=Lato:100,300,400");
-
-@import url("https://fonts.googleapis.com/css?family=Roboto:100");
-
-.button-container-2 {
-	position: relative;
-	width: 100px;
-	height: 50px;
-	overflow: hidden;
-	border: 1px solid #777;
-	font-family: 'Lato', sans-serif;
-	font-weight: 300;
-	transition: 0.5s;
-	letter-spacing: 1px;
-}
-
-.button-container-2 button {
-	width: 101%;
-	height: 100%;
-	font-family: 'Lato', sans-serif;
-	font-weight: 300;
-	font-size: 20px;
-	letter-spacing: 1px;
-	background: #777;
-	-webkit-mask:
-		url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png");
-	mask:
-		url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png");
-	-webkit-mask-size: 3000% 100%;
-	mask-size: 3000% 100%;
-	border: none;
-	color: #fff;
-	cursor: pointer;
-	-webkit-animation: ani2 0.7s steps(29) forwards;
-	animation: ani2 0.7s steps(29) forwards;
-}
-
-.button-container-2 button:hover {
-	-webkit-animation: ani 0.7s steps(29) forwards;
-	animation: ani 0.7s steps(29) forwards;
-}
-
-.mas {
- position: absolute;
- color: #777;
- text-align: center;
- width: 101%;
- font-family: 'Lato', sans-serif;
- font-weight: 300;
- position: absolute;
- font-size: 20px;
- margin-top: 12px;
- overflow: hidden;
-}
-
-@-webkit-keyframes ani {
- from {
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
- }
-
- to {
-  -webkit-mask-position: 100% 0;
-  mask-position: 100% 0;
- }
-}
-
-@keyframes ani {
- from {
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
- }
-
- to {
-  -webkit-mask-position: 100% 0;
-  mask-position: 100% 0;
- }
-}
-
-@-webkit-keyframes ani2 {
- from {
-  -webkit-mask-position: 100% 0;
-  mask-position: 100% 0;
- }
-
- to {
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
- }
-}
-
-@keyframes ani2 {
- from {
-  -webkit-mask-position: 100% 0;
-  mask-position: 100% 0;
- }
-
- to {
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
- }
-}
 td.paging1>div>div {
 	display: inline-block;
 }
@@ -356,8 +253,9 @@ a.linetag2:hover {
 /* 여기까지 오른쪽 정렬  */
 </style>
 </head>
-<body ondragstart="return false"
+<body onload="doOnload();"
 	style="min-width: 1250px; background-color: #f3f3f3;">
+	<form name="f" method="post" action="/notice/NoticeInsert.do">
 	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
 		<li><a href="/top.do"> <img class="logo"
@@ -550,22 +448,6 @@ a.linetag2:hover {
 						style="color: #555555;"> <b>공지사항</b>
 					</font><br /> <br /></td>
 					<td align="right" valign="bottom">
-					<%
-						if (edit == 2 || ss_user_id.equals("admin")) {
-					%> 
-					<a
-						href="javascript:void(0);"
-						onclick="doEdit();"> <img
-							src="../img/button/rewri.png"
-							onmouseover="this.src='../img/button/rewri2.png'"
-							onmouseout="this.src='../img/button/rewri.png'" />
-					</a> <a href="javascript:void(0);"
-						onclick="doDelete();"> <img
-							src="../img/button/del.png"
-							onmouseover="this.src='../img/button/del2.png'"
-							onmouseout="this.src='../img/button/del.png'" />
-					</a>
-					<%} %>
 					 <a href="NoticeList.do"> <img src="../img/button/list.png"
 							onmouseover="this.src='../img/button/list2.png'"
 							onmouseout="this.src='../img/button/list.png'" />
@@ -582,281 +464,106 @@ a.linetag2:hover {
 			</table>
 			<div class="tableborder">
 				<div class="tableup">
-					<font size="4px"> <b><%=CmmUtil.nvl(rDTO.getTitle())%></b>
-					</font> <br />
-					<div class="tableleft">
-						<font size="3px" color="#777777"> <%=CmmUtil.nvl(rDTO.getUser_id())%>
-						</font>
-					</div>
-					<div class="tableright" align="right">
-						<font size="2px" color="#777777"> <b>공지사항</b> | <%
- 	String date = CmmUtil.nvl(rDTO.getReg_dt());
-						if(date.equals("")){}else{
-							 %> <%=date.substring(0, 4)%>.<%=date.substring(5, 7)%>.<%=date.substring(8, 10)%>.
-														<%=date.substring(11, 16)%>
-														<%} %>
-						</font>
-					</div>
+				<div >
+				<font size="4px"> <b>제목</b>
+					</font>
+				</div>
+				<div style="position:relative; padding: 0 0 0 50px; bottom: 2px;">
+				
+					<input type="text" name="title" maxlength="40"
+               style="width: 500px; height: 24px;" />
+				</div>
 				</div>
 				<div class="tablemiddle">
-					<%
-						String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
-						String contenttest2 = contenttest1.replaceAll("& lt;", "<");
-						String contenttest3 = contenttest2.replaceAll("& gt;", ">");
-						String contenttest4 = contenttest3.replaceAll("& #40;", "(");
-						String contenttest5 = contenttest4.replaceAll("& #41;", ")");
-						String content = contenttest5;
-						System.out.println(content);
-					%>
-					<%=content%>
+				<textarea name="contents" id="contents" rows="10" cols="100" onKeyUp="checkByte(this.form);" 
+                  style="width:100%; height:600px; display:none;"></textarea>
 				</div>
-				<form action="/notice/commentreg.do"
-					onsubmit="return doSubmit2(this);" method="post">
-					<div class="tabledown">
-						<table width="100%">
-							<tr>
-								<td colspan="2"><font face='Malgun Gothic' size="4px"
-									style="color: #555555;"> <b>댓글</b>
-								</font> <%
- 	int l = clist.size();
- 	if (l != 0) {
- %> <span style="color: rgb(2, 151, 128); font-weight: bold;"> [<%=l%>]
-								</span> <%
- 	}
- %></td>
-							</tr>
-							<tr style="background-color: #dddddd;">
-								<td colspan="2" height="1px"></td>
-							</tr>
-							<tr>
-								<td valign="middle" height="100%" class="paging1">
-									<div style="margin: 5px 0 0 0;">
-										<div>
-											<textarea name="comment"
-												style="height: 46px; width: 516px; resize: none;"></textarea>
-										</div>
-										<input type="hidden" name="notice_seq" value="<%=notice_seq%>">
-										<div class="button-container-2">
-											<span class="mas"><b>등록</b></span>
-											<button type="submit" name="Hover">
-												<b>등록</b>
-											</button>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<%
-								int b = 9;
-								int c = l / 10;
-								int d = l - c * 10;
-								int e = (clist.size() - 1) / 10;
-
-								if (clist.size() > 10) {
-									l = 10;
-								}
-								if (count2 == c) {
-									l = d;
-								}
-								for (int i = 0; i < l; i++) {
-									b--;
-									Comment_noticeDTO a = clist.get(count2 * 10 + i);
-							%>
-							<tr style="background-color: #dddddd;">
-								<td colspan="2"></td>
-							</tr>
-							<tr>
-								<td colspan="2">
-
-									<div style="margin: 7px 7px;">
-										<div class="comaliggn" style="vertical-align: middle;">
-											<div style="width: 65%; height: 27px">
-												<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b>
-												<font size="2px" color="#777777"> <%
- 	String comdate = CmmUtil.nvl(a.getReg_dt());
- %> <%=comdate.substring(0, 4)%>.<%=comdate.substring(5, 7)%>.<%=comdate.substring(8, 10)%>.
-													<%=comdate.substring(11, 16)%>
-												</font>
-											</div>
-											<div align="right"
-												style="width: 34%; position: relative; top: 7px">
-												<div>
-												<%
-												if(ss_user_id.equals(CmmUtil.nvl(a.getUser_id()))){
-												%>
-													<a href="javascript:void(0);"
-														onclick="doEdit2(<%=CmmUtil.nvl(a.getcom_seq())%>);">
-														<img src="../img/button/rewri.png"
-														onmouseover="this.src='../img/button/rewri2.png'"
-														onmouseout="this.src='../img/button/rewri.png'" />
-													</a>
-													<%} 
-												if(ss_user_id.equals(CmmUtil.nvl(a.getUser_id()))||ss_user_id.equals("admin")){
-													%>
-													 <a href="javascript:void(0);"
-														onclick="doDelete2(<%=CmmUtil.nvl(a.getcom_seq())%>);">
-														<img src="../img/button/del.png"
-														onmouseover="this.src='../img/button/del2.png'"
-														onmouseout="this.src='../img/button/del.png'" />
-													</a>
-													<%} %>
-												</div>
-											</div>
-										</div>
-										<div style="margin: 4px 0;"></div>
-										<%
-										String commenttest1 = CmmUtil.nvl(a.getContents()).replaceAll("\r\n", "<br/>");
-										String commenttest2 = commenttest1.replaceAll("& lt;", "<");
-										String commenttest3 = commenttest1.replaceAll("& gt;", ">");
-										String commenttest4 = commenttest3.replaceAll("& #40;", "(");
-										String commenttest5 = commenttest4.replaceAll("& #41;", ")");
-										String comment = commenttest5;
-										%>
-										<%=comment%>
-
-									</div>
-								</td>
-							</tr>
-							<%
-								}
-							%>
-							<tr style="background-color: #dddddd;">
-								<td colspan="2" height="1px"></td>
-							</tr>
-							<tr>
-								<td class="paging" align="center" colspan="2" valign="bottom"
-									height="30px">
-									<%
-										int line = 0;
-										if (clist.size() >= 100 && clist.size() <= 999) {
-											c = clist.size() / 100;
-										} else if (clist.size() >= 1000 && clist.size() <= 9999) {
-											c = clist.size() / 1000;
-										} else if (clist.size() >= 10000 && clist.size() <= 99999) {
-											c = clist.size() / 10000;
-										} else {
-											c = clist.size() / 10;
-										}
-										if (count2 / 10 == 0) {
-											int q = 1;
-											if (clist.size() > 100) {
-												q = 10;
-											} else {
-												q = (clist.size() - 1) / 10 + 1;
-											}
-											count2 = count2 + 1;
-											for (line = 1; line <= q; line++) {
-									%> <%
- 	if (count2 == line) {
- %>
-									<div class="linebox" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
-											style="color: white;"> <b> <%=line%>
-											</b>
-										</span>
-										</a>
-									</div> <%
- 	} else {
- %>
-									<div class="linebox2" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
-											<span style="color: #555555;"> <b> <%=line%>
-											</b>
-										</span>
-										</a>
-									</div> <%
- 	}
- %> <%
- 	}
- 		if (clist.size() > 100) {
- %><div class="linebox3" align="center">
-										<a href="NoticeInfo.do?count2=<%=11%>" class="linetag3"> <span
-											style="color: #555555;"> <b> > </b>
-										</span>
-										</a>
-									</div> <%
- 	}
- 	} else if (count2 / 10 == c) {
- 		int color = count2 + 1;
- %>
-									<div class="linebox3" align="center">
-										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 - 9%>"
-											class="linetag3"> <span style="color: #999999;"> <b>
-													< </b>
-										</span>
-										</a>
-									</div> <%
- 	for (line = count2 / 10 * 10 + 1; line <= e + 1; line++) {
- %> <%
- 	if (color == line) {
- %>
-									<div class="linebox" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
-											style="color: white;"> <b> <%=line%>
-											</b>
-										</span>
-										</a>
-									</div> <%
- 	} else {
- %><div class="linebox2" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
-											<span style="color: #555555;"> <b> <%=line%>
-											</b>
-										</span>
-										</a>
-									</div> <%
- 	}
- %> <%
- 	}
- %> <%
- 	} else {
- 		int color = count2 + 1;
- %>
-									<div class="linebox3" align="center">
-										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 - 9%>"
-											class="linetag3"> <span style="color: #999999;"> <b>
-													< </b>
-										</span>
-										</a>
-									</div> <%
- 	for (line = count2 / 10 * 10 + 1; line <= count2 / 10 * 10 + 10; line++) {
- %> <%
- 	if (color == line) {
- %><div class="linebox" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag"> <span
-											style="color: white;"> <b> <%=line%>
-											</b>
-										</span>
-										</a>
-									</div> <%
- 	} else {
- %><div class="linebox2" align="center">
-										<a href="NoticeInfo.do?count2=<%=line%>" class="linetag2">
-											<span style="color: #555555;"> <b> <%=line%>
-											</b>
-										</span>
-										</a>
-									</div> <%
- 	}
- %> <%
- 	}
- %>
-									<div class="linebox3" align="center">
-										<a href="NoticeInfo.do?count2=<%=count2 / 10 * 10 + 11%>"
-											class="linetag3"> <span style="color: #999999;"> <b>
-													> </b>
-										</span>
-										</a>
-									</div> <%
- 	}
- %>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</form>
+				<div class="tabledown" align="right">
+				<button  type="button" onclick="submitContents(this);" style="background-color: rgba(0,0,0,0); 
+				border: 0; outline:0; width:64px; height: 29px; margin: 0 6px 0 0;">
+				<img style="cursor: pointer;" src="../img/button/sign.png"
+							onmouseover="this.src='../img/button/sign2.png'"
+							onmouseout="this.src='../img/button/sign.png'" />
+				</button>
+				<a style="cursor: pointer;" onclick="doList();">
+				<img src="../img/button/cc.png"
+							onmouseover="this.src='../img/button/cc2.png'"
+							onmouseout="this.src='../img/button/cc.png'" />
+				</a>
+				</div>
 			</div>
 		</div>
 	</div>
 	</div>
+	</form>
 </body>
+					   <script type="text/javascript">
+var oEditors = [];
+
+var sLang = "ko_KR";	// 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
+
+// 추가 글꼴 목록
+//var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "contents",
+	sSkinURI: "../se2/SmartEditor2Skin_ko_KR.html",	
+	htParams : {
+		bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+		bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+		bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+		//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
+		//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+		fOnBeforeUnload : function(){
+			//alert("완료!");
+		},
+		I18N_LOCALE : sLang
+	}, //boolean
+	fOnAppLoad : function(){
+		//예제 코드
+		//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+	},
+	fCreator: "createSEditor2"
+});
+
+function pasteHTML() {
+	var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
+	oEditors.getById["contents"].exec("PASTE_HTML", [sHTML]);
+}
+
+function showHTML() {
+	var sHTML = oEditors.getById["contents"].getIR();
+	alert(sHTML);
+}
+	
+function submitContents(elClickedObj) {
+	if (f.title.value == "") {
+	      alert("제목을 입력하시기 바랍니다.");
+	      f.title.focus();
+	      return false;
+	   }
+	   if(f.title.value.length > 45){
+	      alert("최대 45자까지 입력 가능합니다.");
+	      f.title.focus();
+	      return false;
+	   }
+	oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+	 if(document.getElementById("contents").value=="<p><br></p>"||document.getElementById("contents").value==""){
+		 alert("내용을 입력하시기 바랍니다.");
+	      return false;
+	 }
+	 if (document.getElementById("contents").value.length > 2000) {
+	      alert("최대 2000자까지 입력 가능합니다.");
+	      return false;
+	   }
+	elClickedObj.form.submit();
+}
+
+function setDefaultFont() {
+	var sDefaultFont = '궁서';
+	var nFontSize = 24;
+	oEditors.getById["contents"].setDefaultFont(sDefaultFont, nFontSize);
+}
+</script>
 </html>

@@ -192,7 +192,7 @@ function submitContents(elClickedObj) {
 	      f.title.focus();
 	      return false;
 	   }
-	   if(f.title.value.length > 50){
+	   if(f.title.value.length > 45){
 	      alert("최대 50자까지 입력 가능합니다.");
 	      f.title.focus();
 	      return false;

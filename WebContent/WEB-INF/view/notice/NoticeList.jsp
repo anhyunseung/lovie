@@ -210,7 +210,7 @@ a.linetag2:hover {
 /* 여기까지 오른쪽 정렬  */
 </style>
 </head>
-<body ondragstart="return false" style="min-width: 1250px; background-color: #f3f3f3;">
+<body  style="min-width: 1250px; background-color: #f3f3f3;">
 	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
 		<li><a href="/top.do"> <img class="logo"

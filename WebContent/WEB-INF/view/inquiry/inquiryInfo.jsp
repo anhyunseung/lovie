@@ -426,7 +426,7 @@ a.linetag2:hover {
 /* 여기까지 오른쪽 정렬  */
 </style>
 </head>
-<body ondragstart="return false"
+<body 
 	style="min-width: 1250px; background-color: #f3f3f3;">
 	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
@@ -622,13 +622,13 @@ a.linetag2:hover {
 						if (edit == 2) {
 					%> 
 					<a
-						href="javascript:void(0);"
+						style="cursor: pointer;"
 						onclick="doEdit();"> <img
 							src="../img/button/rewri.png"
 							onmouseover="this.src='../img/button/rewri2.png'"
 							onmouseout="this.src='../img/button/rewri.png'" />
 					</a>
-					<a href="javascript:void(0);"
+					<a style="cursor: pointer;"
 						onclick="doDelete();"> <img
 							src="../img/button/del.png"
 							onmouseover="this.src='../img/button/del2.png'"
@@ -752,7 +752,7 @@ a.linetag2:hover {
 												<%
 												if(ss_user_id.equals(CmmUtil.nvl(a.getUser_id()))){
 												%>
-													<a href="javascript:void(0);"
+													<a style="cursor: pointer;"
 														onclick="doEdit2(<%=CmmUtil.nvl(a.getcom_seq())%>);">
 														<img src="../img/button/rewri.png"
 														onmouseover="this.src='../img/button/rewri2.png'"
@@ -761,7 +761,7 @@ a.linetag2:hover {
 													<%} 
 												if(ss_user_id.equals(CmmUtil.nvl(a.getUser_id()))||ss_user_id.equals("admin")){
 													%>
-													 <a href="javascript:void(0);"
+													 <a style="cursor: pointer;"
 														onclick="doDelete2(<%=CmmUtil.nvl(a.getcom_seq())%>);">
 														<img src="../img/button/del.png"
 														onmouseover="this.src='../img/button/del2.png'"
