@@ -14,7 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import poly.dto.BBMDTO;
+import poly.dto.Comment_inqDTO;
 import poly.dto.InquiryDTO;
 import poly.service.IInquiryService;
 import poly.util.CmmUtil;
@@ -145,6 +145,126 @@ private Logger log = Logger.getLogger(this.getClass());
 		return "/inquiry/inquiryInfo2";
 	}
 	
+	@RequestMapping(value = "inquiry/commentreg", method = RequestMethod.POST)
+	public String commentreg(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+			ModelMap model) throws Exception {
+
+		log.info("inquiry/commentreg");
+
+		String user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String user_no = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
+		String seq = request.getParameter("inq_seq");
+		String contents = request.getParameter("comment");
+
+		Comment_inqDTO cDTO = new Comment_inqDTO();
+
+		cDTO.setUser_id(user_id);
+		cDTO.setReg_user_no(user_no);
+		cDTO.setinq_seq(seq);
+		cDTO.setContents(contents);
+
+		System.out.println(user_id);
+		System.out.println(user_no);
+		System.out.println(seq);
+		System.out.println(contents);
+
+		if (user_no == "") {
+			session.setAttribute("inq_seq", seq);
+			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
+			request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
+			return "/MsgToList";
+		}
+
+		InquiryService.insertComment(cDTO);
+
+		if (cDTO == null) {
+			request.setAttribute("msg", "댓글입력에 실패하였습니다.");
+			request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
+		} else {
+			request.setAttribute("msg", "댓글을 작성하였습니다.");
+			request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
+			session.setAttribute("inq_seq", seq);
+		}
+		return "/MsgToList";
+	}
+
+	@SuppressWarnings("unused")
+	@RequestMapping(value = "inquiry/commentdelete", method = RequestMethod.GET)
+	public String commentdelete(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+			ModelMap model) throws Exception {
+
+		log.info("inquiry/commentdelete");
+
+		String inq_seq = CmmUtil.nvl((String) session.getAttribute("com_inq_seq"));
+		session.setAttribute("com_inq_seq", "");
+		String com_seq = request.getParameter("com_seq");
+		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		
+		Comment_inqDTO cDTO = new Comment_inqDTO();
+		
+		cDTO.setinq_seq(inq_seq);
+		cDTO.setcom_seq(com_seq);
+
+		System.out.println(com_seq);
+		System.out.println(inq_seq);
+		String a=InquiryService.getCommentUserid(com_seq);
+		System.out.println(a);
+		if(a.equals(SESSION_USER_ID) || SESSION_USER_ID.equals("admin")) {
+			InquiryService.deleteComment(cDTO);
+
+			cDTO = null;
+
+			request.setAttribute("msg", "댓글을 삭제하였습니다.");
+			
+		}else {
+			cDTO = null;
+
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			
+		}
+		request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+inq_seq);
+		session.setAttribute("inq_seq", inq_seq);
+
+		return "/MsgToList";
+	}
+
+	@SuppressWarnings("unused")
+	@RequestMapping(value = "inquiry/commentupdate", method = RequestMethod.POST)
+	public String commentupdate(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+			ModelMap model) throws Exception {
+
+		log.info("inquiry/commentupdate");
+
+		String user_no = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
+		String seq = request.getParameter("inq_seq");
+		String com_seq = request.getParameter("com_seq");
+		String contents = request.getParameter("comment2");
+
+		Comment_inqDTO cDTO = new Comment_inqDTO();
+
+		cDTO.setChg_user_no(user_no);
+		cDTO.setcom_seq(com_seq);
+		cDTO.setinq_seq(seq);
+		cDTO.setContents(contents);
+
+		System.out.println(user_no);
+		System.out.println(seq);
+		System.out.println(com_seq);
+		System.out.println(contents);
+
+		InquiryService.updateComment(cDTO);
+		
+		System.out.println("?1");
+		
+		request.setAttribute("msg", "댓글을 수정하였습니다.");
+		request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
+		session.setAttribute("inq_seq", seq);
+
+		cDTO = null;
+
+		return "/MsgToList";
+	}
+	
 	@RequestMapping(value = "inquiry/inquiryDelete", method = RequestMethod.GET)
 	public String InquiryDelete(HttpServletRequest request,HttpSession session, HttpServletResponse response, ModelMap model)
 			throws Exception {
@@ -164,6 +284,7 @@ private Logger log = Logger.getLogger(this.getClass());
 		System.out.println(a);
 		
 		if(a.equals(SESSION_USER_ID)) {
+			InquiryService.deleteCommentALL(seq);
 			InquiryService.deleteinquiryInfo(rDTO);
 
 			rDTO = null;

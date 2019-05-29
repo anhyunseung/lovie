@@ -92,9 +92,9 @@ function doInfo(seq){
 			f.comment.focus();
 			return false;
 		}
-		if (f.comment.value.length > 3000) {
+		if (f.comment2.value.length > 3000) {
 			alert("최대 3000자까지 입력 가능합니다.");
-			f.comment.focus();
+			f.comment2.focus();
 			return false;
 		}
 	}
@@ -290,6 +290,9 @@ div.tabledown {
 	margin: 0 20px 20px 20px;
 	padding: 10px 10px;
 	box-shadow: 0 0 3px 0 rgba(100, 100, 100, 0.4);
+}
+textarea {
+	outline-color: #888888;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Lato:100,300,400");
@@ -821,7 +824,7 @@ a.linetag2:hover {
 					%>
 					<%=content%>
 				</div>
-				<form action="/bbm/commentreg.do"
+				<form action="/bbm/commentupdate.do"
 					onsubmit="return doSubmit2(this);" method="post">
 					<div class="tabledown">
 						<table width="100%">
@@ -932,6 +935,8 @@ a.linetag2:hover {
 										if(CmmUtil.nvl(a.getcom_seq()).equals(com_seq)){%>
 										<div class="editalign">
 										<div>
+										<%String q= CmmUtil.nvl(a.getcom_seq()); %>
+										<input type="hidden" name="com_seq" value="<%=q%>">
 										<textarea name="comment2" style="width: 496px; resize:none;"><%=comment%></textarea>
 										</div>
 										<div class="button-container-2">

@@ -208,7 +208,9 @@ div.tabledown {
 	padding: 8px 8px 1px 8px;
 	border-bottom: 1px solid #dddddd;	
 }
-
+input{
+	outline-color: #888888;
+}
 td.paging1>div>div {
 	display: inline-block;
 }

@@ -159,8 +159,16 @@ public class UserController {
 		}
 		return "/MsgToList";
 	}
+	
+	@RequestMapping(value = "/user/user_login", method = RequestMethod.GET)
+	public String User_login(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+			throws Exception {
 
-	@SuppressWarnings("unused")
+		log.info(this.getClass().getName() + "/user/user_login start!");
+
+		return "/user/user_login";
+	}
+	
 	@RequestMapping(value = "/user/user_login_proc", method = RequestMethod.POST)
 	public String User_login_proc(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
 
@@ -179,24 +187,22 @@ public class UserController {
 
 		log.info(uDTO.getUser_id());
 		log.info(uDTO.getPassword());
-		log.info(uDTO.getUser_no());
-		log.info(uDTO.getUser_name());
-		log.info(uDTO.getEmail1());
+		
 		if (user_no == null) {
 			request.setAttribute("msg", "아이디 또는 비밀번호가 맞지 않습니다.");
-			request.setAttribute("url", "/top.do");
+			request.setAttribute("url", "/user/user_login.do");
 			log.info(uDTO.getUser_id());
 			log.info(uDTO.getPassword());
 		} else {
 			request.setAttribute("msg", "");
-			request.setAttribute("url", "/top.do");
+			request.setAttribute("url", (String)session.getAttribute("url"));
 			session.setAttribute("USER_NO", user_no);
 			session.setAttribute("USER_ID", user_id);
 		}
 
 		uDTO.equals(null);
 
-		return "/user/user_login_proc";
+		return "/MsgToList";
 	}
 
 	@RequestMapping(value = "/user/user_id_search_proc")

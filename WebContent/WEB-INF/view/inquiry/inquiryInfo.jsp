@@ -285,6 +285,10 @@ div.tabledown {
 	box-shadow: 0 0 3px 0 rgba(100, 100, 100, 0.4);
 }
 
+textarea {
+	outline-color: #888888;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Lato:100,300,400");
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:100");
@@ -725,7 +729,6 @@ a.linetag2:hover {
 								int c = l / 10;
 								int d = l - c * 10;
 								int e = (clist.size() - 1) / 10;
-
 								if (clist.size() > 10) {
 									l = 10;
 								}

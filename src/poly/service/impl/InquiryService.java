@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import poly.dto.InquiryDTO;
+import poly.dto.BBMDTO;
+import poly.dto.Comment_bbmDTO;
 import poly.dto.Comment_inqDTO;
 import poly.dto.InquiryDTO;
 import poly.persistance.mapper.InquiryMapper;
@@ -33,7 +35,11 @@ public class InquiryService implements IInquiryService{
    @Override
    public InquiryDTO getinquiryInfo(InquiryDTO pDTO) throws Exception {
       // TODO Auto-generated method stub
-      return inquiryMapper.getinquiryInfo(pDTO);
+	   InquiryDTO rdto = inquiryMapper.getinquiryInfo(pDTO);
+		
+		List<Comment_inqDTO> clist = inquiryMapper.getComment(rdto);
+		rdto.setClist(clist);
+		return rdto;
    }
 
    @Override

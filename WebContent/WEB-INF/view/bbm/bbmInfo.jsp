@@ -284,6 +284,9 @@ div.tabledown {
 	padding: 10px 10px;
 	box-shadow: 0 0 3px 0 rgba(100, 100, 100, 0.4);
 }
+textarea {
+	outline-color: #888888;
+}
 
 @import url("https://fonts.googleapis.com/css?family=Lato:100,300,400");
 
