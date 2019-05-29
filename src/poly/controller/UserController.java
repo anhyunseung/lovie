@@ -184,19 +184,19 @@ public class UserController {
 		log.info(uDTO.getEmail1());
 		if (user_no == null) {
 			request.setAttribute("msg", "아이디 또는 비밀번호가 맞지 않습니다.");
-			request.setAttribute("url", "/top.do");
+			request.setAttribute("url", "/user/user_login.do");
 			log.info(uDTO.getUser_id());
 			log.info(uDTO.getPassword());
 		} else {
 			request.setAttribute("msg", "");
-			request.setAttribute("url", "/top.do");
+			request.setAttribute("url",  CmmUtil.nvl((String) session.getAttribute("url")));
 			session.setAttribute("USER_NO", user_no);
 			session.setAttribute("USER_ID", user_id);
 		}
 
 		uDTO.equals(null);
 
-		return "/user/user_login_proc";
+		return "/MsgToList";
 	}
 
 	@RequestMapping(value = "/user/user_id_search_proc")

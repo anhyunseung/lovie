@@ -19,7 +19,7 @@ function doOnload(){
    
    if (user_id==""){
 	      alert("로그인된 사용자만 글을 쓸 수 있습니다.");
-      location.href="/bbm/bbmList.do";
+      location.href="/user/user_login.do";
       
    }
    
