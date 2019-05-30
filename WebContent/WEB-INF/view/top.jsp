@@ -311,7 +311,7 @@ div.mainlogin {
 	padding: 30px 20px;
 	box-shadow:1px 1px 3px 0 rgba(213, 213, 213, 0.5);
 	position: relative;
-	bottom: 82px;
+	bottom: 65px;
 }
 
 div.loginbg{
@@ -349,6 +349,10 @@ div.notice {
 	margin: 45px 30px;
 	padding: 30px 20px;
 	box-shadow:1px 1px 3px 0 rgba(213, 213, 213, 0.8);
+}
+
+div.word>div{
+	display: inline-block;
 }
 
 div.bbm {
@@ -688,15 +692,19 @@ a.tag2:hover {
 			<!-- 공지사항  -->
 			<div class="notice">
 			<div align="left">
-				
-<font
+			<div class="word" style="position: relative; bottom: 10px;">
+						<div align="left" style="width: 50%">
+						<font
 							face='Malgun Gothic' size="5px" color="gray"> <b>공지사항</b>
 						</font>
-<a
+						</div>
+							<div align="right" style="width: 48%">
+							<a
 							href="/notice/NoticeList.do" class="tag"> <font
 								face='Malgun Gothic' size="5px"> <b>+</b>
-							</font></a>
-							<hr />
+							</font></a></div>
+							</div>
+							<div style="height: 1px; background-color: #dddddd;"></div>
 					<%
 						int a1 = nList.size();
 						if (a1 > 5) {
@@ -731,21 +739,31 @@ a.tag2:hover {
 						}
 					%>
 					<%
-						}
+						}int blank=5-a1;
+						for(int a2=0;a2<blank;a2++){%>
+							<div style="height:15px">
+					</div>
+ 								<span style="font-weight: bold">　</span>
+					<%}
 					%>
 			</div>
 			</div>
 			<!-- 자유게시판  -->
 			<div class="bbm">
 				<div align="left">
-				<font
+				<div class="word" style="position: relative; bottom: 10px;">
+						<div align="left" style="width: 50%">
+						<font
 							face='Malgun Gothic' size="5px" color="gray"> <b>자유게시판</b>
 						</font>
-<a href="/bbm/bbmList.do"
-							class="tag"> <font face='Malgun Gothic' size="5px"> <b>+</b>
-							</font>
-						</a>
-							<hr />
+						</div>
+							<div align="right" style="width: 48%">
+							<a
+							href="/notice/NoticeList.do" class="tag"> <font
+								face='Malgun Gothic' size="5px"> <b>+</b>
+							</font></a></div>
+							</div>
+							<div style="height: 1px; background-color: #dddddd;"></div>
 
 					<%
 						int a = bList.size();
@@ -781,7 +799,12 @@ a.tag2:hover {
 						}
 					%>
 					<%
-						}
+						}int blank2=5-a;
+						for(int a2=0;a2<blank2;a2++){%>
+						<div style="height:15px">
+					</div>
+ 								<span style="font-weight: bold">　</span>
+					<%}
 					%>
 					</div>
 		</div>

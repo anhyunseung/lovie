@@ -28,7 +28,9 @@ function doOnload(){
 //로그인 여부 체크
 
    function doList(){
+	   if(confirm("글 작성을 취소하시겠습니까?")){
 	    location.href="/notice/NoticeList.do";
+	   }
 	}
 </script>
 <style>
@@ -208,15 +210,10 @@ div.tabledown {
 	padding: 8px 8px 1px 8px;
 	border-bottom: 1px solid #dddddd;	
 }
-<<<<<<< HEAD
 input{
 	outline-color: #888888;
 }
-td.paging1>div>div {
-=======
-
 div.paging1>div>div {
->>>>>>> branch 'master' of https://github.com/anhyunseung/lovie.git
 	display: inline-block;
 }
 
@@ -436,7 +433,7 @@ a.linetag2:hover {
 				</div>
 				<div style="position:relative; padding: 0 0 0 50px; bottom: 2px;">
 				
-					<input type="text" name="title" maxlength="40"
+					<input type="text" autocomplete="off" name="title" maxlength="40"
                style="width: 500px; height: 24px;" />
 				</div>
 				</div>

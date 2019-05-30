@@ -441,7 +441,13 @@ a.linetag2:hover {
  	}
  %>
 						</div>
-						<div align="center" style="width:120px;height:30px;"><%=CmmUtil.nvl(rDTO.getUser_id())%></div>
+						<div align="center" style="width:120px;height:30px;">
+						<%if(CmmUtil.nvl(rDTO.getUser_id()).length()>7){ %>
+								<%=CmmUtil.nvl(rDTO.getUser_id()).substring(0,7)+"..."%>
+							<%}else{ %>
+								<%=CmmUtil.nvl(rDTO.getUser_id())%>
+							<%} %>
+						</div>
 						<div align="center" style="width:160px;height:30px;">
 							<%
 								String date = CmmUtil.nvl(rDTO.getReg_dt());
@@ -456,7 +462,7 @@ a.linetag2:hover {
 					<div style="height: 20px;"></div>
 					<%} %>
 					<div style="background-color: #dddddd; height: 2px;"></div>
-					<div align="right" style="padding: 10px 0 0 0;"><a href="NoticeReg.do"> <img
+					<div align="right" style="padding: 10px 0 0 0;"><a href="bbmReg.do"> <img
 								src="../img/button/write.png"
 								onmouseover="this.src='../img/button/write2.png'"
 								onmouseout="this.src='../img/button/write.png'" />

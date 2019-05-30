@@ -52,83 +52,7 @@ html, body {
 	height: 100%;
 	word-break: break-all;
 }
-a.line:hover {
-	color: black;
-	text-decoration: underline;
-}
 
-a:link {
-	text-decoration: none;
-}
-
-a:visited {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: none;
-}
-
-a.tag {
-	color: #6b7177;
-}
-
-a.tag:hover {
-	color: black;
-	text-decoration: underline;
-}
-
-body {
-	margin: 0;
-}
-
-.navbar {
-	background-image: url("../img/common/headerbg.png");
-	margin: 0;
-	padding: 0;
-	position: fixed;
-	width: 30000px;
-	z-index: 2;
-}
-
-.navbar>li {
-	display: inline-block;
-}
-
-img.logo {
-	position: relative;
-	top: 10px
-}
-
-.navbar>li>a {
-	display: block;
-	text-decoration: none;
-	padding: 0px 20px;
-}
-
-.navbar>li>a#nologo {
-	display: block;
-	text-decoration: none;
-	padding: 20px 40px;
-	color: gray;
-}
-
-.navbar>li>a#nologo:hover {
-	color: #ffffff;
-}
-
-div.login {
-	position: fixed;
-	right: 0%;
-	z-index: 3;
-}
-
-div.blank {
-	width: 100%;
-	height: 64px;
-	border-color: black;
-}
-/* 여기까지 상단  */
 
 div.maindiv {
 	padding: 200px 0 200px 0;
@@ -287,38 +211,12 @@ div.logindiv {
 </head>
 <body onload="doOnload();" style="min-width: 500px; background-color: #f3f3f3;">
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
-	<ul class="navbar">
-		<li><a href="/top.do"> <img class="logo"
-				src="../img/common/Logo.png" />
-		</a></li>
-		<li><a id="nologo" href="/notice/NoticeList.do">공지사항</a></li>
-		<li><a id="nologo" href="/newmovie/newmovieList.do">최신영화</a></li>
-		<li><a id="nologo" href="/upmovie/upmovieList.do">추천영화</a></li>
-		<li><a id="nologo" href="/bbm/bbmList.do">자유게시판</a></li>
-		<li><a id="nologo" href="/inquiry/inquiryList.do">문의</a></li>
-	</ul>
-	<div class="login">
-		<%
-			if (SESSION_USER_ID.equals("")) {
-		%>
-		<a href="/user/user_login.do"><img src="../img/top/uplogin.png"
-			onmouseover="this.src='../img/top/uplogin2.png'"
-			onmouseout="this.src='../img/top/uplogin.png'"></a>
-		<%
-			} else {
-		%>
-		<a href="/user/user_logout.do"><img src="../img/top/uplogout.png"
-			onmouseover="this.src='../img/top/uplogout2.png'"
-			onmouseout="this.src='../img/top/uplogout.png'"></a>
-		<%
-			}
-		%>
-	</div>
+	
 	<div class="maindiv" align="center">
 		<div class="logindiv">
-			<font face='Malgun Gothic' size="10px"
-				style="color: rgb(85, 85, 85, 0.9); padding: 0 0 30px 0;"> <b>로그인</b>
-			</font>
+			<a href="/top.do">
+			<img src="../img/user/loginlogo.png">
+			</a>
 			<input type="text" name="user_id" maxlength="20" class="id" onkeyup="enterkey(this);"
 				onkeydown="return doKeyIdPw(event)"placeholder="아이디"/>
 			<input type="password" name="pwd1" maxlength="20" class="pw" onkeyup="enterkey(this);"
@@ -326,7 +224,7 @@ div.logindiv {
 			<button type="button" onclick="doSubmit(this);" class="outbutton">
 			<a class="button" style="cursor: pointer; vertical-align: middle; padding: 8px 0 0 0;
 			margin: 0;">로그인</a></button>
-			<table width=100%; style="margin: 22px 0"><tr><td style="background-color: rgb(85, 85, 85, 0.9)"></td></tr></table>
+			<div style="margin: 22px 0;background-color: rgb(85, 85, 85, 0.9);height:3px;"></div>
 			<a class="idf" style="cursor: pointer; vertical-align: middle; padding:12px 0 0 0;
 			margin: 0 26px 0 0;" href="/user/user_id_search.do" 
 			onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">

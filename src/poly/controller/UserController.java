@@ -195,11 +195,7 @@ public class UserController {
 			log.info(uDTO.getPassword());
 		} else {
 			request.setAttribute("msg", "");
-<<<<<<< HEAD
-			request.setAttribute("url", (String)session.getAttribute("url"));
-=======
 			request.setAttribute("url",  CmmUtil.nvl((String) session.getAttribute("url")));
->>>>>>> branch 'master' of https://github.com/anhyunseung/lovie.git
 			session.setAttribute("USER_NO", user_no);
 			session.setAttribute("USER_ID", user_id);
 		}

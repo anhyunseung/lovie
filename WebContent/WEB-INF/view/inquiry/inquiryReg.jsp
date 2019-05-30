@@ -28,7 +28,9 @@ function doOnload(){
 //로그인 여부 체크
 
    function doList(){
+	   if(confirm("글 작성을 취소하시겠습니까?")){
 	    location.href="/inquiry/inquiryList.do";
+	   }
 	}
 </script>
 <style>
@@ -208,15 +210,9 @@ div.tabledown {
 	padding: 8px 8px 1px 8px;
 	border-bottom: 1px solid #dddddd;	
 }
-<<<<<<< HEAD
 input{
 	outline-color: #888888;
-}
-td.paging1>div>div {
-=======
-
-div.paging1>div>div {
->>>>>>> branch 'master' of https://github.com/anhyunseung/lovie.git
+}div.paging1>div>div {
 	display: inline-block;
 }
 
@@ -420,6 +416,7 @@ a.linetag2:hover {
 			<div><font face='Malgun Gothic' size="6px"
 						style="color: #555555;"> <b>문의</b>
 					</font></div>
+					<div align="right">
 					 <a href="inquiryList.do"> <img src="../img/button/list.png"
 							onmouseover="this.src='../img/button/list2.png'"
 							onmouseout="this.src='../img/button/list.png'" />
@@ -435,7 +432,7 @@ a.linetag2:hover {
 				</div>
 				<div style="position:relative; padding: 0 0 0 50px; bottom: 2px;">
 				
-					<input type="text" name="title" maxlength="40"
+					<input type="text" autocomplete="off" name="title" maxlength="40"
                style="width: 500px; height: 24px;" />
 				</div>
 				</div>

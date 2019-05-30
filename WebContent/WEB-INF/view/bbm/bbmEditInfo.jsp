@@ -1,36 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="poly.util.CmmUtil"%>
-<%@ page import="poly.dto.BBMDTO" %>
+<%@ page import="poly.dto.BBMDTO"%>
 <%
-session.setAttribute("url", "/bbm/bbmEditInfo.do");
-String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
-String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
-System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
-System.out.println("ss_user_id : " + SESSION_USER_ID);
-BBMDTO rDTO = (BBMDTO)request.getAttribute("rDTO");
+	session.setAttribute("url", "/bbm/bbmEditInfo.do");
+	String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
+	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
+	System.out.println("ss_user_id : " + SESSION_USER_ID);
+	BBMDTO rDTO = (BBMDTO) request.getAttribute("rDTO");
 
-//공지글 정보를 못불러왔다면, 객체 생성
-if (rDTO==null){
-   rDTO = new BBMDTO();
+	//공지글 정보를 못불러왔다면, 객체 생성
+	if (rDTO == null) {
+		rDTO = new BBMDTO();
 
-}
+	}
 
-int access = 1; //(작성자 : 2 / 다른 사용자: 1) 
+	int access = 1; //(작성자 : 2 / 다른 사용자: 1) 
 
-if (CmmUtil.nvl((String)session.getAttribute("USER_ID")).equals(
-      CmmUtil.nvl(rDTO.getUser_id()))){
-   access = 2;
-}
-System.out.println("user_id : "+ CmmUtil.nvl(rDTO.getUser_id()));
-System.out.println("ss_user_id : "+CmmUtil.nvl((String)session.getAttribute("USER_ID")));
-%>  
+	if (CmmUtil.nvl((String) session.getAttribute("USER_ID")).equals(CmmUtil.nvl(rDTO.getUser_id()))) {
+		access = 2;
+	}
+	System.out.println("user_id : " + CmmUtil.nvl(rDTO.getUser_id()));
+	System.out.println("ss_user_id : " + CmmUtil.nvl((String) session.getAttribute("USER_ID")));
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-<link rel="shortcut icon" href="http://localhost:8080/bbm/bbmEditInfo.do/../../img/common/icon.ico" type="image/x-icon" />
+<script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
+<link rel="shortcut icon"
+	href="http://localhost:8080/bbm/bbmEditInfo.do/../../img/common/icon.ico"
+	type="image/x-icon" />
 <title>자유게시판 : Lovie</title>
 <script type="text/javascript">
 
@@ -40,350 +42,542 @@ function doOnload(){
    if ("<%=access%>" == "1") {
          alert("작성자만 수정할 수 있습니다.");
          location.href="/bbm/bbmInfo.do?bbm_seq=<%=CmmUtil.nvl(request.getParameter("bbm_seq"))%>";
-      }
-   }
-
-   function doInfo(seq){
-	    location.href="/bbm/bbmInfo.do?bbm_seq="+ seq;
+		}
 	}
-  function doList(){
-	    location.href="/bbm/bbmList.do";
+
+	function doInfo(seq) {
+		if(confirm("글 수정을 취소하시겠습니까?")){
+		location.href = "/bbm/bbmInfo.do?bbm_seq=" + seq;
+		}
+	}
+	function doList() {
+		location.href = "/bbm/bbmList.do";
 	}
 </script>
 <style>
-a:link { text-decoration: none;}
- a:visited {text-decoration: none;}
- a:hover { text-decoration: none;}
+html, body {
+	margin: 0;
+	height: 100%;
+	min-height: 1450px;
+	word-break: break-all;
+}
+
+a.line:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a.tag {
+	color: #6b7177;
+}
+
+a.tag:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+body {
+	margin: 0;
+}
+
+.navbar {
+	background-image: url("../img/common/headerbg.png");
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	width: 30000px;
+	z-index: 2;
+}
+
+.navbar>li {
+	display: inline-block;
+}
+
+img.logo {
+	position: relative;
+	top: 10px
+}
+
+.navbar>li>a {
+	display: block;
+	text-decoration: none;
+	padding: 0px 20px;
+}
+
+.navbar>li>a#nologo {
+	display: block;
+	text-decoration: none;
+	padding: 20px 40px;
+	color: gray;
+}
+
+.navbar>li>a#nologo:hover {
+	color: #ffffff;
+}
+
+div.login {
+	position: fixed;
+	right: 0%;
+	z-index: 3;
+}
+
+div.blank {
+	width: 100%;
+	height: 64px;
+	border-color: black;
+}
+/* 여기까지 상단  */
+div.leftmenu {
+	background-color: rgba(184, 184, 184, 0.9);
+	width: 27%;
+	height: 100%;
+	box-shadow: 2px 2px 3px 0 rgba(100, 100, 100, 0.6);
+	min-width: 337px;
+	float: left;
+}
+
+div.leftmenu2 {
+	margin: 0;
+	padding: 100px 0 162px 0;
+	width: 300px;
+	background-image: url("../img/total/listbg.jpg");
+	height: 600px;
+	background-repeat: no-repeat;
+}
+
+div.loginmenu {
+	margin: 0 30px 100px 0px;
+	padding: 0 0;
+	width: 270px;
+	height: 160px;
+	background-color: rgba(255, 255, 255);
+	box-shadow: 2px 0 3px 0 rgba(100, 100, 100, 0.6);
+}
+
+a.user {
+	color: gray;
+}
+
+a.user:hover {
+	color: #494949;
+	text-decoration: none;
+}
+
+div.listmenu {
+	margin: 0 0;
+	padding: 0 0;
+	width: 270px;
+	height: 285px;
+}
+/* 여기까지 왼쪽 정렬  */
+div.rightmenu {
+	position: relative;
+	top: 0px;
+	margin: 0px 0px 0px 0px;
+	background-color: #f3f3f3;
+	width: 72.3%;
+	height: 100%;
+	float: right;
+}
+
+div.writemenu {
+	margin: 162px 0 162px 160px;
+	padding: 10px 10px;
+	background-color: rgba(255, 255, 255);
+	width: 700px;
+	box-shadow: 1px 1px 2px 0 rgba(100, 100, 100, 0.6);
+}
+
+div.tableborder {
+	border: 1px solid #dddddd;
+}
+
+div.tableup {
+	background-color: #eeeeee;
+	padding: 14px 50px 10px 50px;
+	border-bottom: 1px solid #dddddd;
+	vertical-align: middle;
+}
+
+div.tableup>div {
+	display: inline-block;
+}
+
+div.tableleft {
+	width: 49.5%;
+}
+
+div.tableright {
+	width: 49.5%;
+}
+
+div.tablemiddle {
+	padding: 10px 10px;
+}
+
+div.tabledown {
+	background-color: #eeeeee;
+	padding: 8px 8px 1px 8px;
+	border-bottom: 1px solid #dddddd;
+}
+
 input {
-        vertical-align: middle;
-      }
-      input.img-button {
-        background: url( "../img/button/sign.png" ) no-repeat;
-        border: none;
-        height: 40px;
-        width: 52px;
-        cursor: pointer;
-      }
-      input {
-        vertical-align: middle;
-      }
-      input.img-button2 {
-        background: url( "../img/button/cc.png" ) no-repeat;
-        border: none;
-        height: 40px;
-        width: 52px;
-        cursor: pointer;
-      }
-      input {
-        vertical-align: middle;
-      }
-      input.img-button3 {
-        background: url( "../img/button/list.png" ) no-repeat;
-        border: none;
-        height: 40px;
-        width: 52px;
-        cursor: pointer;
-      }
-      input {
-        vertical-align: middle;
-      }input.login {
-        background: url( "../img/button/login.png" ) no-repeat;
-        border: none;
-        height: 45px;
-        width: 58px;
-        cursor: pointer;
-      }
-      div.infot{
-      background-image: url('../img/bg/infot.png');
-      }
-      div.framebgd
-	{
-	background-image:url('../img/bg/framebgd.png');
-	}
+	outline-color: #888888;
+}
+
+div.paging1>div>div {
+	display: inline-block;
+}
+
+div.comaliggn>div {
+	display: inline-block;
+}
+
+div.paging>div {
+	display: inline-block;
+}
+
+div.linebox {
+	width: 25px;
+	height: 25px;
+	background-color: #dddddd;
+	vertical-align: bottom;
+}
+
+div.linebox2 {
+	width: 25px;
+	height: 25px;
+	background-color: #white;
+	vertical-align: bottom;
+}
+
+div.linebox3 {
+	width: 25px;
+	height: 25px;
+	background-color: #111111;
+	vertical-align: bottom;
+}
+
+a.linetag:hover {
+	text-decoration: underline;
+	color: white;
+}
+
+a.linetag2:hover {
+	text-decoration: underline;
+	color: #555555;
+}
+/* 여기까지 오른쪽 정렬  */
 </style>
 </head>
-<body background="../img/top/bg.png" onload="doOnload();">
-<font face='Segoe UI' style=' line-height:1.4'>
-<div>
-	<table border="0" height="500px" width="1800px" >
-		<tr>
-			<td width="48px" height="167px"></td>
-			<td colspan="4" align="left" width="1500px">
-			
-			<a href="/top.do">
-				<img src="../img/common/Logo.png"/>
-			</a>&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="/notice/NoticeList.do"
-				>
-				<img src="../img/top/notice.png"/>
-			</a> &nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;
-			
-			<a
-				href="/newmovie/newmovieList.do" > 
-				<img src="../img/top/newmo.png"/>
-			</a> &nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;
-			<a
-				href="/upmovie/upmovieList.do" > 
-				<img src="../img/top/upmo.png"/>
-			</a>  &nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;
-			<a
-				href="/bbm/bbmList.do" > 
-				<img src="../img/top/bbm.png"/>
-			</a> &nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;
-			<a
-				href="/inquiry/inquiryList.do" > 
-				<img src="../img/top/inq.png"/>
-			</a>
-			<br>
-			</td>
-		</tr>
-		<tr>
-			<td height="50px">
-				<img src="../img/bg/rp.png"/>
-			</td>
-			<td align="right" valign="top" width="180">
-				<%if (SESSION_USER_ID.equals("")) {%>		
-			<img src="../img/top/Id.png"/> &nbsp;
-			
-			 <input type="text" name="user_id" maxlength="20"
-				style="width: 110px;" onkeydown="return doKeyIdPw(event)"/>
-				
-				<br>
-				
-				<img src="../img/top/pw.png"/>&nbsp;
-			<input type="password" name="pwd1" maxlength="20" style="width:110px;" onkeydown="return doKeyIdPw(event)"/>	
-				<br>
-				<% } else if(SESSION_USER_ID.equals("admin")) { %> 
-				<a href="/user/manageList.do" > 
-				<span style=" font: 1.5em Georgia, serif ;">
+<body style="min-width: 1250px; background-color: #f3f3f3;"
+	onload="doOnload();">
+	<form name="f" method="post" action="/bbm/bbmUpdate.do">
+		<font face='Malgun Gothic' style='line-height: 1.4' />
+		<ul class="navbar">
+			<li><a href="/top.do"> <img class="logo"
+					src="../img/common/Logo.png" />
+			</a></li>
+			<li><a id="nologo" href="/notice/NoticeList.do">공지사항</a></li>
+			<li><a id="nologo" href="/newmovie/newmovieList.do">최신영화</a></li>
+			<li><a id="nologo" href="/upmovie/upmovieList.do">추천영화</a></li>
+			<li><a id="nologo" href="/bbm/bbmList.do">자유게시판</a></li>
+			<li><a id="nologo" href="/inquiry/inquiryList.do">문의</a></li>
+		</ul>
+		<div class="login">
+			<%
+				if (SESSION_USER_ID.equals("")) {
+			%>
+			<a href="/user/user_login.do"><img src="../img/top/uplogin.png"
+				onmouseover="this.src='../img/top/uplogin2.png'"
+				onmouseout="this.src='../img/top/uplogin.png'"></a>
+			<%
+				} else {
+			%>
+			<a href="/user/user_logout.do"><img src="../img/top/uplogout.png"
+				onmouseover="this.src='../img/top/uplogout2.png'"
+				onmouseout="this.src='../img/top/uplogout.png'"></a>
+			<%
+				}
+			%>
+		</div>
+		<div class="blank"></div>
+		<div style="height: 100%">
+			<div align="right" class="leftmenu">
+				<div class="leftmenu2">
+					<div class="loginmenu">
+						<div align="center" style="position: relative; top: 25px;">
+							<%
+								if (SESSION_USER_ID.equals("")) {
+							%>
+							<a href="/user/user_login.do"> <img
+								src="../img/total/leftlogin.png"
+								onmouseover="this.src='../img/total/leftlogin2.png'"
+								onmouseout="this.src='../img/total/leftlogin.png'">
+							</a>
+							<div
+								style="width: 260px; height: 1px; background-color: #888888; position: relative; top: 25px;"></div>
+							<div style="position: relative; top: 35px;">
+								<span style="padding: 10px 7px;"> <a class="tag"
+									href="/user/user_join2.do"> <font face='Malgun Gothic'
+										size="2px"> 회원가입 </font>
+								</a>
+								</span> <span style="padding: 10px 0px;"> <font
+									face='Malgun Gothic' size="2px" style="color: #6b7177;">
+										| </font>
+								</span> <span style="padding: 10px 7px;"> <a class="tag"
+									href="/user/user_id_search.do"
+									onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
+										<font face='Malgun Gothic' size="2px"> 아이디찾기 </font>
+								</a>
+								</span> <span style="padding: 10px 0px;"> <font
+									face='Malgun Gothic' size="2px" style="color: #6b7177;">
+										| </font>
+								</span> <span style="padding: 10px 7px;"> <a class="tag"
+									href="/user/user_pw_search.do"
+									onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
+										<font face='Malgun Gothic' size="2px"> 비밀번호 찾기 </font>
+								</a>
+								</span>
+							</div>
+							<%
+								} else if (SESSION_USER_ID.equals("admin")) {
+							%>
+							<font face='Malgun Gothic' size="10px"> <a
+								href="/user/manageList.do" class="user"> <%=SESSION_USER_ID%>
+							</a>
+							</font>
+							<div
+								style="width: 260px; height: 1px; background-color: #888888; position: relative; top: 25px;"></div>
+							<div style="position: relative; top: 35px;">
+								<span style="padding: 10px 7px;"> <a class="tag"
+									href="/user/manageList.do"> <font face='Malgun Gothic'
+										size="2px"> 회원관리 </font>
+								</a>
+								</span> <span style="padding: 10px 0px;"> <font
+									face='Malgun Gothic' size="2px" style="color: #6b7177;">
+										| </font>
+								</span> <span style="padding: 10px 7px;"> <a class="tag"
+									href="/user/userInfo"> <font face='Malgun Gothic'
+										size="2px"> 내 정보 </font>
+								</a>
+								</span> <span style="padding: 10px 0px;"> <font
+									face='Malgun Gothic' size="2px" style="color: #6b7177;">
+										| </font>
+								</span> <span style="padding: 10px 7px;"> <a class="tag"
+									href="/user/user_logout.do"> <font face='Malgun Gothic'
+										size="2px"> 로그아웃 </font>
+								</a>
+								</span>
+							</div>
+							<%
+								} else {
+							%>
+							<font face='Malgun Gothic' size="10px"> <a
+								href="/user/userInfo.do" class="user"> <%=SESSION_USER_ID%>
+							</a>
+							</font>
+							<div
+								style="width: 260px; height: 1px; background-color: #888888; position: relative; top: 25px;"></div>
+							<div style="position: relative; top: 35px;">
+								<span style="padding: 10px 7px;"> <a class="tag"
+									href="/user/userInfo.do"> <font face='Malgun Gothic'
+										size="2px"> 내 정보</font>
+								</a>
+								</span> <span style="padding: 10px 0px;"> <font
+									face='Malgun Gothic' size="2px" style="color: #6b7177;">
+										| </font>
+								</span> <span style="padding: 10px 7px;"> <a class="tag"
+									href="/user/user_logout.do"> <font face='Malgun Gothic'
+										size="2px"> 로그아웃 </font>
+								</a>
+								</span>
+							</div>
+							<%
+								}
+							%>
+						</div>
+					</div>
+					<div class="listmenu">
+						<font face='Malgun Gothic' size="6px"
+							style="color: rgb(85, 85, 85, 0.7); margin: 0 10px 0 0;">
+							<b>게시판</b>
+						</font> <a href="/notice/NoticeList.do"> <img
+							src="../img/total/listnotice.jpg"
+							onmouseover="this.src='../img/total/listnotice2.jpg'"
+							onmouseout="this.src='../img/total/listnotice.jpg'">
+						</a> <a href="/newmovie/newmovieList.do"> <img
+							src="../img/total/listnewmo.jpg"
+							onmouseover="this.src='../img/total/listnewmo2.jpg'"
+							onmouseout="this.src='../img/total/listnewmo.jpg'">
+						</a> <a href="/upmovie/upmovieList.do"> <img
+							src="../img/total/listupmo.jpg"
+							onmouseover="this.src='../img/total/listupmo2.jpg'"
+							onmouseout="this.src='../img/total/listupmo.jpg'">
+						</a> <a href="/bbm/bbmList.do"> <img
+							src="../img/total/listbbm.jpg"
+							onmouseover="this.src='../img/total/listbbm2.jpg'"
+							onmouseout="this.src='../img/total/listbbm.jpg'">
+						</a> <a href="/inquiry/inquiryList.do"> <img
+							src="../img/total/listinq.jpg"
+							onmouseover="this.src='../img/total/listinq2.jpg'"
+							onmouseout="this.src='../img/total/listinq.jpg'">
+						</a>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="bbm_seq"
+				value="<%=CmmUtil.nvl(request.getParameter("bbm_seq"))%>" />
+			<div class="rightmenu" align="left">
+				<div class="writemenu">
+					<div>
+						<font face='Malgun Gothic' size="6px" style="color: #555555;">
+							<b>자유게시판</b>
+						</font>
+					</div>
+					<div align="right">
+						<a href="bbmList.do"> <img src="../img/button/list.png"
+							onmouseover="this.src='../img/button/list2.png'"
+							onmouseout="this.src='../img/button/list.png'" />
+						</a>
+					</div>
+					<div style="height: 5px"></div>
+					<div style="height: 3px; background-color: #dddddd;"></div>
+					<div style="height: 10px"></div>
+					<div class="tableborder">
+						<div class="tableup">
+							<div>
+								<font size="4px"> <b>제목</b>
+								</font>
+							</div>
+							<div
+								style="position: relative; padding: 0 0 0 50px; bottom: 2px;">
+
+								<input type="text" autocomplete="off" name="title" maxlength="40"
+									style="width: 500px; height: 24px;"
+									value="<%=CmmUtil.nvl(rDTO.getTitle())%>" />
+								</td>
+							</div>
+						</div>
+						<div class="tablemiddle">
+							<textarea name="contents" id="contents" rows="10" cols="100"
+								onKeyUp="checkByte(this.form);"
+								style="width: 100%; height: 600px; display: none;">
 				<%
-				out.print(SESSION_USER_ID);
-				%> 
-				</span> 
-			</a>
-			 <img src="../img/top/inhi.png"/>
-				<%}else{%>
-				<a href="/user/userInfo.do" > 
-				<span style=" font: 1.5em Georgia, serif ;">
-				<%
-				out.print(SESSION_USER_ID);
-				%> 
-				</span> 
-			</a>
-			 <img src="../img/top/inhi.png"/>
-			 			 <%}%>
-			 			 </td>
-			 <td width="120px">
-			<%if (SESSION_USER_ID.equals("")) {%>	 
-			<input type="submit" class="login" value=" "/>
-			<%}else{ %>
-			<img src="../img/top/loginss.png"/>
-			<%} %>
-			</td>
-			<td>
-			</td>
-			</tr>
-			<tr>
-			<td height="25px">
-			</td>
-			<%if (SESSION_USER_ID.equals("")) {%>
-			<td colspan="2" align="left" width="245px" >
-						&nbsp;
-				<a href="/user/user_join2.do" >
-				<img src="../img/top/join.png"/>
-				</a>
-				<a href="/user/user_id_search.do" onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
-				<img src="../img/user/userjoin/idf.png"/>
-				</a>
-				<a href="/user/user_pw_search.do" onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
-				<img src="../img/top/pwf.png"/>
-				</a> 
-				<% } else { %> 
-				<td colspan="2" align="center" width="245px" >
-				<a href="/user/user_logout.do" >
-			 <img src="../img/top/logout.png"/>
-			 </a>
-			 			 &nbsp;&nbsp;&nbsp;
-			 &nbsp;&nbsp;&nbsp;
-			 <%}%>
-				</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td>
-				<h1>
-					<b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
-				</h1>
-			</td>
-			<td valign="top" width="1184px">
-<form name="f" method="post" action="/bbm/bbmUpdate.do" onsubmit="return doSubmit(this);">
-      <input type="hidden" name="bbm_seq"
-         value="<%=CmmUtil.nvl(request.getParameter("bbm_seq"))%>" />
-      <br>
-      <div class="infot">
-      <table border="0" width="100%">
-         <tr>
-         <td></td>
-            <td align="center" width="120px">
-            <br>
-            <img src="../img/total/tit.png"/></td>
-            <td>
-            <br>
-            <input type="text" name="title" maxlength="35"
-               style="width: 425px" value="<%=CmmUtil.nvl(rDTO.getTitle())%>" /></td>
-               <td width="10px"></td>
-         </tr>
-            <tr>
-            <td></td>
-               <td colspan="2">
-               <hr>
-               </td>
-               <td width="10px"></td>
-               </tr>
-               <tr>
-               <td></td>
-               <td>
-               &nbsp;<img src="../img/total/writes.png"/>
-               </td>
-               <td></td>
-               </tr>
-         <tr>
-         <td width="10px"></td>
-            <td colspan="2">
-            <textarea name="contents" id="contents" rows="10" cols="100" onKeyUp="checkByte(this.form);" 
-                  style="width:100%; height:600px; display:none;">
-                  
-				<%
-				String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
-				String contenttest2 = contenttest1.replaceAll("& lt;", "<");
-				String contenttest3 = contenttest2.replaceAll("& gt;", ">");
-				String contenttest4 = contenttest3.replaceAll("& #40;", "(");
-				String contenttest5 = contenttest4.replaceAll("& #41;", ")");
-				String content=contenttest5;
+					String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
+					String contenttest2 = contenttest1.replaceAll("& lt;", "<");
+					String contenttest3 = contenttest2.replaceAll("& gt;", ">");
+					String contenttest4 = contenttest3.replaceAll("& #40;", "(");
+					String contenttest5 = contenttest4.replaceAll("& #41;", ")");
+					String content = contenttest5;
 				%>
 					<%=content%>
 				</textarea>
-            </td>
-            <td width="10px"></td>
-         </tr>
-                  <tr>
-                  <td width="10px"></td>
-            <td align="right" colspan="2"><hr>
-            <input type="button" class="img-button3" onclick="javascript:doList();" value=" "/>
-            &nbsp;&nbsp;</td>
-            <td width="10px"></td>
-         </tr>
-         <tr>
-         <td width="10px"></td>
-            <td align="center" colspan="2">
-
-<input  type="button" onclick="submitContents(this);" class="img-button" value=" " />
-               <input type="button" class="img-button2" onclick="javascript:doInfo('<%=CmmUtil.nvl(rDTO.getbbm_seq())%>');" value=" "/></td>
-               <td width="10px"></td>
-         </tr>
-      </table>
-      			</div>
-			<div class="framebgd">
-   <table height="27px">
-   <tr>
-   <td>
-   <br>
-   </td>
-   </tr>
-   </table>
-   </div>
-   </form>
-      <script type="text/javascript">
-var oEditors = [];
-
-var sLang = "ko_KR";	// 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
-
-// 추가 글꼴 목록
-//var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-nhn.husky.EZCreator.createInIFrame({
-	oAppRef: oEditors,
-	elPlaceHolder: "contents",
-	sSkinURI: "../se2/SmartEditor2Skin_ko_KR.html",	
-	htParams : {
-		bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-		bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-		bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-		//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
-		//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-		fOnBeforeUnload : function(){
-			//alert("완료!");
-		},
-		I18N_LOCALE : sLang
-	}, //boolean
-	fOnAppLoad : function(){
-		//예제 코드
-		//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-	},
-	fCreator: "createSEditor2"
-});
-
-function pasteHTML() {
-	var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-	oEditors.getById["contents"].exec("PASTE_HTML", [sHTML]);
-}
-
-function showHTML() {
-	var sHTML = oEditors.getById["contents"].getIR();
-	alert(sHTML);
-}
-	
-function submitContents(elClickedObj) {
-	if (f.title.value == "") {
-	      alert("제목을 입력하시기 바랍니다.");
-	      f.title.focus();
-	      return false;
-	   }
-	   if(f.title.value.length > 50){
-	      alert("최대 50자까지 입력 가능합니다.");
-	      f.title.focus();
-	      return false;
-	   }
-	oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
-	 if(document.getElementById("contents").value=="<p><br></p>"||document.getElementById("contents").value==""){
-		 alert("내용을 입력하시기 바랍니다.");
-	      return false;
-	 }
-	 if (document.getElementById("contents").value.length > 2000) {
-	      alert("최대 2000자까지 입력 가능합니다.");
-	      return false;
-	   }
-	
-	try {
-		elClickedObj.form.submit();
-	} catch(e) {}
-}
-
-function setDefaultFont() {
-	var sDefaultFont = '궁서';
-	var nFontSize = 24;
-	oEditors.getById["contents"].setDefaultFont(sDefaultFont, nFontSize);
-}
-</script>
-   </td>
-			<td><img src="../img/bg/sidebg.png"/></td>
-		</tr>
-	</table>
-</div>
-</font>
+						</div>
+						<div class="tabledown" align="right">
+							<button type="button" onclick="submitContents(this);"
+								style="background-color: rgba(0, 0, 0, 0); border: 0; outline: 0; width: 64px; height: 29px; margin: 0 6px 0 0;">
+								<img style="cursor: pointer;" src="../img/button/sign.png"
+									onmouseover="this.src='../img/button/sign2.png'"
+									onmouseout="this.src='../img/button/sign.png'" />
+							</button>
+							<a style="cursor: pointer;"
+								onclick="doInfo('<%=CmmUtil.nvl(rDTO.getbbm_seq())%>');"> <img
+								src="../img/button/cc.png"
+								onmouseover="this.src='../img/button/cc2.png'"
+								onmouseout="this.src='../img/button/cc.png'" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </body>
+<script type="text/javascript">
+	var oEditors = [];
+
+	var sLang = "ko_KR"; // 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
+
+	// 추가 글꼴 목록
+	//var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef : oEditors,
+		elPlaceHolder : "contents",
+		sSkinURI : "../se2/SmartEditor2Skin_ko_KR.html",
+		htParams : {
+			bUseToolbar : true, // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+			bUseVerticalResizer : true, // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+			bUseModeChanger : true, // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+			//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
+			//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+			fOnBeforeUnload : function() {
+				//alert("완료!");
+			},
+			I18N_LOCALE : sLang
+		}, //boolean
+		fOnAppLoad : function() {
+			//예제 코드
+			//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+		},
+		fCreator : "createSEditor2"
+	});
+
+	function pasteHTML() {
+		var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
+		oEditors.getById["contents"].exec("PASTE_HTML", [ sHTML ]);
+	}
+
+	function showHTML() {
+		var sHTML = oEditors.getById["contents"].getIR();
+		alert(sHTML);
+	}
+
+	function submitContents(elClickedObj) {
+		if (f.title.value == "") {
+			alert("제목을 입력하시기 바랍니다.");
+			f.title.focus();
+			return false;
+		}
+		if (f.title.value.length > 50) {
+			alert("최대 50자까지 입력 가능합니다.");
+			f.title.focus();
+			return false;
+		}
+		oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+		if (document.getElementById("contents").value == "<p><br></p>"
+				|| document.getElementById("contents").value == "") {
+			alert("내용을 입력하시기 바랍니다.");
+			return false;
+		}
+		if (document.getElementById("contents").value.length > 2000) {
+			alert("최대 2000자까지 입력 가능합니다.");
+			return false;
+		}
+
+		try {
+			elClickedObj.form.submit();
+		} catch (e) {
+		}
+	}
+
+	function setDefaultFont() {
+		var sDefaultFont = '궁서';
+		var nFontSize = 24;
+		oEditors.getById["contents"].setDefaultFont(sDefaultFont, nFontSize);
+	}
+</script>
 </html>

@@ -38,6 +38,7 @@
 html, body {
 	margin: 0;
 	height: 100%;min-height: 1450px;
+	word-break: break-all;
 }
 
 a.line:hover {
@@ -432,7 +433,12 @@ a.linetag2:hover {
  	}
  %>
 						</div>
-						<div align="center" style="width:120px;height:30px;"><%=CmmUtil.nvl(rDTO.getUser_id())%></div>
+						<div align="center" style="width:120px;height:30px;">
+						<%if(CmmUtil.nvl(rDTO.getUser_id()).length()>7){ %>
+								<%=CmmUtil.nvl(rDTO.getUser_id()).substring(0,7)+"..."%>
+							<%}else{ %>
+								<%=CmmUtil.nvl(rDTO.getUser_id())%>
+							<%} %></div>
 						<div align="center" style="width:160px;height:30px;">
 							<%
 								String date = CmmUtil.nvl(rDTO.getReg_dt());

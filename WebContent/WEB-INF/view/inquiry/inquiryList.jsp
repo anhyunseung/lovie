@@ -443,7 +443,13 @@ a.linetag2:hover {
  	}
  %>
 						</div>
-						<div align="center" style="width:120px;height:30px;"><%=CmmUtil.nvl(rDTO.getUser_id())%></div>
+						<div align="center" style="width:120px;height:30px;">
+						<%if(CmmUtil.nvl(rDTO.getUser_id()).length()>7){ %>
+								<%=CmmUtil.nvl(rDTO.getUser_id()).substring(0,7)+"..."%>
+							<%}else{ %>
+								<%=CmmUtil.nvl(rDTO.getUser_id())%>
+							<%} %>
+						</div>
 						<div align="center" style="width:160px;height:30px;">
 							<%
 								String date = CmmUtil.nvl(rDTO.getReg_dt());
@@ -465,7 +471,7 @@ a.linetag2:hover {
 					<%
 						if (SESSION_USER_ID.equals("admin")||SESSION_USER_ID.equals("")) {
 					}else{%>
-					<div align="right"><a href="inquiryReg.do"> <img
+					<div align="right" style="padding: 10px 0 0 0;"><a href="inquiryReg.do"> <img
 								src="../img/button/write.png"
 								onmouseover="this.src='../img/button/write2.png'"
 								onmouseout="this.src='../img/button/write.png'" />
