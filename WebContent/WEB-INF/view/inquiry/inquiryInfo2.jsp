@@ -528,7 +528,7 @@ div.editalign > div{
  }
 }
 /* 버튼2 */
-td.paging1>div>div {
+div.paging1>div>div {
 	display: inline-block;
 }
 
@@ -536,7 +536,7 @@ div.comaliggn>div {
 	display: inline-block;
 }
 
-td.paging>div {
+div.paging>div {
 	display: inline-block;
 }
 
@@ -608,27 +608,18 @@ a.linetag2:hover {
 	<div align="right" class="leftmenu">
 		<div class="leftmenu2">
 			<div class="loginmenu">
-				<table width="100%" height="100%">
+				<div align="center" style="position: relative; top:25px;">
 					<%
 						if (SESSION_USER_ID.equals("")) {
 					%>
-					<tr>
-						<td colspan="3" valign="bottom" align="center" height="80px">
-							<a href="/user/user_login.do"> <img
+					<a href="/user/user_login.do"> <img
 								src="../img/total/leftlogin.png"
 								onmouseover="this.src='../img/total/leftlogin2.png'"
 								onmouseout="this.src='../img/total/leftlogin.png'">
 						</a>
-						</td>
-					</tr>
-					<tr>
-						<td width="3px"></td>
-						<td valign="bottom"><hr /></td>
-						<td width="3px"></td>
-					</tr>
-					<tr>
-						<td colspan="3" height="40px" align="center">
-							<div>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/user_join2.do"> <font face='Malgun Gothic'
 										size="2px"> 회원가입 </font>
@@ -651,27 +642,17 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-						</td>
-					</tr>
+						
 					<%
 						} else if (SESSION_USER_ID.equals("admin")) {
 					%>
-					<tr>
-						<td colspan="3" valign="bottom" align="center" height="80px">
-							<font face='Malgun Gothic' size="10px"> <a
+					<font face='Malgun Gothic' size="10px"> <a
 								href="/user/manageList.do" class="user"> <%=SESSION_USER_ID%>
 							</a>
 						</font>
-						</td>
-					</tr>
-					<tr>
-						<td width="3px"></td>
-						<td valign="bottom"><hr /></td>
-						<td width="3px"></td>
-					</tr>
-					<tr>
-						<td colspan="3" height="40px" align="center">
-							<div>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/manageList.do"> <font face='Malgun Gothic'
 										size="2px"> 회원관리 </font>
@@ -692,27 +673,16 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-						</td>
-					</tr>
 					<%
 						} else {
 					%>
-					<tr>
-						<td colspan="3" valign="bottom" align="center" height="80px">
-							<font face='Malgun Gothic' size="10px"> <a
+					<font face='Malgun Gothic' size="10px"> <a
 								href="/user/userInfo.do" class="user"> <%=SESSION_USER_ID%>
 							</a>
 						</font>
-						</td>
-					</tr>
-					<tr>
-						<td width="3px"></td>
-						<td valign="bottom"><hr /></td>
-						<td width="3px"></td>
-					</tr>
-					<tr>
-						<td colspan="3" height="40px" align="center">
-							<div>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/userInfo.do"> <font face='Malgun Gothic'
 										size="2px"> 내 정보</font>
@@ -726,12 +696,10 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-						</td>
-					</tr>
 					<%
 						}
 					%>
-				</table>
+				</div>
 			</div>
 			<div class="listmenu">
 				<font face='Malgun Gothic' size="6px"
@@ -759,14 +727,12 @@ a.linetag2:hover {
 	</div>
 	<div class="rightmenu" align="left">
 		<div class="writemenu">
-			<table width="100%">
-				<tr>
-					<td><font face='Malgun Gothic' size="6px"
-						style="color: #555555;"> <b>공지사항</b>
-					</font><br /> <br /></td>
-					<td align="right" valign="bottom">
+			<div><font face='Malgun Gothic' size="6px"
+						style="color: #555555;"> <b>문의</b>
+					</font></div>
+					<div align="right">
 					<%
-						if (edit == 2 || ss_user_id.equals("admin")) {
+						if (edit == 2) {
 					%> 
 					<a
 						style="cursor: pointer;"
@@ -784,17 +750,10 @@ a.linetag2:hover {
 					 <a href="inquiryList.do"> <img src="../img/button/list.png"
 							onmouseover="this.src='../img/button/list2.png'"
 							onmouseout="this.src='../img/button/list.png'" />
-					</a></td>
-				</tr>
-				<tr>
-				</tr>
-				<tr style="background-color: #dddddd;">
-					<td colspan="2" height="1px"></td>
-				</tr>
-				<tr>
-					<td height="5px" colspan="2"></td>
-				</tr>
-			</table>
+					</a></div>
+					<div style="height:5px"></div>
+				<div style="height:3px;background-color: #dddddd;"></div>
+					<div style="height:10px"></div>
 			<div class="tableborder">
 				<div class="tableup">
 					<font size="4px"> <b><%=CmmUtil.nvl(rDTO.getTitle())%></b>
@@ -828,9 +787,7 @@ a.linetag2:hover {
 				<form action="/inquiry/commentupdate.do"
 					onsubmit="return doSubmit2(this);" method="post">
 					<div class="tabledown">
-						<table width="100%">
-							<tr>
-								<td colspan="2"><font face='Malgun Gothic' size="4px"
+						<div><font face='Malgun Gothic' size="4px"
 									style="color: #555555;"> <b>댓글</b>
 								</font> <%
  	int l = clist.size();
@@ -838,13 +795,9 @@ a.linetag2:hover {
  %> <span style="color: rgb(2, 151, 128); font-weight: bold;"> [<%=l%>]
 								</span> <%
  	}
- %></td>
-							</tr>
-							<tr style="background-color: #dddddd;">
-								<td colspan="2" height="1px"></td>
-							</tr>
-							<tr>
-								<td valign="middle" height="100%" class="paging1">
+ %></div>
+							<div style="background-color: #dddddd; height: 3px;"></div>
+								<div style="height:100%;" class="paging1">
 									<div style="margin: 5px 0 0 0;">
 										<div>
 											<textarea name="comment"
@@ -858,8 +811,7 @@ a.linetag2:hover {
 											</button>
 										</div>
 									</div>
-								</td>
-							</tr>
+								</div>
 							<%
 								int b = 9;
 								int c = l / 10;
@@ -876,13 +828,8 @@ a.linetag2:hover {
 									b--;
 									Comment_inqDTO a = clist.get(count2 * 10 + i);
 							%>
-							<tr style="background-color: #dddddd;">
-								<td colspan="2"></td>
-							</tr>
-							<tr>
-								<td colspan="2">
-
-									<div style="margin: 7px 7px;">
+							<div style="background-color: #dddddd; height: 2px;"></div>
+							<div style="margin: 7px 7px;">
 										<div class="comaliggn" style="vertical-align: middle;">
 											<div style="width: 65%; height: 27px">
 												<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b>
@@ -959,17 +906,11 @@ a.linetag2:hover {
 										<%=comment%>
 										<%} %>
 									</div>
-								</td>
-							</tr>
 							<%
 								}
 							%>
-							<tr style="background-color: #dddddd;">
-								<td colspan="2" height="1px"></td>
-							</tr>
-							<tr>
-								<td class="paging" align="center" colspan="2" valign="bottom"
-									height="30px">
+							<div style="background-color: #dddddd; height: 3px;"></div>
+								<div class="paging" align="center" style="height:30px; margin: 10px 0 0 0">
 									<%
 										int line = 0;
 										if (clist.size() >= 100 && clist.size() <= 999) {
@@ -1094,14 +1035,12 @@ a.linetag2:hover {
 									</div> <%
  	}
  %>
-								</td>
-							</tr>
-						</table>
+								</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	</div>
-</body>
+	</body>
 </html>

@@ -241,7 +241,7 @@ div.writemenu {
 	box-shadow: 1px 1px 2px 0 rgba(100, 100, 100, 0.6);
 }
 
-td.paging>div {
+div.paging>div {
 	display: inline-block;
 }
 
