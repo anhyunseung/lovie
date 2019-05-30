@@ -179,8 +179,11 @@ div.writemenu {
 	width: 700px;
 	box-shadow: 1px 1px 2px 0 rgba(100, 100, 100, 0.6);
 }
+div.writemenu>div>div{
+	display:inline-block;
+}
 
-td.paging>div {
+div.paging>div {
 	display: inline-block;
 }
 
@@ -248,10 +251,11 @@ a.linetag2:hover {
 		%>
 	</div>
 	<div class="blank"></div>
+	<div style="height: 100%;">
 		<div align="right" class="leftmenu">
 			<div class="leftmenu2">
 				<div class="loginmenu">
-					<table width="100%" height="100%">
+					<div align="center" style="position: relative; top:25px;">
 						<%if(SESSION_USER_ID.equals("")){ %>
 						<tr>
 							<td colspan="3" valign="bottom" align="center" height="80px">
@@ -260,16 +264,9 @@ a.linetag2:hover {
 									src="../img/total/leftlogin.png"
 									onmouseover="this.src='../img/total/leftlogin2.png'"
 									onmouseout="this.src='../img/total/leftlogin.png'">
-							</a></td>
-						</tr>
-						<tr>
-							<td width="3px"></td>
-							<td valign="bottom"><hr /></td>
-							<td width="3px"></td>
-						</tr>
-						<tr>
-							<td colspan="3" height="40px" align="center">
-								<div>
+							</a><div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 									<span style="padding: 10px 7px;"> <a class="tag"
 										href="/user/user_join2.do"> <font face='Malgun Gothic'
 											size="2px"> 회원가입 </font>
@@ -292,27 +289,16 @@ a.linetag2:hover {
 									</a>
 									</span>
 								</div>
-							</td>
-						</tr>
 						<%}else if(SESSION_USER_ID.equals("admin")){ %>
-						<tr>
-							<td colspan="3" valign="bottom" align="center" height="80px">
-							<font face='Malgun Gothic' size="10px">
+						<font face='Malgun Gothic' size="10px">
 							<a
 								href="/user/manageList.do" class="user">
 								<%=SESSION_USER_ID %>
 							</a>
 							</font>
-							</td>
-						</tr>
-						<tr>
-							<td width="3px"></td>
-							<td valign="bottom"><hr /></td>
-							<td width="3px"></td>
-						</tr>
-						<tr>
-							<td colspan="3" height="40px" align="center">
-								<div>
+							<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 									<span style="padding: 10px 7px;"> <a class="tag"
 										href="/user/manageList.do"> <font face='Malgun Gothic'
 											size="2px"> 회원관리 </font>
@@ -333,27 +319,16 @@ a.linetag2:hover {
 									</a>
 									</span>
 								</div>
-							</td>
-						</tr>
 						<%}else{ %>
-						<tr>
-							<td colspan="3" valign="bottom" align="center" height="80px">
-							<font face='Malgun Gothic' size="10px">
+						<font face='Malgun Gothic' size="10px">
 							<a
 								href="/user/userInfo.do" class="user">
 								<%=SESSION_USER_ID %>
 							</a>
 							</font>
-							</td>
-						</tr>
-						<tr>
-							<td width="3px"></td>
-							<td valign="bottom"><hr /></td>
-							<td width="3px"></td>
-						</tr>
-						<tr>
-							<td colspan="3" height="40px" align="center">
-								<div>
+							<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 									<span style="padding: 10px 7px;"> <a class="tag"
 										href="/user/userInfo.do">
 											<font face='Malgun Gothic' size="2px"> 내 정보</font>
@@ -367,10 +342,8 @@ a.linetag2:hover {
 									</a>
 									</span>
 								</div>
-							</td>
-						</tr>
 						<%} %>
-					</table>
+					</div>
 				</div>
 				<div class="listmenu">
 					<font face='Malgun Gothic' size="6px"
@@ -398,27 +371,29 @@ a.linetag2:hover {
 		</div>
 		<div class="rightmenu" align="left">
 			<div class="writemenu">
-				<table width="100%">
-					<tr>
-						<td colspan="4"><font face='Malgun Gothic' size="6px"
-							style="color: #555555; "> <b>자유게시판</b>
-						</font> <br /> <br /></td>
-					</tr>
-					<tr style="background-color: #dddddd;">
-						<td align="center"width="80px" height="23px"><font face='Malgun Gothic'
-							size="2px" style="color: #555555; "> <b>글
+				<div><font face='Malgun Gothic' size="6px"
+						style="color: #555555;"> <b>자유게시판</b>
+					</font></div>
+					<div style=" height: 25px;"></div>
+					<div>
+						<div align="center" style="width:80px;height:23px;background-color: #dddddd;
+						padding: 3px 0 0 0;"><font face='Malgun Gothic'
+							size="2px" style="color: #555555;"> <b>글
 									번호</b>
-						</font></td>
-						<td align="center" width="330px"><font face='Malgun Gothic' size="2px"
+						</font></div>
+						<div align="center" style="width:323px;height:23px;background-color: #dddddd;
+						padding: 3px 0 0 0;"><font face='Malgun Gothic' size="2px"
 							style="color: #555555; "> <b>제목</b>
-						</font></td>
-						<td width="120px" align="center"><font face='Malgun Gothic' size="2px"
+						</font></div>
+						<div align="center" style="width:120px;height:23px;background-color: #dddddd;
+						padding: 3px 0 0 0;"><font face='Malgun Gothic' size="2px"
 							style="color: #555555; "> <b>작성자</b>
-						</font ></td>
-						<td width="160px" align="center"><font face='Malgun Gothic' size="2px"
+						</font ></div>
+						<div align="center" style="width:160px;height:23px;background-color: #dddddd;
+						padding: 3px 0 0 0;"><font face='Malgun Gothic' size="2px"
 							style="color: #555555; "> <b>작성일</b>
-						</font></td>
-					</tr>
+						</font></div>
+					</div>
 					<%
 						int a = rList.size();
 						int b = 9;
@@ -439,16 +414,14 @@ a.linetag2:hover {
 								rDTO = new BBMDTO();
 							}
 					%>
-					<tr>
-						<td align="center">
-						<div style="padding: 8px 0;">
+					<div style="padding: 12px 0 0 0;">
+						<div align="center"style="width:80px;height:34px;">
 							<%
 								out.print(CmmUtil.nvl(rDTO.getbbm_seq()));
 							%> <input type="hidden" name="seq"
 							value="<%=CmmUtil.nvl(rDTO.getbbm_seq())%>">
 							</div>
-						</td>
-						<td>&nbsp; <a
+							<div style="width:323px;height:30px;">&nbsp; <a
 							href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getbbm_seq())%>');"
 							class="line"> <span style="color: black; font-weight: bold">
 									<%
@@ -469,31 +442,29 @@ a.linetag2:hover {
 						</span> <%
  	}
  %>
-						</td>
-						<td align="center"><%=CmmUtil.nvl(rDTO.getUser_id())%></td>
-						<td align="center">
+						</div>
+						<div align="center" style="width:120px;height:30px;"><%=CmmUtil.nvl(rDTO.getUser_id())%></div>
+						<div align="center" style="width:160px;height:30px;">
 							<%
 								String date = CmmUtil.nvl(rDTO.getReg_dt());
 							%> <%=date.substring(0, 4)%>.<%=date.substring(5, 7)%>.<%=date.substring(8, 10)%>.
 							<%=date.substring(11, 16)%>
-						</td>
-					</tr>
-					<tr style="background-color: #dddddd;">
-					<td colspan="4"></td>
-				</tr>
+						</div>
+					</div>
+					<div style="height:2px;background-color: #dddddd;"></div>
 					<%
-						}
+						}if(a==0){
 					%>
-					<tr>
-						<td align="right" colspan="4"><a href="bbmReg.do"> <img
+					<div style="height: 20px;"></div>
+					<%} %>
+					<div style="background-color: #dddddd; height: 2px;"></div>
+					<div align="right" style="padding: 10px 0 0 0;"><a href="NoticeReg.do"> <img
 								src="../img/button/write.png"
 								onmouseover="this.src='../img/button/write2.png'"
 								onmouseout="this.src='../img/button/write.png'" />
-						</a></td>
-					</tr>
-					<tr>
-						<td class="paging" align="center" colspan="4" valign="bottom"
-							height="30px">
+						</a>
+					</div>
+								<div class="paging" align="center" style="height:30px; margin: 10px 0 0 0">
 							<%
 								int line = 0;
 								if (rList.size() >= 200 && rList.size() <= 1999) {
@@ -628,9 +599,8 @@ a.linetag2:hover {
 							<%
 								}
 							%>
-						</td>
-					</tr>
-				</table>
+						</div>
+					</div>
 			</div>
 		</div>
 </body>

@@ -209,7 +209,7 @@ div.tabledown {
 	border-bottom: 1px solid #dddddd;	
 }
 
-td.paging1>div>div {
+div.paging1>div>div {
 	display: inline-block;
 }
 
@@ -217,7 +217,7 @@ div.comaliggn>div {
 	display: inline-block;
 }
 
-td.paging>div {
+div.paging>div {
 	display: inline-block;
 }
 
@@ -290,27 +290,17 @@ a.linetag2:hover {
 	<div align="right" class="leftmenu">
 		<div class="leftmenu2">
 			<div class="loginmenu">
-				<table width="100%" height="100%">
+				<div align="center" style="position: relative; top:25px;">
 					<%
 						if (SESSION_USER_ID.equals("")) {
-					%>
-					<tr>
-						<td colspan="3" valign="bottom" align="center" height="80px">
-							<a href="/user/user_login.do"> <img
+					%><a href="/user/user_login.do"> <img
 								src="../img/total/leftlogin.png"
 								onmouseover="this.src='../img/total/leftlogin2.png'"
 								onmouseout="this.src='../img/total/leftlogin.png'">
 						</a>
-						</td>
-					</tr>
-					<tr>
-						<td width="3px"></td>
-						<td valign="bottom"><hr /></td>
-						<td width="3px"></td>
-					</tr>
-					<tr>
-						<td colspan="3" height="40px" align="center">
-							<div>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/user_join2.do"> <font face='Malgun Gothic'
 										size="2px"> 회원가입 </font>
@@ -333,27 +323,16 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-						</td>
-					</tr>
 					<%
 						} else if (SESSION_USER_ID.equals("admin")) {
 					%>
-					<tr>
-						<td colspan="3" valign="bottom" align="center" height="80px">
-							<font face='Malgun Gothic' size="10px"> <a
+					<font face='Malgun Gothic' size="10px"> <a
 								href="/user/manageList.do" class="user"> <%=SESSION_USER_ID%>
 							</a>
 						</font>
-						</td>
-					</tr>
-					<tr>
-						<td width="3px"></td>
-						<td valign="bottom"><hr /></td>
-						<td width="3px"></td>
-					</tr>
-					<tr>
-						<td colspan="3" height="40px" align="center">
-							<div>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/manageList.do"> <font face='Malgun Gothic'
 										size="2px"> 회원관리 </font>
@@ -374,27 +353,16 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-						</td>
-					</tr>
 					<%
 						} else {
 					%>
-					<tr>
-						<td colspan="3" valign="bottom" align="center" height="80px">
-							<font face='Malgun Gothic' size="10px"> <a
+					<font face='Malgun Gothic' size="10px"> <a
 								href="/user/userInfo.do" class="user"> <%=SESSION_USER_ID%>
 							</a>
 						</font>
-						</td>
-					</tr>
-					<tr>
-						<td width="3px"></td>
-						<td valign="bottom"><hr /></td>
-						<td width="3px"></td>
-					</tr>
-					<tr>
-						<td colspan="3" height="40px" align="center">
-							<div>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/userInfo.do"> <font face='Malgun Gothic'
 										size="2px"> 내 정보</font>
@@ -408,12 +376,10 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-						</td>
-					</tr>
 					<%
 						}
 					%>
-				</table>
+				</div>
 			</div>
 			<div class="listmenu">
 				<font face='Malgun Gothic' size="6px"
@@ -443,26 +409,18 @@ a.linetag2:hover {
 	</div>
 	<div class="rightmenu" align="left">
 		<div class="writemenu">
-			<table width="100%">
-				<tr>
-					<td><font face='Malgun Gothic' size="6px"
+			<div><font face='Malgun Gothic' size="6px"
 						style="color: #555555;"> <b>자유게시판</b>
-					</font><br /> <br /></td>
-					<td align="right" valign="bottom">
+					</font></div>
+					<div align="right">
 					 <a href="bbmList.do"> <img src="../img/button/list.png"
 							onmouseover="this.src='../img/button/list2.png'"
 							onmouseout="this.src='../img/button/list.png'" />
-					</a></td>
-				</tr>
-				<tr>
-				</tr>
-				<tr style="background-color: #dddddd;">
-					<td colspan="2" height="1px"></td>
-				</tr>
-				<tr>
-					<td height="5px" colspan="2"></td>
-				</tr>
-			</table>
+					</a>
+					</div>
+					<div style="height:5px"></div>
+				<div style="height:3px;background-color: #dddddd;"></div>
+					<div style="height:10px"></div>
 			<div class="tableborder">
 				<div class="tableup">
 				<div >

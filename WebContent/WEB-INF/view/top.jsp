@@ -296,7 +296,7 @@ div.menu {
 }
 
 div.menuboth {
-	
+	height: 400px;
 }
 
 div.menu>div>div {
@@ -310,19 +310,25 @@ div.mainlogin {
 	margin: 45px 30px;
 	padding: 30px 20px;
 	box-shadow:1px 1px 3px 0 rgba(213, 213, 213, 0.5);
+	position: relative;
+	bottom: 82px;
 }
 
 div.loginbg{
 	background-image : url("../img/top/tableuser.png");
 	width: 272px;
 	height: 110px;
-    margin-left: 10px;
+    margin-left: 2px;
+    position: relative;
+    top:20px;
 }
 div.tabletext{
 	background-image : url("../img/top/tabletext.png");
 	width: 272px;
 	height: 42px;
-    margin-left: 10px;
+    margin-left: 2px;
+    position: relative;
+	top: 50px;
 }
 div.tabletextmove{
 	position: relative;
@@ -570,13 +576,10 @@ a.tag2:hover {
 	<div class="menu">
 		<div class="menuboth">
 			<div class="mainlogin">
-				<table background="../img/top/tablebg.png" align="center"
-					height="100%" width="100%">
+				<div style="background-image:url('../img/top/tablebg.png'); width:100%; height: 100%; " align="center">
 					<%
 						if (SESSION_USER_ID.equals("")) {
 					%>
-					<tr>
-						<td>
 						<div class="loginbg">
 						<br/>
 						<font face='Malgun Gothic' size="10px">
@@ -585,13 +588,9 @@ a.tag2:hover {
 						</a>
 						</font>
 						</div>
-						</td>
-					</tr>
-					<tr>
-						<td valign="top">영화 후기를 남겨주세요!</td>
-					</tr>
-					<tr>
-						<td valign="top">
+						<div style="position: relative; top:34px;">
+						영화 후기를 남겨주세요!
+						</div>
 						<div class="tabletext">
 							<div class="tabletextmove">
 						<span
@@ -616,13 +615,9 @@ a.tag2:hover {
 						</span>
 							</div>
 						</div>
-						</td>
-					</tr>
 					<%
 						} else if(SESSION_USER_ID.equals("admin")) {
 					%>
-					<tr>
-						<td>
 						<div class="loginbg">
 						<br/>
 						<font face='Malgun Gothic' size="10px">
@@ -631,13 +626,8 @@ a.tag2:hover {
 						</a>
 						</font>
 						</div>
-						</td>
-					</tr>
-					<tr>
-						<td valign="top">관리를 시작합니다.</td>
-					</tr>
-					<tr>
-						<td valign="top">
+						<div style="position: relative; top:34px;">
+						관리를 시작합니다.</div>
 						<div class="tabletext">
 							<div class="tabletextmove">
 						<span
@@ -661,13 +651,9 @@ a.tag2:hover {
 						</span>
 							</div>
 						</div>
-						</td>
-					</tr>
 					<%
 						}else{
 					%>
-					<tr>
-						<td>
 						<div class="loginbg">
 						<br/>
 						<font face='Malgun Gothic' size="10px">
@@ -676,13 +662,8 @@ a.tag2:hover {
 						</a>
 						</font>
 						</div>
-						</td>
-					</tr>
-					<tr>
-						<td valign="top">Lovie 에 어서오세요!</td>
-					</tr>
-					<tr>
-						<td valign="top">
+						<div style="position: relative; top:34px;">
+						Lovie 에 어서오세요!</div>
 						<div class="tabletext">
 							<div class="tabletextmove">
 						<span
@@ -699,30 +680,23 @@ a.tag2:hover {
 						</span>
 							</div>
 						</div>
-						</td>
-					</tr>
 					<%
 						}
 					%>
-				</table>
+			</div>
 			</div>
 			<!-- 공지사항  -->
 			<div class="notice">
-				<table width="100%" height="100%">
-					<tr>
-						<td align="left" valign="top" height="10px"><font
+			<div align="left">
+				
+<font
 							face='Malgun Gothic' size="5px" color="gray"> <b>공지사항</b>
-						</font></td>
-						<td align="right" valign="top"><a
+						</font>
+<a
 							href="/notice/NoticeList.do" class="tag"> <font
 								face='Malgun Gothic' size="5px"> <b>+</b>
-							</font></a></td>
-					</tr>
-					<tr>
-						<td colspan="2" valign="top">
+							</font></a>
 							<hr />
-						</td>
-					</tr>
 					<%
 						int a1 = nList.size();
 						if (a1 > 5) {
@@ -734,8 +708,9 @@ a.tag2:hover {
 								nDTO = new CommonDTO();
 							}
 					%>
-					<tr>
-						<td align="left" valign="top"><span
+					<div style="height:15px">
+					</div>
+					<span
 							style="color: #4f4f4f; font-weight: bold;"> - </span> <a
 							href="javascript:doNDetail('<%=CmmUtil.nvl(nDTO.getnotice_seq())%>');"
 							class="tag2"> <span style="font-weight: bold"> 
@@ -751,33 +726,27 @@ a.tag2:hover {
  %> <span
 							style="color: rgb(2, 151, 128); font-weight: bold; font-size: small;">
 								[<%=CmmUtil.nvl(nDTO.getnotice_com_count())%>]
-						</span></td>
-					</tr>
+						</span>
 					<%
 						}
 					%>
 					<%
 						}
 					%>
-				</table>
+			</div>
 			</div>
 			<!-- 자유게시판  -->
 			<div class="bbm">
-				<table width="100%" height="100%">
-					<tr>
-						<td align="left" valign="top" height="10px"><font
+				<div align="left">
+				<font
 							face='Malgun Gothic' size="5px" color="gray"> <b>자유게시판</b>
-						</font></td>
-						<td align="right" valign="top"><a href="/bbm/bbmList.do"
+						</font>
+<a href="/bbm/bbmList.do"
 							class="tag"> <font face='Malgun Gothic' size="5px"> <b>+</b>
 							</font>
-						</a></td>
-					</tr>
-					<tr>
-						<td colspan="2" valign="top">
+						</a>
 							<hr />
-						</td>
-					</tr>
+
 					<%
 						int a = bList.size();
 						if (a > 5) {
@@ -789,8 +758,9 @@ a.tag2:hover {
 								bDTO = new CommonDTO();
 							}
 					%>
-					<tr>
-						<td align="left" valign="top"><span
+					<div style="height:15px">
+					</div>
+					<span
 							style="color: #4f4f4f; font-weight: bold;"> - </span> <a
 							href="javascript:doBDetail('<%=CmmUtil.nvl(bDTO.getbbm_seq())%>');"
 							class="tag2"> <span style="font-weight: bold">
@@ -806,17 +776,16 @@ a.tag2:hover {
  %> <span
 							style="color: rgb(2, 151, 128); font-weight: bold; font-size: small;">
 								[<%=CmmUtil.nvl(bDTO.getbbm_com_count())%>]
-						</span></td>
-					</tr>
+						</span>
 					<%
 						}
 					%>
 					<%
 						}
 					%>
-				</table>
-			</div>
+					</div>
 		</div>
+	</div>
 	</div>
 	<!-- 여기까지 메뉴2  -->
 	<div class="menu3d"></div>
