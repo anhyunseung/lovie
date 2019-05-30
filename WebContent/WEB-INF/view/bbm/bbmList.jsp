@@ -257,9 +257,7 @@ a.linetag2:hover {
 				<div class="loginmenu">
 					<div align="center" style="position: relative; top:25px;">
 						<%if(SESSION_USER_ID.equals("")){ %>
-						<tr>
-							<td colspan="3" valign="bottom" align="center" height="80px">
-							<a
+						<a
 								href="/user/user_login.do"> <img
 									src="../img/total/leftlogin.png"
 									onmouseover="this.src='../img/total/leftlogin2.png'"
