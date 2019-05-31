@@ -3,7 +3,6 @@
 <%@ page import="poly.util.CmmUtil"%>
 <%
 String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
-String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 String url=CmmUtil.nvl((String)session.getAttribute("url"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -234,7 +233,7 @@ div.logindiv {
 			onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
 			비밀번호 찾기</a>
 			<a class="button2" style="cursor: pointer; vertical-align: middle; padding: 8px 0 0 0;
-			margin: 15px 0 0 0;" href="/user/user_join.do">회원가입</a>
+			margin: 15px 0 0 0;" href="/user/user_join2.do">회원가입</a>
 		</div>
 	</div>
 </form>

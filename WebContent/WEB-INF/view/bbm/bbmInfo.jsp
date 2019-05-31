@@ -111,7 +111,7 @@ function doDelete(){
 <style>
 html, body {
 	margin: 0;
-	height: 100%;min-height: 1450px;
+	height: 100%;min-height: 1500px;
 	word-break:break-all;
 }
 

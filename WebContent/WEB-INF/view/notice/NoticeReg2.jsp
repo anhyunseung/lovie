@@ -85,7 +85,7 @@ input {
 </head>
 <body background="../img/top/bg.png" onload="doOnload();">
 <font face='Segoe UI' style=' line-height:1.4'>
-   <form name="f" method="post" action="/notice/NoticeInsert.do">
+   <form name="f" method="post" action="/notice/NoticeInsert.do" style="height:100%;">
       <div class="infot">
       <table border="0" width="100%">
          <tr>

@@ -54,7 +54,7 @@ function doOnload(){
 <style>
 html, body {
 	margin: 0;
-	height: 100%;min-height: 1450px;
+	height: 100%;min-height: 1500px;
 	word-break:break-all;
 }
 
@@ -277,7 +277,7 @@ a.linetag2:hover {
 </style>
 </head>
 <body style="min-width: 1250px; background-color: #f3f3f3;" onload="doOnload();">
-<form name="f" method="post" action="/notice/NoticeUpdate.do">
+<form name="f" method="post" action="/notice/NoticeUpdate.do" style="height:100%;">
 <font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
 		<li><a href="/top.do"> <img class="logo"
