@@ -96,7 +96,7 @@ div.logindiv {
 /* 로그인버튼 시작 */
 .button {
   width:376px;
-  height:44px;
+  height:52px;
   text-align: center;
   text-decoration: none;
   color:#888888;
@@ -106,6 +106,8 @@ div.logindiv {
   transition: all 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
+  background-color: #ffffff;
+  outline:0;
 }
 .button:before {
   content: "";
@@ -210,7 +212,7 @@ div.logindiv {
 </head>
 <body onload="doOnload();" style="min-width: 500px; background-color: #f3f3f3;">
 <form name="f" method="post" action="/user/user_login_proc.do" onsubmit="return doSubmit(this);">
-	
+	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<div class="maindiv" align="center">
 		<div class="logindiv">
 			<a href="/top.do">
@@ -220,9 +222,8 @@ div.logindiv {
 				onkeydown="return doKeyIdPw(event)"placeholder="아이디"/>
 			<input type="password" name="pwd1" maxlength="20" class="pw" onkeyup="enterkey(this);"
 				onkeydown="return doKeyIdPw(event)"placeholder="비밀번호" />
-			<button type="button" onclick="doSubmit(this);" class="outbutton">
-			<a class="button" style="cursor: pointer; vertical-align: middle; padding: 8px 0 0 0;
-			margin: 0;">로그인</a></button>
+			<button type="button" onclick="doSubmit(this);" class="button">
+			로그인</button>
 			<div style="margin: 22px 0;background-color: rgb(85, 85, 85, 0.9);height:3px;"></div>
 			<a class="idf" style="cursor: pointer; vertical-align: middle; padding:12px 0 0 0;
 			margin: 0 26px 0 0;" href="/user/user_id_search.do" 
@@ -233,7 +234,7 @@ div.logindiv {
 			onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
 			비밀번호 찾기</a>
 			<a class="button2" style="cursor: pointer; vertical-align: middle; padding: 8px 0 0 0;
-			margin: 15px 0 0 0;" href="/user/user_join2.do">회원가입</a>
+			margin: 15px 0 0 0;" href="/user/user_join.do">회원가입</a>
 		</div>
 	</div>
 </form>

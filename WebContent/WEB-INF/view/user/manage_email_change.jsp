@@ -12,7 +12,7 @@ String url = CmmUtil.nvl((String) session.getAttribute("url"));
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="http://localhost:8080/user/manage_id_change.do/../../img/common/icon.ico" type="image/x-icon" />
-<title>Let's see the movie! : Lovie - 아이디 변경</title>
+<title>Let's see the movie! : Lovie - 이메일 변경</title>
 <script type="text/javascript">
 function doOnload(){
 	   var user_id = "<%=SS_USER_ID%>";
@@ -82,6 +82,19 @@ div.logindiv>div>div{
 	border: 1px solid #888;
 	-webkit-box-shadow: inset 0 0 0px 9999px white;
 }
+.email {
+	width: 70px;
+	height: 28px;
+	padding: 0 10px 0 10px;
+	margin: 15px 0 15px 0;
+	outline-color: #888888;
+	position: relative;
+}
+
+.email:-webkit-autofill {
+	border: 1px solid #888;
+	-webkit-box-shadow: inset 0 0 0px 9999px white;
+}
 .sign {
 	width: 80px;
 	background-color: #ffffff;
@@ -111,7 +124,7 @@ div.logindiv>div>div{
 </style>
 </head>
 <body onload="doOnload();" style="min-width: 400px; background-color: #f3f3f3;">
-<form name="f" method="post" action="/user/manage_id_check.do" onsubmit="return doIdchack(this);">
+<form name="f" method="post" action="/user/manage_email_check.do" onsubmit="return doIdchack(this);">
 <font face='Malgun Gothic' style='line-height: 1.4' />
 	<div class="maindiv" align="center">
 		<div class="logindiv">
@@ -120,11 +133,21 @@ div.logindiv>div>div{
 							<b><%=SS_USER_ID_CH%></b>
 						</font>
 						<font face='Malgun Gothic' size="4px" style="color: #777777;">
-							<b>님의 아이디를 변경합니다.</b>
+							<b>님의 이메일을 변경합니다.</b>
 						</font>
 					</div>
-					<input type="text" name="user_id" maxlength="20" class="id"
-						onkeydown="return doKeyIdPw(event)" placeholder="아이디" autocomplete="off"/>
+					<input type="text" name="email1" maxlength="20" class="email"
+						onkeydown="return doKeyIdPw(event)" placeholder="이메일" autocomplete="off"/>
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>@</b>
+						</font><select name="email2" class="email"
+							style="height: 32px; width: 80px">
+							<option value="bd"></option>
+							<option value="naver.com">naver.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="hanmail.com">hanmail.com</option>
+							<option value="gmail.com">gmail.com</option>
+						</select>
 					<input type="submit" class="sign" value="확인"/>
 		</div>
 	</div>

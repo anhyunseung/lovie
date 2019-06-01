@@ -32,6 +32,9 @@
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
+	session.setAttribute("id_over", "");
+	session.setAttribute("email_over", "");
+	session.setAttribute("email_over2", "");
 
 	List<CommonDTO> nList = (List<CommonDTO>) request.getAttribute("nList");
 	if (nList == null) {
@@ -599,7 +602,7 @@ a.tag2:hover {
 							<div class="tabletextmove">
 						<span
 							style="padding: 10px 7px; color: gray;"> <a class="tag"
-								href="/user/user_join2.do"> <font face='Malgun Gothic'
+								href="/user/user_join.do"> <font face='Malgun Gothic'
 									size="2px"> 회원가입 </font>
 							</a>
 						</span> <span style="padding: 10px 0px; color: gray;"> <font
@@ -643,7 +646,7 @@ a.tag2:hover {
 								face='Malgun Gothic' size="2px" color="gray"> | </font>
 						</span> <span
 							style="padding: 10px 7px; color: gray;"> <a class="tag"
-								href="/user/userInfo.do"> <font face='Malgun Gothic'
+								href="/user/userInfo.do""> <font face='Malgun Gothic'
 									size="2px"> 내 정보 </font>
 							</a>
 						</span><span style="padding: 10px 0px; color: gray;"> <font
@@ -661,7 +664,7 @@ a.tag2:hover {
 						<div class="loginbg">
 						<br/>
 						<font face='Malgun Gothic' size="10px">
-						<a href="/user/userInfo.do" class="user">
+						<a href="/user/userInfo.do"" class="user">
 						<%=SESSION_USER_ID %>
 						</a>
 						</font>
@@ -672,7 +675,7 @@ a.tag2:hover {
 							<div class="tabletextmove">
 						<span
 							style="padding: 10px 7px; color: gray;"> <a class="tag"
-								href="/user/userInfo.do"> <font face='Malgun Gothic'
+								href="/user/userInfo.do""> <font face='Malgun Gothic'
 									size="2px"> 내 정보 </font>
 							</a>
 						</span><span style="padding: 10px 0px; color: gray;"> <font

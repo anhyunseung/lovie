@@ -5,7 +5,7 @@
    request.setCharacterEncoding("UTF-8");
 
 String SESSION_USER_ID = CmmUtil.nvl((String)session.getAttribute("PW_USER_ID"));
-session.setAttribute("PW_USER_ID", "");
+/* session.setAttribute("PW_USER_ID", ""); */
 
 System.out.println("user_id : "+ CmmUtil.nvl((String)session.getAttribute("PW_USER_ID")));
 System.out.println("user_id : "+ SESSION_USER_ID);
@@ -17,6 +17,13 @@ System.out.println("user_id : "+ SESSION_USER_ID);
 <link rel="shortcut icon" href="http://localhost:8080/user/user_pw_newpw.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>Let's see the movie! : Lovie - 비밀번호 찾기</title>
 <script type="text/javascript">
+function doOnload(){
+	   var user_id = "<%=SESSION_USER_ID%>";
+	   if (user_id==""){
+		      alert("잘못된 접근입니다.");
+	      location.href="/user/user_pw_search.do";
+		}
+	}
    function doSubmit(f) {
       if (f.pwd1.value.length >= 20) {
          alert("비밀번호가 20자를 초과하였습니다.");
@@ -52,76 +59,116 @@ System.out.println("user_id : "+ SESSION_USER_ID);
       }
 
    }
+   function hange(obj){
+
+	    obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+
+	}
 </script>
 <style>
-a:link { text-decoration: none;}
- a:visited {text-decoration: none;}
- a:hover { text-decoration: none;}
-input {
-        vertical-align: middle;
-        background-repeat: no-repeat;
-      }
-      input.img-button {
-        background: url( "../img/button/sign.png" ) no-repeat;
-        border: none;
-        height: 40px;
-        width: 52px;
-        cursor: pointer;
-      }
+html, body {
+	margin: 0;
+	height: 100%;
+	word-break: break-all;
+}
+div.maindiv {
+	padding: 15px 0 10px 0;
+	width: 100%;
+}
+div.logindiv {
+	box-shadow: 2px 2px 2px 0 rgba(100, 100, 100, 0.4);
+	background-color: rgba(255,255,255,0.9);
+	width: 370px;
+	height: 280px;
+	padding: 10px 10px;
+}
+div.logindiv>div>div{
+	display: inline-block;
+}
+.joinfont{
+	width:150px;
+	padding: 50px 0 0 0;
+}
+.id:-webkit-autofill {
+	border: 1px solid #888;
+	-webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+
+.id {
+	width: 180px;
+	height: 28px;
+	padding: 0 10px 0 10px;
+	margin: 15px 0 10px 0;
+	outline-color: #888888;
+	position: relative;
+}
+
+.id:-webkit-autofill {
+	border: 1px solid #888;
+	-webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+.sign {
+	width: 80px;
+	background-color: #ffffff;
+	height: 33px;
+	text-align: center;
+	text-decoration: none;
+	color:#888888;
+	border: 1px solid #888888;
+	font-size: 16px;
+	display: inline-block;
+	transition: all 0.2s ease-in-out;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.2s ease-in-out;
+	position: relative;
+	top: 1px;
+	outline:0;
+	cursor: pointer;
+}
+
+.sign:hover {
+	background-color: #888888;
+	color: #fff;
+}
 </style>
 </head>
-<body background="../img/user/userpw/pwfbg.png">
-<font face='Segoe UI' style=' line-height:1.4'>
-<%
-if (SESSION_USER_ID.isEmpty()){
-%>
-<script>
-    alert("잘못된 접근입니다.");
-    location.href="/user/user_pw_search.do";
-</script>    
-<%
- }
-%>
-   <br>
-   <br>
-   <br>
-   <form action="/user/user_pw_confirm.do" name="f" method="post"
+<body style="min-width: 400px; background-color: #f3f3f3;" onload="doOnload();">
+ <form action="/user/user_pw_confirm.do" name="f" method="post"
       onsubmit="return doSubmit(this);">
-      <table border="0" width="460">
-         <tr>
-            <td align="center"><br>
-            <img src="../img/user/userpw/newpw.png"/></td>
-            <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-               type="password" name="pwd1" maxlength="20" style="width: 180px;" /></td>
-         </tr>
-         <tr>
-            <td align="center"><br>
-            <br>
-            <img src="../img/user/userpw/newpwc.png"/></td>
-            <td><br>
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-               type="password" name="pwd2" maxlength="20" style="width: 180px;" /></td>
-         </tr>
-         <tr>
-            <td colspan="2" align="center"><br>
-            <img src="../img/user/userjoin/pwd.png"/>
-            </td>
-         </tr>
-         <tr>
-            <td colspan="2" align="right"><br>
-            <br>
-            <input type="submit"  class="img-button" value=" " />
-            &nbsp;&nbsp;&nbsp;
-            </td>
-         </tr>
-         <tr>
-         <td>
-               <input type="hidden" name="user_id"
+<font face='Malgun Gothic' style='line-height: 1.4' />
+	<div class="maindiv" align="center">
+		<div class="logindiv">
+			<div>
+					<div class="joinfont">
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>새 비밀번호</b>
+						</font>
+					</div>
+					<input type="password" name="pwd1" maxlength="20" class="id"
+						onkeypress="return doKeyIdPw(event)" placeholder="비밀번호"
+						autocomplete="off"  onkeydown="hange(this);"/>
+				</div>
+				<div>
+					<div class="joinfont">
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>새 비밀번호 확인</b>
+						</font>
+					</div>
+					<input type="password" name="pwd2" maxlength="20" class="id"
+						onkeypress="return doKeyIdPw(event)" placeholder="비밀번호 확인"
+						autocomplete="off" style="margin: 30px 0 15px 0;"  onkeydown="hange(this);"/>
+				</div>
+				<font face='Malgun Gothic' size="3px" style="color: #ff6666;">
+					<b>비밀번호는 영문/숫자로 20자 이하입니다.</b>
+				</font>
+				<div align="right" style="padding: 30px 0 0 0">
+				<input type="submit" class="sign" value="확인"/>
+				</div>
+				<input type="hidden" name="user_id"
          value="<%=SESSION_USER_ID%>" />
-         </td>
-         </tr>
-      </table>
-   </form>
-   </font>
+		</div>
+	</div>
+</form>
 </body>
 </html>

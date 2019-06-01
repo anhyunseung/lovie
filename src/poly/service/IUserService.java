@@ -16,6 +16,8 @@ public interface IUserService {
    void updatePw(UserDTO uDto) throws Exception;
    
    void updateId(UserDTO uDto) throws Exception;
+   
+   void updateemail(UserDTO uDto) throws Exception;
 
    List<UserDTO> getUserList() throws Exception;
    
@@ -26,5 +28,7 @@ public interface IUserService {
    void deleteUserInfo(UserDTO pDTO) throws Exception;
    
    String getidover(UserDTO uDto) throws Exception;
+   
+   String getemailover(UserDTO uDto) throws Exception;
 
 } 

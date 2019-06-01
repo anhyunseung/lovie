@@ -73,10 +73,23 @@ public class UserService implements IUserService {
 		userMapper.updateId(uDto);
 
 	}
+	
+	@Override
+	public void updateemail(UserDTO uDto) throws Exception {
+		// TODO Auto-generated method stub
+		userMapper.updateemail(uDto);
+
+	}
 
 	@Override
 	public String getidover(UserDTO uDto) throws Exception {
 		return userMapper.getidover(uDto);
+
+	}
+	
+	@Override
+	public String getemailover(UserDTO uDto) throws Exception {
+		return userMapper.getemailover(uDto);
 
 	}
 }

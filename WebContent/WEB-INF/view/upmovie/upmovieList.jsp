@@ -314,7 +314,7 @@ input {
 			</a>
 			 <img src="../img/top/inhi.png"/>
 				<%}else{%>
-				<a href="/user/userInfo.do" > 
+				<a href="/user/userInfo.do"" > 
 				<span style=" font: 1.5em Georgia, serif ;">
 				<%
 				out.print(SESSION_USER_ID);
@@ -341,7 +341,7 @@ input {
 			<%if (SESSION_USER_ID.equals("")) {%>
 			<td colspan="2" align="left" width="245px" >
 						&nbsp;
-				<a href="/user/user_join2.do" >
+				<a href="/user/user_join.do" >
 				<img src="../img/top/join.png"/>
 				</a>
 				<a href="/user/user_id_search.do" onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">

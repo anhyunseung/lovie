@@ -63,107 +63,175 @@
 	}
 </script>
 <style>
-a:link { text-decoration: none;}
- a:visited {text-decoration: none;}
- a:hover { text-decoration: none;}
-input {
-        vertical-align: middle;
-      }
-      input.img-button {
-        background: url( "../img/button/sign.png" ) no-repeat;
-        border: none;
-        height: 40px;
-        width: 52px;
-        cursor: pointer;
-      }
+html, body {
+	margin: 0;
+	height: 100%;
+	word-break: break-all;
+}
+div.maindiv {
+	padding: 15px 0 10px 0;
+	width: 100%;
+}
+div.logindiv {
+	box-shadow: 2px 2px 2px 0 rgba(100, 100, 100, 0.4);
+	background-color: rgba(255,255,255,0.9);
+	width: 370px;
+	height: 280px;
+	padding: 10px 10px;
+}
+div.logindiv>div>div{
+	display: inline-block;
+}
+.joinfont{
+	width:80px;
+}
+.id:-webkit-autofill {
+	border: 1px solid #888;
+	-webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+
+.id {
+	width: 180px;
+	height: 28px;
+	padding: 0 10px 0 10px;
+	margin: 15px 0 10px 0;
+	outline-color: #888888;
+	position: relative;
+}
+
+.id:-webkit-autofill {
+	border: 1px solid #888;
+	-webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+.email {
+	width: 70px;
+	height: 28px;
+	padding: 0 10px 0 10px;
+	margin: 15px 0 15px 0;
+	outline-color: #888888;
+	position: relative;
+}
+
+.email:-webkit-autofill {
+	border: 1px solid #888;
+	-webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+.tel {
+	width: 30px;
+	height: 28px;
+	padding: 0 10px 0 10px;
+	margin: 15px 0 15px 0;
+	outline-color: #888888;
+	position: relative;
+}
+
+.tel:-webkit-autofill {
+	border: 1px solid #888;
+	-webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+.sign {
+	width: 80px;
+	background-color: #ffffff;
+	height: 33px;
+	text-align: center;
+	text-decoration: none;
+	color:#888888;
+	border: 1px solid #888888;
+	font-size: 16px;
+	display: inline-block;
+	transition: all 0.2s ease-in-out;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.2s ease-in-out;
+	position: relative;
+	top: 1px;
+	outline:0;
+	cursor: pointer;
+}
+
+.sign:hover {
+	background-color: #888888;
+	color: #fff;
+}
 </style>
 </head>
-<body background="../img/user/userpw/pwfbg.png" >
-<font face='Segoe UI' style=' line-height:1.4'>
-	<form name="f" method="post" action="user_pw_search_proc.do"
-		onsubmit="return doSubmit(this);">
-		<table width="460">
-			<col width="150" />
-			<col width="350" />
-
-			<tr>
-				<td align="center"><br><img src="../img/user/userjoin/name.png"/></td>
-				<td><br> <input type="text" name="user_name" maxlength="8"
-					style="width: 190px" /></td>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-				<td align="center"><br> <img src="../img/top/Id.png"/> &nbsp;</td>
-				<td><br> <input type="text" name="user_id" maxlength="10"
-					style="width: 190px" /></td>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			<tr>
-				<td align="center"><br><img src="../img/user/userjoin/email.png"/></td>
-				<td><br> <input type="text" name="email1" maxlength="16"
-					style="width: 100px" />&nbsp;@ <select name="email2">
-						<option value="bd">선택하세요</option>
-						<option value="naver.com">naver.com</option>
-						<option value="nate.com">nate.com</option>
-						<option value="hanmail.com">hanmail.com</option>
-						<option value="gmail.com">gmail.com</option>
-				</select></td>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-			<tr>
-				<td align="center"><br><img src="../img/user/userjoin/phone.png"/></td>
-				<td><br> <select name="tel_1" style="width: 50px;">
-						<option value=""></option>
-						<option value="010">010</option>
-						<option value="011">011</option>
-						<option value="017">017</option>
-				</select>
-				&nbsp;- <input type="text" name="tel_2" maxlength="4"style="width: 80px" />
-				&nbsp;- <input type="text" name="tel_3"maxlength="4" style="width: 80px" />
-				</td>
-			</tr>
-			<tr>
-
-				<td colspan="2" align="right"><br><br><input type="submit" class="img-button" value=" "/>&nbsp;&nbsp;&nbsp;</td>
-			</tr>
-		</table>
-	</form>
-	</font>
-	</body>
-	</html>
+<body style="min-width: 400px; background-color: #f3f3f3;">
+<form name="f" method="post" action="user_pw_search_proc.do" onsubmit="return doSubmit(this);">
+<font face='Malgun Gothic' style='line-height: 1.4' />
+	<div class="maindiv" align="center">
+		<div class="logindiv">
+			<div>
+					<div class="joinfont">
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>성명</b>
+						</font>
+					</div>
+					<input type="text" name="user_name" maxlength="20" class="id"
+						onkeydown="return doKeyIdPw(event)" placeholder="성명"
+						autocomplete="off"/>
+				</div>
+				<div>
+					<div class="joinfont">
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>아이디</b>
+						</font>
+					</div>
+					<input type="text" name="user_id" maxlength="10" class="id"
+						onkeydown="return doKeyIdPw(event)" placeholder="아이디"
+						autocomplete="off"/>
+				</div>
+				<div>
+					<div class="joinfont">
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>이메일</b>
+						</font>
+					</div>
+					<input type="text" name="email1" maxlength="20" class="email"
+						onkeydown="return doKeyIdPw(event)" placeholder="이메일" autocomplete="off"/>
+					<div>
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>@</b>
+						</font><select name="email2" class="email"
+							style="height: 32px; width: 80px">
+							<option value="bd"></option>
+							<option value="naver.com">naver.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="hanmail.com">hanmail.com</option>
+							<option value="gmail.com">gmail.com</option>
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="joinfont">
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>전화번호</b>
+						</font>
+					</div>
+					<div>
+					<select name="tel_1" class="tel"
+							style="height: 32px; width: 57px">
+							<option value=""></option>
+							<option value="010">010</option>
+							<option value="011">011</option>
+							<option value="017">017</option>
+						</select>
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>-</b>
+						</font>
+						<input type="text" name="tel_2" maxlength="4" class="tel"
+						onkeydown="return doKeyIdPw(event)" placeholder="앞자리" autocomplete="off"/>
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>-</b>
+						</font>
+						<input type="text" name="tel_3" maxlength="4" class="tel"
+						onkeydown="return doKeyIdPw(event)" placeholder="뒷자리" autocomplete="off"/>
+					</div>
+				</div>
+				<div align="right">
+				<input type="submit" class="sign" value="확인"/>
+				</div>
+		</div>
+	</div>
+</form>
+</body>
+</html>

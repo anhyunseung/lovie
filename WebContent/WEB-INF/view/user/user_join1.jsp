@@ -5,6 +5,7 @@
         String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
         System.out.println("ss_user_id : " + SESSION_USER_ID);
         String url=CmmUtil.nvl((String)session.getAttribute("url"));
+        String id_over = CmmUtil.nvl((String) session.getAttribute("id_over"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,32 +16,14 @@
 <script type="text/javascript">
 function doOnload(){
 	   var user_id = "<%=SESSION_USER_ID%>";
-	   
-	   if (user_id!=""){
+	   var over_id="<%=id_over%>"
+	   if (user_id!=""||over_id==""){
 		      alert("잘못된 접근입니다.");
 	      location.href="<%=url%>";
-	      
-	   }
-	   
-	}
-	
-function doTop(){
-    top.location.href="/top.do";
-}
 
-function doSubmit(a) {
-   if(f.user_id.value.length >= 10){
-      alert("아이디가 10자를 초과했습니다.");
-      f.user_id.focus();
-      return false;
-   }
-   if(f.user_id.value == ""){
-      alert("아이디를 입력 해주세요.");
-      f.user_id.focus();
-      return false;
-   }
-   a.form.submit();
-}
+		}
+
+	}
 function enterkey(a) {
     if (window.event.keyCode == 13) {
 
@@ -48,6 +31,19 @@ function enterkey(a) {
          doSubmit(a);
     }
 }
+function doSubmit(a) {
+	if(f.email1.value == ""){
+	      alert("이메일을 입력 해주세요.");
+	      f.email1.focus();
+	      return false;
+	   }
+		if(f.email2.value == "bd"){
+	      alert("이메일을 입력 해주세요.");
+	      f.email2.focus();
+	      return false;
+	   }
+	   a.form.submit();
+	}
 function doKeyOnlyNumber(event) {
    event = event || window.event;
    var keyID = (event.which) ? event.which : event.KeyCode;
@@ -70,19 +66,18 @@ function doKeyOnlyWord(event) {
    }
 }
 
-function doKeyIdPw(obj) {
-	if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >=96 && event.keyCode <=105) || (event.keyCode  >= 65 && keyID <= 90) || event.keyCode ==8 || event.keyCode ==37 || event.keyCode ==39 || event.keyCode ==9 ) { 
-	  }else {
-	   event.returnValue = false;
+function doKeyIdPw(event) {
+   event = event || window.event;
+   var keyID = (event.which) ? event.which : event.KeyCode;
+   
+   if((keyID >= 48 && keyID <= 57) || (keyID>=96 && keyID <=105) || (keyID >= 65 && keyID <= 90) || keyID==8 || keyID==37 || keyID==39 || keyID==9 ){
+      return true;
+   }else{
+      return false;
    }
 }
-function hange(obj){
-
-    obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
-
-}
-function doTop(){
-    top.location.href="/top.do";
+function dojoin() {
+	location.href = "/user/user_join.do";
 }
 </script>
 <style>
@@ -112,18 +107,18 @@ div.jointotal>div{
 	display: inline-block;
 }
 div.joinstart{
-	height: 99%;
-	width:228px;
-	background-color:rgba(150,150,150); 
-	border:1px solid rgba(40,40,40,0.7);
-}
-div.joinmiddle{
 	position:relative;
 	top:2px;
 	height: 90%;
 	width:228px;
 	background-color:rgba(220,220,220); 
 	border:1px solid rgba(150,150,150,0.7);
+}
+div.joinmiddle{
+	height: 99%;
+	width:228px;
+	background-color:rgba(150,150,150); 
+	border:1px solid rgba(40,40,40,0.7);
 }
 div.joinend{
 	position:relative;
@@ -146,7 +141,7 @@ div.joindiv {
 	-webkit-box-shadow: inset 0 0 0px 9999px white;
 }
 .id{
-	width: 356px;
+	width: 160px;
 	height: 40px;
 	font-size: large;
 	padding: 0 10px 0 10px;
@@ -177,22 +172,46 @@ div.joindiv {
 	color: #fff;
 }
 
+.cc{
+	width:130px;
+	background-color:#ffffff;
+	height:44px;
+	text-align: center;
+	text-decoration: none;
+	color:#924040;
+	border: 2px solid #924040;
+	font-size: 16px;
+	display: inline-block;
+	transition: all 0.2s ease-in-out;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.2s ease-in-out;
+	position: relative;
+	top:1px;
+	outline: 0;
+	cursor: pointer;
+}
+.cc:hover {
+	background-color: #924040;
+	color: #fff;
+}
+
 </style>
 </head>
 <body onload="doOnload();" style="min-width: 800px; background-color: #f3f3f3;">
-<form action="/user/user_join3.do" method="post" name="f" onsubmit="return doSubmit(this);" style="height: 100%;">
+<form action="/user/user_join4.do" method="post" name="f" onsubmit="return doSubmit(this);" style="height: 100%;">
 		<font face='Malgun Gothic' style='line-height: 1.4;' />
 		<div class="maindiv" align="center">
 	<div class="jointotal" style="width: 702px; height: 100px;">
 		<div class="joinstart" >
 		<div style="position: relative; top:35px;">
-		<font face='Malgun Gothic' size="5px"
-						style="color: rgba(40,40,40)"> <b>아이디 중복확인</b>
+		<font face='Malgun Gothic' size="4px"
+						style="color: rgba(150,150,150)"> <b>아이디 중복확인</b>
 					</font> </div></div>
 		<div class="joinmiddle" >
 		<div style="position: relative; top:35px;">
-		<font face='Malgun Gothic' size="4px"
-						style="color: rgba(150,150,150)"> <b>이메일 중복확인</b>
+		<font face='Malgun Gothic' size="5px"
+						style="color: rgba(40,40,40)"> <b>이메일 중복확인</b>
 					</font> </div></div>
 		<div class="joinend">
 		<div style="position: relative; top:35px;">
@@ -204,13 +223,21 @@ div.joindiv {
 		<a href="/top.do">
 			<img src="../img/user/loginlogo.png">
 			</a><br/>
-        <input type="text" name="user_id" maxlength="10" class="id" onkeyup="enterkey(this);"
-				onkeypress="return doKeyIdPw(event)" onkeydown="hange(this);"  placeholder="아이디" autocomplete="off"/>
+        <input type="text" name="email1" maxlength="20" class="id"
+						onkeydown="return doKeyIdPw(event)" placeholder="이메일" autocomplete="off" />
+						<font face='Malgun Gothic' size="4px" style="color: #777777;">
+							<b>@</b>
+						</font> <select name="email2" class="id"
+							style="height: 44px; width: 170px">
+							<option value="bd"></option>
+							<option value="naver.com">naver.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="hanmail.com">hanmail.com</option>
+							<option value="gmail.com">gmail.com</option>
+						</select>
          <input type="submit" class="idf" value="중복확인"/>
          <br/>
-         <font face='Malgun Gothic' size="3px"
-						style="color: #ff6666;"> <b>아이디는 영문/숫자로 10자 이하입니다.</b>
-					</font>
+         <input type="button" class="cc" onclick="javascript:dojoin();" value="돌아가기"/>
 		</div>
 	</div>
 </form>

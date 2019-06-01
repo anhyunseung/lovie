@@ -28,6 +28,24 @@ public class UserController {
 	@Resource(name = "UserService")
 	private IUserService userService;
 
+	@RequestMapping(value = "/user/user_join", method = RequestMethod.GET)
+	public String User_join(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+			throws Exception {
+
+		log.info(this.getClass().getName() + "/user/user_join start!");
+
+		return "/user/user_join";
+	}
+	
+	@RequestMapping(value = "/user/user_join1", method = RequestMethod.GET)
+	public String User_join1(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+			throws Exception {
+
+		log.info(this.getClass().getName() + "/user/user_join start!");
+
+		return "/user/user_join1";
+	}
+	
 	@RequestMapping(value = "/user/user_join2", method = RequestMethod.GET)
 	public String User_join2(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 			throws Exception {
@@ -37,22 +55,21 @@ public class UserController {
 		return "/user/user_join2";
 	}
 	
-	@RequestMapping(value = "/user/user_join", method = RequestMethod.GET)
-	public String User_join3(HttpServletRequest request, HttpServletResponse response, ModelMap model)
-			throws Exception {
-
-		log.info(this.getClass().getName() + "/user/user_join start!");
-
-		return "/user/user_join";
-	}
-	
 	@RequestMapping(value = "/user/user_join3", method = RequestMethod.POST)
-	public String User_join(HttpServletRequest request,HttpSession session, HttpServletResponse response, ModelMap model)
+	public String User_join3(HttpServletRequest request,HttpSession session, HttpServletResponse response, ModelMap model)
 			throws Exception {
 
 		log.info(this.getClass().getName() + "/user/user_join3 start!");
 		
 		String user_id=(String) request.getParameter("user_id");
+		
+		if(user_id.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_id.contains(" ")) {
+			String msg="한글 또는 공백이 있습니다.";
+			String url="/user/user_join.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
 		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUser_id(user_id);
@@ -64,12 +81,46 @@ public class UserController {
 		if(id_over==null) {
 			session.setAttribute("id_over", user_id);
 			String msg="사용이 가능한 아이디입니다.";
-			String url="/user/user_join.do";
+			String url="/user/user_join1.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
 		}else {
 			String msg="사용이 불가능한 아이디입니다.";
+			String url="/user/user_join.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+		}
+
+		return "/MsgToList";
+	}
+	
+	@RequestMapping(value = "/user/user_join4", method = RequestMethod.POST)
+	public String User_join4(HttpServletRequest request,HttpSession session, HttpServletResponse response, ModelMap model)
+			throws Exception {
+
+		log.info(this.getClass().getName() + "/user/user_join4 start!");
+		
+		String email1=(String) request.getParameter("email1");
+		String email2=(String) request.getParameter("email2");
+		
+		UserDTO uDTO = new UserDTO();
+		uDTO.setEmail1(email1);
+		uDTO.setEmail2(email2);
+		
+		System.out.println(email1+" "+ email2);
+		
+		String email_over = userService.getemailover(uDTO);
+		System.out.println(email_over);
+		if(email_over==null) {
+			session.setAttribute("email_over", email1);
+			session.setAttribute("email_over2", email2);
+			String msg="사용이 가능한 이메일입니다.";
 			String url="/user/user_join2.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+		}else {
+			String msg="사용이 불가능한 이메일입니다.";
+			String url="/user/user_join1.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
 		}
@@ -105,14 +156,13 @@ public class UserController {
 		String user_name = (String) request.getParameter("user_name");
 		String user_id = CmmUtil.nvl((String) session.getAttribute("id_over"));
 		String user_pw = (String) request.getParameter("pwd1");
-		String email1 = (String) request.getParameter("email1");
-		String email2 = (String) request.getParameter("email2");
+		String email1 = CmmUtil.nvl((String) session.getAttribute("email_over"));
+		String email2 = CmmUtil.nvl((String) session.getAttribute("email_over2"));
 		String tel_1 = (String) request.getParameter("tel_1");
 		String tel_2 = (String) request.getParameter("tel_2");
 		String tel_3 = (String) request.getParameter("tel_3");
 		String birthday = (String) request.getParameter("birthday");
-	    session.setAttribute("id_over", "");
-
+		
 		System.out.println(user_name);
 		System.out.println(user_id);
 		System.out.println(user_pw);
@@ -122,7 +172,19 @@ public class UserController {
 		System.out.println(tel_2);
 		System.out.println(tel_3);
 		System.out.println(birthday);
-
+		
+		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")) {
+			String msg="한글 또는 공백이 있습니다.";
+			String url="/user/user_join2.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
+		
+		session.setAttribute("id_over", "");
+	    session.setAttribute("email_over", "");
+		session.setAttribute("email_over2", "");
+		
 		UserDTO pDTO = new UserDTO();
 
 		pDTO.setUser_name(user_name);
@@ -140,7 +202,7 @@ public class UserController {
 		if (pDTO.equals(null)) {
 			String msg="회원가입에 실패하였습니다.";
 			session.setAttribute("id_over", user_id);
-			String url="/user/user_join.do";
+			String url="/user/user_join2.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
 			
@@ -194,13 +256,14 @@ public class UserController {
 			log.info(uDTO.getUser_id());
 			log.info(uDTO.getPassword());
 		} else {
+			String url=CmmUtil.nvl((String) session.getAttribute("url"));
 			request.setAttribute("msg", "");
-			request.setAttribute("url",  CmmUtil.nvl((String) session.getAttribute("url")));
+			request.setAttribute("url",  url);
 			session.setAttribute("USER_NO", user_no);
 			session.setAttribute("USER_ID", user_id);
 		}
 
-		uDTO.equals(null);
+		uDTO=null;
 
 		return "/MsgToList";
 	}
@@ -230,10 +293,12 @@ public class UserController {
 			request.setAttribute("msg", "");
 			request.setAttribute("url", "/user/user_id_confirm.do");
 			session.setAttribute("USER_NAME", user_name);
-			session.setAttribute("USER_ID", user_id);
+			session.setAttribute("USER_IDF", user_id);
 		}
+		
+		pDTO=null;
 
-		return "/user/user_pw_proc";
+		return "/MsgToList";
 	}
 
 	@RequestMapping(value = "/user/user_id_confirm", method = RequestMethod.GET)
@@ -279,17 +344,13 @@ public class UserController {
 			request.setAttribute("url", "/user/user_pw_newpw.do");
 			session.setAttribute("PW_USER_ID", user_id2);
 		}
-		return "/user/user_pw_proc";
+		return "/MsgToList";
 	}
 
 	@RequestMapping(value = "/user/user_pw_newpw", method = RequestMethod.GET)
 	public String User_pw_newpw(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
 
 		log.info("/user/user_newpw");
-
-		String user_id = (String) request.getParameter("user_id");
-
-		session.setAttribute("USER_ID", user_id);
 
 		return "/user/user_pw_newpw";
 	}
@@ -301,7 +362,15 @@ public class UserController {
 
 		String user_id = (String) request.getParameter("user_id");
 		String password = (String) request.getParameter("pwd1");
-
+		
+		if(password.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||password.contains(" ")) {
+			String msg="한글 또는 공백이 있습니다.";
+			String url="/user/user_pw_search.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
+		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUser_id(user_id);
 		uDTO.setPassword(password);
@@ -342,21 +411,20 @@ public class UserController {
 
 		rDTO = userService.getUserInfo(rDTO);
 		
+		if(rDTO.getUser_id().equals(CmmUtil.nvl((String) session.getAttribute("USER_ID")))) {
 		
-		List<UserDTO> rList = userService.getUserList();
-
-		if (rList == null) {
-			rList = new ArrayList<UserDTO>();
-
-		}
-
-		model.addAttribute("rList", rList);
-
-		rList = null;
-
 		model.addAttribute("rDTO", rDTO);
 		rDTO = null;
 		return "/user/userInfo";
+		
+		}else {
+			rDTO = null;
+			String url=CmmUtil.nvl((String)session.getAttribute("url"));
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url",url );
+			
+			return "/MsgToList";
+		}
 	}
 	
 	@RequestMapping(value = "/user/userDelete", method = RequestMethod.GET)
@@ -408,12 +476,21 @@ public class UserController {
 
 		rDTO = userService.getUserInfo(rDTO);
 		
-		request.setAttribute("user_no",user_no);
-		model.addAttribute("rDTO", rDTO);
-		
-		rDTO = null;
+		if(rDTO.getUser_id().equals(CmmUtil.nvl((String) session.getAttribute("USER_ID")))) {
+			request.setAttribute("user_no",user_no);
+			model.addAttribute("rDTO", rDTO);
+			
+			rDTO = null;
 
-		return "/user/userEditInfo";
+			return "/user/userEditInfo";
+		}else {
+			rDTO = null;
+			String url=CmmUtil.nvl((String)session.getAttribute("url"));
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url",url );
+			
+			return "/MsgToList";
+		}
 	}
 	
 	@RequestMapping(value = "/user/userUpdate", method = RequestMethod.POST)
@@ -431,6 +508,14 @@ public class UserController {
 		String tel_2 = (String) request.getParameter("tel_2");
 		String tel_3 = (String) request.getParameter("tel_3");
 		String birthday = (String) request.getParameter("birthday");
+		
+		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")) {
+			String msg="한글 또는 공백이 있습니다.";
+			String url="/user/user_pw_search.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
 
 		System.out.println(user_no);
 		System.out.println(user_name);
@@ -473,7 +558,16 @@ public class UserController {
 	public String User_manageList(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
 
 		log.info("/user/manageList");
-
+		
+		String user_id=CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		 if(user_id.equals("admin")){
+		 }else {
+			String url=CmmUtil.nvl((String)session.getAttribute("url"));
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url",url );
+			
+			return "/MsgToList";
+		}
 		
 		List<UserDTO> rList = userService.getUserList();
 		
@@ -509,7 +603,17 @@ public class UserController {
 	public String UsermanageInfo(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
 
 		log.info("/user/manageInfo");
-
+		
+		String user_id=CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		 if(user_id.equals("admin")){
+		 }else {
+			String url=CmmUtil.nvl((String)session.getAttribute("url"));
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url",url );
+			
+			return "/MsgToList";
+		}
+		
 		String user_no = request.getParameter("user_no");
 		if(user_no==null) {
 			user_no = CmmUtil.nvl((String) session.getAttribute("Manage_user_no"));
@@ -560,83 +664,6 @@ public class UserController {
 		
 		rDTO=null;
 
-		return "/MsgToList";
-	}
-	
-	@RequestMapping(value = "/user/manageEditInfo", method = RequestMethod.GET)
-	public String UsermanageEditInfo(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
-
-		log.info("/user/manageEditInfo");
-
-		String user_no = request.getParameter("user_no");
-
-		System.out.println(user_no);
-
-		UserDTO rDTO = new UserDTO();
-
-		rDTO.setUser_no(user_no);
-
-		rDTO = userService.getUserInfo(rDTO);
-		
-		request.setAttribute("user_no",user_no);
-		model.addAttribute("rDTO", rDTO);
-		
-		rDTO = null;
-
-		return "/user/manageEditInfo";
-	}
-	
-	@RequestMapping(value = "/user/manageUpdate", method = RequestMethod.POST)
-	public String manageUpdate(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
-
-		log.info("/user/userUpdate");
-		
-		String user_no = (String) request.getParameter("user_no");
-		String user_name = (String) request.getParameter("user_name");
-		String user_id = (String) request.getParameter("user_id");
-		String user_pw = (String) request.getParameter("pwd1");
-		String email1 = (String) request.getParameter("email1");
-		String email2 = (String) request.getParameter("email2");
-		String tel_1 = (String) request.getParameter("tel_1");
-		String tel_2 = (String) request.getParameter("tel_2");
-		String tel_3 = (String) request.getParameter("tel_3");
-		String birthday = (String) request.getParameter("birthday");
-
-		System.out.println(user_no);
-		System.out.println(user_name);
-		System.out.println(user_id);
-		System.out.println(user_pw);
-		System.out.println(email1);
-		System.out.println(email2);
-		System.out.println(tel_1);
-		System.out.println(tel_2);
-		System.out.println(tel_3);
-		System.out.println(birthday);
-
-		UserDTO pDTO = new UserDTO();
-
-		pDTO.setUser_no(user_no);
-		pDTO.setUser_name(user_name);
-		pDTO.setUser_id(user_id);
-		pDTO.setPassword(user_pw);
-		pDTO.setEmail1(email1);
-		pDTO.setEmail2(email2);
-		pDTO.setTel_1(tel_1);
-		pDTO.setTel_2(tel_2);
-		pDTO.setTel_3(tel_3);
-		pDTO.setBirthday(birthday);
-
-		userService.updateUserInfo(pDTO);
-
-		if (pDTO.equals(null)) {
-
-			request.setAttribute("msg", "수정에 실패하였습니다.");
-			request.setAttribute("url", "/user/manageinfo.do");
-		} else {
-			session.setAttribute("Manage_user_no",user_no);
-			request.setAttribute("msg", "회원정보를 수정하였습니다.");
-			request.setAttribute("url", "/user/manageInfo.do");
-	}
 		return "/MsgToList";
 	}
 	
@@ -692,8 +719,64 @@ public class UserController {
 		uDTO = null;
 		}
 
-		return "/user/user_pw_proc";
+		return "/MsgToList";
 	}
 	
+	@RequestMapping(value = "/user/manage_email_change", method = RequestMethod.GET)
+	public String manage_email_change(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
+
+		log.info("/user/manage_email_change");
+
+		String user_id = (String) request.getParameter("user_id");
+		String user_id2=CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
+		System.out.println(user_id);
+		if(user_id==null) {
+			System.out.println(user_id2);
+		}else {
+		session.setAttribute("USER_ID_CHE",user_id);
+		}
+		
+		return "/user/manage_email_change";
+	}
 	
+	@RequestMapping(value = "/user/manage_email_check", method = RequestMethod.POST)
+	public String manage_email_update(HttpServletRequest request, HttpSession session, ModelMap model) throws Exception {
+
+		log.info("/user/manage_email_check");
+
+		String email1 = (String) request.getParameter("email1");
+		String email2 = (String) request.getParameter("email2");
+		String user_id = CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
+		session.setAttribute("USER_ID_CHE",user_id);
+		UserDTO uDTO = new UserDTO();
+		uDTO.setEmail1(email1);
+		uDTO.setEmail2(email2);
+		
+		System.out.println("중복 확인 :"+email1+" "+email2);
+		
+		String email_over = userService.getemailover(uDTO);
+		if(email_over==null) {
+			uDTO.setUser_id(user_id);
+			System.out.println("번호 가져올 아이디 :"+user_id);
+			String id_over2 = userService.getidover(uDTO);
+			
+			uDTO.setUser_no(id_over2);
+			System.out.println("가져온 번호 :"+id_over2);
+			
+			uDTO.setEmail1(email1);
+			uDTO.setEmail2(email2);
+			System.out.println("바꿀 이메일 :"+email1+" "+email2);
+			userService.updateemail(uDTO);
+			
+			session.setAttribute("USER_ID_CHE","");
+			uDTO = null;
+			return "/user/manage_email_confirm";
+		}else {
+			request.setAttribute("msg", "이미 존재하는 이메일입니다.");
+			request.setAttribute("url", "/user/manage_email_change.do");
+		uDTO = null;
+		}
+
+		return "/MsgToList";
+	}
 }
