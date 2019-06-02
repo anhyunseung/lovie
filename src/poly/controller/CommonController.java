@@ -136,7 +136,7 @@ public class CommonController {
 		
 		int i=0;
 		
-		String[] videolook=new String[3];
+		String[] videolook=new String[2];
 		
 		for(Element video : videos) {
 			Element vlink = video.getElementsByTag("a").first();
@@ -146,7 +146,7 @@ public class CommonController {
 	        	videolook[i]=videointo[1];
 	        	i+=1;
 	        }
-	        if(i==3) {
+	        if(i==2) {
 	        	break;
 	        }
 		}
@@ -158,7 +158,6 @@ public class CommonController {
 	   request.setAttribute("genreI", genre);
 	   request.setAttribute("videoL1", videolook[0]);
 	   request.setAttribute("videoL2", videolook[1]);
-	   request.setAttribute("videoL3", videolook[2]);
 	   
 	   
       return "movieInfo";

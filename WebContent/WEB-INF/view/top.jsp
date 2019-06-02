@@ -274,10 +274,11 @@ img.movieimg:hover {
 	-moz-transform: scale(1.1); /* FireFox */
 	-o-transform: scale(1.1); /* Opera */
 	transform: scale(1.1);
-	transition: transform .35s;
-	-o-transition: transform .35s;
-	-moz-transition: transform .35s;
-	-webkit-transition: transform .35s;
+	transition: transform .5s;
+	-o-transition: transform .5s;
+	-moz-transition: transform .5s;
+	-webkit-transition: transform .5s;
+	opacity: 1;
 }
 
 span.moviename {
