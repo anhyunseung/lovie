@@ -578,13 +578,13 @@ div.tabledown{
 							<b>이메일</b>
 						</font>
 					</div>
-					<input type="text" name="email1" maxlength="20" class="email"
+					<input type="text" name="disemail1" maxlength="20" class="email"
 						onkeydown="return doKeyIdPw(event)" placeholder="이메일" autocomplete="off"
 						value="<%=CmmUtil.nvl(rDTO.getEmail1())%>" disabled="disabled"/>
 					<div>
 						<font face='Malgun Gothic' size="4px" style="color: #777777;">
 							<b>@</b>
-						</font><select name="email2" class="email"
+						</font><select name="disemail2" class="email"
 							style="height: 34px; width: 142px" disabled="disabled">
 							<option value="<%=CmmUtil.nvl(rDTO.getEmail2()) %>"><%=CmmUtil.nvl(rDTO.getEmail2())%>
 							</option>
@@ -653,6 +653,10 @@ div.tabledown{
 		</div>
 	</div>
 	</div>
+	<input type="hidden" name="user_no" value="<%=CmmUtil.nvl(rDTO.getUser_no())%>"/>
+	<input type="hidden" name="user_id" value="<%=CmmUtil.nvl(rDTO.getUser_id())%>"/>
+	<input type="hidden" name="email1" value="<%=CmmUtil.nvl(rDTO.getEmail1())%>"/>
+	<input type="hidden" name="email2" value="<%=CmmUtil.nvl(rDTO.getEmail2())%>"/>
 	</form>
 </body>
 </html>

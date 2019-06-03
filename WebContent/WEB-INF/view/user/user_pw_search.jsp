@@ -219,12 +219,12 @@ div.logindiv>div>div{
 							<b>-</b>
 						</font>
 						<input type="text" name="tel_2" maxlength="4" class="tel"
-						onkeydown="return doKeyIdPw(event)" placeholder="앞자리" autocomplete="off"/>
+						onkeydown="return doKeyOnlyNumber(event)" placeholder="앞자리" autocomplete="off"/>
 						<font face='Malgun Gothic' size="4px" style="color: #777777;">
 							<b>-</b>
 						</font>
 						<input type="text" name="tel_3" maxlength="4" class="tel"
-						onkeydown="return doKeyIdPw(event)" placeholder="뒷자리" autocomplete="off"/>
+						onkeydown="return doKeyOnlyNumber(event)" placeholder="뒷자리" autocomplete="off"/>
 					</div>
 				</div>
 				<div align="right">
