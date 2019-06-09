@@ -178,7 +178,7 @@ div.tableborder {
 	padding: 30px 10px 10px 10px;
 }
 .poster{
-	border: 8px solid rgba(102, 51, 0, 0.3);
+	border: 10px ridge rgba(102, 51, 0, 0.4);
 }
 .poster:hover{
 	-webkit-transform: scale(1.1); /*  크롬 */

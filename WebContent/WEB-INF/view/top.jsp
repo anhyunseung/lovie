@@ -265,7 +265,7 @@ img.movieimg {
 	top: 0px;
 	left: 20%;
 	opacity: 0.9;
-	border: 10px solid rgba(102, 51, 0, 0.3);
+	border: 15px ridge rgba(102, 51, 0, 0.4);
 }
 
 img.movieimg:hover {
@@ -370,7 +370,20 @@ div.bbm {
 /* 여기까지 탑2 */
 div.menu3d {
 	width: 100%;
-	height: 600px;
+	height: 1200px;
+	background-image: url('../img/movie_main.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 1600px;
+}
+div.menu3d>div{
+	width: 100%;
+	height: 1100px;
+	padding: 50px 0;
+	background-color: rgba(0,0,0,0.8);
+}
+
+div.align3d>div{
+	display: inline-block;
 }
 
 a.tag2 {
@@ -815,6 +828,50 @@ a.tag2:hover {
 	</div>
 	</div>
 	<!-- 여기까지 메뉴2  -->
-	<div class="menu3d"></div>
+	<div style="height: 5px; box-shadow:0 0 5px #ccc;"></div>
+	<div class="menu3d" align="center">
+	<div>
+	<font face='Malgun Gothic' size="10px" color="#ffffff"> <b>전월 1위 영화</b> </font>
+	<div style="height:100px;"></div>
+	<div class="align3d">
+	<div>
+	<a href="/movieInfo.do?moviecode=136900">
+	<img src="../img/movie_image.gif" style="border: 20px ridge rgba(80,80,80,0.6);"/>
+	</a>
+	</div>
+	<div class="fontmov" style="height:100%; vertical-align:top; padding:100px 0 0 40px;" align="left">
+	<a href="/movieInfo.do?moviecode=136900">
+	<img src="../img/movie_font.png">
+	</a>
+	<div style="height: 50px;"></div>
+	<div style="height: 2px; width:540px; background-color: #dddddd;"></div>
+	<div style="height: 20px;"></div>
+	<font face='Malgun Gothic' size="5px" color="#dddddd">
+	<b>개봉일</b> </font>
+	<div style="height: 5px;"></div>
+	<font face='Malgun Gothic' size="4px" color="#dddddd">
+	2019. 04. 24.</font>
+	<div style="height: 20px;"></div>
+	<font face='Malgun Gothic' size="5px" color="#dddddd">
+	<b>전월 관객수</b> </font>
+	<div style="height: 5px;"></div>
+	<font face='Malgun Gothic' size="4px" color="#dddddd">
+	6,487,783명 </font>
+	<div style="height: 20px;"></div>
+	<font face='Malgun Gothic' size="5px" color="#dddddd">
+	<b>전월 매출액</b> </font>
+	<div style="height: 5px;"></div>
+	<font face='Malgun Gothic' size="4px" color="#dddddd">
+	57,933,540,330\ </font>
+	<div style="height: 20px;"></div>
+	<font face='Malgun Gothic' size="5px" color="#dddddd">
+	<b>전월 매출액 점유율</b> </font>
+	<div style="height: 5px;"></div>
+	<font face='Malgun Gothic' size="4px" color="#dddddd">
+	37.5%</font>
+	</div>
+	</div>
+	</div>
+	</div>
 </body>
 </html>
