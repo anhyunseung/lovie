@@ -405,6 +405,12 @@ a.linetag2:hover {
 						a = d;
 					}
 					int listcount = 0;
+					for(int i=0;i<rList.size();i++){
+						InquiryDTO rDTO = rList.get(i);
+						if (CmmUtil.nvl(rDTO.getUser_id()).equals(SESSION_USER_ID) || SESSION_USER_ID.equals("admin")) {
+						listcount=listcount+1;
+						}
+					}
 					for (int i = 0; i < a; i++) {
 						b--;
 						InquiryDTO rDTO = rList.get(count2 * 20 + i);
@@ -412,7 +418,6 @@ a.linetag2:hover {
 							rDTO = new InquiryDTO();
 						}
 						if (CmmUtil.nvl(rDTO.getUser_id()).equals(SESSION_USER_ID) || SESSION_USER_ID.equals("admin")) {
-							listcount = listcount + 1;
 					%>
 					<div style="padding: 12px 0 0 0;">
 						<div align="center"style="width:80px;height:34px;">
@@ -483,15 +488,7 @@ a.linetag2:hover {
 								<div class="paging" align="center" style="height:30px; margin: 10px 0 0 0">
 							<%
 								int line = 0;
-								if (listcount >= 200 && listcount <= 1999) {
-									c = listcount / 200;
-								} else if (listcount >= 2000 && listcount <= 19999) {
-									c = listcount / 2000;
-								} else if (listcount >= 20000 && listcount <= 199999) {
-									c = listcount/ 20000;
-								} else {
-									c = listcount / 20;
-								}
+								c = listcount / 200;
 								e=listcount/20;
 								if (count2 / 10 == 0) {
 									int q = 1;

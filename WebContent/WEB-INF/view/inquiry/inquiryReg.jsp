@@ -12,7 +12,6 @@ String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID")); 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="http://localhost:8080/inquiry/inquiryReg.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>문의 : Lovie</title>
-<script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 function doOnload(){
    var user_id = "<%=SESSION_USER_ID%>";

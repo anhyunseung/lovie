@@ -13,9 +13,9 @@ public class NoticeDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
-	private String filename;
 	private List<Comment_noticeDTO> clist;
 	private String com_count;
+	private String search;
 
 	public String getnotice_seq() {
 		return notice_seq;
@@ -105,11 +105,12 @@ public class NoticeDTO {
 		this.com_count = com_count;
 	}
 	
-	public String getFilename() {
-		return filename;
+	public String getSearch() {
+		return search;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setSearch(String search) {
+		this.search = search;
 	}
+	
 }

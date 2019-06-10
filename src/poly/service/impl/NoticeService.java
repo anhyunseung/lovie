@@ -20,6 +20,12 @@ public class NoticeService implements INoticeService {
 		return noticeMapper.getNoticeList();
 
 	}
+	
+	@Override
+	public List<NoticeDTO> getNoticeSearch(NoticeDTO pDTO) throws Exception {
+		return noticeMapper.getNoticeSearch(pDTO);
+
+	}
 
 	@Override
 	public void InsertNoticeInfo(NoticeDTO pDTO) throws Exception {

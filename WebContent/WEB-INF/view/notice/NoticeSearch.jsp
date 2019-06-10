@@ -1,47 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@page import="poly.util.CmmUtil"%>
-<%@ page import="poly.dto.BBMDTO" %>
+<%@ page import="poly.dto.NoticeDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashMap"%>
 <%
-request.setCharacterEncoding("UTF-8");
-session.setAttribute("url", "/bbm/bbmList.do");
-String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
-String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
-System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
-System.out.println("ss_user_id : " + SESSION_USER_ID);
+	request.setCharacterEncoding("UTF-8");
+	session.setAttribute("url", "/notice/NoticeList.do");
+	String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
+	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
+	System.out.println("ss_user_id : " + SESSION_USER_ID);
+	String find = CmmUtil.nvl((String)request.getAttribute("find"));
+	
+	List<NoticeDTO> rList = (List<NoticeDTO>) request.getAttribute("rList");
+	int count2 = (int) request.getAttribute("count");
 
+	if (rList == null) {
+		rList = new ArrayList<NoticeDTO>();
 
-List<BBMDTO> rList = (List<BBMDTO>)request.getAttribute("rList");
-int count2 = (int)request.getAttribute("count");
-System.out.print(count2);
-
-if (rList==null){
-   rList = new ArrayList<BBMDTO>();
-   
-}
-
-
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="http://localhost:8080/bbm/bbmList.do/../../img/common/icon.ico" type="image/x-icon" />
-<title>자유게시판 : Lovie</title>
+<link rel="shortcut icon"
+	href="http://localhost:8080/notice/NoticeList.do/../../img/common/icon.ico"
+	type="image/x-icon" />
+<title>공지사항 : Lovie</title>
 <script type="text/javascript">
 	function doDetail(seq) {
-		location.href = "/bbm/bbmInfo.do?bbm_seq=" + seq;
-	}
-	function Search(a) {
-		if(f.find.value==""){
-			alert("검색 항목을 입력하시기 바랍니다.");
-		      f.find.focus();
-		      return false;
-		}
-		location.href = "/bbm/bbmSearch.do?find=" + f.find.value;
+		location.href = "/notice/NoticeInfo.do?notice_seq=" + seq;
 	}
 </script>
 <style>
@@ -49,6 +40,7 @@ html, body {
 	margin: 0;
 	height: 100%;
 	min-height: 1500px;
+	word-break: break-all;
 }
 
 a.line:hover {
@@ -155,6 +147,7 @@ div.loginmenu {
 	background-color: rgba(255, 255, 255);
 	box-shadow: 2px 0 3px 0 rgba(100, 100, 100, 0.6);
 }
+
 a.user {
 	color: gray;
 }
@@ -188,40 +181,36 @@ div.writemenu {
 	width: 700px;
 	box-shadow: 1px 1px 2px 0 rgba(100, 100, 100, 0.6);
 }
+
 div.writemenu>div>div{
 	display:inline-block;
 }
 
-div.paging>div {
+div.paging > div{
 	display: inline-block;
 }
-
-div.linebox {
-	width: 25px;
+div.linebox{
+	width:25px;
 	height: 25px;
 	background-color: #dddddd;
 	vertical-align: bottom;
 }
-
-div.linebox2 {
-	width: 25px;
+div.linebox2{
+	width:25px;
 	height: 25px;
 	background-color: #white;
 	vertical-align: bottom;
 }
-
-div.linebox3 {
-	width: 25px;
+div.linebox3{
+	width:25px;
 	height: 25px;
 	background-color: #111111;
 	vertical-align: bottom;
 }
-
 a.linetag:hover {
 	text-decoration: underline;
 	color: white;
 }
-
 a.linetag2:hover {
 	text-decoration: underline;
 	color: #555555;
@@ -229,9 +218,7 @@ a.linetag2:hover {
 /* 여기까지 오른쪽 정렬  */
 </style>
 </head>
-<body 
-	style="min-width: 1250px; background-color: #f3f3f3;">
-	<form name="f" action="/bbm/bbmSearch.do" style="height: 100%">
+<body  style="min-width: 1250px; background-color: #f3f3f3;">
 	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
 		<li><a href="/top.do"> <img class="logo"
@@ -241,7 +228,7 @@ a.linetag2:hover {
 		<li><a id="nologo" href="/newmovie/newmovieList.do">최신영화</a></li>
 		<li><a id="nologo" href="/upmovie/upmovieList.do">추천영화</a></li>
 		<li><a id="nologo" href="/bbm/bbmList.do">자유게시판</a></li>
-		<li><a id="nologo" href="/inquiry/inquiryList.do">문의</a></li>
+		<li><a id="nologo"   href="/inquiry/inquiryList.do">문의</a></li>
 	</ul>
 	<div class="login">
 		<%
@@ -266,7 +253,7 @@ a.linetag2:hover {
 			<div class="leftmenu2">
 				<div class="loginmenu">
 					<div align="center" style="position: relative; top:25px;">
-						<%if(SESSION_USER_ID.equals("")){ %>
+					<%if(SESSION_USER_ID.equals("")){ %>
 						<a
 								href="/user/user_login.do"> <img
 									src="../img/total/leftlogin.png"
@@ -357,9 +344,7 @@ a.linetag2:hover {
 					<font face='Malgun Gothic' size="6px"
 						style="color: rgb(85,85,85,0.7); margin: 0 10px 0 0;"> <b>게시판</b></font> <a
 						href="/notice/NoticeList.do"> <img
-						src="../img/total/listnotice.jpg"
-						onmouseover="this.src='../img/total/listnotice2.jpg'"
-						onmouseout="this.src='../img/total/listnotice.jpg'">
+						src="../img/total/listnotice2.jpg">
 					</a> <a href="/newmovie/newmovieList.do"> <img
 						src="../img/total/listnewmo.jpg"
 						onmouseover="this.src='../img/total/listnewmo2.jpg'"
@@ -368,7 +353,9 @@ a.linetag2:hover {
 						src="../img/total/listupmo.jpg"
 						onmouseover="this.src='../img/total/listupmo2.jpg'"
 						onmouseout="this.src='../img/total/listupmo.jpg'">
-					</a> <a href="/bbm/bbmList.do"> <img src="../img/total/listbbm2.jpg">
+					</a> <a href="/bbm/bbmList.do"> <img src="../img/total/listbbm.jpg"
+						onmouseover="this.src='../img/total/listbbm2.jpg'"
+						onmouseout="this.src='../img/total/listbbm.jpg'">
 					</a> <a href="/inquiry/inquiryList.do"> <img
 						src="../img/total/listinq.jpg"
 						onmouseover="this.src='../img/total/listinq2.jpg'"
@@ -380,7 +367,7 @@ a.linetag2:hover {
 		<div class="rightmenu" align="left">
 			<div class="writemenu">
 				<div><font face='Malgun Gothic' size="6px"
-						style="color: #555555;"> <b>자유게시판</b>
+						style="color: #555555;"> <b>공지사항</b>
 					</font></div>
 					<div style=" height: 25px;"></div>
 					<div>
@@ -417,29 +404,26 @@ a.linetag2:hover {
 						}
 						for (int i = 0; i < a; i++) {
 							b--;
-							BBMDTO rDTO = rList.get(count2 * 20 + i);
+							NoticeDTO rDTO = rList.get(count2 * 20 + i);
 							if (rDTO == null) {
-								rDTO = new BBMDTO();
+								rDTO = new NoticeDTO();
 							}
 					%>
 					<div style="padding: 12px 0 0 0;">
 						<div align="center"style="width:80px;height:34px;">
 							<%
-								out.print(CmmUtil.nvl(rDTO.getbbm_seq()));
+								out.print(CmmUtil.nvl(rDTO.getnotice_seq()));
 							%> <input type="hidden" name="seq"
-							value="<%=CmmUtil.nvl(rDTO.getbbm_seq())%>">
-							</div>
-							<div style="width:323px;height:30px;">&nbsp; <a
-							href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getbbm_seq())%>');"
+							value="<%=CmmUtil.nvl(rDTO.getnotice_seq())%>">
+						</div>
+						<div style="width:323px;height:30px;">&nbsp; <a
+							href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getnotice_seq())%>');"
 							class="line"> <span style="color: black; font-weight: bold">
-									<%
-										if (CmmUtil.nvl(rDTO.getTitle()).length() > 20) {
-									%> <%=CmmUtil.nvl(rDTO.getTitle()).substring(0, 20) + "..."%>
-									<%
-										} else {
-									%> <%=CmmUtil.nvl(rDTO.getTitle())%> <%
- 	}
- %>
+							<%if(CmmUtil.nvl(rDTO.getTitle()).length()>20){ %>
+								<%=CmmUtil.nvl(rDTO.getTitle()).substring(0,20)+"..."%>
+							<%}else{ %>
+								<%=CmmUtil.nvl(rDTO.getTitle())%>
+							<%} %>
 							</span>
 						</a> <%
  	if (CmmUtil.nvl(rDTO.getCom_count()).equals("0")) {
@@ -458,8 +442,7 @@ a.linetag2:hover {
 								<%=CmmUtil.nvl(rDTO.getUser_id()).substring(0,7)+"..."%>
 							<%}else{ %>
 								<%=CmmUtil.nvl(rDTO.getUser_id())%>
-							<%} %>
-						</div>
+							<%} %></div>
 						<div align="center" style="width:160px;height:30px;">
 							<%
 								String date = CmmUtil.nvl(rDTO.getReg_dt());
@@ -473,23 +456,20 @@ a.linetag2:hover {
 					%>
 					<div style="height: 20px;"></div>
 					<%} %>
+					
 					<div style="background-color: #dddddd; height: 2px;"></div>
-					<div align="right" style="padding: 10px 0 0 0;">
-					<input type="text" name="find" style="width:100px"/>
-					<button  type="button" onclick="Search(this);" style="background-color: rgba(0,0,0,0); 
-					border: 0; outline:0; width:64px; height: 29px; margin: 0 6px 0 0;">
-					<img style="cursor: pointer;" src="../img/button/search.png"
-							onmouseover="this.src='../img/button/search2.png'"
-							onmouseout="this.src='../img/button/search.png'" />
-				</button>
-					<a href="bbmReg.do"> <img
+					<%
+						if (SESSION_USER_ID.equals("admin")) {
+					%>
+					<div align="right" style="padding: 10px 0 0 0;"><a href="NoticeReg.do"> <img
 								src="../img/button/write.png"
 								onmouseover="this.src='../img/button/write2.png'"
 								onmouseout="this.src='../img/button/write.png'" />
 						</a>
 					</div>
+					<%} %>
 								<div class="paging" align="center" style="height:30px; margin: 10px 0 0 0">
-							<%
+									<%
 								int line = 0;
 								c = rList.size() / 200;
 								if (count2 / 10 == 0) {
@@ -500,125 +480,130 @@ a.linetag2:hover {
 										q = (rList.size() - 1) / 20 + 1;
 									}
 									count2 = count2 + 1;
-									for (line = 1; line <= q; line++) {
+									for (line = 1; line <=q; line++) {
 							%> <%
- 	if (count2 == line) {
- %>
-							<div class="linebox" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag"> <span
-									style="color: white;"> <b> <%=line%>
-									</b>
-								</span>
-								</a>
-							</div>
-							<%
-								} else {
-							%>
-							<div class="linebox2" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag2"> <span
-									style="color: #555555;"> <b> <%=line%>
-									</b>
-								</span>
-								</a>
-							</div>
-							<%
-								}
-							%> <%
+ 	if (count2 == line) {%> 
+ 					<div class="linebox" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
+ 						<span style="color: white;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	} else {
+ %>	<div class="linebox2" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+ 						<span style="color: #555555;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ %> <%
  	}
  		if (rList.size() > 200) {
  %><div class="linebox3" align="center">
-								<a href="bbmList.do?count=<%=11%>" class="linetag3"> <span
-									style="color: #555555;"> <b> > </b>
-								</span>
-								</a>
-							</div>
-							<%
-								}
-								} else if (count2 / 10 == c) {
-									int color = count2 + 1;
-							%>
-							<div class="linebox3" align="center">
-								<a href="bbmList.do?count=<%=count2 / 10 * 10 - 9%>"
-									class="linetag3"> <span style="color: #999999;"> <b>
-											< </b>
-								</span>
-								</a>
-							</div>
-							<%
-								for (line = count2 / 10 * 10 + 1; line <= e + 1; line++) {
-							%> <%
+ 						<a href="NoticeList.do?count=<%=11%>" class="linetag3">
+ 						<span style="color: #555555;">
+							<b>
+										>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ 	} else if (count2 / 10 == c) {
+ 		int color = count2 + 1;
+ %> <div class="linebox3" align="center">
+ 						<a href="NoticeList.do?count=<%=count2/10*10-9%>" class="linetag3">
+ 						<span style="color: #999999;">
+							<b>
+										<
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	for (line = count2 / 10 * 10 + 1; line <= e + 1; line++) {
+ %> <%
  	if (color == line) {
- %>
-							<div class="linebox" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag"> <span
-									style="color: white;"> <b> <%=line%>
-									</b>
-								</span>
-								</a>
-							</div>
-							<%
-								} else {
-							%><div class="linebox2" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag2"> <span
-									style="color: #555555;"> <b> <%=line%>
-									</b>
-								</span>
-								</a>
-							</div>
-							<%
-								}
-							%> <%
+ %> <div class="linebox" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
+ 						<span style="color: white;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	} else {
+ %><div class="linebox2" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+ 						<span style="color: #555555;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ %> <%
  	}
  %> <%
  	} else {
  		int color = count2 + 1;
- %>
-							<div class="linebox3" align="center">
-								<a href="bbmList.do?count=<%=count2 / 10 * 10 - 9%>"
-									class="linetag3"> <span style="color: #999999;"> <b>
-											< </b>
-								</span>
-								</a>
-							</div>
-							<%
-								for (line = count2 / 10 * 10 + 1; line <= count2 / 10 * 10 + 10; line++) {
-							%> <%
+ %> <div class="linebox3" align="center">
+ 						<a href="NoticeList.do?count=<%=count2/10*10-9%>" class="linetag3">
+ 						<span style="color: #999999;">
+							<b>
+										<
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	for (line = count2 / 10 * 10 + 1; line <= count2 / 10 * 10 + 10; line++) {
+ %> <%
  	if (color == line) {
  %><div class="linebox" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag"> <span
-									style="color: white;"> <b> <%=line%>
-									</b>
-								</span>
-								</a>
-							</div>
-							<%
-								} else {
-							%><div class="linebox2" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag2"> <span
-									style="color: #555555;"> <b> <%=line%>
-									</b>
-								</span>
-								</a>
-							</div>
-							<%
-								}
-							%> <%
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag">
+ 						<span style="color: white;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	} else {
+ %><div class="linebox2" align="center">
+ 						<a href="NoticeList.do?count=<%=line%>" class="linetag2">
+ 						<span style="color: #555555;">
+							<b>
+										<%=line%>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ %> <%
  	}
  %>
-							<div class="linebox3" align="center">
-								<a href="bbmList.do?count=<%=count2 / 10 * 10 + 11%>"
-									class="linetag3"> <span style="color: #999999;"> <b>
-											> </b>
-								</span>
-								</a>
-							</div>
-							<%
-								}
-							%>
+	<div class="linebox3" align="center">
+ 						<a href="NoticeList.do?count=<%=count2 / 10 * 10 + 11%>" class="linetag3">
+ 						<span style="color: #999999;">
+							<b>
+										>
+							</b>
+						</span>
+						</a>
+					</div><%
+ 	}
+ %>
 						</div>
 					</div>
 			</div>
 		</div>
-		</form>
 </body>
 </html>

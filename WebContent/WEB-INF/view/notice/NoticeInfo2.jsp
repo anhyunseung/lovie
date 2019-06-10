@@ -921,15 +921,7 @@ a.linetag2:hover {
 								<div class="paging" align="center" style="height:30px; margin: 10px 0 0 0">
 									<%
 										int line = 0;
-										if (clist.size() >= 100 && clist.size() <= 999) {
-											c = clist.size() / 100;
-										} else if (clist.size() >= 1000 && clist.size() <= 9999) {
-											c = clist.size() / 1000;
-										} else if (clist.size() >= 10000 && clist.size() <= 99999) {
-											c = clist.size() / 10000;
-										} else {
-											c = clist.size() / 10;
-										}
+										c = clist.size() / 100;
 										if (count2 / 10 == 0) {
 											int q = 1;
 											if (clist.size() > 100) {

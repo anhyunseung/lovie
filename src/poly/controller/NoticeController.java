@@ -63,12 +63,18 @@ public class NoticeController {
 
 		return "/notice/NoticeList";
 	}
-	@RequestMapping(value = "top4", method = RequestMethod.GET)
-	public String Top4(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+	
+	@RequestMapping(value = "notice/NoticeSearch", method = RequestMethod.GET)
+	public String Notice_Search(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 			throws Exception {
 
-		log.info(this.getClass().getName() + ".NoticeList start!");
-		List<NoticeDTO> rList = NoticeService.getNoticeList();
+		log.info(this.getClass().getName() + ".NoticeSearch start!");
+		String find=request.getParameter("find");
+		find = "%"+find+"%";
+		NoticeDTO rDTO = new NoticeDTO();
+		
+		rDTO.setSearch(find);
+		List<NoticeDTO> rList = NoticeService.getNoticeSearch(rDTO);
 		
 		String count=request.getParameter("count");
 		
@@ -98,7 +104,7 @@ public class NoticeController {
 
 		log.info(this.getClass().getName() + ".NoticeList end!");
 
-		return "top4";
+		return "/notice/NoticeSearch";
 	}
 	
 	@SuppressWarnings("unused")
@@ -348,22 +354,11 @@ public class NoticeController {
 			throws Exception {
 		
 		System.out.println("NoInsert");
-		String filename1="";
-		/*
-		 * System.out.println("multi1"); MultipartRequest multi = new
-		 * MultipartRequest(request,Constants.UPLOAD_PATH,
-		 * Constants.MAX_UPLOAD,"utf-8",new DefaultFileRenamePolicy());
-		 * System.out.println("multi");
-		 */
-		//https://www.youtube.com/watch?v=JOE0BubzJ8k&list=PLY9pe3iUjRrSq3OdFIUg_QsdGiiBiOhqy&index=17
+		
 		String title= request.getParameter("title");
 		String contents= request.getParameter("contents");
 		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
-		
-		if(filename1==null || filename1.equals("")) {
-			filename1="-";
-		}
 		
 		System.out.println(title);
 		System.out.println(contents);
@@ -376,7 +371,6 @@ public class NoticeController {
 		rDTO.setReg_user_no(SESSION_USER_NO);
 		rDTO.setUser_id(SESSION_USER_ID);
 		rDTO.setContents(contents);
-		rDTO.setFilename(filename1);
 		
 		
 		NoticeService.InsertNoticeInfo(rDTO);

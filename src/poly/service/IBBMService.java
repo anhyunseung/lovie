@@ -7,7 +7,9 @@ import poly.dto.Comment_bbmDTO;
 
 public interface IBBMService {
 
-   List<BBMDTO> getbbmList() throws Exception;
+	List<BBMDTO> getbbmList() throws Exception;
+	
+	List<BBMDTO> getbbmSearch(BBMDTO pDTO) throws Exception;
 
    void InsertbbmInfo(BBMDTO pDTO) throws Exception;
 

@@ -62,6 +62,48 @@ public class BBMController {
 
 		return "bbm/bbmList";
 	}
+	
+	@RequestMapping(value = "bbm/bbmSearch", method = RequestMethod.GET)
+	public String BBM_Search(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+
+		log.info(this.getClass().getName() + ".bbmSearch start!");
+		String find=request.getParameter("find");
+		String find2 = "%"+find+"%";
+		BBMDTO rDTO = new BBMDTO();
+		
+		rDTO.setSearch(find2);
+		List<BBMDTO> rList = bbmService.getbbmSearch(rDTO);
+		System.out.println(rList);
+		
+		String count=request.getParameter("count");
+		
+		if(count==null) {
+			count="0";
+		}
+		
+		
+		System.out.println(Integer.parseInt(count));
+		
+		int count2 = Integer.parseInt(count);
+		
+		if(count2!=0) {
+			count2=count2-1;
+		}
+		
+		System.out.println(count2);
+		
+
+		if (rList == null) {
+			rList = new ArrayList<BBMDTO>();
+
+		}
+		request.setAttribute("count", count2);
+		model.addAttribute("rList", rList);
+		request.setAttribute("find", find);
+		rList = null;
+
+		return "bbm/bbmSearch";
+	}
 
 	@RequestMapping(value = "bbm/bbmInfo", method = RequestMethod.GET)
 	public String bbmInfo(HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model)

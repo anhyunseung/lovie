@@ -12,7 +12,7 @@ String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 System.out.println("ss_user_id : " + SESSION_USER_ID);
-
+String find=CmmUtil.nvl((String) request.getAttribute("find"));
 
 List<BBMDTO> rList = (List<BBMDTO>)request.getAttribute("rList");
 int count2 = (int)request.getAttribute("count");
@@ -34,14 +34,6 @@ if (rList==null){
 <script type="text/javascript">
 	function doDetail(seq) {
 		location.href = "/bbm/bbmInfo.do?bbm_seq=" + seq;
-	}
-	function Search(a) {
-		if(f.find.value==""){
-			alert("검색 항목을 입력하시기 바랍니다.");
-		      f.find.focus();
-		      return false;
-		}
-		location.href = "/bbm/bbmSearch.do?find=" + f.find.value;
 	}
 </script>
 <style>
@@ -231,7 +223,6 @@ a.linetag2:hover {
 </head>
 <body 
 	style="min-width: 1250px; background-color: #f3f3f3;">
-	<form name="f" action="/bbm/bbmSearch.do" style="height: 100%">
 	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
 		<li><a href="/top.do"> <img class="logo"
@@ -478,9 +469,9 @@ a.linetag2:hover {
 					<input type="text" name="find" style="width:100px"/>
 					<button  type="button" onclick="Search(this);" style="background-color: rgba(0,0,0,0); 
 					border: 0; outline:0; width:64px; height: 29px; margin: 0 6px 0 0;">
-					<img style="cursor: pointer;" src="../img/button/search.png"
-							onmouseover="this.src='../img/button/search2.png'"
-							onmouseout="this.src='../img/button/search.png'" />
+					<img style="cursor: pointer;" src="../img/button/sign.png"
+							onmouseover="this.src='../img/button/sign2.png'"
+							onmouseout="this.src='../img/button/sign.png'" />
 				</button>
 					<a href="bbmReg.do"> <img
 								src="../img/button/write.png"
@@ -505,7 +496,7 @@ a.linetag2:hover {
  	if (count2 == line) {
  %>
 							<div class="linebox" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag"> <span
+								<a href="bbmSearch.do?count=<%=line%>&find=<%=find %>" class="linetag"> <span
 									style="color: white;"> <b> <%=line%>
 									</b>
 								</span>
@@ -515,7 +506,7 @@ a.linetag2:hover {
 								} else {
 							%>
 							<div class="linebox2" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag2"> <span
+								<a href="bbmSearch.do?count=<%=line%>&find=<%=find %>" class="linetag2"> <span
 									style="color: #555555;"> <b> <%=line%>
 									</b>
 								</span>
@@ -527,7 +518,7 @@ a.linetag2:hover {
  	}
  		if (rList.size() > 200) {
  %><div class="linebox3" align="center">
-								<a href="bbmList.do?count=<%=11%>" class="linetag3"> <span
+								<a href="bbmSearch.do?count=<%=11%>&find=<%=find %>" class="linetag3"> <span
 									style="color: #555555;"> <b> > </b>
 								</span>
 								</a>
@@ -538,7 +529,7 @@ a.linetag2:hover {
 									int color = count2 + 1;
 							%>
 							<div class="linebox3" align="center">
-								<a href="bbmList.do?count=<%=count2 / 10 * 10 - 9%>"
+								<a href="bbmSearch.do?count=<%=count2 / 10 * 10 - 9%>&find=<%=find %>"
 									class="linetag3"> <span style="color: #999999;"> <b>
 											< </b>
 								</span>
@@ -550,7 +541,7 @@ a.linetag2:hover {
  	if (color == line) {
  %>
 							<div class="linebox" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag"> <span
+								<a href="bbmSearch.do?count=<%=line%>&find=<%=find %>" class="linetag"> <span
 									style="color: white;"> <b> <%=line%>
 									</b>
 								</span>
@@ -559,7 +550,7 @@ a.linetag2:hover {
 							<%
 								} else {
 							%><div class="linebox2" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag2"> <span
+								<a href="bbmSearch.do?count=<%=line%>&find=<%=find %>" class="linetag2"> <span
 									style="color: #555555;"> <b> <%=line%>
 									</b>
 								</span>
@@ -574,7 +565,7 @@ a.linetag2:hover {
  		int color = count2 + 1;
  %>
 							<div class="linebox3" align="center">
-								<a href="bbmList.do?count=<%=count2 / 10 * 10 - 9%>"
+								<a href="bbmSearch.do?count=<%=count2 / 10 * 10 - 9%>&find=<%=find %>"
 									class="linetag3"> <span style="color: #999999;"> <b>
 											< </b>
 								</span>
@@ -585,7 +576,7 @@ a.linetag2:hover {
 							%> <%
  	if (color == line) {
  %><div class="linebox" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag"> <span
+								<a href="bbmSearch.do?count=<%=line%>&find=<%=find %>" class="linetag"> <span
 									style="color: white;"> <b> <%=line%>
 									</b>
 								</span>
@@ -594,7 +585,7 @@ a.linetag2:hover {
 							<%
 								} else {
 							%><div class="linebox2" align="center">
-								<a href="bbmList.do?count=<%=line%>" class="linetag2"> <span
+								<a href="bbmSearch.do?count=<%=line%>&find=<%=find %>" class="linetag2"> <span
 									style="color: #555555;"> <b> <%=line%>
 									</b>
 								</span>
@@ -606,7 +597,7 @@ a.linetag2:hover {
  	}
  %>
 							<div class="linebox3" align="center">
-								<a href="bbmList.do?count=<%=count2 / 10 * 10 + 11%>"
+								<a href="bbmSearch.do?count=<%=count2 / 10 * 10 + 11%>&find=<%=find %>"
 									class="linetag3"> <span style="color: #999999;"> <b>
 											> </b>
 								</span>
@@ -619,6 +610,5 @@ a.linetag2:hover {
 					</div>
 			</div>
 		</div>
-		</form>
 </body>
 </html>

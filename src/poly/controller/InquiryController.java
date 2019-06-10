@@ -145,6 +145,7 @@ private Logger log = Logger.getLogger(this.getClass());
 		return "/inquiry/inquiryInfo2";
 	}
 	
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "inquiry/commentreg", method = RequestMethod.POST)
 	public String commentreg(HttpServletRequest request, HttpSession session, HttpServletResponse response,
 			ModelMap model) throws Exception {

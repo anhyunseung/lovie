@@ -10,6 +10,8 @@ import poly.dto.Comment_bbmDTO;
 public interface BBMMapper {
 
 	List<BBMDTO> getbbmList() throws Exception;
+	
+	List<BBMDTO> getbbmSearch(BBMDTO pDTO) throws Exception;
 
 	void InsertbbmInfo(BBMDTO pDTO) throws Exception;
 

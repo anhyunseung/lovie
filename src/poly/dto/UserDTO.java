@@ -5,7 +5,6 @@ public class UserDTO {
    private String user_no; // 
    private String user_id; // 
    private String user_name; // 
-   private String pwd2;
    private String email1; // 
    private String email2; // 
    private String tel_1; // 
@@ -44,12 +43,6 @@ public class UserDTO {
    }
    public void setPassword(String password) {
 	   this.password = password;
-   }
-   public String getPassword2() {
-	   return pwd2;
-   }
-   public void setPassword2(String pwd2) {
-	   this.pwd2 = pwd2;
    }
    public String getEmail1() {
 	   return email1;

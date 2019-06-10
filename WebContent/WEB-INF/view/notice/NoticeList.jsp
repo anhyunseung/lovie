@@ -12,7 +12,7 @@
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
-
+	
 	List<NoticeDTO> rList = (List<NoticeDTO>) request.getAttribute("rList");
 	int count2 = (int) request.getAttribute("count");
 
@@ -470,15 +470,7 @@ a.linetag2:hover {
 								<div class="paging" align="center" style="height:30px; margin: 10px 0 0 0">
 									<%
 								int line = 0;
-								if (rList.size() >= 200 && rList.size() <= 1999) {
-									c = rList.size() / 200;
-								} else if (rList.size() >= 2000 && rList.size() <= 19999) {
-									c = rList.size() / 2000;
-								} else if (rList.size() >= 20000 && rList.size() <= 199999) {
-									c = rList.size() / 20000;
-								} else {
-									c = rList.size() / 20;
-								}
+								c = rList.size() / 200;
 								if (count2 / 10 == 0) {
 									int q = 1;
 									if (rList.size() > 200) {

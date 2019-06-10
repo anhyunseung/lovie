@@ -28,8 +28,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js"
-	charset="utf-8"></script>
 <link rel="shortcut icon"
 	href="http://localhost:8080/bbm/bbmEditInfo.do/../../img/common/icon.ico"
 	type="image/x-icon" />

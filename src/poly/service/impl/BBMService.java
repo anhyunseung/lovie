@@ -21,6 +21,12 @@ public class BBMService implements IBBMService {
 		return bbmMapper.getbbmList();
 
 	}
+	
+	@Override
+	public List<BBMDTO> getbbmSearch(BBMDTO pDTO) throws Exception {
+		return bbmMapper.getbbmSearch(pDTO);
+
+	}
 
 	@Override
 	public void InsertbbmInfo(BBMDTO pDTO) throws Exception {

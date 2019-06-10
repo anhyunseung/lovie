@@ -8,14 +8,13 @@ public class BBMDTO {
 	private String title;
 	private String contents;
 	private String user_id;
-	private String file_name;
-	private String file_path;
 	private String reg_user_no;
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
 	private List<Comment_bbmDTO> clist;
 	private String com_count;
+	private String search;
 
 	private String user_name;
 
@@ -50,23 +49,7 @@ public class BBMDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-
-	public String getfile_name() {
-		return file_name;
-	}
-
-	public void setUfile_name(String file_name) {
-		this.file_name = file_name;
-	}
-
-	public String getfile_path() {
-		return file_path;
-	}
-
-	public void setfile_path(String file_path) {
-		this.file_path = file_path;
-	}
-
+	
 	public String getReg_user_no() {
 		return reg_user_no;
 	}
@@ -121,5 +104,13 @@ public class BBMDTO {
 
 	public void setCom_count(String com_count) {
 		this.com_count = com_count;
+	}
+	
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 }
