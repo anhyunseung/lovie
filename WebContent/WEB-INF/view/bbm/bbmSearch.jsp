@@ -469,9 +469,9 @@ a.linetag2:hover {
 					<input type="text" name="find" style="width:100px"/>
 					<button  type="button" onclick="Search(this);" style="background-color: rgba(0,0,0,0); 
 					border: 0; outline:0; width:64px; height: 29px; margin: 0 6px 0 0;">
-					<img style="cursor: pointer;" src="../img/button/sign.png"
-							onmouseover="this.src='../img/button/sign2.png'"
-							onmouseout="this.src='../img/button/sign.png'" />
+					<img style="cursor: pointer;" src="../img/button/search.png"
+							onmouseover="this.src='../img/button/search2.png'"
+							onmouseout="this.src='../img/button/search.png'" />
 				</button>
 					<a href="bbmReg.do"> <img
 								src="../img/button/write.png"
