@@ -658,7 +658,7 @@ a.linetag2:hover {
 									face='Malgun Gothic' size="2px" style="color: #6b7177;">
 										| </font>
 								</span> <span style="padding: 10px 7px;"> <a class="tag"
-									href="/user/userInfo.do""> <font face='Malgun Gothic'
+									href="/user/userInfo.do"> <font face='Malgun Gothic'
 										size="2px"> 내 정보 </font>
 								</a>
 								</span> <span style="padding: 10px 0px;"> <font
@@ -674,14 +674,14 @@ a.linetag2:hover {
 						} else {
 					%>
 					<font face='Malgun Gothic' size="10px"> <a
-								href="/user/userInfo.do"" class="user"> <%=SESSION_USER_ID%>
+								href="/user/userInfo.do" class="user"> <%=SESSION_USER_ID%>
 							</a>
 						</font>
 						<div style="width:260px;height: 1px; background-color: #888888;
 						position: relative; top:25px;"></div>
 							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
-									href="/user/userInfo.do""> <font face='Malgun Gothic'
+									href="/user/userInfo.do"> <font face='Malgun Gothic'
 										size="2px"> 내 정보</font>
 								</a>
 								</span> <span style="padding: 10px 0px;"> <font
@@ -758,8 +758,13 @@ a.linetag2:hover {
 					<font size="4px"> <b><%=CmmUtil.nvl(rDTO.getTitle())%></b>
 					</font> <br />
 					<div class="tableleft">
-						<font size="3px" color="#777777"> <%=CmmUtil.nvl(rDTO.getUser_id())%>
-						</font>
+						<%if(CmmUtil.nvl(rDTO.getUser_id()).equals("admin")){%>
+						<font color="#27c1f3" size="3px">운영자</font>
+						<%}else{ %>
+						<font size="3px" color="#777777"> 
+						<%=CmmUtil.nvl(rDTO.getUser_id())%>
+						</font>						
+						<%} %>
 					</div>
 					<div class="tableright" align="right">
 						<font size="2px" color="#777777"> <b>공지사항</b> | <%
@@ -831,7 +836,11 @@ a.linetag2:hover {
 							<div style="margin: 7px 7px;">
 										<div class="comaliggn" style="vertical-align: middle;">
 											<div style="width: 65%; height: 27px">
-												<b><%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>&nbsp;&nbsp;</b>
+												<b><%if(CmmUtil.nvl(a.getUser_id()).equals("admin")){%>
+												<span style="color: #27c1f3;">운영자</span>
+												<%}else{ %>
+												<%=CmmUtil.nvl(a.getUser_id()).replaceAll("\r\n", "<br/>")%>
+												<%} %>&nbsp;&nbsp;</b>
 												<font size="2px" color="#777777"> <%
  	String comdate = CmmUtil.nvl(a.getReg_dt());
  %> <%=comdate.substring(0, 4)%>.<%=comdate.substring(5, 7)%>.<%=comdate.substring(8, 10)%>.

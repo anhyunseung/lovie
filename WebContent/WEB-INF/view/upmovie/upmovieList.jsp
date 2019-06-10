@@ -460,7 +460,7 @@ a.moviename:hover {
 								face='Malgun Gothic' size="2px" style="color: #6b7177;">
 									| </font>
 							</span> <span style="padding: 10px 7px;"> <a class="tag"
-								href="/user/userInfo.do""> <font face='Malgun Gothic'
+								href="/user/userInfo.do"> <font face='Malgun Gothic'
 									size="2px"> 내 정보 </font>
 							</a>
 							</span> <span style="padding: 10px 0px;"> <font
@@ -483,7 +483,7 @@ a.moviename:hover {
 							style="width: 260px; height: 1px; background-color: #888888; position: relative; top: 25px;"></div>
 						<div style="position: relative; top: 35px;">
 							<span style="padding: 10px 7px;"> <a class="tag"
-								href="/user/userInfo.do""> <font face='Malgun Gothic'
+								href="/user/userInfo.do"> <font face='Malgun Gothic'
 									size="2px"> 내 정보</font>
 							</a>
 							</span> <span style="padding: 10px 0px;"> <font

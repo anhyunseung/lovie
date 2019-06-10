@@ -1,14 +1,9 @@
 package poly.controller;
 
-import java.io.*;
-import java.util.*;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
-import java.sql.*;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,16 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.apache.commons.io.output.*;
-
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.oreilly.servlet.MultipartRequest;
 
 import poly.dto.Comment_noticeDTO;
 import poly.dto.NoticeDTO;
 import poly.service.INoticeService;
 import poly.util.CmmUtil;
-import poly.util.Constants;
 
 @Controller
 public class NoticeController {

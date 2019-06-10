@@ -5,7 +5,6 @@ import java.util.List;
 import config.Mapper;
 import poly.dto.InquiryDTO;
 import poly.dto.Comment_inqDTO;
-import poly.dto.InquiryDTO;
 
 @Mapper("InquiryMapper")
 public interface InquiryMapper {

@@ -5,7 +5,6 @@ import java.util.List;
 import config.Mapper;
 import poly.dto.BBMDTO;
 import poly.dto.Comment_bbmDTO;
-import poly.dto.UserDTO;
 
 @Mapper("BBMMapper")
 public interface BBMMapper {

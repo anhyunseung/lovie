@@ -7,10 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import poly.dto.InquiryDTO;
-import poly.dto.BBMDTO;
-import poly.dto.Comment_bbmDTO;
 import poly.dto.Comment_inqDTO;
-import poly.dto.InquiryDTO;
 import poly.persistance.mapper.InquiryMapper;
 import poly.service.IInquiryService;
 

@@ -14,8 +14,6 @@ public class InquiryDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
-	private String filename;
-	private String ext;
 	private List<Comment_inqDTO> clist;
 	private String com_count;
 	

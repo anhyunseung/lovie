@@ -2,7 +2,6 @@ package poly.service;
 
 import java.util.List;
 
-import poly.dto.Comment_bbmDTO;
 import poly.dto.Comment_inqDTO;
 import poly.dto.InquiryDTO;
 

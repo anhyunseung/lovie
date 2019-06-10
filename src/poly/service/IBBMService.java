@@ -4,7 +4,6 @@ import java.util.List;
 
 import poly.dto.BBMDTO;
 import poly.dto.Comment_bbmDTO;
-import poly.dto.UserDTO;
 
 public interface IBBMService {
 
