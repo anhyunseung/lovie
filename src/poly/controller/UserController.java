@@ -162,16 +162,17 @@ public class UserController {
 		String tel_3 = (String) request.getParameter("tel_3");
 		String birthday = (String) request.getParameter("birthday");
 		
-		if(user_id==""||user_id==null) {
+		System.out.println(user_id);
+		
+		if(user_id.isEmpty()) {
 			String msg="잘못된 접근입니다.";
-			String url="/top.do";
+			String url="/user/user_join.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
 			return "/MsgToList";
 		}
 		
 		System.out.println(user_name);
-		System.out.println(user_id);
 		System.out.println(user_pw);
 		System.out.println(email1);
 		System.out.println(email2);
@@ -377,10 +378,10 @@ public class UserController {
 			request.setAttribute("url", url);
 			return "/MsgToList";
 		}
-		
-		if(user_id==""||user_id==null) {
+		System.out.println(user_id);
+		if(user_id.isEmpty()) {
 			String msg="잘못된 접근입니다.";
-			String url="/top.do";
+			String url="/user/user_pw_search.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
 			return "/MsgToList";
@@ -525,22 +526,24 @@ public class UserController {
 		String tel_3 = (String) request.getParameter("tel_3");
 		String birthday = (String) request.getParameter("birthday");
 		
-		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")) {
-			String msg="한글 또는 공백이 있습니다.";
-			String url="/user/user_pw_search.do";
-			request.setAttribute("msg", msg);
-			request.setAttribute("url", url);
-			return "/MsgToList";
-		}
 		System.out.println(user_id);
 		System.out.println(ss_user_id);
-		if(user_id==ss_user_id) {
+		
+		if(user_id.equals(ss_user_id)) {
 		}else {
 			request.setAttribute("msg", "잘못된 접근입니다.");
 			request.setAttribute("url", "/top.do");
 			return "/MsgToList";
 		}
-
+		
+		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")) {
+			String msg="한글 또는 공백이 있습니다.";
+			String url="/user/user_Info.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
+		
 		System.out.println(user_no);
 		System.out.println(user_name);
 		System.out.println(user_id);
@@ -722,7 +725,8 @@ public class UserController {
 		
 		System.out.println("중복 확인 :"+user_id);
 		
-		if(ss_user_id!="admin") {
+		if(ss_user_id.equals("admin")) {
+		}else {
 			request.setAttribute("msg", "잘못된 접근입니다.");
 			request.setAttribute("url", "/top.do");
 			return "/MsgToList";
@@ -784,7 +788,8 @@ public class UserController {
 		uDTO.setEmail1(email1);
 		uDTO.setEmail2(email2);
 		
-		if(ss_user_id!="admin") {
+		if(ss_user_id.equals("admin")) {
+		}else {
 			request.setAttribute("msg", "잘못된 접근입니다.");
 			request.setAttribute("url", "/top.do");
 			return "/MsgToList";

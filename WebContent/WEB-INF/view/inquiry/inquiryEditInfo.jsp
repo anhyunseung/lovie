@@ -463,7 +463,7 @@ a.linetag2:hover {
 					</font>
 				</div>
 				<div style="position:relative; padding: 0 0 0 50px; bottom: 2px;">
-				
+				<input type="hidden" name="user_id" value="<%=CmmUtil.nvl(rDTO.getUser_id())%>">
             <input type="text" autocomplete="off" name="title" maxlength="40"
                style="width: 500px; height: 24px;"value="<%=CmmUtil.nvl(rDTO.getTitle())%>" />
                </div>

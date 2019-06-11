@@ -888,6 +888,7 @@ a.linetag2:hover {
 										<div class="editalign">
 										<div>
 										<%String q= CmmUtil.nvl(a.getcom_seq()); %>
+										<input type="hidden" name="user_id" value="<%=CmmUtil.nvl(a.getUser_id())%>"/>
 										<input type="hidden" name="com_seq" value="<%=q%>">
 										<textarea name="comment2" style="width: 496px; resize:none;"><%=comment.replaceAll("<br/>", "\r\n")%></textarea>
 										</div>

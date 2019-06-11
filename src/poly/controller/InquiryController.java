@@ -163,7 +163,6 @@ private Logger log = Logger.getLogger(this.getClass());
 		contents = contents.replaceAll("& gt;", ">");
 		contents = contents.replaceAll("& #40;", "(");
 		contents = contents.replaceAll("& #41;", ")");
-		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
 
 		Comment_inqDTO cDTO = new Comment_inqDTO();
 
@@ -243,11 +242,20 @@ private Logger log = Logger.getLogger(this.getClass());
 			ModelMap model) throws Exception {
 
 		log.info("inquiry/commentupdate");
-
+		
+		String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String user_id = request.getParameter("user_id");
 		String user_no = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("inq_seq");
 		String com_seq = request.getParameter("com_seq");
 		String contents = request.getParameter("comment2");
+		
+		if(user_id.equals(ss_user_id)) {
+		}else {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/inquiry/inquiryList.do");
+			return "/MsgToList";
+		}
 		
 		contents = contents.replaceAll("\r\n", "<br/>");
 		contents = contents.replaceAll("& #39;", "'");
@@ -337,7 +345,13 @@ private Logger log = Logger.getLogger(this.getClass());
 		String contents= request.getParameter("contents");
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
-		String seq = request.getParameter("inq_seq");
+		
+		if(SESSION_USER_ID.isEmpty()||SESSION_USER_ID.equals("admin")||SESSION_USER_ID=="admin") {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/inquiry/inquiryList.do");
+			
+			return "/MsgToList";
+		}
 		
 		title = title.replaceAll("\r\n", "<br/>");
 		title = title.replaceAll("& #39;", "'");
@@ -359,7 +373,6 @@ private Logger log = Logger.getLogger(this.getClass());
 		System.out.println(contents);
 		System.out.println(SESSION_USER_NO);
 		System.out.println(SESSION_USER_ID);
-		System.out.println(seq);
 		
 		InquiryDTO rDTO = new InquiryDTO();
 		
@@ -406,11 +419,20 @@ private Logger log = Logger.getLogger(this.getClass());
 		
 		System.out.println("inqUp");
 		
+		String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String user_id = request.getParameter("user_id");
 		String title= request.getParameter("title");
-		
 		String contents= request.getParameter("contents");
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("inq_seq");
+		
+		if(user_id.equals(ss_user_id)) {
+		}else {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/inquiry/inquiryList.do");
+			
+			return "/MsgToList";
+		}
 		
 		title = title.replaceAll("\r\n", "<br/>");
 		title = title.replaceAll("& #39;", "'");

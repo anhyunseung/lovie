@@ -218,10 +218,20 @@ public class NoticeController {
 
 		log.info("notice/commentupdate");
 		
+		String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String user_id = request.getParameter("user_id");
 		String user_no=CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq=request.getParameter("notice_seq");
 		String com_seq=request.getParameter("com_seq");
 		String contents=request.getParameter("comment2");
+		
+		if(user_id.equals(ss_user_id)) {
+		}else {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
+			session.setAttribute("notice_seq",seq);
+			return "/MsgToList";
+		}
 		
 		contents = contents.replaceAll("\r\n", "<br/>");
 		contents = contents.replaceAll("& #39;", "'");
@@ -386,6 +396,14 @@ public class NoticeController {
 		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		
+		if(SESSION_USER_ID.equals("admin")||SESSION_USER_ID=="admin") {
+		}else {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/notice/NoticeList.do");
+			
+			return "/MsgToList";
+		}
+		
 		title = title.replaceAll("\r\n", "<br/>");
 		title = title.replaceAll("& #39;", "'");
 		title = title.replaceAll("& lt;", "<");
@@ -453,11 +471,22 @@ public class NoticeController {
 		
 		System.out.println("NoUp");
 		
+		String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String user_id = request.getParameter("user_id");
 		String title= request.getParameter("title");
 		
 		String contents= request.getParameter("contents");
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("notice_seq");
+		
+		if(user_id.equals(ss_user_id)) {
+		}else {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
+			session.setAttribute("notice_seq", seq);
+			
+			return "/MsgToList";
+		}
 		
 		title = title.replaceAll("\r\n", "<br/>");
 		title = title.replaceAll("& #39;", "'");

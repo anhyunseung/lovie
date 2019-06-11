@@ -277,10 +277,20 @@ public class BBMController {
 
 		log.info("bbm/commentupdate");
 
+		String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String user_id = request.getParameter("user_id");
 		String user_no = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("bbm_seq");
 		String com_seq = request.getParameter("com_seq");
 		String contents = request.getParameter("comment2");
+		
+		if(user_id.equals(ss_user_id)) {
+		}else {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
+			session.setAttribute("bbm_seq", seq);
+			return "/MsgToList";
+		}
 
 		Comment_bbmDTO cDTO = new Comment_bbmDTO();
 
@@ -359,6 +369,13 @@ public class BBMController {
 		String contents = request.getParameter("contents");
 		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
+		
+		if(SESSION_USER_ID.isEmpty()) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/bbm/bbmList.do");
+			
+			return "/MsgToList";
+		}
 
 		System.out.println(title);
 		System.out.println(contents);
@@ -410,12 +427,22 @@ public class BBMController {
 
 		System.out.println("bbmUp");
 
+		String ss_user_id = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
+		String user_id = request.getParameter("user_id");
 		String title = request.getParameter("title");
 
 		String contents = request.getParameter("contents");
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("bbm_seq");
 
+		if(user_id.equals(ss_user_id)) {
+		}else {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
+			session.setAttribute("bbm_seq", seq);
+			
+			return "/MsgToList";
+		}
 
 		System.out.println(title);
 		System.out.println(contents);
