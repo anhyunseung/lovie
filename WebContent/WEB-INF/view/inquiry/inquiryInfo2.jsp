@@ -779,13 +779,13 @@ a.linetag2:hover {
 				</div>
 				<div class="tablemiddle">
 					<%
-						String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
-						String contenttest2 = contenttest1.replaceAll("& lt;", "<");
-						String contenttest3 = contenttest2.replaceAll("& gt;", ">");
-						String contenttest4 = contenttest3.replaceAll("& #40;", "(");
-						String contenttest5 = contenttest4.replaceAll("& #41;", ")");
-						String content = contenttest5;
-						System.out.println(content);
+					String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
+					String contenttest2 = contenttest1.replaceAll("& lt;", "<");
+					String contenttest3 = contenttest2.replaceAll("& gt;", ">");
+					String contenttest4 = contenttest3.replaceAll("& #40;", "(");
+					String contenttest5 = contenttest4.replaceAll("& #41;", ")");
+					String content = contenttest5;
+					System.out.println(content);
 					%>
 					<%=content%>
 				</div>
@@ -884,7 +884,7 @@ a.linetag2:hover {
 										<%
 										String commenttest1 = CmmUtil.nvl(a.getContents()).replaceAll("\r\n", "<br/>");
 										String commenttest2 = commenttest1.replaceAll("& lt;", "<");
-										String commenttest3 = commenttest1.replaceAll("& gt;", ">");
+										String commenttest3 = commenttest2.replaceAll("& gt;", ">");
 										String commenttest4 = commenttest3.replaceAll("& #40;", "(");
 										String commenttest5 = commenttest4.replaceAll("& #41;", ")");
 										String comment = commenttest5;
@@ -894,7 +894,7 @@ a.linetag2:hover {
 										<div>
 										<%String q= CmmUtil.nvl(a.getcom_seq()); %>
 										<input type="hidden" name="com_seq" value="<%=q%>">
-										<textarea name="comment2" style="width: 496px; resize:none;"><%=comment%></textarea>
+										<textarea name="comment2" style="width: 496px; resize:none;"><%=comment.replaceAll("<br/>", "\r\n")%></textarea>
 										</div>
 										<div class="button-container-2">
 											<span class="mas2"><b>완료</b></span>

@@ -162,6 +162,14 @@ public class UserController {
 		String tel_3 = (String) request.getParameter("tel_3");
 		String birthday = (String) request.getParameter("birthday");
 		
+		if(user_id==""||user_id==null) {
+			String msg="잘못된 접근입니다.";
+			String url="/top.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
+		
 		System.out.println(user_name);
 		System.out.println(user_id);
 		System.out.println(user_pw);
@@ -370,6 +378,14 @@ public class UserController {
 			return "/MsgToList";
 		}
 		
+		if(user_id==""||user_id==null) {
+			String msg="잘못된 접근입니다.";
+			String url="/top.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
+		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUser_id(user_id);
 		uDTO.setPassword(password);
@@ -497,6 +513,7 @@ public class UserController {
 
 		log.info("/user/userUpdate");
 		
+		String ss_user_id = (String) session.getAttribute("USER_ID");
 		String user_no = (String) request.getParameter("user_no");
 		String user_name = (String) request.getParameter("user_name");
 		String user_id = (String) request.getParameter("user_id");
@@ -513,6 +530,14 @@ public class UserController {
 			String url="/user/user_pw_search.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
+		System.out.println(user_id);
+		System.out.println(ss_user_id);
+		if(user_id==ss_user_id) {
+		}else {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
 			return "/MsgToList";
 		}
 
@@ -688,6 +713,7 @@ public class UserController {
 
 		log.info("/user/manage_id_check");
 
+		String ss_user_id = (String) session.getAttribute("USER_ID");
 		String user_id = (String) request.getParameter("user_id");
 		String user_id2 = CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
 		session.setAttribute("USER_ID_CHE",user_id2);
@@ -695,6 +721,12 @@ public class UserController {
 		uDTO.setUser_id(user_id);
 		
 		System.out.println("중복 확인 :"+user_id);
+		
+		if(ss_user_id!="admin") {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
+			return "/MsgToList";
+		}
 		
 		String id_over = userService.getidover(uDTO);
 		if(id_over==null) {
@@ -743,6 +775,7 @@ public class UserController {
 
 		log.info("/user/manage_email_check");
 
+		String ss_user_id=(String) session.getAttribute("USER_ID");
 		String email1 = (String) request.getParameter("email1");
 		String email2 = (String) request.getParameter("email2");
 		String user_id = CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
@@ -750,6 +783,12 @@ public class UserController {
 		UserDTO uDTO = new UserDTO();
 		uDTO.setEmail1(email1);
 		uDTO.setEmail2(email2);
+		
+		if(ss_user_id!="admin") {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
+			return "/MsgToList";
+		}
 		
 		System.out.println("중복 확인 :"+email1+" "+email2);
 		

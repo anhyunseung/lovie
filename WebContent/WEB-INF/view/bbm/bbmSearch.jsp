@@ -35,6 +35,14 @@ if (rList==null){
 	function doDetail(seq) {
 		location.href = "/bbm/bbmInfo.do?bbm_seq=" + seq;
 	}
+	function Search(a) {
+		if(f.find.value==""){
+			alert("검색 항목을 입력하시기 바랍니다.");
+		      f.find.focus();
+		      return false;
+		}
+		location.href = "/bbm/bbmSearch.do?find=" + f.find.value;
+	}
 </script>
 <style>
 html, body {
@@ -183,7 +191,13 @@ div.writemenu {
 div.writemenu>div>div{
 	display:inline-block;
 }
-
+input{
+	outline-color: #888888;
+}
+input:-webkit-autofill {
+	border: 1px solid #888;
+	-webkit-box-shadow: inset 0 0 0px 9999px white;
+}
 div.paging>div {
 	display: inline-block;
 }
@@ -223,6 +237,7 @@ a.linetag2:hover {
 </head>
 <body 
 	style="min-width: 1250px; background-color: #f3f3f3;">
+	<form name="f" style="height: 100%">
 	<font face='Malgun Gothic' style='line-height: 1.4' />
 	<ul class="navbar">
 		<li><a href="/top.do"> <img class="logo"
@@ -466,18 +481,23 @@ a.linetag2:hover {
 					<%} %>
 					<div style="background-color: #dddddd; height: 2px;"></div>
 					<div align="right" style="padding: 10px 0 0 0;">
-					<input type="text" name="find" style="width:100px"/>
+					<div style="display: inline-block; width:68%;" align="left">
+					<input type="text" name="find" style="width:200px;height:25px; vertical-align: top; "
+					placeholder="제목 또는 내용에서 검색"/>
 					<button  type="button" onclick="Search(this);" style="background-color: rgba(0,0,0,0); 
 					border: 0; outline:0; width:64px; height: 29px; margin: 0 6px 0 0;">
 					<img style="cursor: pointer;" src="../img/button/search.png"
 							onmouseover="this.src='../img/button/search2.png'"
 							onmouseout="this.src='../img/button/search.png'" />
 				</button>
+				</div>
+				<div style="display: inline-block; width:30%;">
 					<a href="bbmReg.do"> <img
 								src="../img/button/write.png"
 								onmouseover="this.src='../img/button/write2.png'"
 								onmouseout="this.src='../img/button/write.png'" />
 						</a>
+				</div>
 					</div>
 								<div class="paging" align="center" style="height:30px; margin: 10px 0 0 0">
 							<%
@@ -610,5 +630,6 @@ a.linetag2:hover {
 					</div>
 			</div>
 		</div>
+		</form>
 </body>
 </html>

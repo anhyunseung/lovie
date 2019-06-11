@@ -68,12 +68,14 @@ public class BBMController {
 
 		log.info(this.getClass().getName() + ".bbmSearch start!");
 		String find=request.getParameter("find");
+		
+		System.out.println(find);
+		
 		String find2 = "%"+find+"%";
 		BBMDTO rDTO = new BBMDTO();
 		
 		rDTO.setSearch(find2);
 		List<BBMDTO> rList = bbmService.getbbmSearch(rDTO);
-		System.out.println(rList);
 		
 		String count=request.getParameter("count");
 		
@@ -413,6 +415,7 @@ public class BBMController {
 		String contents = request.getParameter("contents");
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("bbm_seq");
+
 
 		System.out.println(title);
 		System.out.println(contents);

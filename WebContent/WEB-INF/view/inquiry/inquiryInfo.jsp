@@ -641,13 +641,13 @@ a.linetag2:hover {
 				</div>
 				<div class="tablemiddle">
 					<%
-						String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
-						String contenttest2 = contenttest1.replaceAll("& lt;", "<");
-						String contenttest3 = contenttest2.replaceAll("& gt;", ">");
-						String contenttest4 = contenttest3.replaceAll("& #40;", "(");
-						String contenttest5 = contenttest4.replaceAll("& #41;", ")");
-						String content = contenttest5;
-						System.out.println(content);
+					String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
+					String contenttest2 = contenttest1.replaceAll("& lt;", "<");
+					String contenttest3 = contenttest2.replaceAll("& gt;", ">");
+					String contenttest4 = contenttest3.replaceAll("& #40;", "(");
+					String contenttest5 = contenttest4.replaceAll("& #41;", ")");
+					String content = contenttest5;
+					System.out.println(content);
 					%>
 					<%=content%>
 				</div>
@@ -738,7 +738,7 @@ a.linetag2:hover {
 										<%
 										String commenttest1 = CmmUtil.nvl(a.getContents()).replaceAll("\r\n", "<br/>");
 										String commenttest2 = commenttest1.replaceAll("& lt;", "<");
-										String commenttest3 = commenttest1.replaceAll("& gt;", ">");
+										String commenttest3 = commenttest2.replaceAll("& gt;", ">");
 										String commenttest4 = commenttest3.replaceAll("& #40;", "(");
 										String commenttest5 = commenttest4.replaceAll("& #41;", ")");
 										String comment = commenttest5;

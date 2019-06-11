@@ -412,9 +412,7 @@ a.linetag2:hover {
 				<font face='Malgun Gothic' size="6px"
 					style="color: rgb(85, 85, 85, 0.7); margin: 0 10px 0 0;"> <b>게시판</b></font>
 				<a href="/notice/NoticeList.do"> <img
-					src="../img/total/listnotice.jpg"
-					onmouseover="this.src='../img/total/listnotice2.jpg'"
-					onmouseout="this.src='../img/total/listnotice.jpg'">
+					src="../img/total/listnotice2.jpg">
 				</a> <a href="/newmovie/newmovieList.do"> <img
 					src="../img/total/listnewmo.jpg"
 					onmouseover="this.src='../img/total/listnewmo2.jpg'"
@@ -465,7 +463,7 @@ a.linetag2:hover {
             <textarea name="contents"
                   style="width:673px; height:600px; resize: none;">
 <%
-				String contenttest1 = CmmUtil.nvl(rDTO.getContents());
+				String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("<br/>", "\r\n");
 				String contenttest2 = contenttest1.replaceAll("& lt;", "<");
 				String contenttest3 = contenttest2.replaceAll("& gt;", ">");
 				String contenttest4 = contenttest3.replaceAll("& #40;", "(");

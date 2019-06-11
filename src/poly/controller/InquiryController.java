@@ -156,6 +156,14 @@ private Logger log = Logger.getLogger(this.getClass());
 		String user_no = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("inq_seq");
 		String contents = request.getParameter("comment");
+		
+		contents = contents.replaceAll("\r\n", "<br/>");
+		contents = contents.replaceAll("& #39;", "'");
+		contents = contents.replaceAll("& lt;", "<");
+		contents = contents.replaceAll("& gt;", ">");
+		contents = contents.replaceAll("& #40;", "(");
+		contents = contents.replaceAll("& #41;", ")");
+		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
 
 		Comment_inqDTO cDTO = new Comment_inqDTO();
 
@@ -240,6 +248,14 @@ private Logger log = Logger.getLogger(this.getClass());
 		String seq = request.getParameter("inq_seq");
 		String com_seq = request.getParameter("com_seq");
 		String contents = request.getParameter("comment2");
+		
+		contents = contents.replaceAll("\r\n", "<br/>");
+		contents = contents.replaceAll("& #39;", "'");
+		contents = contents.replaceAll("& lt;", "<");
+		contents = contents.replaceAll("& gt;", ">");
+		contents = contents.replaceAll("& #40;", "(");
+		contents = contents.replaceAll("& #41;", ")");
+		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
 
 		Comment_inqDTO cDTO = new Comment_inqDTO();
 
@@ -323,6 +339,22 @@ private Logger log = Logger.getLogger(this.getClass());
 		String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 		String seq = request.getParameter("inq_seq");
 		
+		title = title.replaceAll("\r\n", "<br/>");
+		title = title.replaceAll("& #39;", "'");
+		title = title.replaceAll("& lt;", "<");
+		title = title.replaceAll("& gt;", ">");
+		title = title.replaceAll("& #40;", "(");
+		title = title.replaceAll("& #41;", ")");
+		title = title.replaceAll("&nbsp", "&amp;nbsp");
+		
+		contents = contents.replaceAll("\r\n", "<br/>");
+		contents = contents.replaceAll("& #39;", "'");
+		contents = contents.replaceAll("& lt;", "<");
+		contents = contents.replaceAll("& gt;", ">");
+		contents = contents.replaceAll("& #40;", "(");
+		contents = contents.replaceAll("& #41;", ")");
+		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
+		
 		System.out.println(title);
 		System.out.println(contents);
 		System.out.println(SESSION_USER_NO);
@@ -379,6 +411,22 @@ private Logger log = Logger.getLogger(this.getClass());
 		String contents= request.getParameter("contents");
 		String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("inq_seq");
+		
+		title = title.replaceAll("\r\n", "<br/>");
+		title = title.replaceAll("& #39;", "'");
+		title = title.replaceAll("& lt;", "<");
+		title = title.replaceAll("& gt;", ">");
+		title = title.replaceAll("& #40;", "(");
+		title = title.replaceAll("& #41;", ")");
+		title = title.replaceAll("&nbsp", "&amp;nbsp");
+		
+		contents = contents.replaceAll("\r\n", "<br/>");
+		contents = contents.replaceAll("& #39;", "'");
+		contents = contents.replaceAll("& lt;", "<");
+		contents = contents.replaceAll("& gt;", ">");
+		contents = contents.replaceAll("& #40;", "(");
+		contents = contents.replaceAll("& #41;", ")");
+		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
 		
 		System.out.println(title);
 		System.out.println(contents);

@@ -288,49 +288,48 @@ a.linetag2:hover {
 	<form name="f" method="post" action="/bbm/bbmUpdate.do" style="height:100%;">
 		<font face='Malgun Gothic' style='line-height: 1.4' />
 		<ul class="navbar">
-			<li><a href="/top.do"> <img class="logo"
-					src="../img/common/Logo.png" />
-			</a></li>
-			<li><a id="nologo" href="/notice/NoticeList.do">공지사항</a></li>
-			<li><a id="nologo" href="/newmovie/newmovieList.do">최신영화</a></li>
-			<li><a id="nologo" href="/upmovie/upmovieList.do">추천영화</a></li>
-			<li><a id="nologo" href="/bbm/bbmList.do">자유게시판</a></li>
-			<li><a id="nologo" href="/inquiry/inquiryList.do">문의</a></li>
-		</ul>
-		<div class="login">
-			<%
-				if (SESSION_USER_ID.equals("")) {
-			%>
-			<a href="/user/user_login.do"><img src="../img/top/uplogin.png"
-				onmouseover="this.src='../img/top/uplogin2.png'"
-				onmouseout="this.src='../img/top/uplogin.png'"></a>
-			<%
-				} else {
-			%>
-			<a href="/user/user_logout.do"><img src="../img/top/uplogout.png"
-				onmouseover="this.src='../img/top/uplogout2.png'"
-				onmouseout="this.src='../img/top/uplogout.png'"></a>
-			<%
-				}
-			%>
-		</div>
-		<div class="blank"></div>
-		<div style="height: 100%">
-			<div align="right" class="leftmenu">
-				<div class="leftmenu2">
-					<div class="loginmenu">
-						<div align="center" style="position: relative; top: 25px;">
-							<%
-								if (SESSION_USER_ID.equals("")) {
-							%>
-							<a href="/user/user_login.do"> <img
+		<li><a href="/top.do"> <img class="logo"
+				src="../img/common/Logo.png" />
+		</a></li>
+		<li><a id="nologo" href="/notice/NoticeList.do">공지사항</a></li>
+		<li><a id="nologo" href="/newmovie/newmovieList.do">최신영화</a></li>
+		<li><a id="nologo" href="/upmovie/upmovieList.do">추천영화</a></li>
+		<li><a id="nologo" href="/bbm/bbmList.do">자유게시판</a></li>
+		<li><a id="nologo" href="/inquiry/inquiryList.do">문의</a></li>
+	</ul>
+	<div class="login">
+		<%
+			if (SESSION_USER_ID.equals("")) {
+		%>
+		<a href="/user/user_login.do"><img src="../img/top/uplogin.png"
+			onmouseover="this.src='../img/top/uplogin2.png'"
+			onmouseout="this.src='../img/top/uplogin.png'"></a>
+		<%
+			} else {
+		%>
+		<a href="/user/user_logout.do"><img src="../img/top/uplogout.png"
+			onmouseover="this.src='../img/top/uplogout2.png'"
+			onmouseout="this.src='../img/top/uplogout.png'"></a>
+		<%
+			}
+		%>
+	</div>
+	<div class="blank"></div>
+	<div style="height: 100%">
+	<div align="right" class="leftmenu">
+		<div class="leftmenu2">
+			<div class="loginmenu">
+				<div align="center" style="position: relative; top:25px;">
+					<%
+						if (SESSION_USER_ID.equals("")) {
+					%><a href="/user/user_login.do"> <img
 								src="../img/total/leftlogin.png"
 								onmouseover="this.src='../img/total/leftlogin2.png'"
 								onmouseout="this.src='../img/total/leftlogin.png'">
-							</a>
-							<div
-								style="width: 260px; height: 1px; background-color: #888888; position: relative; top: 25px;"></div>
-							<div style="position: relative; top: 35px;">
+						</a>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/user_join.do"> <font face='Malgun Gothic'
 										size="2px"> 회원가입 </font>
@@ -353,16 +352,16 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-							<%
-								} else if (SESSION_USER_ID.equals("admin")) {
-							%>
-							<font face='Malgun Gothic' size="10px"> <a
+					<%
+						} else if (SESSION_USER_ID.equals("admin")) {
+					%>
+					<font face='Malgun Gothic' size="10px"> <a
 								href="/user/manageList.do" class="user"> <%=SESSION_USER_ID%>
 							</a>
-							</font>
-							<div
-								style="width: 260px; height: 1px; background-color: #888888; position: relative; top: 25px;"></div>
-							<div style="position: relative; top: 35px;">
+						</font>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/manageList.do"> <font face='Malgun Gothic'
 										size="2px"> 회원관리 </font>
@@ -383,16 +382,16 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-							<%
-								} else {
-							%>
-							<font face='Malgun Gothic' size="10px"> <a
+					<%
+						} else {
+					%>
+					<font face='Malgun Gothic' size="10px"> <a
 								href="/user/userInfo.do" class="user"> <%=SESSION_USER_ID%>
 							</a>
-							</font>
-							<div
-								style="width: 260px; height: 1px; background-color: #888888; position: relative; top: 25px;"></div>
-							<div style="position: relative; top: 35px;">
+						</font>
+						<div style="width:260px;height: 1px; background-color: #888888;
+						position: relative; top:25px;"></div>
+							<div style="position: relative; top:35px;">
 								<span style="padding: 10px 7px;"> <a class="tag"
 									href="/user/userInfo.do"> <font face='Malgun Gothic'
 										size="2px"> 내 정보</font>
@@ -406,39 +405,35 @@ a.linetag2:hover {
 								</a>
 								</span>
 							</div>
-							<%
-								}
-							%>
-						</div>
-					</div>
-					<div class="listmenu">
-						<font face='Malgun Gothic' size="6px"
-							style="color: rgb(85, 85, 85, 0.7); margin: 0 10px 0 0;">
-							<b>게시판</b>
-						</font> <a href="/notice/NoticeList.do"> <img
-							src="../img/total/listnotice.jpg"
-							onmouseover="this.src='../img/total/listnotice2.jpg'"
-							onmouseout="this.src='../img/total/listnotice.jpg'">
-						</a> <a href="/newmovie/newmovieList.do"> <img
-							src="../img/total/listnewmo.jpg"
-							onmouseover="this.src='../img/total/listnewmo2.jpg'"
-							onmouseout="this.src='../img/total/listnewmo.jpg'">
-						</a> <a href="/upmovie/upmovieList.do"> <img
-							src="../img/total/listupmo.jpg"
-							onmouseover="this.src='../img/total/listupmo2.jpg'"
-							onmouseout="this.src='../img/total/listupmo.jpg'">
-						</a> <a href="/bbm/bbmList.do"> <img
-							src="../img/total/listbbm.jpg"
-							onmouseover="this.src='../img/total/listbbm2.jpg'"
-							onmouseout="this.src='../img/total/listbbm.jpg'">
-						</a> <a href="/inquiry/inquiryList.do"> <img
-							src="../img/total/listinq.jpg"
-							onmouseover="this.src='../img/total/listinq2.jpg'"
-							onmouseout="this.src='../img/total/listinq.jpg'">
-						</a>
-					</div>
+					<%
+						}
+					%>
 				</div>
 			</div>
+			<div class="listmenu">
+				<font face='Malgun Gothic' size="6px"
+					style="color: rgb(85, 85, 85, 0.7); margin: 0 10px 0 0;"> <b>게시판</b></font>
+				<a href="/notice/NoticeList.do"> <img
+					src="../img/total/listnotice.jpg"
+					onmouseover="this.src='../img/total/listnotice2.jpg'"
+					onmouseout="this.src='../img/total/listnotice.jpg'">
+				</a> <a href="/newmovie/newmovieList.do"> <img
+					src="../img/total/listnewmo.jpg"
+					onmouseover="this.src='../img/total/listnewmo2.jpg'"
+					onmouseout="this.src='../img/total/listnewmo.jpg'">
+				</a> <a href="/upmovie/upmovieList.do"> <img
+					src="../img/total/listupmo.jpg"
+					onmouseover="this.src='../img/total/listupmo2.jpg'"
+					onmouseout="this.src='../img/total/listupmo.jpg'">
+				</a> <a href="/bbm/bbmList.do"> <img src="../img/total/listbbm2.jpg">
+				</a> <a href="/inquiry/inquiryList.do"> <img
+					src="../img/total/listinq.jpg"
+					onmouseover="this.src='../img/total/listinq2.jpg'"
+					onmouseout="this.src='../img/total/listinq.jpg'">
+				</a>
+			</div>
+		</div>
+	</div>
 			<input type="hidden" name="bbm_seq"
 				value="<%=CmmUtil.nvl(request.getParameter("bbm_seq"))%>" />
 			<div class="rightmenu" align="left">
@@ -476,13 +471,13 @@ a.linetag2:hover {
 							<textarea name="contents"
                   style="width:673px; height:600px; resize: none;">
 <%
-				String contenttest1 = CmmUtil.nvl(rDTO.getContents());
-				String contenttest2 = contenttest1.replaceAll("& lt;", "<");
-				String contenttest3 = contenttest2.replaceAll("& gt;", ">");
-				String contenttest4 = contenttest3.replaceAll("& #40;", "(");
-				String contenttest5 = contenttest4.replaceAll("& #41;", ")");
-				String content=contenttest5;
-%><%=content%></textarea>
+				String contents = CmmUtil.nvl(rDTO.getContents()).replaceAll("<br/>", "\r\n");
+contents = contents.replaceAll("& #39;", "'");
+contents = contents.replaceAll("& lt;", "<");
+contents = contents.replaceAll("& gt;", ">");
+contents = contents.replaceAll("& #40;", "(");
+contents = contents.replaceAll("& #41;", ")");
+%><%=contents%></textarea>
 						</div>
 						<div class="tabledown" align="right">
 							<button type="button" onclick="submitContents(this);"

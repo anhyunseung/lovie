@@ -407,9 +407,7 @@ a.linetag2:hover {
 					onmouseover="this.src='../img/total/listbbm2.jpg'"
 					onmouseout="this.src='../img/total/listbbm.jpg'">
 				</a> <a href="/inquiry/inquiryList.do"> <img
-					src="../img/total/listinq.jpg"
-					onmouseover="this.src='../img/total/listinq2.jpg'"
-					onmouseout="this.src='../img/total/listinq.jpg'">
+					src="../img/total/listinq2.jpg">
 				</a>
 			</div>
 		</div>
