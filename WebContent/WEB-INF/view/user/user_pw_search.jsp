@@ -55,7 +55,7 @@
 		var keyID = (event.which) ? event.which : event.KeyCode;
 
 		if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
-				|| keyID == 8) {
+				|| keyID == 8 || keyID == 9|| keyID==37 || keyID==39 ) {
 			return true;
 		} else {
 			return false;

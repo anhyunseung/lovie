@@ -138,17 +138,11 @@ function doOnload(){
 		}
 	}
 
-	function doKeyIdPw(event) {
-		event = event || window.event;
-		var keyID = (event.which) ? event.which : event.KeyCode;
-
-		if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
-				|| (keyID >= 65 && keyID <= 90) || keyID == 8 || keyID == 37
-				|| keyID == 39 || keyID == 9) {
-			return true;
-		} else {
-			return false;
-		}
+	function doKeyIdPw(obj) {
+		if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >=96 && event.keyCode <=105) || (event.keyCode  >= 65 && keyID <= 90) || event.keyCode ==8 || event.keyCode ==37 || event.keyCode ==39 || event.keyCode ==9 ) { 
+		  }else {
+		   event.returnValue = false;
+	   }
 	}
 	function dojoin() {
 		location.href = "/user/user_join1.do";
