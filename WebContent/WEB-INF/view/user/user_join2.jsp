@@ -9,6 +9,9 @@
 	System.out.println("ss_user_id : " + SESSION_USER_ID);
 	String id_over = CmmUtil.nvl((String) session.getAttribute("id_over"));
 	String url = CmmUtil.nvl((String) session.getAttribute("url"));
+	if(url.isEmpty()){
+    	url="/top.do";
+    }
 	String email_over=CmmUtil.nvl((String) session.getAttribute("email_over"));
 	String email_over2=CmmUtil.nvl((String) session.getAttribute("email_over2"));
 %>
@@ -383,7 +386,7 @@ div.joinfont {
 						autocomplete="off"  onkeydown="hange(this);"/>
 				</div>
 				<font face='Malgun Gothic' size="3px" style="color: #ff6666;">
-					<b>비밀번호는 영문/숫자로 20자 이하입니다.</b>
+					<b>비밀번호는 20자 이하입니다.</b>
 				</font>
 				<div>
 					<div class="joinfont">

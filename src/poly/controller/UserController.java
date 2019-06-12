@@ -62,15 +62,15 @@ public class UserController {
 		
 		String user_id=(String) request.getParameter("user_id");
 		
-		if(user_id.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_id.contains(" ")) {
-			String msg="한글 또는 공백이 있습니다.";
+		if(user_id.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_id.contains(" ")||user_id.contains("&")) {
+			String msg="한글 또는 공백 또는 사용할 수 없는 특수문자가 있습니다.";
 			String url="/user/user_join.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
 			return "/MsgToList";
 		}
 		
-		if (user_id.length() >= 10) {
+		if (user_id.length() > 10) {
 			request.setAttribute("msg", "아이디가 10자를 초과했습니다.");
 			request.setAttribute("url", "/user/user_join.do");
 			return "/MsgToList";
@@ -108,7 +108,15 @@ public class UserController {
 		String email1=(String) request.getParameter("email1");
 		String email2=(String) request.getParameter("email2");
 		
-		if (email1.length() >= 20) {
+		if(email1.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||email1.contains(" ")||email1.contains("&")) {
+			String msg="한글 또는 공백 또는 사용할 수 없는 특수문자가 있습니다.";
+			String url="/user/user_join1.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
+		
+		if (email1.length() > 20) {
 			request.setAttribute("msg", "이메일이 20자를 초과했습니다.");
 			request.setAttribute("url", "/user/user_join1.do");
 			return "/MsgToList";
@@ -193,8 +201,8 @@ public class UserController {
 		System.out.println(tel_3);
 		System.out.println(birthday);
 		
-		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")) {
-			String msg="한글 또는 공백이 있습니다.";
+		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")||user_pw.contains("&")) {
+			String msg="한글 또는 공백 또는 사용할 수 없는 특수문자가 있습니다.";
 			String url="/user/user_join2.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
@@ -276,9 +284,12 @@ public class UserController {
 			log.info(uDTO.getUser_id());
 			log.info(uDTO.getPassword());
 		} else {
-			
+			String url=CmmUtil.nvl((String) session.getAttribute("url"));
+			if(url.isEmpty()) {
+				url="/top.do";
+			}
 			request.setAttribute("msg", "");
-			request.setAttribute("url",  "/top.do");
+			request.setAttribute("url", url );
 			session.setAttribute("USER_NO", user_no);
 			session.setAttribute("USER_ID", user_id);
 		}
@@ -383,8 +394,8 @@ public class UserController {
 		String user_id = (String) request.getParameter("user_id");
 		String password = (String) request.getParameter("pwd1");
 		
-		if(password.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||password.contains(" ")) {
-			String msg="한글 또는 공백이 있습니다.";
+		if(password.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||password.contains(" ")||password.contains("&")) {
+			String msg="한글 또는 공백 또는 사용할 수 없는 특수문자가 있습니다.";
 			String url="/user/user_pw_search.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
@@ -441,8 +452,12 @@ public class UserController {
 		
 		String a=userService.getUserid(user_no);
 		if(a==null) {
+			String url=CmmUtil.nvl((String) session.getAttribute("url"));
+			if(url.isEmpty()) {
+				url="/top.do";
+			}
 			request.setAttribute("msg", "잘못된 접근입니다.");
-			request.setAttribute("url", "/top.do");
+			request.setAttribute("url", url);
 			return "/MsgToList";
 		}
 
@@ -582,8 +597,8 @@ public class UserController {
 			return "/MsgToList";
 		}
 		
-		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")) {
-			String msg="한글 또는 공백이 있습니다.";
+		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")||user_pw.contains("&")) {
+			String msg="한글 또는 공백 또는 사용할 수 없는 특수문자가 있습니다.";
 			String url="/user/user_Info.do";
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);

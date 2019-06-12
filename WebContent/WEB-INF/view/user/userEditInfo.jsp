@@ -9,6 +9,9 @@ String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 System.out.println("ss_user_id : " + SESSION_USER_ID);
 String url=CmmUtil.nvl((String)session.getAttribute("url"));
+if(url.isEmpty()){
+	url="/top.do";
+}
 
 //공지글 정보를 못불러왔다면, 객체 생성
 if (rDTO==null){
@@ -560,7 +563,7 @@ div.tabledown{
 						autocomplete="off"  onkeydown="hange(this);"/>
 				</div>
 				<font face='Malgun Gothic' size="3px" style="color: #ff6666;">
-					<b>비밀번호는 영문/숫자로 20자 이하입니다.</b>
+					<b>비밀번호는 20자 이하입니다.</b>
 				</font>
 				<div>
 					<div class="joinfont">

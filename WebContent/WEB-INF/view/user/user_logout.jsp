@@ -4,6 +4,9 @@
 <%
    //전달받은 메시지
    String url = CmmUtil.nvl((String) session.getAttribute("url"));
+if(url.isEmpty()){
+	url="/top.do";
+}
    session.setAttribute("url", "");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

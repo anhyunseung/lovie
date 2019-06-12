@@ -3,7 +3,6 @@
 <%@ page import="poly.util.CmmUtil"%>
 <%@ page import="poly.dto.BBMDTO"%>
 <%
-	session.setAttribute("url", "/bbm/bbmEditInfo.do");
 	String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID"));
 	String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 	System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));

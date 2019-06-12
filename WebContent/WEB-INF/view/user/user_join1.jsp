@@ -5,6 +5,9 @@
         String SESSION_USER_ID =CmmUtil.nvl((String) session.getAttribute("USER_ID"));
         System.out.println("ss_user_id : " + SESSION_USER_ID);
         String url=CmmUtil.nvl((String)session.getAttribute("url"));
+        if(url.isEmpty()){
+        	url="/top.do";
+        }
         String id_over = CmmUtil.nvl((String) session.getAttribute("id_over"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

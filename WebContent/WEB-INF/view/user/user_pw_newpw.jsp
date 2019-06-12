@@ -160,7 +160,7 @@ div.logindiv>div>div{
 						autocomplete="off" style="margin: 30px 0 15px 0;"  onkeydown="hange(this);"/>
 				</div>
 				<font face='Malgun Gothic' size="3px" style="color: #ff6666;">
-					<b>비밀번호는 영문/숫자로 20자 이하입니다.</b>
+					<b>비밀번호는 20자 이하입니다.</b>
 				</font>
 				<div align="right" style="padding: 30px 0 0 0">
 				<input type="submit" class="sign" value="확인"/>

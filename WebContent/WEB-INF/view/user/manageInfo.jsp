@@ -8,6 +8,9 @@ String SESSION_USER_NO = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("USER_NO")));
 System.out.println("ss_user_id : " + SESSION_USER_ID);
 String url=CmmUtil.nvl((String)session.getAttribute("url"));
+if(url.isEmpty()){
+	url="/top.do";
+}
 
 UserDTO rDTO = (UserDTO)request.getAttribute("rDTO");
 

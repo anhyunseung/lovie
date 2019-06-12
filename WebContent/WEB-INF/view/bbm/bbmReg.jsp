@@ -3,7 +3,6 @@
 <%@ page import="poly.util.CmmUtil"%>
 <%
 request.setCharacterEncoding("UTF-8");
-session.setAttribute("url", "/bbm/bbmReg.do");
 String SESSION_USER_ID = CmmUtil.nvl((String) session.getAttribute("USER_ID")); //아이디
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
