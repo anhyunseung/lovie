@@ -98,6 +98,13 @@ private Logger log = Logger.getLogger(this.getClass());
 			session.setAttribute("inq_seq", "");
 		}
 		
+		String a=InquiryService.getInqUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/inquiry/inquiryList.do");
+			return "/MsgToList";
+		}
+		
 		session.setAttribute("com_inq_seq", seq);
 
 		System.out.println(seq);
@@ -105,7 +112,7 @@ private Logger log = Logger.getLogger(this.getClass());
 		InquiryDTO rDTO = new InquiryDTO();
 
 		rDTO.setinq_seq(seq);
-
+		
 		rDTO = InquiryService.getinquiryInfo(rDTO);
 
 		model.addAttribute("rDTO", rDTO);
@@ -131,6 +138,13 @@ private Logger log = Logger.getLogger(this.getClass());
 
 		System.out.println(seq);
 		System.out.println(com_seq);
+		
+		String a=InquiryService.getInqUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/inquiry/inquiryList.do");
+			return "/MsgToList";
+		}
 
 		InquiryDTO rDTO = new InquiryDTO();
 
@@ -157,12 +171,18 @@ private Logger log = Logger.getLogger(this.getClass());
 		String seq = request.getParameter("inq_seq");
 		String contents = request.getParameter("comment");
 		
-		contents = contents.replaceAll("\r\n", "<br/>");
-		contents = contents.replaceAll("& #39;", "'");
-		contents = contents.replaceAll("& lt;", "<");
-		contents = contents.replaceAll("& gt;", ">");
-		contents = contents.replaceAll("& #40;", "(");
-		contents = contents.replaceAll("& #41;", ")");
+		if (contents.length() > 3000) {
+			request.setAttribute("msg", "최대 3000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
+			return "/MsgToList";
+		}
+		
+		if (user_no == "") {
+			session.setAttribute("inq_seq", seq);
+			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
+			request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
+			return "/MsgToList";
+		}
 
 		Comment_inqDTO cDTO = new Comment_inqDTO();
 
@@ -176,13 +196,6 @@ private Logger log = Logger.getLogger(this.getClass());
 		System.out.println(seq);
 		System.out.println(contents);
 
-		if (user_no == "") {
-			session.setAttribute("inq_seq", seq);
-			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
-			request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
-			return "/MsgToList";
-		}
-
 		InquiryService.insertComment(cDTO);
 
 		if (cDTO == null) {
@@ -193,6 +206,7 @@ private Logger log = Logger.getLogger(this.getClass());
 			request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
 			session.setAttribute("inq_seq", seq);
 		}
+		cDTO=null;
 		return "/MsgToList";
 	}
 
@@ -257,13 +271,11 @@ private Logger log = Logger.getLogger(this.getClass());
 			return "/MsgToList";
 		}
 		
-		contents = contents.replaceAll("\r\n", "<br/>");
-		contents = contents.replaceAll("& #39;", "'");
-		contents = contents.replaceAll("& lt;", "<");
-		contents = contents.replaceAll("& gt;", ">");
-		contents = contents.replaceAll("& #40;", "(");
-		contents = contents.replaceAll("& #41;", ")");
-		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
+		if (contents.length() > 3000) {
+			request.setAttribute("msg", "최대 3000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/inquiry/inquiryInfo.do?inq_seq="+seq);
+			return "/MsgToList";
+		}
 
 		Comment_inqDTO cDTO = new Comment_inqDTO();
 
@@ -295,7 +307,6 @@ private Logger log = Logger.getLogger(this.getClass());
 			throws Exception {
 		
 		System.out.println("inqDel");
-		
 		
 		String seq= request.getParameter("inq_seq");
 		System.out.println(seq);
@@ -353,21 +364,17 @@ private Logger log = Logger.getLogger(this.getClass());
 			return "/MsgToList";
 		}
 		
-		title = title.replaceAll("\r\n", "<br/>");
-		title = title.replaceAll("& #39;", "'");
-		title = title.replaceAll("& lt;", "<");
-		title = title.replaceAll("& gt;", ">");
-		title = title.replaceAll("& #40;", "(");
-		title = title.replaceAll("& #41;", ")");
-		title = title.replaceAll("&nbsp", "&amp;nbsp");
+		if (title.length() > 45) {
+			request.setAttribute("msg", "제목은 최대 45자까지 입력 가능합니다.");
+			request.setAttribute("url", "/inquiry/inquiryReg.do");
+			return "/MsgToList";
+		}
 		
-		contents = contents.replaceAll("\r\n", "<br/>");
-		contents = contents.replaceAll("& #39;", "'");
-		contents = contents.replaceAll("& lt;", "<");
-		contents = contents.replaceAll("& gt;", ">");
-		contents = contents.replaceAll("& #40;", "(");
-		contents = contents.replaceAll("& #41;", ")");
-		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
+		if (contents.length() > 20000) {
+			request.setAttribute("msg", "게시글은 최대 20000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/inquiry/inquiryReg.do");
+			return "/MsgToList";
+		}
 		
 		System.out.println(title);
 		System.out.println(contents);
@@ -400,6 +407,13 @@ private Logger log = Logger.getLogger(this.getClass());
 		String seq= request.getParameter("inq_seq");
 		
 		System.out.println(seq);
+		
+		String a=InquiryService.getInqUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/inquiry/inquiryList.do");
+			return "/MsgToList";
+		}
 		
 		InquiryDTO rDTO = new InquiryDTO();
 		
@@ -434,21 +448,17 @@ private Logger log = Logger.getLogger(this.getClass());
 			return "/MsgToList";
 		}
 		
-		title = title.replaceAll("\r\n", "<br/>");
-		title = title.replaceAll("& #39;", "'");
-		title = title.replaceAll("& lt;", "<");
-		title = title.replaceAll("& gt;", ">");
-		title = title.replaceAll("& #40;", "(");
-		title = title.replaceAll("& #41;", ")");
-		title = title.replaceAll("&nbsp", "&amp;nbsp");
+		if (title.length() > 45) {
+			request.setAttribute("msg", "제목은 최대 45자까지 입력 가능합니다.");
+			request.setAttribute("url", "/inquiry/inquiryReg.do");
+			return "/MsgToList";
+		}
 		
-		contents = contents.replaceAll("\r\n", "<br/>");
-		contents = contents.replaceAll("& #39;", "'");
-		contents = contents.replaceAll("& lt;", "<");
-		contents = contents.replaceAll("& gt;", ">");
-		contents = contents.replaceAll("& #40;", "(");
-		contents = contents.replaceAll("& #41;", ")");
-		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
+		if (contents.length() > 20000) {
+			request.setAttribute("msg", "게시글은 최대 20000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/inquiry/inquiryReg.do");
+			return "/MsgToList";
+		}
 		
 		System.out.println(title);
 		System.out.println(contents);

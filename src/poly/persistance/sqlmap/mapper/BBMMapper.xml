@@ -94,7 +94,7 @@
 	
 	<delete id="deleteCommentALL" parameterType="String">
 		DELETE FROM COMMENT_BBM
-		WHERE BBM_SEQ = #{seq}
+		WHERE BBM_SEQ = #{bbm_seq}
 	</delete>
 	
 	<select id="getCommentUserid" resultType="String">

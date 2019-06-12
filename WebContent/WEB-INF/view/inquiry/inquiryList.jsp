@@ -428,15 +428,36 @@ a.linetag2:hover {
 								</div>
 						<div style="width:323px;height:30px;">&nbsp; <a
 							href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getinq_seq())%>');"
-							class="line"> <span style="color: black; font-weight: bold">
-									<%
-										if (CmmUtil.nvl(rDTO.getTitle()).length() > 20) {
-									%> <%=CmmUtil.nvl(rDTO.getTitle()).substring(0, 20) + "..."%>
-									<%
-										} else {
-									%> <%=CmmUtil.nvl(rDTO.getTitle())%> <%
- 	}
- %>
+							class="line"> 
+							<%
+				String title=CmmUtil.nvl(rDTO.getTitle()).replaceAll("\r\n", "");
+				title = title.replaceAll("& #39;", "'");
+			      title = title.replaceAll("& lt;", "<");
+			      title = title.replaceAll("& gt;", ">");
+			      title = title.replaceAll("& #40;", "(");
+			      title = title.replaceAll("& #41;", ")");
+				%>
+							 <span style="color: black; font-weight: bold">
+							<%if(title.length()>20){ 
+								String title2 = title.substring(0,20);
+				title2 = title2.replaceAll("'", "&#39;");
+			      title2 = title2.replaceAll("<", "&lt;");
+			      title2 = title2.replaceAll(">", "&gt;");
+			      title2 = title2.replaceAll("(", "&#40;");
+			      title2 = title2.replaceAll(")", "&#41;");
+			      title2 = title2.replaceAll("\\ ","&nbsp;");%>
+								<%=title2+"..."%>
+							<%}else{ 
+								title=CmmUtil.nvl(rDTO.getTitle()).replaceAll("\r\n", "<br/>");
+								title = title.replaceAll("& #39;", "&#39;");
+							      title = title.replaceAll("& lt;", "&lt;");
+							      title = title.replaceAll("& gt;", "&gt;");
+							      title = title.replaceAll("& #40;", "&#40;");
+							      title = title.replaceAll("& #41;", "&#41;");
+							      title = title.replaceAll("\\ ","&nbsp;");
+							%>
+								<%=title%>
+							<%} %>
 							</span>
 						</a><%
  	if (CmmUtil.nvl(rDTO.getCom_count()).equals("0")) {

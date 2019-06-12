@@ -100,4 +100,10 @@ public class NoticeService implements INoticeService {
 		// TODO Auto-generated method stub
 		return noticeMapper.getCommentUserid(uDto);
 	}
+	
+	@Override
+	public String getNoticeUserid(String uDto) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.getNoticeUserid(uDto);
+	}
 }

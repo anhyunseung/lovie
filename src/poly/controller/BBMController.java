@@ -142,6 +142,13 @@ public class BBMController {
 		session.setAttribute("com_bbm_seq", seq);
 
 		System.out.println(seq);
+		
+		String a=bbmService.getBBMUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/bbm/bbmList.do");
+			return "/MsgToList";
+		}
 
 		BBMDTO rDTO = new BBMDTO();
 
@@ -172,6 +179,13 @@ public class BBMController {
 
 		System.out.println(seq);
 		System.out.println(com_seq);
+		
+		String a=bbmService.getBBMUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/bbm/bbmList.do");
+			return "/MsgToList";
+		}
 
 		BBMDTO rDTO = new BBMDTO();
 
@@ -197,6 +211,19 @@ public class BBMController {
 		String user_no = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 		String seq = request.getParameter("bbm_seq");
 		String contents = request.getParameter("comment");
+		
+		if (contents.length() > 3000) {
+			request.setAttribute("msg", "최대 3000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
+			return "/MsgToList";
+		}
+		
+		if (user_no == "") {
+			session.setAttribute("bbm_seq", seq);
+			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
+			return "/MsgToList";
+		}
 
 		Comment_bbmDTO cDTO = new Comment_bbmDTO();
 
@@ -210,13 +237,6 @@ public class BBMController {
 		System.out.println(seq);
 		System.out.println(contents);
 
-		if (user_no == "") {
-			session.setAttribute("bbm_seq", seq);
-			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
-			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
-			return "/MsgToList";
-		}
-
 		bbmService.insertComment(cDTO);
 
 		if (cDTO == null) {
@@ -227,6 +247,9 @@ public class BBMController {
 			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
 			session.setAttribute("bbm_seq", seq);
 		}
+		
+		cDTO=null;
+		
 		return "/MsgToList";
 	}
 
@@ -289,6 +312,12 @@ public class BBMController {
 			request.setAttribute("msg", "잘못된 접근입니다.");
 			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
 			session.setAttribute("bbm_seq", seq);
+			return "/MsgToList";
+		}
+		
+		if (contents.length() > 3000) {
+			request.setAttribute("msg", "최대 3000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
 			return "/MsgToList";
 		}
 
@@ -376,6 +405,18 @@ public class BBMController {
 			
 			return "/MsgToList";
 		}
+		
+		if (title.length() > 45) {
+			request.setAttribute("msg", "제목은 최대 45자까지 입력 가능합니다.");
+			request.setAttribute("url", "/bbm/bbmReg.do");
+			return "/MsgToList";
+		}
+		
+		if (contents.length() > 20000) {
+			request.setAttribute("msg", "게시글은 최대 20000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/bbm/bbmReg.do");
+			return "/MsgToList";
+		}
 
 		System.out.println(title);
 		System.out.println(contents);
@@ -408,6 +449,13 @@ public class BBMController {
 		String seq = request.getParameter("bbm_seq");
 
 		System.out.println(seq);
+		
+		String a=bbmService.getBBMUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/bbm/bbmList.do");
+			return "/MsgToList";
+		}
 
 		BBMDTO rDTO = new BBMDTO();
 
@@ -441,6 +489,18 @@ public class BBMController {
 			request.setAttribute("url", "/bbm/bbmInfo.do?bbm_seq="+seq);
 			session.setAttribute("bbm_seq", seq);
 			
+			return "/MsgToList";
+		}
+		
+		if (title.length() > 45) {
+			request.setAttribute("msg", "제목은 최대 45자까지 입력 가능합니다.");
+			request.setAttribute("url", "/bbm/bbmReg.do");
+			return "/MsgToList";
+		}
+		
+		if (contents.length() > 20000) {
+			request.setAttribute("msg", "게시글은 최대 20000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/bbm/bbmReg.do");
 			return "/MsgToList";
 		}
 

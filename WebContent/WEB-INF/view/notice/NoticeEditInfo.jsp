@@ -455,21 +455,29 @@ a.linetag2:hover {
 				</div>
 				<div style="position:relative; padding: 0 0 0 50px; bottom: 2px;">
 				<input type="hidden" name="user_id" value="<%=CmmUtil.nvl(rDTO.getUser_id())%>">
+				<%
+								String title=CmmUtil.nvl(rDTO.getTitle()).replaceAll("<br/>", "\r\n");;
+								title = title.replaceAll("& #39;", "'");
+							      title = title.replaceAll("& lt;", "<");
+							      title = title.replaceAll("& gt;", ">");
+							      title = title.replaceAll("& #40;", "(");
+							      title = title.replaceAll("& #41;", ")");
+								%>
             <input type="text" autocomplete="off" name="title" maxlength="40"
-               style="width: 500px; height: 24px;"value="<%=CmmUtil.nvl(rDTO.getTitle())%>" />
+               style="width: 500px; height: 24px;"value="<%=title%>" />
                </div>
 				</div>
 				<div class="tablemiddle">
             <textarea name="contents"
                   style="width:673px; height:600px; resize: none;">
 <%
-				String contenttest1 = CmmUtil.nvl(rDTO.getContents()).replaceAll("<br/>", "\r\n");
-				String contenttest2 = contenttest1.replaceAll("& lt;", "<");
-				String contenttest3 = contenttest2.replaceAll("& gt;", ">");
-				String contenttest4 = contenttest3.replaceAll("& #40;", "(");
-				String contenttest5 = contenttest4.replaceAll("& #41;", ")");
-				String content=contenttest5;
-%><%=content%></textarea>
+String contents = CmmUtil.nvl(rDTO.getContents()).replaceAll("<br/>", "\r\n");
+contents = contents.replaceAll("& #39;", "'");
+contents = contents.replaceAll("& lt;", "<");
+contents = contents.replaceAll("& gt;", ">");
+contents = contents.replaceAll("& #40;", "(");
+contents = contents.replaceAll("& #41;", ")");
+%><%=contents%></textarea>
 				</div>
             <div class="tabledown" align="right">
 				<button  type="button" onclick="submitContents(this);" style="background-color: rgba(0,0,0,0); 

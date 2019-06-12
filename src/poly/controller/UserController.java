@@ -70,6 +70,12 @@ public class UserController {
 			return "/MsgToList";
 		}
 		
+		if (user_id.length() >= 10) {
+			request.setAttribute("msg", "아이디가 10자를 초과했습니다.");
+			request.setAttribute("url", "/user/user_join.do");
+			return "/MsgToList";
+		}
+		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUser_id(user_id);
 		
@@ -101,6 +107,12 @@ public class UserController {
 		
 		String email1=(String) request.getParameter("email1");
 		String email2=(String) request.getParameter("email2");
+		
+		if (email1.length() >= 20) {
+			request.setAttribute("msg", "이메일이 20자를 초과했습니다.");
+			request.setAttribute("url", "/user/user_join1.do");
+			return "/MsgToList";
+		}
 		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setEmail1(email1);
@@ -224,7 +236,7 @@ public class UserController {
 			log.info(pDTO.getUser_id());
 			log.info(pDTO.getPassword());
 
-			pDTO.equals(null);
+			pDTO=null;
 
 		}
 		return "/MsgToList";
@@ -264,9 +276,9 @@ public class UserController {
 			log.info(uDTO.getUser_id());
 			log.info(uDTO.getPassword());
 		} else {
-			String url=CmmUtil.nvl((String) session.getAttribute("url"));
+			
 			request.setAttribute("msg", "");
-			request.setAttribute("url",  url);
+			request.setAttribute("url",  "/top.do");
 			session.setAttribute("USER_NO", user_no);
 			session.setAttribute("USER_ID", user_id);
 		}
@@ -407,7 +419,13 @@ public class UserController {
 		session.setAttribute("USER_NO", "");
 		session.setAttribute("USER_ID", "");
 		
-		System.out.println(session.getAttribute("url"));
+		String url=(String) session.getAttribute("url");
+		
+		if(url.isEmpty()) {
+			session.setAttribute("url", "/top.do");
+		}
+		
+		System.out.println(url);
 		
 		return "/user/user_logout";
 	}
@@ -420,6 +438,13 @@ public class UserController {
 		String user_no = CmmUtil.nvl((String) session.getAttribute("USER_NO"));
 
 		System.out.println(user_no);
+		
+		String a=userService.getUserid(user_no);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
+			return "/MsgToList";
+		}
 
 		UserDTO rDTO = new UserDTO();
 
@@ -436,6 +461,13 @@ public class UserController {
 		}else {
 			rDTO = null;
 			String url=CmmUtil.nvl((String)session.getAttribute("url"));
+			
+			if(url.isEmpty()) {
+				session.setAttribute("url", "/top.do");
+				url=CmmUtil.nvl((String)session.getAttribute("url"));
+			}
+			
+			System.out.println(url);
 			request.setAttribute("msg", "잘못된 접근입니다.");
 			request.setAttribute("url",url );
 			
@@ -470,7 +502,14 @@ public class UserController {
 			request.setAttribute("msg", "잘못된 접근입니다.");
 		
 		}
-		request.setAttribute("url", "/top.do");
+		
+		String url = (String)session.getAttribute("url");
+		
+		if(url.isEmpty()) {
+			url="/top.do";
+		}
+		
+		request.setAttribute("url", url);
 		
 		rDTO=null;
 
@@ -485,6 +524,13 @@ public class UserController {
 		String user_no = request.getParameter("user_no");
 
 		System.out.println(user_no);
+		
+		String a=userService.getUserid(user_no);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
+			return "/MsgToList";
+		}
 
 		UserDTO rDTO = new UserDTO();
 
@@ -578,6 +624,7 @@ public class UserController {
 			request.setAttribute("msg", "회원정보를 수정하였습니다.");
 			request.setAttribute("url", "/user/userInfo.do");
 	}
+		pDTO=null;
 		return "/MsgToList";
 	}
 	
@@ -646,6 +693,13 @@ public class UserController {
 			user_no = CmmUtil.nvl((String) session.getAttribute("Manage_user_no"));
 			session.setAttribute("Manage_user_no","");
 		}
+		
+		String a=userService.getUserid(user_no);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
+			return "/MsgToList";
+		}
 
 		System.out.println(user_no);
 
@@ -683,9 +737,13 @@ public class UserController {
 			request.setAttribute("url", "/user/manageList.do");
 			
 		}else {
+			String url = (String)session.getAttribute("url");
 			
+			if(url.isEmpty()) {
+				url="/top.do";
+			}
 			request.setAttribute("msg", "잘못된 접근입니다.");
-			request.setAttribute("url", "/top.do");
+			request.setAttribute("url", url);
 			
 		}
 		
@@ -699,10 +757,10 @@ public class UserController {
 
 		log.info("/user/manage_id_change");
 
-		String user_id = (String) request.getParameter("user_id");
+		String user_id = CmmUtil.nvl((String) request.getParameter("user_id"));
 		String user_id2=CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
 		System.out.println(user_id);
-		if(user_id==null) {
+		if(user_id.isEmpty()) {
 			System.out.println(user_id2);
 		}else {
 		session.setAttribute("USER_ID_CHE",user_id);
@@ -762,10 +820,10 @@ public class UserController {
 
 		log.info("/user/manage_email_change");
 
-		String user_id = (String) request.getParameter("user_id");
+		String user_id = CmmUtil.nvl((String) request.getParameter("user_id"));
 		String user_id2=CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
 		System.out.println(user_id);
-		if(user_id==null) {
+		if(user_id.isEmpty()) {
 			System.out.println(user_id2);
 		}else {
 		session.setAttribute("USER_ID_CHE",user_id);
@@ -784,9 +842,6 @@ public class UserController {
 		String email2 = (String) request.getParameter("email2");
 		String user_id = CmmUtil.nvl((String)session.getAttribute("USER_ID_CHE"));
 		session.setAttribute("USER_ID_CHE",user_id);
-		UserDTO uDTO = new UserDTO();
-		uDTO.setEmail1(email1);
-		uDTO.setEmail2(email2);
 		
 		if(ss_user_id.equals("admin")) {
 		}else {
@@ -794,6 +849,10 @@ public class UserController {
 			request.setAttribute("url", "/top.do");
 			return "/MsgToList";
 		}
+		
+		UserDTO uDTO = new UserDTO();
+		uDTO.setEmail1(email1);
+		uDTO.setEmail2(email2);
 		
 		System.out.println("중복 확인 :"+email1+" "+email2);
 		

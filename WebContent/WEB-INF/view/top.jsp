@@ -138,6 +138,7 @@
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <title>Let's see the movie! : Lovie</title>
+
 <script type="text/javascript">
 	var j = $.noConflict(true); // $.noConflict(true) 를 사용해서 $ -> 변수로 선언한 j로 바꾸니 해결!
 	j(document).ready(function() {
@@ -432,9 +433,24 @@ a.tag2:hover {
 				<c:forEach items="${map.boxOfficeResult.dailyBoxOfficeList}"
 					var="boxoffice">
 					<%
+					try{
 						String moviec2[] = moviec[i].split(", openDt");
 							String movied2[] = movied[i].split("-");
 							System.out.println(moviec2[0] + " " + movied2[0]);
+							if (moviec2[0].contains("<")){
+								String moviec3[]=moviec2[0].split("<");
+								moviec2[0] = "";
+								for (int hk = 0; hk < moviec3.length; hk++) {
+									moviec2[0] = moviec2[0] + moviec3[hk];
+								}
+							}
+							if (moviec2[0].contains(">")){
+								String moviec3[]=moviec2[0].split(">");
+								moviec2[0] = "";
+								for (int hk = 0; hk < moviec3.length; hk++) {
+									moviec2[0] = moviec2[0] + moviec3[hk];
+								}
+							}
 							if (moviec2[0].contains("%")) {
 								String moviec3[] = moviec2[0].split("%");
 								moviec2[0] = "";
@@ -589,6 +605,13 @@ a.tag2:hover {
 								</a>
 							</div>
 					</div>
+					<%}catch (Exception e) {
+						// TODO: handle exception
+					%>
+					<script>
+					location.href = "/top.do";
+					</script>
+					<%} %>
 				</c:forEach>
 			</div>
 		</div>

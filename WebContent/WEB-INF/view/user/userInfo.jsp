@@ -13,6 +13,10 @@ System.out.println("ss_user_no : " + CmmUtil.nvl((String) session.getAttribute("
 System.out.println("ss_user_id : " + SESSION_USER_ID);
 String url=CmmUtil.nvl((String)session.getAttribute("url"));
 
+if(url.isEmpty()){
+	url="/top.do";
+}
+
 //공지글 정보를 못불러왔다면, 객체 생성
 if (rDTO==null){
  rDTO = new UserDTO();

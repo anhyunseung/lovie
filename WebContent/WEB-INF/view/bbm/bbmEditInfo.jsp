@@ -461,9 +461,17 @@ a.linetag2:hover {
 							<div
 								style="position: relative; padding: 0 0 0 50px; bottom: 2px;">
 								<input type="hidden" name="user_id" value="<%=CmmUtil.nvl(rDTO.getUser_id())%>">
+								<%
+								String title=CmmUtil.nvl(rDTO.getTitle()).replaceAll("<br/>", "\r\n");;
+								title = title.replaceAll("& #39;", "'");
+							      title = title.replaceAll("& lt;", "<");
+							      title = title.replaceAll("& gt;", ">");
+							      title = title.replaceAll("& #40;", "(");
+							      title = title.replaceAll("& #41;", ")");
+								%>
 								<input type="text" autocomplete="off" name="title" maxlength="40"
 									style="width: 500px; height: 24px;"
-									value="<%=CmmUtil.nvl(rDTO.getTitle())%>" />
+									value="<%=title%>" />
 								
 							</div>
 						</div>
@@ -471,7 +479,7 @@ a.linetag2:hover {
 							<textarea name="contents"
                   style="width:673px; height:600px; resize: none;">
 <%
-				String contents = CmmUtil.nvl(rDTO.getContents()).replaceAll("<br/>", "\r\n");
+String contents = CmmUtil.nvl(rDTO.getContents()).replaceAll("<br/>", "\r\n");
 contents = contents.replaceAll("& #39;", "'");
 contents = contents.replaceAll("& lt;", "<");
 contents = contents.replaceAll("& gt;", ">");

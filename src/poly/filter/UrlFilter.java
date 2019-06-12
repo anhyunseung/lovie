@@ -53,7 +53,6 @@ public final class UrlFilter extends HttpServletRequestWrapper {
         value = value.replaceAll("'", "& #39;");
         value = value.replaceAll("eval\\((.*)\\)", "");
         value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']", "\"\"");
-        value = value.replaceAll("script", "");
         return value;
     }
 }

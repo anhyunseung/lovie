@@ -48,7 +48,7 @@
 
    <!-- 게시판 삭제 쿼리 -->
    <delete id="deleteinquiryInfo" parameterType="InquiryDTO">
-      DELETE FROM Inquiry_INFO
+      DELETE FROM INQUIRY_INFO
       WHERE INQ_SEQ = #{inq_seq}   
    </delete>
    <insert id="insertComment" parameterType="Comment_inqDTO">
@@ -84,7 +84,7 @@
 	
 	<delete id="deleteCommentALL" parameterType="String">
 		DELETE FROM COMMENT_INQ
-		WHERE INQ_SEQ = #{seq}
+		WHERE INQ_SEQ = #{inq_seq}
 	</delete>
 	
 	<select id="getCommentUserid" resultType="String">

@@ -52,7 +52,16 @@
 <link rel="shortcut icon"
 	href="http://localhost:8080/bbm/bbmInfo.do/../../img/common/icon.ico"
 	type="image/x-icon" />
-<title><%=CmmUtil.nvl(rDTO.getTitle())%> - 자유게시판 : Lovie</title>
+<%
+				String title=CmmUtil.nvl(rDTO.getTitle()).replaceAll("\r\n", "<br/>");;
+				title = title.replaceAll("& #39;", "&#39;");
+			      title = title.replaceAll("& lt;", "&lt;");
+			      title = title.replaceAll("& gt;", "&gt;");
+			      title = title.replaceAll("& #40;", "&#40;");
+			      title = title.replaceAll("& #41;", "&#41;");
+			      title = title.replaceAll("\\ ","&nbsp;");
+				%>
+<title><%=title%> - 자유게시판 : Lovie</title>
 <script type="text/javascript">
 
 function doEdit(){
@@ -755,7 +764,16 @@ a.linetag2:hover {
 					<div style="height:10px"></div>
 			<div class="tableborder">
 				<div class="tableup">
-					<font size="4px"> <b><%=CmmUtil.nvl(rDTO.getTitle())%></b>
+					<%
+				title=CmmUtil.nvl(rDTO.getTitle()).replaceAll("\r\n", "<br/>");;
+				title = title.replaceAll("& #39;", "&#39;");
+			      title = title.replaceAll("& lt;", "&lt;");
+			      title = title.replaceAll("& gt;", "&gt;");
+			      title = title.replaceAll("& #40;", "&#40;");
+			      title = title.replaceAll("& #41;", "&#41;");
+			      title = title.replaceAll("\\ ","&nbsp;");
+				%>
+					<font size="4px"> <b><%=title%></b>
 					</font> <br />
 					<div class="tableleft">
 						<%if(CmmUtil.nvl(rDTO.getUser_id()).equals("admin")){%>
@@ -778,11 +796,13 @@ a.linetag2:hover {
 				</div>
 				<div class="tablemiddle">
 					<%
-					String content = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
-					content = content.replaceAll("&nbsp", "\\&nbsp");
-					System.out.println(content);
-					%>
-					<%=content%>
+String contents = CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>");
+					contents = contents.replaceAll("& #39;", "&#39;");
+					contents = contents.replaceAll("& lt;", "&lt;");
+					contents = contents.replaceAll("& gt;", "&gt;");
+					contents = contents.replaceAll("& #40;", "&#40;");
+					contents = contents.replaceAll("& #41;", "&#41;");
+%><%=contents%>
 				</div>
 				<form action="/bbm/commentupdate.do"
 					onsubmit="return doSubmit2(this);" method="post">
@@ -877,20 +897,21 @@ a.linetag2:hover {
 										</div>
 										<div style="margin: 4px 0;"></div>
 										<%
-										String commenttest1 = CmmUtil.nvl(a.getContents()).replaceAll("\r\n", "<br/>");
-										String commenttest2 = commenttest1.replaceAll("& lt;", "<");
-										String commenttest3 = commenttest2.replaceAll("& gt;", ">");
-										String commenttest4 = commenttest3.replaceAll("& #40;", "(");
-										String commenttest5 = commenttest4.replaceAll("& #41;", ")");
-										String comment = commenttest5;
-										
 										if(CmmUtil.nvl(a.getcom_seq()).equals(com_seq)){%>
 										<div class="editalign">
 										<div>
 										<%String q= CmmUtil.nvl(a.getcom_seq()); %>
 										<input type="hidden" name="user_id" value="<%=CmmUtil.nvl(a.getUser_id())%>"/>
 										<input type="hidden" name="com_seq" value="<%=q%>">
-										<textarea name="comment2" style="width: 496px; resize:none;"><%=comment.replaceAll("<br/>", "\r\n")%></textarea>
+										<%
+String comment = CmmUtil.nvl(a.getContents()).replaceAll("<br/>", "\r\n");
+										comment = comment.replaceAll("& #39;", "'");
+										comment = comment.replaceAll("& lt;", "<");
+										comment = comment.replaceAll("& gt;", ">");
+										comment = comment.replaceAll("& #40;", "(");
+										comment = comment.replaceAll("& #41;", ")");
+%>
+										<textarea name="comment2" style="width: 496px; resize:none;"><%=comment%></textarea>
 										</div>
 										<div class="button-container-2">
 											<span class="mas2"><b>완료</b></span>
@@ -908,6 +929,15 @@ a.linetag2:hover {
 										</div>
 										</div>
 										<%}else{ %>
+										<%
+String comment = CmmUtil.nvl(a.getContents()).replaceAll("\r\n", "<br/>");
+										comment = comment.replaceAll("& #39;", "&#39;");
+										comment = comment.replaceAll("& lt;", "&lt;");
+										comment = comment.replaceAll("& gt;", "&gt;");
+										comment = comment.replaceAll("& #40;", "&#40;");
+										comment = comment.replaceAll("& #41;", "&#41;");
+										comment = comment.replaceAll("\\ ","&nbsp;");
+%>
 										<%=comment%>
 										<%} %>
 									</div>

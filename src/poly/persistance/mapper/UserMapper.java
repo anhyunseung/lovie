@@ -32,4 +32,6 @@ public interface UserMapper {
    String getidover(UserDTO uDto) throws Exception;
 
    String getemailover(UserDTO uDto) throws Exception;
+   
+   String getUserid(String uDto) throws Exception;
 }

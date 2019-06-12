@@ -30,5 +30,7 @@ public interface IUserService {
    String getidover(UserDTO uDto) throws Exception;
    
    String getemailover(UserDTO uDto) throws Exception;
+   
+   String getUserid(String seq) throws Exception;
 
 } 

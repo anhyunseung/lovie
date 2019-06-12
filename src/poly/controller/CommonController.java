@@ -105,6 +105,7 @@ public class CommonController {
 		   moviecode=CmmUtil.nvl((String) session.getAttribute("moviecodeI"));
 	   }
 	   
+	   try {
 	   String linkHref = "https://movie.naver.com/movie/bi/mi/basic.nhn?code="+moviecode;
 	   Document doc = Jsoup.connect(linkHref).get();
 	   Element movie = doc.select("div.mv_info_area div.mv_info h3.h_movie a").first();
@@ -151,5 +152,11 @@ public class CommonController {
 	   
 	   
       return "movieInfo";
+	   }catch (Exception e) {
+		// TODO: handle exception
+		   request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
+			return "/MsgToList";
+	}
    }
 }

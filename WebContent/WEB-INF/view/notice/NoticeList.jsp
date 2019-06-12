@@ -432,11 +432,35 @@ a.linetag2:hover {
 						</div>
 						<div style="width:323px;height:30px;">&nbsp; <a
 							href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getnotice_seq())%>');"
-							class="line"> <span style="color: black; font-weight: bold">
-							<%if(CmmUtil.nvl(rDTO.getTitle()).length()>20){ %>
-								<%=CmmUtil.nvl(rDTO.getTitle()).substring(0,20)+"..."%>
-							<%}else{ %>
-								<%=CmmUtil.nvl(rDTO.getTitle())%>
+							class="line">
+							<%
+				String title=CmmUtil.nvl(rDTO.getTitle()).replaceAll("\r\n", "");
+				title = title.replaceAll("& #39;", "'");
+			      title = title.replaceAll("& lt;", "<");
+			      title = title.replaceAll("& gt;", ">");
+			      title = title.replaceAll("& #40;", "(");
+			      title = title.replaceAll("& #41;", ")");
+				%>
+							 <span style="color: black; font-weight: bold">
+							<%if(title.length()>20){ 
+								String title2 = title.substring(0,20);
+				title2 = title2.replaceAll("'", "&#39;");
+			      title2 = title2.replaceAll("<", "&lt;");
+			      title2 = title2.replaceAll(">", "&gt;");
+			      title2 = title2.replaceAll("(", "&#40;");
+			      title2 = title2.replaceAll(")", "&#41;");
+			      title2 = title2.replaceAll("\\ ","&nbsp;");%>
+								<%=title2+"..."%>
+							<%}else{ 
+								title=CmmUtil.nvl(rDTO.getTitle()).replaceAll("\r\n", "<br/>");
+								title = title.replaceAll("& #39;", "&#39;");
+							      title = title.replaceAll("& lt;", "&lt;");
+							      title = title.replaceAll("& gt;", "&gt;");
+							      title = title.replaceAll("& #40;", "&#40;");
+							      title = title.replaceAll("& #41;", "&#41;");
+							      title = title.replaceAll("\\ ","&nbsp;");
+							%>
+								<%=title%>
 							<%} %>
 							</span>
 						</a> <%
@@ -472,11 +496,8 @@ a.linetag2:hover {
 					<%} %>
 					
 					<div style="background-color: #dddddd; height: 2px;"></div>
-					<%
-						if (SESSION_USER_ID.equals("admin")) {
-					%>
-					<div align="right" style="padding: 10px 0 0 0;">
-					<div style="display: inline-block; width:68%;" align="left">
+					<div align="left" style="padding: 10px 0 0 0;">
+					<div style="display: inline-block; width:69%;" align="left">
 					<input type="text" name="find" style="width:200px;height:25px; vertical-align: top;"
 					placeholder="제목 또는 내용에서 검색"/>
 					<button  type="button" onclick="Search(this);" style="background-color: rgba(0,0,0,0); 
@@ -486,15 +507,18 @@ a.linetag2:hover {
 							onmouseout="this.src='../img/button/search.png'" />
 				</button>
 				</div>
-				<div style="display: inline-block; width:30%;">
+				<%
+						if (SESSION_USER_ID.equals("admin")) {
+					%>
+				<div style="display: inline-block; width:30%;" align="right">
 					<a href="NoticeReg.do"> <img
 								src="../img/button/write.png"
 								onmouseover="this.src='../img/button/write2.png'"
 								onmouseout="this.src='../img/button/write.png'" />
 						</a>
 				</div>
+				<%} %>
 					</div>
-					<%} %>
 								<div class="paging" align="center" style="height:30px; margin: 10px 0 0 0">
 									<%
 								int line = 0;

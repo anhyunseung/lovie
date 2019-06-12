@@ -71,14 +71,6 @@ public class NoticeController {
 		log.info(this.getClass().getName() + ".NoticeSearch start!");
 		String find=request.getParameter("find");
 		
-		find = find.replaceAll("\r\n", "<br/>");
-		find = find.replaceAll("& #39;", "'");
-		find = find.replaceAll("& lt;", "<");
-		find = find.replaceAll("& gt;", ">");
-		find = find.replaceAll("& #40;", "(");
-		find = find.replaceAll("& #41;", ")");
-		find = find.replaceAll("&nbsp", "&amp;nbsp");
-		
 		find = "%"+find+"%";
 		NoticeDTO rDTO = new NoticeDTO();
 		
@@ -129,13 +121,18 @@ public class NoticeController {
 		String seq=request.getParameter("notice_seq");
 		String contents=request.getParameter("comment");
 		
-		contents = contents.replaceAll("\r\n", "<br/>");
-		contents = contents.replaceAll("& #39;", "'");
-		contents = contents.replaceAll("& lt;", "<");
-		contents = contents.replaceAll("& gt;", ">");
-		contents = contents.replaceAll("& #40;", "(");
-		contents = contents.replaceAll("& #41;", ")");
-		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
+		if (contents.length() > 3000) {
+			request.setAttribute("msg", "최대 3000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
+			return "/MsgToList";
+		}
+		
+		if(user_no=="") {
+			session.setAttribute("notice_seq",seq);
+			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
+			request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
+			return "/MsgToList";
+		}
 		
 		Comment_noticeDTO cDTO = new Comment_noticeDTO();
 		
@@ -149,13 +146,6 @@ public class NoticeController {
 		System.out.println(seq);
 		System.out.println(contents);
 		
-		if(user_no=="") {
-			session.setAttribute("notice_seq",seq);
-			request.setAttribute("msg", "로그인 회원만 댓글을 작성할 수 있습니다.");
-			request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
-			return "/MsgToList";
-		}
-		
 		NoticeService.insertComment(cDTO);
 		
 		
@@ -167,6 +157,9 @@ public class NoticeController {
 		request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
 		session.setAttribute("notice_seq",seq);
 		}
+		
+		cDTO=null;
+		
 		return "/MsgToList";
 	}
 	
@@ -233,13 +226,11 @@ public class NoticeController {
 			return "/MsgToList";
 		}
 		
-		contents = contents.replaceAll("\r\n", "<br/>");
-		contents = contents.replaceAll("& #39;", "'");
-		contents = contents.replaceAll("& lt;", "<");
-		contents = contents.replaceAll("& gt;", ">");
-		contents = contents.replaceAll("& #40;", "(");
-		contents = contents.replaceAll("& #41;", ")");
-		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
+		if (contents.length() > 3000) {
+			request.setAttribute("msg", "최대 3000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/notice/NoticeInfo.do?notice_seq="+seq);
+			return "/MsgToList";
+		}
 		
 		Comment_noticeDTO cDTO = new Comment_noticeDTO();
 		
@@ -300,6 +291,13 @@ public class NoticeController {
 		
 		System.out.println(seq);
 		
+		String a=NoticeService.getNoticeUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/notice/NoticeList.do");
+			return "/MsgToList";
+		}
+		
 		NoticeDTO rDTO = new NoticeDTO();
 		
 		rDTO.setnotice_seq(seq);
@@ -329,6 +327,13 @@ public class NoticeController {
 		
 		System.out.println(seq);
 		System.out.println(com_seq);
+		
+		String a=NoticeService.getNoticeUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/notice/NoticeList.do");
+			return "/MsgToList";
+		}
 		
 		NoticeDTO rDTO = new NoticeDTO();
 		
@@ -404,21 +409,17 @@ public class NoticeController {
 			return "/MsgToList";
 		}
 		
-		title = title.replaceAll("\r\n", "<br/>");
-		title = title.replaceAll("& #39;", "'");
-		title = title.replaceAll("& lt;", "<");
-		title = title.replaceAll("& gt;", ">");
-		title = title.replaceAll("& #40;", "(");
-		title = title.replaceAll("& #41;", ")");
-		title = title.replaceAll("&nbsp", "&amp;nbsp");
+		if (title.length() > 45) {
+			request.setAttribute("msg", "제목은 최대 45자까지 입력 가능합니다.");
+			request.setAttribute("url", "/notice/NoticeReg.do");
+			return "/MsgToList";
+		}
 		
-		contents = contents.replaceAll("\r\n", "<br/>");
-		contents = contents.replaceAll("& #39;", "'");
-		contents = contents.replaceAll("& lt;", "<");
-		contents = contents.replaceAll("& gt;", ">");
-		contents = contents.replaceAll("& #40;", "(");
-		contents = contents.replaceAll("& #41;", ")");
-		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
+		if (contents.length() > 20000) {
+			request.setAttribute("msg", "게시글은 최대 20000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/notice/NoticeReg.do");
+			return "/MsgToList";
+		}
 		
 		System.out.println(title);
 		System.out.println(contents);
@@ -452,6 +453,13 @@ public class NoticeController {
 		String seq= request.getParameter("notice_seq");
 		
 		System.out.println(seq);
+		
+		String a=NoticeService.getNoticeUserid(seq);
+		if(a==null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/notice/NoticeList.do");
+			return "/MsgToList";
+		}
 		
 		NoticeDTO rDTO = new NoticeDTO();
 		
@@ -488,21 +496,17 @@ public class NoticeController {
 			return "/MsgToList";
 		}
 		
-		title = title.replaceAll("\r\n", "<br/>");
-		title = title.replaceAll("& #39;", "'");
-		title = title.replaceAll("& lt;", "<");
-		title = title.replaceAll("& gt;", ">");
-		title = title.replaceAll("& #40;", "(");
-		title = title.replaceAll("& #41;", ")");
-		title = title.replaceAll("&nbsp", "&amp;nbsp");
+		if (title.length() > 45) {
+			request.setAttribute("msg", "제목은 최대 45자까지 입력 가능합니다.");
+			request.setAttribute("url", "/notice/NoticeReg.do");
+			return "/MsgToList";
+		}
 		
-		contents = contents.replaceAll("\r\n", "<br/>");
-		contents = contents.replaceAll("& #39;", "'");
-		contents = contents.replaceAll("& lt;", "<");
-		contents = contents.replaceAll("& gt;", ">");
-		contents = contents.replaceAll("& #40;", "(");
-		contents = contents.replaceAll("& #41;", ")");
-		contents = contents.replaceAll("&nbsp", "&amp;nbsp");
+		if (contents.length() > 20000) {
+			request.setAttribute("msg", "게시글은 최대 20000자까지 입력 가능합니다.");
+			request.setAttribute("url", "/notice/NoticeReg.do");
+			return "/MsgToList";
+		}
 		
 		System.out.println(title);
 		System.out.println(contents);

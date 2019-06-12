@@ -32,4 +32,6 @@ public interface NoticeMapper {
 	void deleteCommentALL(String seq) throws Exception;
 
 	String getCommentUserid(String uDto) throws Exception;
+	
+	String getNoticeUserid(String uDto) throws Exception;
 }

@@ -92,4 +92,10 @@ public class UserService implements IUserService {
 		return userMapper.getemailover(uDto);
 
 	}
+	
+	@Override
+	public String getUserid(String uDto) throws Exception {
+		// TODO Auto-generated method stub
+		return userMapper.getUserid(uDto);
+	}
 }
