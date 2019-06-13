@@ -23,6 +23,7 @@ if (rDTO==null){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <link rel="shortcut icon" href="http://localhost:8080/user/userEditInfo.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>내 정보 : Lovie</title>
 <script type="text/javascript">
@@ -134,14 +135,10 @@ function doKeyOnlyWord(event) {
    }
 }
 
-function doKeyIdPw(event) {
-   event = event || window.event;
-   var keyID = (event.which) ? event.which : event.KeyCode;
-   
-   if((keyID >= 48 && keyID <= 57) || (keyID>=96 && keyID <=105) || (keyID >= 65 && keyID <= 90) || keyID==8 || keyID==37 || keyID==39 || keyID==9 || event.shiftKey){
-      return true;
-   }else{
-      return false;
+function doKeyIdPw(obj) {
+	if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >=96 && event.keyCode <=105) || (event.keyCode  >= 65 && keyID <= 90) || event.keyCode ==8 || event.keyCode ==37 || event.keyCode ==39 || event.keyCode ==9 ) { 
+	  }else {
+	   event.returnValue = false;
    }
 }
 

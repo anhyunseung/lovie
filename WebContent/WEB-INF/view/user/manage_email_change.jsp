@@ -11,6 +11,7 @@ String url = CmmUtil.nvl((String) session.getAttribute("url"));
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <link rel="shortcut icon" href="http://localhost:8080/user/manage_id_change.do/../../img/common/icon.ico" type="image/x-icon" />
 <title>Let's see the movie! : Lovie - 이메일 변경</title>
 <script type="text/javascript">

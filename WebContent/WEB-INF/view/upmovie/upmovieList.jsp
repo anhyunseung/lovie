@@ -119,6 +119,7 @@
 			value = map.get(key2);
 		}
 		movie = value.toString();
+		
 		System.out.println(movie);
 		String moviec[] = movie.split("movieNm=");
 		String moviecc[] = movie.split("openDt=");
@@ -165,6 +166,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <link rel="shortcut icon"
 	href="http://localhost:8080/upmovie/upmovieList.do/../../img/common/icon.ico"
 	type="image/x-icon" />

@@ -541,7 +541,14 @@ public class UserController {
 		System.out.println(user_no);
 		
 		String a=userService.getUserid(user_no);
-		if(a==null) {
+		String ss_user_no=CmmUtil.nvl((String) session.getAttribute("USER_NO"));
+		if(a==null||ss_user_no.isEmpty()) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("url", "/top.do");
+			return "/MsgToList";
+		}
+		if(user_no.equals(ss_user_no)) {
+		}else {
 			request.setAttribute("msg", "잘못된 접근입니다.");
 			request.setAttribute("url", "/top.do");
 			return "/MsgToList";
