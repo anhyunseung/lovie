@@ -63,7 +63,7 @@ function doSubmit(a) {
    }
    
    if(f.pwd1.value != f.pwd2.value){
-      alert("패스워드가 일치하지 않습니다.");
+      alert("비밀번호가 일치하지 않습니다.");
       f.pwd1.focus();
       return false;
    }

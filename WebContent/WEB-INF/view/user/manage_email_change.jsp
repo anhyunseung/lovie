@@ -25,9 +25,14 @@ function doOnload(){
 
 	}
 function doIdchack(f){
-	if(f.user_id.value == ""){
-	      alert("아이디를 입력해주세요.");
-	      f.user_id.focus();
+	if(f.email1.value == ""){
+	      alert("이메일을 입력 해주세요.");
+	      f.email1.focus();
+	      return false;
+	   }
+		if(f.email2.value == "bd"){
+	      alert("이메일을 입력 해주세요.");
+	      f.email2.focus();
 	      return false;
 	   }
 }

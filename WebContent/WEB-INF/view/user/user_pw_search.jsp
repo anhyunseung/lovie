@@ -10,25 +10,25 @@
 <script type="text/javascript">
 	function doSubmit(f) {
 		if (f.user_name.value == "") {
-			alert("성명, 이메일 또는 ID를 적었는지 \n            확인해주세요.");
+			alert("성명, ID, 이메일, 전화번호를 적었는지 확인해주세요.");
 			f.user_name.focus();
 			return false;
 		}
 
 		if (f.user_id.value == "") {
-			alert("성명, 이메일 또는 ID를 적었는지 \n            확인해주세요.");
+			alert("성명, ID, 이메일, 전화번호를 적었는지 확인해주세요.");
 			f.user_id.focus();
 			return false;
 		}
 
 		if (f.email1.value == "") {
-			alert("성명, 이메일 또는 ID를 적었는지 \n            확인해주세요.");
+			alert("성명, ID, 이메일, 전화번호를 적었는지 확인해주세요.");
 			f.email1.focus();
 			return false;
 		}
 
 		if (f.email2.value == "bd") {
-			alert("성명, 이메일 또는 ID를 적었는지 \n            확인해주세요.");
+			alert("성명, ID, 이메일, 전화번호를 적었는지 확인해주세요.");
 			f.email2.focus();
 			return false;
 		}
