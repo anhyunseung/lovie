@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import poly.dto.UserDTO;
 import poly.service.IUserService;
 import poly.util.CmmUtil;
-
+import poly.util.AES256Util;
  
 @Controller
 public class UserController {
@@ -192,14 +192,13 @@ public class UserController {
 			return "/MsgToList";
 		}
 		
-		System.out.println(user_name);
-		System.out.println(user_pw);
-		System.out.println(email1);
-		System.out.println(email2);
-		System.out.println(tel_1);
-		System.out.println(tel_2);
-		System.out.println(tel_3);
-		System.out.println(birthday);
+		if(user_pw.length()>20) {
+			String msg="비밀번호가 20자를 초과하였습니다.";
+			String url="/user/user_join2.do";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/MsgToList";
+		}
 		
 		if(user_pw.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")||user_pw.contains(" ")||user_pw.contains("&")) {
 			String msg="한글 또는 공백 또는 사용할 수 없는 특수문자가 있습니다.";
@@ -212,6 +211,18 @@ public class UserController {
 		session.setAttribute("id_over", "");
 	    session.setAttribute("email_over", "");
 		session.setAttribute("email_over2", "");
+		
+		AES256Util aes = new AES256Util("1234567890123456");
+		user_pw = aes.testSHA256(user_pw);
+		
+		System.out.println(user_name);
+		System.out.println(user_pw);
+		System.out.println(email1);
+		System.out.println(email2);
+		System.out.println(tel_1);
+		System.out.println(tel_2);
+		System.out.println(tel_3);
+		System.out.println(birthday);
 		
 		UserDTO pDTO = new UserDTO();
 
@@ -268,7 +279,10 @@ public class UserController {
 		String user_pw = (String) request.getParameter("pwd1");
 		log.info(user_id);
 		log.info(user_pw);
-
+		
+		AES256Util aes = new AES256Util("1234567890123456");
+		user_pw = aes.testSHA256(user_pw);
+		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUser_id(user_id);
 		uDTO.setPassword(user_pw);
@@ -409,6 +423,9 @@ public class UserController {
 			request.setAttribute("url", url);
 			return "/MsgToList";
 		}
+		
+		AES256Util aes = new AES256Util("1234567890123456");
+		password = aes.testSHA256(password);
 		
 		UserDTO uDTO = new UserDTO();
 		uDTO.setUser_id(user_id);
@@ -611,6 +628,9 @@ public class UserController {
 			request.setAttribute("url", url);
 			return "/MsgToList";
 		}
+		
+		AES256Util aes = new AES256Util("1234567890123456");
+		user_pw = aes.testSHA256(user_pw);
 		
 		System.out.println(user_no);
 		System.out.println(user_name);
