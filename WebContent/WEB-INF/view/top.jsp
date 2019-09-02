@@ -859,12 +859,12 @@ a.tag2:hover {
 	<div style="height:100px;"></div>
 	<div class="align3d">
 	<div>
-	<a href="/movieInfo.do?moviecode=136900">
-	<img src="../img/movie_image.gif" style="border: 20px ridge rgba(80,80,80,0.6);"/>
+	<a href="/movieInfo.do?moviecode=174903">
+	<img src="../img/movie_image.png" style="border: 20px ridge rgba(80,80,80,0.6);"/>
 	</a>
 	</div>
 	<div class="fontmov" style="height:100%; vertical-align:top; padding:100px 0 0 40px;" align="left">
-	<a href="/movieInfo.do?moviecode=136900">
+	<a href="/movieInfo.do?moviecode=174903">
 	<img src="../img/movie_font.png">
 	</a>
 	<div style="height: 50px;"></div>
@@ -874,25 +874,25 @@ a.tag2:hover {
 	<b>개봉일</b> </font>
 	<div style="height: 5px;"></div>
 	<font face='Malgun Gothic' size="4px" color="#dddddd">
-	2019. 04. 24.</font>
+	2019. 07. 31.</font>
 	<div style="height: 20px;"></div>
 	<font face='Malgun Gothic' size="5px" color="#dddddd">
 	<b>전월 관객수</b> </font>
 	<div style="height: 5px;"></div>
 	<font face='Malgun Gothic' size="4px" color="#dddddd">
-	6,487,783명 </font>
+	8,282,876명 </font>
 	<div style="height: 20px;"></div>
 	<font face='Malgun Gothic' size="5px" color="#dddddd">
 	<b>전월 매출액</b> </font>
 	<div style="height: 5px;"></div>
 	<font face='Malgun Gothic' size="4px" color="#dddddd">
-	57,933,540,330\ </font>
+	70,608,256,112\ </font>
 	<div style="height: 20px;"></div>
 	<font face='Malgun Gothic' size="5px" color="#dddddd">
 	<b>전월 매출액 점유율</b> </font>
 	<div style="height: 5px;"></div>
 	<font face='Malgun Gothic' size="4px" color="#dddddd">
-	37.5%</font>
+	33.7%</font>
 	</div>
 	</div>
 	</div>
