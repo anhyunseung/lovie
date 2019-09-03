@@ -161,7 +161,7 @@ div.loginmenu {
 	padding: 0 0;
 	width: 270px;
 	height: 160px;
-	background-color: rgba(255, 255, 255);
+	background-color: rgb(255, 255, 255);
 	box-shadow: 2px 0 3px 0 rgba(100, 100, 100, 0.6);
 }
 
@@ -194,7 +194,7 @@ div.rightmenu {
 div.writemenu {
 	margin: 162px 0 162px 160px;
 	padding: 10px 10px;
-	background-color: rgba(255, 255, 255);
+	background-color: rgb(255, 255, 255);
 	width: 700px;
 	box-shadow: 1px 1px 2px 0 rgba(100, 100, 100, 0.6);
 }
@@ -338,14 +338,14 @@ div.tabledown{
 						<div style="width:260px;height: 1px; background-color: #888888;
 						position: relative; top:25px;"></div>
 							<div style="position: relative; top:35px;">
-								<span style="padding: 10px 7px;"> <a class="tag"
+								<span style="padding: 10px 6px;"> <a class="tag"
 									href="/user/user_join.do"> <font face='Malgun Gothic'
 										size="2px"> 회원가입 </font>
 								</a>
 								</span> <span style="padding: 10px 0px;"> <font
 									face='Malgun Gothic' size="2px" style="color: #6b7177;">
 										| </font>
-								</span> <span style="padding: 10px 7px;"> <a class="tag"
+								</span> <span style="padding: 10px 6px;"> <a class="tag"
 									href="/user/user_id_search.do"
 									onClick="window.open('/user/user_id_search.do','아이디 찾기','width=470, height=226, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
 										<font face='Malgun Gothic' size="2px"> 아이디찾기 </font>
@@ -353,7 +353,7 @@ div.tabledown{
 								</span> <span style="padding: 10px 0px;"> <font
 									face='Malgun Gothic' size="2px" style="color: #6b7177;">
 										| </font>
-								</span> <span style="padding: 10px 7px;"> <a class="tag"
+								</span> <span style="padding: 10px 6px;"> <a class="tag"
 									href="/user/user_pw_search.do"
 									onClick="window.open('/user/user_pw_search.do','비밀번호 찾기','width=470, height=366, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">
 										<font face='Malgun Gothic' size="2px"> 비밀번호 찾기 </font>
@@ -370,21 +370,21 @@ div.tabledown{
 						<div style="width:260px;height: 1px; background-color: #888888;
 						position: relative; top:25px;"></div>
 							<div style="position: relative; top:35px;">
-								<span style="padding: 10px 7px;"> <a class="tag"
+								<span style="padding: 10px 6px;"> <a class="tag"
 									href="/user/manageList.do"> <font face='Malgun Gothic'
 										size="2px"> 회원관리 </font>
 								</a>
 								</span> <span style="padding: 10px 0px;"> <font
 									face='Malgun Gothic' size="2px" style="color: #6b7177;">
 										| </font>
-								</span> <span style="padding: 10px 7px;"> <a class="tag"
+								</span> <span style="padding: 10px 6px;"> <a class="tag"
 									href="/user/userInfo.do"> <font face='Malgun Gothic'
 										size="2px"> 내 정보 </font>
 								</a>
 								</span> <span style="padding: 10px 0px;"> <font
 									face='Malgun Gothic' size="2px" style="color: #6b7177;">
 										| </font>
-								</span> <span style="padding: 10px 7px;"> <a class="tag"
+								</span> <span style="padding: 10px 6px;"> <a class="tag"
 									href="/user/user_logout.do"> <font face='Malgun Gothic'
 										size="2px"> 로그아웃 </font>
 								</a>
@@ -400,14 +400,14 @@ div.tabledown{
 						<div style="width:260px;height: 1px; background-color: #888888;
 						position: relative; top:25px;"></div>
 							<div style="position: relative; top:35px;">
-								<span style="padding: 10px 7px;"> <a class="tag"
+								<span style="padding: 10px 6px;"> <a class="tag"
 									href="/user/userInfo.do"> <font face='Malgun Gothic'
 										size="2px"> 내 정보</font>
 								</a>
 								</span> <span style="padding: 10px 0px;"> <font
 									face='Malgun Gothic' size="2px" style="color: #6b7177;">
 										| </font>
-								</span> <span style="padding: 10px 7px;"> <a class="tag"
+								</span> <span style="padding: 10px 6px;"> <a class="tag"
 									href="/user/user_logout.do"> <font face='Malgun Gothic'
 										size="2px"> 로그아웃 </font>
 								</a>
@@ -420,7 +420,7 @@ div.tabledown{
 			</div>
 			<div class="listmenu">
 				<font face='Malgun Gothic' size="6px"
-					style="color: rgb(85, 85, 85, 0.7); margin: 0 10px 0 0;"> <b>게시판</b></font>
+					style="color: rgba(85, 85, 85, 0.7); margin: 0 10px 0 0;"> <b>게시판</b></font>
 				<a href="/notice/NoticeList.do"> <img
 					src="../img/total/listnotice.jpg"
 					onmouseover="this.src='../img/total/listnotice2.jpg'"
