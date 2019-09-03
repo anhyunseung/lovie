@@ -352,7 +352,7 @@ a.linetag2:hover {
 				</div>
 				<div class="listmenu">
 					<font face='Malgun Gothic' size="6px"
-						style="color: rgb(85,85,85,0.7); margin: 0 10px 0 0;"> <b>게시판</b></font> <a
+						style="color: rgba(85,85,85,0.7); margin: 0 10px 0 0;"> <b>게시판</b></font> <a
 						href="/notice/NoticeList.do"> <img
 						src="../img/total/listnotice.jpg"
 						onmouseover="this.src='../img/total/listnotice2.jpg'"
